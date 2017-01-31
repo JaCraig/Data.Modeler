@@ -15,25 +15,31 @@ limitations under the License.
 */
 
 using Canister.Interfaces;
-using SQLHelper.Registration;
-using System.Reflection;
+using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Data.Modeler.Registration
+namespace Data.Modeler.Modules
 {
     /// <summary>
-    /// Registration extension methods
+    /// Data modeler module
     /// </summary>
-    public static class Registration
+    /// <seealso cref="Canister.Interfaces.IModule"/>
+    public class DataModelerModule : IModule
     {
         /// <summary>
-        /// Registers the library with the bootstrapper.
+        /// Order to run this in
+        /// </summary>
+        public int Order => 40;
+
+        /// <summary>
+        /// Loads the module using the bootstrapper
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
-        /// <returns>The bootstrapper</returns>
-        public static IBootstrapper RegisterDataModeler(this IBootstrapper bootstrapper)
+        public void Load(IBootstrapper bootstrapper)
         {
-            return bootstrapper.AddAssembly(typeof(Registration).GetTypeInfo().Assembly)
-                               .RegisterSQLHelper();
+            bootstrapper.RegisterAll<ICommandBuilder>();
+            bootstrapper.RegisterAll<ISourceBuilder>();
+            bootstrapper.RegisterAll<ISchemaGenerator>(ServiceLifetime.Singleton);
         }
     }
 }

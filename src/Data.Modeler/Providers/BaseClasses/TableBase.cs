@@ -20,7 +20,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.BaseClasses
 {
@@ -40,12 +39,19 @@ namespace Data.Modeler.Providers.BaseClasses
             Source = source;
             Columns = new List<IColumn>();
             Triggers = new List<ITrigger>();
+            Constraints = new List<ICheckConstraint>();
         }
 
         /// <summary>
         /// Columns
         /// </summary>
         public ICollection<IColumn> Columns { get; private set; }
+
+        /// <summary>
+        /// Gets the constraints.
+        /// </summary>
+        /// <value>The constraints.</value>
+        public ICollection<ICheckConstraint> Constraints { get; private set; }
 
         /// <summary>
         /// Name of the table
@@ -70,8 +76,17 @@ namespace Data.Modeler.Providers.BaseClasses
         public IColumn this[string name] { get { return Columns.FirstOrDefault(x => string.Equals(x.Name, name, StringComparison.CurrentCultureIgnoreCase)); } }
 
         /// <summary>
+        /// Adds a check constraint to the table.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="definition">The definition.</param>
+        /// <returns>The check constraint added to the table</returns>
+        public abstract ICheckConstraint AddCheckConstraint(string name, string definition);
+
+        /// <summary>
         /// Adds a column
         /// </summary>
+        /// <typeparam name="T">Column type</typeparam>
         /// <param name="columnName">Column Name</param>
         /// <param name="columnType">Data type</param>
         /// <param name="length">Data length</param>
@@ -83,14 +98,16 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <param name="foreignKeyTable">Foreign key table</param>
         /// <param name="foreignKeyColumn">Foreign key column</param>
         /// <param name="defaultValue">Default value</param>
+        /// <param name="computedColumnSpecification">The computed column specification.</param>
         /// <param name="onDeleteCascade">On Delete Cascade</param>
         /// <param name="onUpdateCascade">On Update Cascade</param>
         /// <param name="onDeleteSetNull">On Delete Set Null</param>
-        /// <typeparam name="T">Column type</typeparam>
+        /// <returns></returns>
         public abstract IColumn AddColumn<T>(string columnName, DbType columnType, int length = 0, bool nullable = true,
             bool identity = false, bool index = false, bool primaryKey = false, bool unique = false,
             string foreignKeyTable = "", string foreignKeyColumn = "", T defaultValue = default(T),
-            bool onDeleteCascade = false, bool onUpdateCascade = false, bool onDeleteSetNull = false);
+            string computedColumnSpecification = "", bool onDeleteCascade = false, bool onUpdateCascade = false,
+            bool onDeleteSetNull = false);
 
         /// <summary>
         /// Adds a foreign key

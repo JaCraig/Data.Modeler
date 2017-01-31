@@ -14,14 +14,73 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using System;
+using BigBook;
+using Data.Modeler.Providers.Interfaces;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
-    public class CreateViewCommandBuilder
+    /// <summary>
+    /// Create view command builder
+    /// </summary>
+    /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
+    public class CreateViewCommandBuilder : ICommandBuilder
     {
+        /// <summary>
+        /// Gets the order.
+        /// </summary>
+        /// <value>The order.</value>
+        public int Order => 50;
+
+        /// <summary>
+        /// Gets the commands.
+        /// </summary>
+        /// <param name="desiredStructure">The desired structure.</param>
+        /// <param name="currentStructure">The current structure.</param>
+        /// <returns>
+        /// The list of commands needed to change the structure from the current to the desired structure
+        /// </returns>
+        public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
+        {
+            var Commands = new List<string>();
+            foreach (View TempView in desiredStructure.Views)
+            {
+                var CurrentView = (View)currentStructure.Views.FirstOrDefault(x => x.Name == TempView.Name);
+                Commands.Add(CurrentView != null ? GetAlterViewCommand(TempView, CurrentView) : GetViewCommand(TempView));
+            }
+            return Commands;
+        }
+
+        private static IEnumerable<string> GetAlterViewCommand(View view, View currentView)
+        {
+            if (view == null || currentView == null)
+                return new List<string>();
+            if (view.Definition != currentView.Definition && string.IsNullOrEmpty(view.Definition))
+                return new List<string>();
+            var ReturnValue = new List<string>();
+            if (currentView == null)
+            {
+                ReturnValue.Add(GetViewCommand(view));
+            }
+            else if (view.Definition != currentView.Definition)
+            {
+                ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                    "DROP VIEW {0}",
+                    view.Name));
+                ReturnValue.Add(GetViewCommand(view));
+            }
+            return ReturnValue;
+        }
+
+        private static IEnumerable<string> GetViewCommand(View view)
+        {
+            if (view == null || view.Definition == null)
+                return new List<string>();
+            var Definition = Regex.Replace(view.Definition, "-- (.*)", "");
+            return new string[] { Definition.Replace("\n", " ").Replace("\r", " ") };
+        }
     }
 }

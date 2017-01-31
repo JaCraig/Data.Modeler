@@ -20,7 +20,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.SQLServer.SourceBuilders
 {
@@ -48,7 +47,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
                 return;
             foreach (dynamic Item in values)
             {
-                SetupViews(database.Views.FirstOrDefault(x => x.Name == Item.View), Item);
+                SetupViews((View)database.Views.FirstOrDefault(x => x.Name == Item.View), Item);
             }
         }
 
@@ -74,13 +73,13 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// </summary>
         /// <param name="table">The table.</param>
         /// <param name="item">The item.</param>
-        private static void SetupViews(ITable table, dynamic item)
+        private static void SetupViews(View table, dynamic item)
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
             if (table == null)
                 throw new ArgumentNullException(nameof(table));
-            var View = (View)table;
+            var View = table;
             View.Definition = item.Definition;
             string ColumnName = item.Column;
             string ColumnType = item.COLUMN_TYPE;

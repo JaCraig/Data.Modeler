@@ -15,11 +15,7 @@ limitations under the License.
 */
 
 using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
 using System.Data.Common;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.Interfaces
 {
@@ -51,11 +47,5 @@ namespace Data.Modeler.Providers.Interfaces
         /// </summary>
         /// <value>The factory.</value>
         DbProviderFactory Factory { get; }
-
-        /// <summary>
-        /// Name of the source
-        /// </summary>
-        /// <value>The name.</value>
-        string Name { get; }
     }
 }

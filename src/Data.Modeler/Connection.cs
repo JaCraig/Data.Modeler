@@ -15,10 +15,6 @@ limitations under the License.
 */
 
 using Data.Modeler.Providers.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -38,21 +34,19 @@ namespace Data.Modeler
         /// <param name="configuration">The configuration.</param>
         /// <param name="factory">The factory.</param>
         /// <param name="connection">Name of the database.</param>
-        /// <param name="name">The name.</param>
-        public Connection(IConfiguration configuration, DbProviderFactory factory, string connection, string name)
+        public Connection(IConfiguration configuration, DbProviderFactory factory, string connection)
         {
             Configuration = configuration;
             Factory = factory;
 
-            Name = string.IsNullOrEmpty(name) ? "Default" : name;
-            var TempConfig = configuration.GetConnectionString(Name);
-            if (string.IsNullOrEmpty(connection) && TempConfig != null)
+            var TempConfig = configuration.GetConnectionString(connection);
+            if (!string.IsNullOrEmpty(TempConfig))
             {
                 ConnectionString = TempConfig;
             }
             else
             {
-                ConnectionString = string.IsNullOrEmpty(connection) ? name : connection;
+                ConnectionString = connection;
             }
             if (factory == SqlClientFactory.Instance)
             {
@@ -86,11 +80,5 @@ namespace Data.Modeler
         /// </summary>
         /// <value>The factory.</value>
         public DbProviderFactory Factory { get; private set; }
-
-        /// <summary>
-        /// Name of the source
-        /// </summary>
-        /// <value>The name.</value>
-        public string Name { get; private set; }
     }
 }

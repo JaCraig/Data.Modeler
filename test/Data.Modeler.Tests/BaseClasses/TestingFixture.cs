@@ -1,8 +1,6 @@
-﻿using BigBook;
-using BigBook.Registration;
-using Data.Modeler.Registration;
-using FileCurator;
+﻿using Data.Modeler.Registration;
 using FileCurator.Registration;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SQLHelper.ExtensionMethods;
 using SQLHelper.Registration;
@@ -15,18 +13,43 @@ using Xunit;
 namespace Data.Modeler.Tests.BaseClasses
 {
     [Collection("DirectoryCollection")]
-    public class TestingDirectoryFixture : IDisposable
+    public class TestingFixture : IDisposable
     {
-        public TestingDirectoryFixture()
+        public TestingFixture()
         {
-            if (Canister.Builder.Bootstrapper == null)
-                Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
-                    .AddAssembly(typeof(TestingDirectoryFixture).GetTypeInfo().Assembly)
-                    .RegisterDataModeler()
-                    .RegisterSQLHelper()
-                    .RegisterFileCurator()
-                    .Build();
+            SetupConfiguration();
+            SetupIoC();
+            SetupDatabases();
+        }
 
+        public IConfigurationRoot Configuration { get; set; }
+
+        protected string ConnectionString => "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
+
+        protected string ConnectionStringNew => "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
+
+        protected string DatabaseName => "TestDatabase";
+
+        public void Dispose()
+        {
+            using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
+            {
+                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+                using (var TempCommand = TempConnection.CreateCommand())
+                {
+                    try
+                    {
+                        TempCommand.CommandText = "ALTER DATABASE TestDatabase SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase SET ONLINE\r\nDROP DATABASE TestDatabase";
+                        TempCommand.Open();
+                        TempCommand.ExecuteNonQuery();
+                    }
+                    finally { TempCommand.Close(); }
+                }
+            }
+        }
+
+        private static void SetupDatabases()
+        {
             using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
             {
                 TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
@@ -57,21 +80,29 @@ namespace Data.Modeler.Tests.BaseClasses
             }
         }
 
-        public void Dispose()
+        private void SetupConfiguration()
         {
-            using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
-            {
-                TempConnection.ConnectionString = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
-                using (var TempCommand = TempConnection.CreateCommand())
+            var dict = new Dictionary<string, string>
                 {
-                    try
-                    {
-                        TempCommand.CommandText = "ALTER DATABASE TestDatabase SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase SET ONLINE\r\nDROP DATABASE TestDatabase";
-                        TempCommand.Open();
-                        TempCommand.ExecuteNonQuery();
-                    }
-                    finally { TempCommand.Close(); }
-                }
+                    { "ConnectionStrings:Default", ConnectionString },
+                    { "ConnectionStrings:DefaultNew", ConnectionStringNew }
+                };
+            Configuration = new ConfigurationBuilder()
+                             .AddInMemoryCollection(dict)
+                             .Build();
+        }
+
+        private void SetupIoC()
+        {
+            if (Canister.Builder.Bootstrapper == null)
+            {
+                var Container = Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
+                                                .AddAssembly(typeof(TestingFixture).GetTypeInfo().Assembly)
+                                                .RegisterDataModeler()
+                                                .RegisterSQLHelper()
+                                                .RegisterFileCurator()
+                                                .Build();
+                Container.Register(Configuration, ServiceLifetime.Singleton);
             }
         }
     }

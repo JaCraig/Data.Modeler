@@ -54,9 +54,10 @@ namespace Data.Modeler.Providers.Interfaces
         /// <summary>
         /// Checks if a source exists
         /// </summary>
+        /// <param name="source">The source.</param>
         /// <param name="connectionInfo">The connection.</param>
         /// <returns>True if it exists, false otherwise</returns>
-        bool SourceExists(IConnection connectionInfo);
+        bool SourceExists(string source, IConnection connectionInfo);
 
         /// <summary>
         /// Checks if a stored procedure exists

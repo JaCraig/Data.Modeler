@@ -18,7 +18,6 @@ using Data.Modeler.Providers.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.BaseClasses
 {
@@ -34,8 +33,8 @@ namespace Data.Modeler.Providers.BaseClasses
         {
             Name = name;
             Tables = new List<ITable>();
-            StoredProcedures = new List<ITable>();
-            Views = new List<ITable>();
+            StoredProcedures = new List<IFunction>();
+            Views = new List<IFunction>();
             Functions = new List<IFunction>();
         }
 
@@ -52,7 +51,7 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <summary>
         /// Stored procedures within the source
         /// </summary>
-        public ICollection<ITable> StoredProcedures { get; private set; }
+        public ICollection<IFunction> StoredProcedures { get; private set; }
 
         /// <summary>
         /// Tables within the source
@@ -62,7 +61,7 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <summary>
         /// Views within the source
         /// </summary>
-        public ICollection<ITable> Views { get; private set; }
+        public ICollection<IFunction> Views { get; private set; }
 
         /// <summary>
         /// Gets a specific table based on the name
@@ -85,7 +84,7 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <param name="procedureName">Procedure name</param>
         /// <param name="definition">Definition of the stored procedure</param>
         /// <returns>Stored procedure that was created/added</returns>
-        public abstract ITable AddStoredProcedure(string procedureName, string definition);
+        public abstract IFunction AddStoredProcedure(string procedureName, string definition);
 
         /// <summary>
         /// Adds a table to the source
@@ -98,7 +97,8 @@ namespace Data.Modeler.Providers.BaseClasses
         /// Adds a view to the source
         /// </summary>
         /// <param name="viewName">View name</param>
+        /// <param name="definition">The definition.</param>
         /// <returns>View that was created/added</returns>
-        public abstract ITable AddView(string viewName);
+        public abstract IFunction AddView(string viewName, string definition);
     }
 }

@@ -19,7 +19,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.SQLServer.SourceBuilders
 {
@@ -73,7 +72,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
             if (TableType == "BASE TABLE")
                 database.AddTable(TableName);
             else if (TableType == "VIEW")
-                database.AddView(TableName);
+                database.AddView(TableName, "");
         }
     }
 }

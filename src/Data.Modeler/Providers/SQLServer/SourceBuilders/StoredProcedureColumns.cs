@@ -20,7 +20,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.SQLServer.SourceBuilders
 {
@@ -48,7 +47,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
                 return;
             foreach (dynamic Item in values)
             {
-                SetupStoredProcedures(database.StoredProcedures.FirstOrDefault(x => x.Name == Item.Procedure), Item);
+                SetupStoredProcedures((ITable)database.StoredProcedures.FirstOrDefault(x => x.Name == Item.Procedure), Item);
             }
         }
 
@@ -85,7 +84,7 @@ WHERE sys.systypes.xusertype <> 256");
             if (Type == "nvarchar")
                 Length /= 2;
             string Default = item.DEFAULT_VALUE;
-            storedProcedure.AddColumn<string>(Name, Type.To<string, SqlDbType>().To(DbType.Int32), Length, DefaultValue: Default);
+            storedProcedure.AddColumn<string>(Name, Type.To<string, SqlDbType>().To(DbType.Int32), Length, defaultValue: Default);
         }
     }
 }

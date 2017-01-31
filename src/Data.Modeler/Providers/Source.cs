@@ -17,10 +17,6 @@ limitations under the License.
 using BigBook;
 using Data.Modeler.Providers.BaseClasses;
 using Data.Modeler.Providers.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers
 {
@@ -53,7 +49,7 @@ namespace Data.Modeler.Providers
         /// </summary>
         /// <param name="procedureName">Procedure name</param>
         /// <param name="definition">Definition</param>
-        public override ITable AddStoredProcedure(string procedureName, string definition)
+        public override IFunction AddStoredProcedure(string procedureName, string definition)
         {
             return StoredProcedures.AddAndReturn(new StoredProcedure(procedureName, definition, this));
         }
@@ -71,9 +67,11 @@ namespace Data.Modeler.Providers
         /// Adds a view to the database
         /// </summary>
         /// <param name="viewName">View name</param>
-        public override ITable AddView(string viewName)
+        /// <param name="definition">The definition.</param>
+        /// <returns>The resulting view object</returns>
+        public override IFunction AddView(string viewName, string definition)
         {
-            return Views.AddAndReturn(new View(viewName, this));
+            return Views.AddAndReturn(new View(viewName, definition, this));
         }
     }
 }

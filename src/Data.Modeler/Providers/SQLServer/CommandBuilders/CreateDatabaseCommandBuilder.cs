@@ -14,14 +14,43 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using Data.Modeler.Providers.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
-    public class CreateDatabaseCommandBuilder
+    /// <summary>
+    /// Create database command builder
+    /// </summary>
+    /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
+    public class CreateDatabaseCommandBuilder : ICommandBuilder
     {
+        /// <summary>
+        /// Gets the order.
+        /// </summary>
+        /// <value>The order.</value>
+        public int Order => 1;
+
+        /// <summary>
+        /// Gets the commands.
+        /// </summary>
+        /// <param name="desiredStructure">The desired structure.</param>
+        /// <param name="currentStructure">The current structure.</param>
+        /// <returns>
+        /// The list of commands needed to change the structure from the current to the desired structure
+        /// </returns>
+        public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
+        {
+            var Result = new List<string>();
+            if (currentStructure == null)
+                Result.Add(string.Format(CultureInfo.CurrentCulture,
+                    "CREATE DATABASE {0}",
+                    desiredStructure.Name));
+            return Result;
+        }
     }
 }

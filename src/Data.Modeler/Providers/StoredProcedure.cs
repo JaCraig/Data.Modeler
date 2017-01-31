@@ -18,11 +18,7 @@ using BigBook;
 using Data.Modeler.Providers.BaseClasses;
 using Data.Modeler.Providers.Enums;
 using Data.Modeler.Providers.Interfaces;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers
 {
@@ -49,8 +45,20 @@ namespace Data.Modeler.Providers
         public string Definition { get; set; }
 
         /// <summary>
+        /// Adds a check constraint to the table.
+        /// </summary>
+        /// <param name="name">The name.</param>
+        /// <param name="definition">The definition.</param>
+        /// <returns>The check constraint added to the table</returns>
+        public override ICheckConstraint AddCheckConstraint(string name, string definition)
+        {
+            return null;
+        }
+
+        /// <summary>
         /// Adds a column
         /// </summary>
+        /// <typeparam name="T">Column type</typeparam>
         /// <param name="columnName">Column Name</param>
         /// <param name="columnType">Data type</param>
         /// <param name="length">Data length</param>
@@ -62,15 +70,16 @@ namespace Data.Modeler.Providers
         /// <param name="foreignKeyTable">Foreign key table</param>
         /// <param name="foreignKeyColumn">Foreign key column</param>
         /// <param name="defaultValue">Default value</param>
+        /// <param name="computedColumnSpecification">The computed column specification.</param>
         /// <param name="onDeleteCascade">On Delete Cascade</param>
         /// <param name="onUpdateCascade">On Update Cascade</param>
         /// <param name="onDeleteSetNull">On Delete Set Null</param>
-        /// <typeparam name="T">Column type</typeparam>
+        /// <returns></returns>
         public override IColumn AddColumn<T>(string columnName, DbType columnType, int length = 0,
             bool nullable = true, bool identity = false, bool index = false,
             bool primaryKey = false, bool unique = false, string foreignKeyTable = "",
-            string foreignKeyColumn = "", T defaultValue = default(T), bool onDeleteCascade = false,
-            bool onUpdateCascade = false, bool onDeleteSetNull = false)
+            string foreignKeyColumn = "", T defaultValue = default(T), string computedColumnSpecification = "",
+            bool onDeleteCascade = false, bool onUpdateCascade = false, bool onDeleteSetNull = false)
         {
             return Columns.AddAndReturn(new Column<T>(columnName,
                 columnType,
@@ -83,6 +92,7 @@ namespace Data.Modeler.Providers
                 foreignKeyTable,
                 foreignKeyColumn,
                 defaultValue,
+                computedColumnSpecification,
                 onDeleteCascade,
                 onUpdateCascade,
                 onDeleteSetNull,

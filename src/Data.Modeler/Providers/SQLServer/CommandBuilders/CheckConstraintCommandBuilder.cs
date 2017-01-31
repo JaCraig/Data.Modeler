@@ -20,21 +20,20 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
     /// <summary>
-    /// Trigger command builder
+    /// CheckConstraint command builder
     /// </summary>
     /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
-    public class TriggerCommandBuilder : ICommandBuilder
+    public class CheckConstraintCommandBuilder : ICommandBuilder
     {
         /// <summary>
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 30;
+        public int Order => 31;
 
         /// <summary>
         /// Gets the commands.
@@ -50,47 +49,55 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             foreach (Table TempTable in desiredStructure.Tables)
             {
                 ITable CurrentTable = currentStructure[TempTable.Name];
-                Commands.Add((CurrentTable == null) ? GetTriggerCommand(TempTable) : GetAlterTriggerCommand(TempTable, CurrentTable));
+                Commands.Add((CurrentTable == null) ? GetCheckConstraintCommand(TempTable) : GetAlterCheckConstraintCommand(TempTable, CurrentTable));
             }
             return Commands;
         }
 
-        private static IEnumerable<string> GetAlterTriggerCommand(Table table, ITable currentTable)
+        private static IEnumerable<string> GetAlterCheckConstraintCommand(Table table, ITable currentTable)
         {
-            if (table == null || table.Triggers == null)
+            if (table == null || table.Constraints == null)
                 return new List<string>();
             var ReturnValue = new List<string>();
-            foreach (Trigger Trigger in table.Triggers)
+            foreach (CheckConstraint CheckConstraint in table.Constraints)
             {
-                var Trigger2 = currentTable.Triggers.FirstOrDefault(x => Trigger.Name == x.Name);
-                string Definition1 = Trigger.Definition;
-                var Definition2 = Trigger2.Definition;
-                if (Definition2 == null)
-                {
-                    var Definition = Regex.Replace(Trigger.Definition, "-- (.*)", "");
-                    ReturnValue.Add(Definition.Replace("\n", " ").Replace("\r", " "));
-                }
-                else if (!string.Equals(Definition1, Definition2, StringComparison.OrdinalIgnoreCase))
+                var CheckConstraint2 = currentTable.Constraints.FirstOrDefault(x => CheckConstraint.Name == x.Name);
+                if (CheckConstraint2 == null)
                 {
                     ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                        "DROP TRIGGER {0}",
-                        Trigger.Name));
-                    var Definition = Regex.Replace(Trigger.Definition, "-- (.*)", "");
-                    ReturnValue.Add(Definition.Replace("\n", " ").Replace("\r", " "));
+                            "ALTER TABLE {0} ADD CONSTRAINT {1} CHECK ({2})",
+                            CheckConstraint.ParentTable.Name,
+                            CheckConstraint.Name,
+                            CheckConstraint.Definition));
+                }
+                else if (!string.Equals(CheckConstraint.Definition, CheckConstraint2.Definition, StringComparison.OrdinalIgnoreCase))
+                {
+                    ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                        "ALTER TABLE {0} DROP CONSTRAINT {1}",
+                        CheckConstraint.ParentTable.Name,
+                        CheckConstraint.Name));
+                    ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                        "ALTER TABLE {0} ADD CONSTRAINT {1} CHECK ({2})",
+                        CheckConstraint.ParentTable.Name,
+                        CheckConstraint.Name,
+                        CheckConstraint.Definition));
                 }
             }
             return ReturnValue;
         }
 
-        private static IEnumerable<string> GetTriggerCommand(Table table)
+        private static IEnumerable<string> GetCheckConstraintCommand(Table table)
         {
-            if (table == null || table.Triggers == null)
+            if (table == null || table.Constraints == null)
                 return new List<string>();
             var ReturnValue = new List<string>();
-            foreach (Trigger Trigger in table.Triggers)
+            foreach (CheckConstraint CheckConstraint in table.Constraints)
             {
-                var Definition = Regex.Replace(Trigger.Definition, "-- (.*)", "");
-                ReturnValue.Add(Definition.Replace("\n", " ").Replace("\r", " "));
+                ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                            "ALTER TABLE {0} ADD CONSTRAINT {1} CHECK ({2})",
+                            CheckConstraint.ParentTable.Name,
+                            CheckConstraint.Name,
+                            CheckConstraint.Definition));
             }
             return ReturnValue;
         }

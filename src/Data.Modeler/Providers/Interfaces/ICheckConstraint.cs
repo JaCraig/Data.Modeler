@@ -14,26 +14,29 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using Canister.Interfaces;
-using SQLHelper.Registration;
-using System.Reflection;
-
-namespace Data.Modeler.Registration
+namespace Data.Modeler.Providers.Interfaces
 {
     /// <summary>
-    /// Registration extension methods
+    /// Check constraint interface
     /// </summary>
-    public static class Registration
+    public interface ICheckConstraint
     {
         /// <summary>
-        /// Registers the library with the bootstrapper.
+        /// Gets or sets the definition.
         /// </summary>
-        /// <param name="bootstrapper">The bootstrapper.</param>
-        /// <returns>The bootstrapper</returns>
-        public static IBootstrapper RegisterDataModeler(this IBootstrapper bootstrapper)
-        {
-            return bootstrapper.AddAssembly(typeof(Registration).GetTypeInfo().Assembly)
-                               .RegisterSQLHelper();
-        }
+        /// <value>The definition.</value>
+        string Definition { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name.
+        /// </summary>
+        /// <value>The name.</value>
+        string Name { get; set; }
+
+        /// <summary>
+        /// Parent table
+        /// </summary>
+        /// <value>The parent table.</value>
+        ITable ParentTable { get; set; }
     }
 }

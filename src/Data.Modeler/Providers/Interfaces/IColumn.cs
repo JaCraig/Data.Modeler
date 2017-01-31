@@ -14,11 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.Interfaces
 {
@@ -31,6 +28,12 @@ namespace Data.Modeler.Providers.Interfaces
         /// Auto increment?
         /// </summary>
         bool AutoIncrement { get; set; }
+
+        /// <summary>
+        /// Gets the computed column specification (if one exists).
+        /// </summary>
+        /// <value>The computed column specification (if one exists).</value>
+        string ComputedColumnSpecification { get; }
 
         /// <summary>
         /// Data type

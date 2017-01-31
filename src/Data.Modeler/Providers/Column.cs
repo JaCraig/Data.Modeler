@@ -16,11 +16,8 @@ limitations under the License.
 
 using BigBook.Comparison;
 using Data.Modeler.Providers.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers
 {
@@ -54,13 +51,14 @@ namespace Data.Modeler.Providers
         /// <param name="foreignKeyTable">Foreign key table</param>
         /// <param name="foreignKeyColumn">Foreign key column</param>
         /// <param name="defaultValue">Default value</param>
-        /// <param name="parentTable">Parent table</param>
+        /// <param name="computedColumnSpecification">The computed column specification.</param>
         /// <param name="onDeleteCascade">Cascade on delete</param>
-        /// <param name="onDeleteSetNull">Set null on delete</param>
         /// <param name="onUpdateCascade">Cascade on update</param>
+        /// <param name="onDeleteSetNull">Set null on delete</param>
+        /// <param name="parentTable">Parent table</param>
         public Column(string name, DbType columnType, int length, bool nullable,
             bool identity, bool index, bool primaryKey, bool unique, string foreignKeyTable,
-            string foreignKeyColumn, T defaultValue, bool onDeleteCascade, bool onUpdateCascade,
+            string foreignKeyColumn, T defaultValue, string computedColumnSpecification, bool onDeleteCascade, bool onUpdateCascade,
             bool onDeleteSetNull, ITable parentTable)
         {
             Name = name;
@@ -75,6 +73,7 @@ namespace Data.Modeler.Providers
             Index = index;
             PrimaryKey = primaryKey;
             Unique = unique;
+            ComputedColumnSpecification = computedColumnSpecification;
             Default = new GenericEqualityComparer<T>().Equals(defaultValue, default(T)) ? "" : defaultValue.ToString();
             OnDeleteCascade = onDeleteCascade;
             OnUpdateCascade = onUpdateCascade;
@@ -86,6 +85,12 @@ namespace Data.Modeler.Providers
         /// Auto increment?
         /// </summary>
         public bool AutoIncrement { get; set; }
+
+        /// <summary>
+        /// Gets the computed column specificaation.
+        /// </summary>
+        /// <value>The computed column specificaation.</value>
+        public string ComputedColumnSpecification { get; private set; }
 
         /// <summary>
         /// Data type
@@ -174,9 +179,9 @@ namespace Data.Modeler.Providers
         /// </summary>
         public void SetupForeignKeys()
         {
+            ISource TempDatabase = ParentTable.Source;
             for (int x = 0; x < ForeignKeyColumns.Count; ++x)
             {
-                ISource TempDatabase = ParentTable.Source;
                 if (TempDatabase != null)
                 {
                     foreach (Table TempTable in TempDatabase.Tables)

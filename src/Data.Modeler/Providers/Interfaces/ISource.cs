@@ -14,10 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.Interfaces
 {
@@ -39,7 +36,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <summary>
         /// List of stored procedures
         /// </summary>
-        ICollection<ITable> StoredProcedures { get; }
+        ICollection<IFunction> StoredProcedures { get; }
 
         /// <summary>
         /// List of tables
@@ -49,7 +46,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <summary>
         /// List of views
         /// </summary>
-        ICollection<ITable> Views { get; }
+        ICollection<IFunction> Views { get; }
 
         /// <summary>
         /// Returns a table with the given name
@@ -70,7 +67,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// </summary>
         /// <param name="procedureName">Procedure name</param>
         /// <param name="definition">Definition</param>
-        ITable AddStoredProcedure(string procedureName, string definition);
+        IFunction AddStoredProcedure(string procedureName, string definition);
 
         /// <summary>
         /// Adds a table to the database
@@ -82,6 +79,8 @@ namespace Data.Modeler.Providers.Interfaces
         /// Adds a view to the database
         /// </summary>
         /// <param name="viewName">View name</param>
-        ITable AddView(string viewName);
+        /// <param name="definition">The definition.</param>
+        /// <returns>The view that is created</returns>
+        IFunction AddView(string viewName, string definition);
     }
 }
