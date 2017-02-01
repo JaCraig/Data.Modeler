@@ -14,10 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.Interfaces
 {
@@ -42,7 +39,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <summary>
         /// Gets the command.
         /// </summary>
-        /// <param name="batch">The batch.</param>
-        void GetCommand(SQLHelper.SQLHelper batch);
+        /// <returns>The command to get the source</returns>
+        string GetCommand();
     }
 }

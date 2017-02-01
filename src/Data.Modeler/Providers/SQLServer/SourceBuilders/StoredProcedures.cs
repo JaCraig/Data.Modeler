@@ -17,9 +17,7 @@ limitations under the License.
 using Data.Modeler.Providers.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.SQLServer.SourceBuilders
 {
@@ -54,12 +52,10 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <summary>
         /// Gets the command.
         /// </summary>
-        /// <param name="batch">The batch.</param>
-        public void GetCommand(SQLHelper.SQLHelper batch)
+        /// <returns>The command to get the source</returns>
+        public string GetCommand()
         {
-            if (batch == null)
-                throw new ArgumentNullException(nameof(batch));
-            batch.AddQuery(CommandType.Text, @"SELECT sys.procedures.name as NAME,OBJECT_DEFINITION(sys.procedures.object_id) as DEFINITION FROM sys.procedures");
+            return @"SELECT sys.procedures.name as NAME,OBJECT_DEFINITION(sys.procedures.object_id) as DEFINITION FROM sys.procedures";
         }
     }
 }

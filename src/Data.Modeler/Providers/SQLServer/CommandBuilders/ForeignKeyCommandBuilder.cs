@@ -16,11 +16,8 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -46,6 +43,9 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
         {
+            if (desiredStructure == null)
+                return new List<string>();
+            currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
             foreach (Table TempTable in desiredStructure.Tables)
             {
@@ -67,7 +67,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     foreach (IColumn ForeignKey in Column.ForeignKey)
                     {
                         var Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE {0} ADD FOREIGN KEY ({1}) REFERENCES {2}({3})",
+                            "ALTER TABLE [{0}] ADD FOREIGN KEY ([{1}]) REFERENCES [{2}]([{3}])",
                             Column.ParentTable.Name,
                             Column.Name,
                             ForeignKey.ParentTable.Name,
@@ -99,7 +99,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     foreach (IColumn ForeignKey in Column.ForeignKey)
                     {
                         var Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE {0} ADD FOREIGN KEY ({1}) REFERENCES {2}({3})",
+                            "ALTER TABLE [{0}] ADD FOREIGN KEY ([{1}]) REFERENCES [{2}]([{3}])",
                             Column.ParentTable.Name,
                             Column.Name,
                             ForeignKey.ParentTable.Name,

@@ -45,6 +45,9 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
         {
+            if (desiredStructure == null)
+                return new List<string>();
+            currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
             foreach (Function TempFunction in desiredStructure.Functions)
             {
@@ -68,7 +71,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             else if (function.Definition != currentFunction.Definition)
             {
                 ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                    "DROP FUNCTION {0}",
+                    "DROP FUNCTION [{0}]",
                     function.Name));
                 ReturnValue.Add(GetFunctionCommand(function));
             }

@@ -15,11 +15,8 @@ limitations under the License.
 */
 
 using Data.Modeler.Providers.Interfaces;
-using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -48,7 +45,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var Result = new List<string>();
             if (currentStructure == null)
                 Result.Add(string.Format(CultureInfo.CurrentCulture,
-                    "CREATE DATABASE {0}",
+                    "CREATE DATABASE [{0}]",
                     desiredStructure.Name));
             return Result;
         }

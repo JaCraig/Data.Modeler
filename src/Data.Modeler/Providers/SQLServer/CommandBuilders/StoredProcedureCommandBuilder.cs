@@ -45,6 +45,9 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
         {
+            if (desiredStructure == null)
+                return new List<string>();
+            currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
             foreach (StoredProcedure TempStoredProcedure in desiredStructure.StoredProcedures)
             {
@@ -68,7 +71,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             else if (storedProcedure.Definition != currentStoredProcedure.Definition)
             {
                 ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                    "DROP PROCEDURE {0}",
+                    "DROP PROCEDURE [{0}]",
                     storedProcedure.Name));
                 ReturnValue.Add(GetStoredProcedure(storedProcedure));
             }

@@ -103,7 +103,7 @@ namespace Data.Modeler.Providers.SQLServer
             var Temp = new Source(DatabaseName);
             var Batch = new SQLHelper.SQLHelper(DatabaseSource.Configuration, DatabaseSource.Factory, DatabaseSource.ConnectionString)
                                      .CreateBatch();
-            QueryBuilders.ForEach(x => x.GetCommand(Batch));
+            QueryBuilders.ForEach(x => Batch.AddQuery(CommandType.Text, x.GetCommand()));
             var Results = Batch.Execute();
             QueryBuilders.For(0, QueryBuilders.Length - 1, (x, y) => x.FillSource(Results[y], Temp));
             return Temp;

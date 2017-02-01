@@ -45,6 +45,9 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
         {
+            if (desiredStructure == null)
+                return new List<string>();
+            currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
             foreach (View TempView in desiredStructure.Views)
             {
@@ -68,7 +71,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             else if (view.Definition != currentView.Definition)
             {
                 ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                    "DROP VIEW {0}",
+                    "DROP VIEW [{0}]",
                     view.Name));
                 ReturnValue.Add(GetViewCommand(view));
             }

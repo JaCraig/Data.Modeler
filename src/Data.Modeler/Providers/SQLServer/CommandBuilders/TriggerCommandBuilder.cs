@@ -46,6 +46,9 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
         {
+            if (desiredStructure == null)
+                return new List<string>();
+            currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
             foreach (Table TempTable in desiredStructure.Tables)
             {
@@ -73,7 +76,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 else if (!string.Equals(Definition1, Definition2, StringComparison.OrdinalIgnoreCase))
                 {
                     ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                        "DROP TRIGGER {0}",
+                        "DROP TRIGGER [{0}]",
                         Trigger.Name));
                     var Definition = Regex.Replace(Trigger.Definition, "-- (.*)", "");
                     ReturnValue.Add(Definition.Replace("\n", " ").Replace("\r", " "));

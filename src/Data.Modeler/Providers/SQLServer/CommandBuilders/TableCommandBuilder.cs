@@ -45,6 +45,9 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
         {
+            if (desiredStructure == null)
+                return new List<string>();
+            currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
             foreach (Table TempTable in desiredStructure.Tables)
             {
@@ -68,7 +71,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     if (string.IsNullOrEmpty(Column.ComputedColumnSpecification))
                     {
                         Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE {0} ADD {1} {2}",
+                            "ALTER TABLE [{0}] ADD [{1}] {2}",
                             table.Name,
                             Column.Name,
                             Column.DataType.To(SqlDbType.Int).ToString());
@@ -89,7 +92,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     else
                     {
                         Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE {0} ADD {1} AS {2}",
+                            "ALTER TABLE [{0}] ADD [{1}] AS ({2})",
                             table.Name,
                             Column.Name,
                             Column.ComputedColumnSpecification);
@@ -98,7 +101,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     foreach (IColumn ForeignKey in Column.ForeignKey)
                     {
                         Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE {0} ADD FOREIGN KEY ({1}) REFERENCES {2}({3}){4}{5}{6}",
+                            "ALTER TABLE [{0}] ADD FOREIGN KEY ([{1}]) REFERENCES [{2}]([{3}]){4}{5}{6}",
                             table.Name,
                             Column.Name,
                             ForeignKey.ParentTable.Name,
@@ -117,7 +120,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                         && Column.Length.Between(0, 4000)))
                 {
                     Command = string.Format(CultureInfo.CurrentCulture,
-                        "ALTER TABLE {0} ALTER COLUMN {1} {2}",
+                        "ALTER TABLE [{0}] ALTER COLUMN [{1}] {2}",
                         table.Name,
                         Column.Name,
                         Column.DataType.To(SqlDbType.Int).ToString());
@@ -146,11 +149,11 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 return new List<string>();
             var ReturnValue = new List<string>();
             var Builder = new StringBuilder();
-            Builder.Append("CREATE TABLE ").Append(table.Name).Append("(");
+            Builder.Append("CREATE TABLE [").Append(table.Name).Append("](");
             string Splitter = "";
             foreach (IColumn Column in table.Columns)
             {
-                Builder.Append(Splitter).Append(Column.Name).Append(" ").Append(Column.DataType.To(SqlDbType.Int).ToString());
+                Builder.Append(Splitter).Append("[" + Column.Name + "]").Append(" ").Append(Column.DataType.To(SqlDbType.Int).ToString());
                 if (Column.DataType == SqlDbType.VarChar.To(DbType.Int32)
                         || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
                         || Column.DataType == SqlDbType.Binary.To(DbType.Int32))
@@ -198,7 +201,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 if (Column.Index && Column.Unique)
                 {
                     ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                        "CREATE UNIQUE INDEX Index_{0}{1} ON {2}({3})",
+                        "CREATE UNIQUE INDEX [Index_{0}{1}] ON [{2}]([{3}])",
                         Column.Name,
                         Counter.ToString(CultureInfo.InvariantCulture),
                         Column.ParentTable.Name,
@@ -207,7 +210,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 else if (Column.Index)
                 {
                     ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                        "CREATE INDEX Index_{0}{1} ON {2}({3})",
+                        "CREATE INDEX [Index_{0}{1}] ON [{2}]([{3}])",
                         Column.Name,
                         Counter.ToString(CultureInfo.InvariantCulture),
                         Column.ParentTable.Name,

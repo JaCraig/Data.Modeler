@@ -54,12 +54,10 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <summary>
         /// Gets the command.
         /// </summary>
-        /// <param name="batch">The batch.</param>
-        public void GetCommand(SQLHelper.SQLHelper batch)
+        /// <returns>The command to get the source</returns>
+        public string GetCommand()
         {
-            if (batch == null)
-                throw new ArgumentNullException(nameof(batch));
-            batch.AddQuery(CommandType.Text, @"SELECT sys.tables.name as [Table],sys.columns.name AS [Column], sys.systypes.name AS [COLUMN_TYPE],
+            return @"SELECT sys.tables.name as [Table],sys.columns.name AS [Column], sys.systypes.name AS [COLUMN_TYPE],
                                                         sys.columns.max_length as [MAX_LENGTH], sys.columns.is_nullable as [IS_NULLABLE],
                                                         sys.columns.is_identity as [IS_IDENTITY], sys.index_columns.index_id as [IS_INDEX],
                                                         key_constraints.name as [PRIMARY_KEY], key_constraints_1.name as [UNIQUE],
@@ -76,7 +74,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
                                                         LEFT OUTER JOIN sys.key_constraints as key_constraints_1 on key_constraints_1.parent_object_id=sys.tables.object_id and key_constraints_1.parent_object_id=sys.index_columns.object_id and sys.index_columns.index_id=key_constraints_1.unique_index_id and key_constraints_1.type='UQ'
                                                         LEFT OUTER JOIN sys.default_constraints on sys.default_constraints.object_id=sys.columns.default_object_id
                                                         LEFT OUTER JOIN sys.computed_columns ON sys.computed_columns.object_id=sys.columns.object_id and sys.computed_columns.column_id=sys.columns.column_id
-                                                        WHERE sys.systypes.xusertype <> 256");
+                                                        WHERE sys.systypes.xusertype <> 256";
         }
 
         /// <summary>

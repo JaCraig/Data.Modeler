@@ -54,17 +54,15 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <summary>
         /// Gets the command.
         /// </summary>
-        /// <param name="batch">The batch.</param>
-        public void GetCommand(SQLHelper.SQLHelper batch)
+        /// <returns>The command to get the source</returns>
+        public string GetCommand()
         {
-            if (batch == null)
-                throw new ArgumentNullException(nameof(batch));
-            batch.AddQuery(CommandType.Text, @"SELECT sys.procedures.name as [Procedure],sys.systypes.name as TYPE,sys.parameters.name as NAME,
+            return @"SELECT sys.procedures.name as [Procedure],sys.systypes.name as TYPE,sys.parameters.name as NAME,
 sys.parameters.max_length as LENGTH,sys.parameters.default_value as [DEFAULT VALUE]
 FROM sys.procedures
 INNER JOIN sys.parameters on sys.procedures.object_id=sys.parameters.object_id
 INNER JOIN sys.systypes on sys.systypes.xusertype=sys.parameters.system_type_id
-WHERE sys.systypes.xusertype <> 256");
+WHERE sys.systypes.xusertype <> 256";
         }
 
         /// <summary>

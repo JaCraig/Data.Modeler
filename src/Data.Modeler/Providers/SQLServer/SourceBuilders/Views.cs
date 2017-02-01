@@ -54,18 +54,16 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <summary>
         /// Gets the command.
         /// </summary>
-        /// <param name="batch">The batch.</param>
-        public void GetCommand(SQLHelper.SQLHelper batch)
+        /// <returns>The command to get the source</returns>
+        public string GetCommand()
         {
-            if (batch == null)
-                throw new ArgumentNullException(nameof(batch));
-            batch.AddQuery(CommandType.Text, @"SELECT sys.views.name as [View],OBJECT_DEFINITION(sys.views.object_id) as Definition,
+            return @"SELECT sys.views.name as [View],OBJECT_DEFINITION(sys.views.object_id) as Definition,
                                                         sys.columns.name AS [Column], sys.systypes.name AS [COLUMN_TYPE],
                                                         sys.columns.max_length as [MAX_LENGTH], sys.columns.is_nullable as [IS_NULLABLE]
                                                         FROM sys.views
                                                         INNER JOIN sys.columns on sys.columns.object_id=sys.views.object_id
                                                         INNER JOIN sys.systypes ON sys.systypes.xtype = sys.columns.system_type_id
-                                                        WHERE sys.systypes.xusertype <> 256");
+                                                        WHERE sys.systypes.xusertype <> 256";
         }
 
         /// <summary>

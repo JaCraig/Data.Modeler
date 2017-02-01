@@ -19,10 +19,8 @@ using Data.Modeler.Providers.Enums;
 using Data.Modeler.Providers.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Globalization;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.SQLServer.SourceBuilders
 {
@@ -57,16 +55,14 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <summary>
         /// Gets the command.
         /// </summary>
-        /// <param name="batch">The batch.</param>
-        public void GetCommand(SQLHelper.SQLHelper batch)
+        /// <returns>The command to get the source</returns>
+        public string GetCommand()
         {
-            if (batch == null)
-                throw new ArgumentNullException(nameof(batch));
-            batch.AddQuery(CommandType.Text, @"SELECT sys.tables.name as [Table],sys.triggers.name as Name,sys.trigger_events.type as Type,
+            return @"SELECT sys.tables.name as [Table],sys.triggers.name as Name,sys.trigger_events.type as Type,
                                                                 OBJECT_DEFINITION(sys.triggers.object_id) as Definition
                                                                 FROM sys.triggers
                                                                 INNER JOIN sys.trigger_events ON sys.triggers.object_id=sys.trigger_events.object_id
-                                                                INNER JOIN sys.tables on sys.triggers.parent_id=sys.tables.object_id");
+                                                                INNER JOIN sys.tables on sys.triggers.parent_id=sys.tables.object_id";
         }
 
         /// <summary>
