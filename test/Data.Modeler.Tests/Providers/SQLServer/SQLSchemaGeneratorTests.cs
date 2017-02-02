@@ -1,6 +1,7 @@
 ﻿using Data.Modeler.Providers.Interfaces;
 using Data.Modeler.Providers.SQLServer;
 using Data.Modeler.Tests.BaseClasses;
+using SQLHelper.ExtensionMethods;
 using System.Data.SqlClient;
 using System.Linq;
 using Xunit;
@@ -76,6 +77,21 @@ namespace Data.Modeler.Tests.Providers.SQLServer
             Source.Name = "TestDatabase2";
             TestObject.Setup(Source, new Connection(Configuration, SqlClientFactory.Instance, "DefaultNew"));
             TestObject.SourceExists("TestDatabase2", new Connection(Configuration, SqlClientFactory.Instance, "DefaultNew"));
+
+            using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
+            {
+                TempConnection.ConnectionString = MasterString;
+                using (var TempCommand = TempConnection.CreateCommand())
+                {
+                    try
+                    {
+                        TempCommand.CommandText = "ALTER DATABASE TestDatabase2 SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase2 SET ONLINE\r\nDROP DATABASE TestDatabase2";
+                        TempCommand.Open();
+                        TempCommand.ExecuteNonQuery();
+                    }
+                    finally { TempCommand.Close(); }
+                }
+            }
         }
 
         [Fact]

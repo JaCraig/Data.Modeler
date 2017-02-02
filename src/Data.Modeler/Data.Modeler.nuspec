@@ -15,7 +15,7 @@
     <dependencies>
       <dependency id="NETStandard.Library" version="1.6.1" />
       <dependency id="BigBook" version="1.0.7" />
-      <dependency id="SQLHelper.DB" version="1.0.14" />
+      <dependency id="SQLHelper.DB" version="1.0.15" />
     </dependencies>
   </metadata>
   <files>
