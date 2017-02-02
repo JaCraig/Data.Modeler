@@ -15,10 +15,6 @@ limitations under the License.
 */
 
 using Data.Modeler.Providers.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers
 {
@@ -54,5 +50,44 @@ namespace Data.Modeler.Providers
         /// Source
         /// </summary>
         public ISource Source { get; set; }
+
+        /// <summary>
+        /// Copies the specified instance
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns>The copy</returns>
+        public IFunction Copy(ISource source)
+        {
+            return new Function(Name, Definition, source);
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+        /// <returns>
+        /// <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance;
+        /// otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            var Item = obj as Function;
+            if (Item == null)
+                return false;
+            return Definition == Item.Definition
+                && Name == Item.Name;
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures
+        /// like a hash table.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
     }
 }

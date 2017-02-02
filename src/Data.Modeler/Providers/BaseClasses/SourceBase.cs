@@ -14,6 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using BigBook;
 using Data.Modeler.Providers.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -100,5 +101,19 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <param name="definition">The definition.</param>
         /// <returns>View that was created/added</returns>
         public abstract IFunction AddView(string viewName, string definition);
+
+        /// <summary>
+        /// Copies this instance.
+        /// </summary>
+        /// <returns>A copy of this instance.</returns>
+        public ISource Copy()
+        {
+            var Result = new Source(Name);
+            Result.Functions = Functions.ForEach(x => x.Copy(Result)).ToList();
+            Result.StoredProcedures = StoredProcedures.ForEach(x => x.Copy(Result)).ToList();
+            Result.Tables = Tables.ForEach(x => x.Copy(Result)).ToList();
+            Result.Views = Views.ForEach(x => x.Copy(Result)).ToList();
+            return Result;
+        }
     }
 }

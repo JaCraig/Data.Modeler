@@ -49,6 +49,18 @@ namespace Data.Modeler.Tests.Providers
         }
 
         [Fact]
+        public void Copy()
+        {
+            var TempSource = new Source("MySource");
+            var TempTable = TempSource.AddTable("TableName");
+            var TempView = TempSource.AddView("ViewName", "ViewDefinition");
+            var TempStoredProcedure = TempSource.AddStoredProcedure("ProcedureName", "ProcedureDefinition");
+            var Function = TempSource.AddFunction("FunctionName", "FunctionDefinition");
+            var TempCopy = TempSource.Copy();
+            Assert.Equal(TempSource, TempCopy);
+        }
+
+        [Fact]
         public void Creation()
         {
             var TempSource = new Source("MySource");

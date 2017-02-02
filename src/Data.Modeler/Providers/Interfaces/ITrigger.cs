@@ -15,10 +15,6 @@ limitations under the License.
 */
 
 using Data.Modeler.Providers.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.Interfaces
 {
@@ -46,5 +42,12 @@ namespace Data.Modeler.Providers.Interfaces
         /// Trigger type
         /// </summary>
         TriggerType Type { get; set; }
+
+        /// <summary>
+        /// Copies this instance
+        /// </summary>
+        /// <param name="parentTable">The new parent table.</param>
+        /// <returns>The copy</returns>
+        ITrigger Copy(ITable parentTable);
     }
 }

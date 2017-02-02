@@ -17,6 +17,7 @@ limitations under the License.
 using BigBook;
 using Data.Modeler.Providers.BaseClasses;
 using Data.Modeler.Providers.Interfaces;
+using System.Linq;
 
 namespace Data.Modeler.Providers
 {
@@ -72,6 +73,38 @@ namespace Data.Modeler.Providers
         public override IFunction AddView(string viewName, string definition)
         {
             return Views.AddAndReturn(new View(viewName, definition, this));
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+        /// <returns>
+        /// <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance;
+        /// otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            var Item = obj as Source;
+            if (Item == null)
+                return false;
+            return Functions.All(x => Item.Functions.Contains(x))
+                && Name == Item.Name
+                && StoredProcedures.All(x => Item.StoredProcedures.Contains(x))
+                && Tables.All(x => Item.Tables.Contains(x))
+                && Views.All(x => Item.Views.Contains(x));
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures
+        /// like a hash table.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
         }
     }
 }

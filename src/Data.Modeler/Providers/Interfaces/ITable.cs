@@ -117,6 +117,13 @@ namespace Data.Modeler.Providers.Interfaces
         bool ContainsColumn(string columnName);
 
         /// <summary>
+        /// Copies this instance.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns>The copy of this instance.</returns>
+        ITable Copy(ISource source);
+
+        /// <summary>
         /// Sets up foreign keys
         /// </summary>
         void SetupForeignKeys();

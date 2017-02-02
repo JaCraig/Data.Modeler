@@ -14,10 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using BigBook;
 using BigBook.Comparison;
 using Data.Modeler.Providers.Interfaces;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 
 namespace Data.Modeler.Providers
 {
@@ -172,6 +174,66 @@ namespace Data.Modeler.Providers
                 return;
             ForeignKeyColumns.Add(foreignKeyColumn);
             ForeignKeyTables.Add(foreignKeyTable);
+        }
+
+        /// <summary>
+        /// Copies this instance
+        /// </summary>
+        /// <param name="parentTable">The new parent table.</param>
+        /// <returns>The copy</returns>
+        public IColumn Copy(ITable parentTable)
+        {
+            var Result = new Column<T>(Name, DataType, Length,
+                Nullable, AutoIncrement, Index,
+                PrimaryKey, Unique, "",
+                "", Default.To<string, T>(), ComputedColumnSpecification,
+                OnDeleteCascade, OnUpdateCascade, OnDeleteSetNull,
+                parentTable);
+            Result.ForeignKeyColumns = ForeignKeyColumns.ToList();
+            Result.ForeignKeyTables = ForeignKeyTables.ToList();
+            return Result;
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+        /// <returns>
+        /// <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance;
+        /// otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            var Item = obj as Column<T>;
+            if (Item == null)
+                return false;
+            return AutoIncrement == Item.AutoIncrement
+                && ComputedColumnSpecification == Item.ComputedColumnSpecification
+                && DataType == Item.DataType
+                && Default == Item.Default
+                && ForeignKeyColumns.All(x => Item.ForeignKeyColumns.Contains(x))
+                && ForeignKeyTables.All(x => Item.ForeignKeyTables.Contains(x))
+                && Index == Item.Index
+                && Length == Item.Length
+                && Name == Item.Name
+                && Nullable == Item.Nullable
+                && OnDeleteCascade == Item.OnDeleteCascade
+                && OnDeleteSetNull == Item.OnDeleteSetNull
+                && OnUpdateCascade == Item.OnUpdateCascade
+                && PrimaryKey == Item.PrimaryKey
+                && Unique == Item.Unique;
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures
+        /// like a hash table.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
         }
 
         /// <summary>

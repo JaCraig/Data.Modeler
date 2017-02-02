@@ -38,5 +38,12 @@ namespace Data.Modeler.Providers.Interfaces
         /// </summary>
         /// <value>The parent table.</value>
         ITable ParentTable { get; set; }
+
+        /// <summary>
+        /// Copies this instance
+        /// </summary>
+        /// <param name="parentTable">The new parent table.</param>
+        /// <returns>The copy</returns>
+        ICheckConstraint Copy(ITable parentTable);
     }
 }

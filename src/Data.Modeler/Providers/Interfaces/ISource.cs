@@ -82,5 +82,11 @@ namespace Data.Modeler.Providers.Interfaces
         /// <param name="definition">The definition.</param>
         /// <returns>The view that is created</returns>
         IFunction AddView(string viewName, string definition);
+
+        /// <summary>
+        /// Copies this instance
+        /// </summary>
+        /// <returns>The copy</returns>
+        ISource Copy();
     }
 }

@@ -14,11 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace Data.Modeler.Providers.Interfaces
 {
     /// <summary>
@@ -40,5 +35,12 @@ namespace Data.Modeler.Providers.Interfaces
         /// Parent database
         /// </summary>
         ISource Source { get; }
+
+        /// <summary>
+        /// Copies the specified instance
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns>The copy</returns>
+        IFunction Copy(ISource source);
     }
 }

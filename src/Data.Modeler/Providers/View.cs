@@ -120,5 +120,54 @@ namespace Data.Modeler.Providers
         {
             return null;
         }
+
+        /// <summary>
+        /// Copies this instance.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns>The copy of this instance.</returns>
+        public override ITable Copy(ISource source)
+        {
+            return new View(Name, Definition, source);
+        }
+
+        /// <summary>
+        /// Copies the specified instance
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns>The copy</returns>
+        IFunction IFunction.Copy(ISource source)
+        {
+            return new View(Name, Definition, source);
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+        /// <returns>
+        /// <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance;
+        /// otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            var Item = obj as View;
+            if (Item == null)
+                return false;
+            return Definition == Item.Definition
+                && Name == Item.Name;
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures
+        /// like a hash table.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
+        }
     }
 }

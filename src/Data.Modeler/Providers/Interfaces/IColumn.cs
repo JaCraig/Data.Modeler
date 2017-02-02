@@ -108,6 +108,13 @@ namespace Data.Modeler.Providers.Interfaces
         void AddForeignKey(string foreignKeyTable, string foreignKeyColumn);
 
         /// <summary>
+        /// Copies this instance
+        /// </summary>
+        /// <param name="parentTable">The new parent table.</param>
+        /// <returns>The copy</returns>
+        IColumn Copy(ITable parentTable);
+
+        /// <summary>
         /// Sets up the foreign key list
         /// </summary>
         void SetupForeignKeys();

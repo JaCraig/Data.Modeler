@@ -19,6 +19,7 @@ using Data.Modeler.Providers.BaseClasses;
 using Data.Modeler.Providers.Enums;
 using Data.Modeler.Providers.Interfaces;
 using System.Data;
+using System.Linq;
 
 namespace Data.Modeler.Providers
 {
@@ -115,6 +116,47 @@ namespace Data.Modeler.Providers
         public override ITrigger AddTrigger(string name, string definition, TriggerType type)
         {
             return Triggers.AddAndReturn(new Trigger(name, definition, type, this));
+        }
+
+        /// <summary>
+        /// Copies this instance.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <returns>The copy of this instance.</returns>
+        public override ITable Copy(ISource source)
+        {
+            return new Table(Name, source);
+        }
+
+        /// <summary>
+        /// Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
+        /// </summary>
+        /// <param name="obj">The <see cref="System.Object"/> to compare with this instance.</param>
+        /// <returns>
+        /// <c>true</c> if the specified <see cref="System.Object"/> is equal to this instance;
+        /// otherwise, <c>false</c>.
+        /// </returns>
+        public override bool Equals(object obj)
+        {
+            var Item = obj as Table;
+            if (Item == null)
+                return false;
+            return Columns.All(x => Item.Columns.Contains(x))
+                && Name == Item.Name
+                && Constraints.All(x => Item.Constraints.Contains(x))
+                && Triggers.All(x => Item.Triggers.Contains(x));
+        }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures
+        /// like a hash table.
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return Name.GetHashCode();
         }
     }
 }

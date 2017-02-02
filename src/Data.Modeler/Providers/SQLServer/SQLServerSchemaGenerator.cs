@@ -101,7 +101,7 @@ namespace Data.Modeler.Providers.SQLServer
             if (!SourceExists(DatabaseName, DatabaseSource))
                 return null;
             var Temp = new Source(DatabaseName);
-            var Batch = new SQLHelper.SQLHelper(DatabaseSource.Configuration, DatabaseSource.Factory, DatabaseSource.ConnectionString)
+            var Batch = new SQLHelper.SQLHelper(source.Configuration, source.Factory, source.ConnectionString)
                                      .CreateBatch();
             QueryBuilders.ForEach(x => Batch.AddQuery(CommandType.Text, x.GetCommand()));
             var Results = Batch.Execute();
@@ -125,9 +125,10 @@ namespace Data.Modeler.Providers.SQLServer
             {
                 if (Commands[x].ToUpperInvariant().Contains("CREATE DATABASE"))
                 {
-                    Batch.CreateBatch()
-                         .AddQuery(CommandType.Text, Commands[x])
-                         .Execute();
+                    new SQLHelper.SQLHelper(connection.Configuration, connection.Factory, DatabaseSource.ConnectionString)
+                                 .CreateBatch()
+                                 .AddQuery(CommandType.Text, Commands[x])
+                                 .Execute();
                 }
                 else if (Commands[x].ToUpperInvariant().Contains("CREATE TRIGGER")
                     || Commands[x].ToUpperInvariant().Contains("CREATE FUNCTION"))

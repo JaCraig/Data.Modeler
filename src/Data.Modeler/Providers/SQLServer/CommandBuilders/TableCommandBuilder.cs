@@ -79,7 +79,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                             || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
                             || Column.DataType == SqlDbType.Binary.To(DbType.Int32))
                         {
-                            Command += (Column.Length < 0 || Column.Length >= 4000) ?
+                            Command += (Column.Length <= 0 || Column.Length >= 4000) ?
                                             "(MAX)" :
                                             "(" + Column.Length.ToString(CultureInfo.InvariantCulture) + ")";
                         }
@@ -116,8 +116,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     || (CurrentColumn.DataType == Column.DataType
                         && CurrentColumn.DataType == SqlDbType.NVarChar.To(DbType.Int32)
                         && CurrentColumn.Length != Column.Length
-                        && CurrentColumn.Length.Between(0, 4000)
-                        && Column.Length.Between(0, 4000)))
+                        && CurrentColumn.Length.Between(1, 4000)
+                        && Column.Length.Between(1, 4000)))
                 {
                     Command = string.Format(CultureInfo.CurrentCulture,
                         "ALTER TABLE [{0}] ALTER COLUMN [{1}] {2}",
@@ -128,7 +128,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                         || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
                         || Column.DataType == SqlDbType.Binary.To(DbType.Int32))
                     {
-                        Command += (Column.Length < 0 || Column.Length >= 4000) ?
+                        Command += (Column.Length <= 0 || Column.Length >= 4000) ?
                                         "(MAX)" :
                                         "(" + Column.Length.ToString(CultureInfo.InvariantCulture) + ")";
                     }
@@ -158,7 +158,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                         || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
                         || Column.DataType == SqlDbType.Binary.To(DbType.Int32))
                 {
-                    Builder.Append((Column.Length < 0 || Column.Length >= 4000) ?
+                    Builder.Append((Column.Length <= 0 || Column.Length >= 4000) ?
                                     "(MAX)" :
                                     "(" + Column.Length.ToString(CultureInfo.InvariantCulture) + ")");
                 }
@@ -198,25 +198,28 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             int Counter = 0;
             foreach (IColumn Column in table.Columns)
             {
-                if (Column.Index && Column.Unique)
+                if (!Column.PrimaryKey)
                 {
-                    ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                        "CREATE UNIQUE INDEX [Index_{0}{1}] ON [{2}]([{3}])",
-                        Column.Name,
-                        Counter.ToString(CultureInfo.InvariantCulture),
-                        Column.ParentTable.Name,
-                        Column.Name));
+                    if (Column.Index && Column.Unique)
+                    {
+                        ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                            "CREATE UNIQUE INDEX [Index_{0}{1}] ON [{2}]([{3}])",
+                            Column.Name,
+                            Counter.ToString(CultureInfo.InvariantCulture),
+                            Column.ParentTable.Name,
+                            Column.Name));
+                    }
+                    else if (Column.Index)
+                    {
+                        ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                            "CREATE INDEX [Index_{0}{1}] ON [{2}]([{3}])",
+                            Column.Name,
+                            Counter.ToString(CultureInfo.InvariantCulture),
+                            Column.ParentTable.Name,
+                            Column.Name));
+                    }
+                    ++Counter;
                 }
-                else if (Column.Index)
-                {
-                    ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                        "CREATE INDEX [Index_{0}{1}] ON [{2}]([{3}])",
-                        Column.Name,
-                        Counter.ToString(CultureInfo.InvariantCulture),
-                        Column.ParentTable.Name,
-                        Column.Name));
-                }
-                ++Counter;
             }
             return ReturnValue;
         }
