@@ -215,7 +215,7 @@ namespace Data.Modeler.Providers.SQLServer
             return new SQLHelper.SQLHelper(source.Configuration, source.Factory, source.ConnectionString)
                            .AddQuery(CommandType.Text, command, value)
                            .Execute()[0]
-                           .Count() > 0;
+                           .Any();
         }
     }
 }

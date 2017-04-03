@@ -14,13 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
-using Microsoft.Extensions.Configuration;
-using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.Interfaces
 {
@@ -50,6 +45,13 @@ namespace Data.Modeler.Providers.Interfaces
         /// <param name="connectionInfo">The connection information.</param>
         /// <returns>The source structure</returns>
         ISource GetSourceStructure(IConnection connectionInfo);
+
+        /// <summary>
+        /// Sets up the specified source.
+        /// </summary>
+        /// <param name="source">The source.</param>
+        /// <param name="connection">The connection.</param>
+        void Setup(ISource source, IConnection connection);
 
         /// <summary>
         /// Checks if a source exists
