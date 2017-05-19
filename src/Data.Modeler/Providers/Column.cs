@@ -188,9 +188,11 @@ namespace Data.Modeler.Providers
                 PrimaryKey, Unique, "",
                 "", Default.To<string, T>(), ComputedColumnSpecification,
                 OnDeleteCascade, OnUpdateCascade, OnDeleteSetNull,
-                parentTable);
-            Result.ForeignKeyColumns = ForeignKeyColumns.ToList();
-            Result.ForeignKeyTables = ForeignKeyTables.ToList();
+                parentTable)
+            {
+                ForeignKeyColumns = ForeignKeyColumns.ToList(),
+                ForeignKeyTables = ForeignKeyTables.ToList()
+            };
             return Result;
         }
 

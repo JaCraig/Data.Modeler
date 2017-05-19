@@ -16,6 +16,8 @@ limitations under the License.
 
 using Data.Modeler.Providers.Interfaces;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Globalization;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
@@ -31,6 +33,11 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </summary>
         /// <value>The order.</value>
         public int Order => 1;
+
+        /// <summary>
+        /// Provider name associated with the schema generator
+        /// </summary>
+        public DbProviderFactory Provider => SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the commands.

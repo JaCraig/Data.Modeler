@@ -16,6 +16,8 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using SQLHelper.HelperClasses;
+using SQLHelper.HelperClasses.Interfaces;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -38,8 +40,8 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="commandBuilders">The command builders.</param>
         public SQLServerSchemaGenerator(IEnumerable<ISourceBuilder> queryBuilders, IEnumerable<ICommandBuilder> commandBuilders)
         {
-            CommandBuilders = commandBuilders.OrderBy(x => x.Order).ToArray();
-            QueryBuilders = queryBuilders.OrderBy(x => x.Order).ToArray();
+            CommandBuilders = commandBuilders.Where(x => x.Provider == Provider).OrderBy(x => x.Order).ToArray();
+            QueryBuilders = queryBuilders.Where(x => x.Provider == Provider).OrderBy(x => x.Order).ToArray();
         }
 
         /// <summary>
@@ -97,7 +99,7 @@ namespace Data.Modeler.Providers.SQLServer
         public ISource GetSourceStructure(IConnection source)
         {
             var DatabaseName = source.DatabaseName;
-            var DatabaseSource = new Connection(source.Configuration, source.Factory, Regex.Replace(source.ConnectionString, "Initial Catalog=(.*?;)", ""));
+            var DatabaseSource = new Connection(source.Configuration, source.Factory, Regex.Replace(source.ConnectionString, "Initial Catalog=(.*?;)", ""), "Name");
             if (!SourceExists(DatabaseName, DatabaseSource))
                 return null;
             var Temp = new Source(DatabaseName);
@@ -119,7 +121,7 @@ namespace Data.Modeler.Providers.SQLServer
             var CurrentSource = GetSourceStructure(connection);
             var Commands = GenerateSchema(source, CurrentSource).ToArray();
 
-            var DatabaseSource = new Connection(connection.Configuration, connection.Factory, Regex.Replace(connection.ConnectionString, "Initial Catalog=(.*?;)", ""));
+            var DatabaseSource = new Connection(connection.Configuration, connection.Factory, Regex.Replace(connection.ConnectionString, "Initial Catalog=(.*?;)", ""), "Name");
             var Batch = new SQLHelper.SQLHelper(connection.Configuration, connection.Factory, connection.ConnectionString);
             for (int x = 0; x < Commands.Length; ++x)
             {

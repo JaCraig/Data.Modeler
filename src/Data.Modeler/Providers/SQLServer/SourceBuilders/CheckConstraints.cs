@@ -1,6 +1,8 @@
 ﻿using Data.Modeler.Providers.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 
 namespace Data.Modeler.Providers.SQLServer.SourceBuilders
@@ -18,6 +20,11 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         public int Order => 31;
 
         /// <summary>
+        /// Provider name associated with the schema generator
+        /// </summary>
+        public DbProviderFactory Provider => SqlClientFactory.Instance;
+
+        /// <summary>
         /// Fills the database.
         /// </summary>
         /// <param name="values">The values.</param>
@@ -26,7 +33,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         {
             if (database == null)
                 throw new ArgumentNullException(nameof(database));
-            if (values == null || values.Count() == 0)
+            if (values == null || !values.Any())
                 return;
             foreach (dynamic Item in values)
             {

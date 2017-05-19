@@ -2,6 +2,7 @@
 using Data.Modeler.Providers.SQLServer;
 using Data.Modeler.Tests.BaseClasses;
 using SQLHelper.ExtensionMethods;
+using SQLHelper.HelperClasses;
 using System.Data.SqlClient;
 using System.Linq;
 using Xunit;
@@ -14,7 +15,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer
         public void ConstraintExists()
         {
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
-            Assert.False(TestObject.ConstraintExists("Test_Constraint", new Connection(Configuration, SqlClientFactory.Instance, "Default")));
+            Assert.False(TestObject.ConstraintExists("Test_Constraint", new Connection(Configuration, SqlClientFactory.Instance, "", "Default")));
         }
 
         [Fact]
@@ -28,7 +29,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer
         public void GenerateSchemaChanges()
         {
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
-            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "Default"));
+            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "", "Default"));
             var Desired = Source.Copy();
             Desired.Tables.First().AddColumn<int>("Column B", System.Data.DbType.Int32);
             var Result = TestObject.GenerateSchema(Desired, Source);
@@ -41,7 +42,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer
         public void GenerateSchemaNoChanges()
         {
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
-            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "Default"));
+            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "", "Default"));
             var Result = TestObject.GenerateSchema(Source, Source);
             Assert.NotNull(Result);
             Assert.Empty(Result);
@@ -51,7 +52,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer
         public void GetSourceStructure()
         {
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
-            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "Default"));
+            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "", "Default"));
             Assert.Equal(6, Source.Tables.Count);
             Assert.Equal(0, Source.Functions.Count);
             Assert.Equal("TestDatabase", Source.Name);
@@ -63,20 +64,20 @@ namespace Data.Modeler.Tests.Providers.SQLServer
         public void SetupAlreadyExists()
         {
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
-            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "Default"));
+            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "", "Default"));
             Source.Tables.First().AddColumn<int>("Column B", System.Data.DbType.Int32);
-            TestObject.Setup(Source, new Connection(Configuration, SqlClientFactory.Instance, "Default"));
+            TestObject.Setup(Source, new Connection(Configuration, SqlClientFactory.Instance, "", "Default"));
         }
 
         [Fact]
         public void SetupDoesntExists()
         {
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
-            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "Default"));
+            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "", "Default"));
             Source.Tables.First().AddColumn<int>("Column B", System.Data.DbType.Int32);
             Source.Name = "TestDatabase2";
-            TestObject.Setup(Source, new Connection(Configuration, SqlClientFactory.Instance, "DefaultNew"));
-            TestObject.SourceExists("TestDatabase2", new Connection(Configuration, SqlClientFactory.Instance, "DefaultNew"));
+            TestObject.Setup(Source, new Connection(Configuration, SqlClientFactory.Instance, "", "DefaultNew"));
+            TestObject.SourceExists("TestDatabase2", new Connection(Configuration, SqlClientFactory.Instance, "", "DefaultNew"));
 
             using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
             {
@@ -98,35 +99,35 @@ namespace Data.Modeler.Tests.Providers.SQLServer
         public void SourceExists()
         {
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
-            Assert.True(TestObject.SourceExists("TestDatabase", new Connection(Configuration, SqlClientFactory.Instance, "Default")));
+            Assert.True(TestObject.SourceExists("TestDatabase", new Connection(Configuration, SqlClientFactory.Instance, "", "Default")));
         }
 
         [Fact]
         public void StoredProcedureExists()
         {
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
-            Assert.False(TestObject.StoredProcedureExists("TestSP", new Connection(Configuration, SqlClientFactory.Instance, "Default")));
+            Assert.False(TestObject.StoredProcedureExists("TestSP", new Connection(Configuration, SqlClientFactory.Instance, "", "Default")));
         }
 
         [Fact]
         public void TableExists()
         {
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
-            Assert.True(TestObject.TableExists("Attachment", new Connection(Configuration, SqlClientFactory.Instance, "Default")));
+            Assert.True(TestObject.TableExists("Attachment", new Connection(Configuration, SqlClientFactory.Instance, "", "Default")));
         }
 
         [Fact]
         public void TriggerExists()
         {
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
-            Assert.False(TestObject.TriggerExists("TestTrigger", new Connection(Configuration, SqlClientFactory.Instance, "Default")));
+            Assert.False(TestObject.TriggerExists("TestTrigger", new Connection(Configuration, SqlClientFactory.Instance, "", "Default")));
         }
 
         [Fact]
         public void ViewExists()
         {
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
-            Assert.False(TestObject.ViewExists("TestView", new Connection(Configuration, SqlClientFactory.Instance, "Default")));
+            Assert.False(TestObject.ViewExists("TestView", new Connection(Configuration, SqlClientFactory.Instance, "", "Default")));
         }
     }
 }

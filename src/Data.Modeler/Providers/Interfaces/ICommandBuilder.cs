@@ -14,10 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Data.Common;
 
 namespace Data.Modeler.Providers.Interfaces
 {
@@ -31,6 +29,12 @@ namespace Data.Modeler.Providers.Interfaces
         /// </summary>
         /// <value>The order.</value>
         int Order { get; }
+
+        /// <summary>
+        /// Gets the provider this source builder supports
+        /// </summary>
+        /// <value>The provider.</value>
+        DbProviderFactory Provider { get; }
 
         /// <summary>
         /// Gets the commands.

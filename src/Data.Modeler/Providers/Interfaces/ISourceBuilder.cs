@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using System.Collections.Generic;
+using System.Data.Common;
 
 namespace Data.Modeler.Providers.Interfaces
 {
@@ -28,6 +29,12 @@ namespace Data.Modeler.Providers.Interfaces
         /// </summary>
         /// <value>The order.</value>
         int Order { get; }
+
+        /// <summary>
+        /// Gets the provider this source builder supports
+        /// </summary>
+        /// <value>The provider.</value>
+        DbProviderFactory Provider { get; }
 
         /// <summary>
         /// Fills the source.
