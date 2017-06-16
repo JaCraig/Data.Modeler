@@ -28,7 +28,7 @@
 
   <ItemGroup>
     <PackageReference Include="BigBook" Version="1.0.21" />
-    <PackageReference Include="SQLHelper.DB" Version="1.0.32" />
+    <PackageReference Include="SQLHelper.DB" Version="1.0.33" />
   </ItemGroup>
 
 </Project>
