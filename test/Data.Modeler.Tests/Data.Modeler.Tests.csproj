@@ -22,10 +22,14 @@
 
   <ItemGroup>
     <None Remove="Scripts\script.sql" />
+    <None Remove="Scripts\testdatabase.sql" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Scripts\script.sql">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Scripts\testdatabase.sql">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

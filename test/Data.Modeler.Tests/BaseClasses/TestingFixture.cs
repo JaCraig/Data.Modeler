@@ -28,6 +28,8 @@ namespace Data.Modeler.Tests.BaseClasses
 
         protected string ConnectionString => "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
 
+        protected string ConnectionString2 => "Data Source=localhost;Initial Catalog=TestDatabaseForeignKeys;Integrated Security=SSPI;Pooling=false";
+
         protected string ConnectionStringNew => "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
 
         protected string DatabaseName => "TestDatabase";
@@ -42,10 +44,11 @@ namespace Data.Modeler.Tests.BaseClasses
                 {
                     try
                     {
-                        TempCommand.CommandText = "ALTER DATABASE TestDatabase SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase SET ONLINE\r\nDROP DATABASE TestDatabase";
+                        TempCommand.CommandText = "ALTER DATABASE TestDatabase SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase SET ONLINE\r\nDROP DATABASE TestDatabase\r\nALTER DATABASE TestDatabaseForeignKeys SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabaseForeignKeys SET ONLINE\r\nDROP DATABASE TestDatabaseForeignKeys";
                         TempCommand.Open();
                         TempCommand.ExecuteNonQuery();
                     }
+                    catch { }
                     finally { TempCommand.Close(); }
                 }
             }
@@ -56,6 +59,7 @@ namespace Data.Modeler.Tests.BaseClasses
             var dict = new Dictionary<string, string>
                 {
                     { "ConnectionStrings:Default", ConnectionString },
+                    { "ConnectionStrings:Default2", ConnectionString2 },
                     { "ConnectionStrings:DefaultNew", ConnectionStringNew },
                     { "ConnectionStrings:MasterString", MasterString }
                 };
@@ -66,28 +70,54 @@ namespace Data.Modeler.Tests.BaseClasses
 
         private void SetupDatabases()
         {
-            using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
+            try
             {
-                TempConnection.ConnectionString = MasterString;
-                using (var TempCommand = TempConnection.CreateCommand())
+                using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
                 {
-                    try
+                    TempConnection.ConnectionString = MasterString;
+                    using (var TempCommand = TempConnection.CreateCommand())
                     {
-                        TempCommand.CommandText = "Create Database TestDatabase";
-                        TempCommand.Open();
-                        TempCommand.ExecuteNonQuery();
+                        try
+                        {
+                            TempCommand.CommandText = "Create Database TestDatabase";
+                            TempCommand.Open();
+                            TempCommand.ExecuteNonQuery();
+                        }
+                        finally { TempCommand.Close(); }
                     }
-                    finally { TempCommand.Close(); }
+                }
+                using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
+                {
+                    TempConnection.ConnectionString = MasterString;
+                    using (var TempCommand = TempConnection.CreateCommand())
+                    {
+                        try
+                        {
+                            TempCommand.CommandText = "Create Database TestDatabaseForeignKeys";
+                            TempCommand.Open();
+                            TempCommand.ExecuteNonQuery();
+                        }
+                        finally { TempCommand.Close(); }
+                    }
+                }
+                var Queries = new FileInfo("./Scripts/script.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string Query in Queries)
+                {
+                    new SQLHelper.SQLHelper(Configuration, SqlClientFactory.Instance)
+                        .CreateBatch()
+                        .AddQuery(CommandType.Text, Query)
+                        .ExecuteScalar<int>();
+                }
+                Queries = new FileInfo("./Scripts/testdatabase.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (string Query in Queries)
+                {
+                    new SQLHelper.SQLHelper(Configuration, SqlClientFactory.Instance, "Default2")
+                        .CreateBatch()
+                        .AddQuery(CommandType.Text, Query)
+                        .ExecuteScalar<int>();
                 }
             }
-            var Queries = new FileInfo("./Scripts/script.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-            foreach (string Query in Queries)
-            {
-                new SQLHelper.SQLHelper(Configuration, SqlClientFactory.Instance)
-                    .CreateBatch()
-                    .AddQuery(CommandType.Text, Query)
-                    .ExecuteScalar<int>();
-            }
+            catch { }
         }
 
         private void SetupIoC()

@@ -119,8 +119,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                         ReturnValue.Add(Command);
                     }
                 }
-                else if (CurrentColumn.DataType != Column.DataType
-                    || (CurrentColumn.DataType == Column.DataType
+                else if (CurrentColumn.DataType.To(SqlDbType.Int) != Column.DataType.To(SqlDbType.Int)
+                    || (CurrentColumn.DataType.To(SqlDbType.Int) == Column.DataType.To(SqlDbType.Int)
                         && CurrentColumn.DataType == SqlDbType.NVarChar.To(DbType.Int32)
                         && CurrentColumn.Length != Column.Length
                         && CurrentColumn.Length.Between(1, 4000)

@@ -1,8 +1,11 @@
-﻿using Data.Modeler.Providers.Interfaces;
+﻿using BigBook;
+using Data.Modeler.Providers.Interfaces;
 using Data.Modeler.Providers.SQLServer;
 using Data.Modeler.Tests.BaseClasses;
 using SQLHelper.ExtensionMethods;
 using SQLHelper.HelperClasses;
+using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using Xunit;
@@ -58,6 +61,34 @@ namespace Data.Modeler.Tests.Providers.SQLServer
             Assert.Equal("TestDatabase", Source.Name);
             Assert.Equal(0, Source.StoredProcedures.Count);
             Assert.Equal(0, Source.Views.Count);
+        }
+
+        [Fact]
+        public void SchemaGenerationForeignKeysAlreadyExist()
+        {
+            var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
+            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "", "Default2"));
+            var Destination = new Modeler.Providers.Source("Default2");
+            var Table = Destination.AddTable("ConcreteClass3_");
+            var Column1 = Table.AddColumn<int>("IInterface1_ID_", typeof(int).To<Type, DbType>());
+            var Table2 = Destination.AddTable("IInterface1_");
+            Table2.AddColumn<int>("ID_", typeof(int).To<Type, DbType>());
+            Column1.AddForeignKey("IInterface1_", "ID_");
+            Table.SetupForeignKeys();
+            var Results = TestObject.GenerateSchema(Destination, Source);
+            Assert.Equal(0, Results.Count());
+        }
+
+        [Fact]
+        public void SchemaGenerationTimeSpan()
+        {
+            var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
+            var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "", "Default2"));
+            var Destination = new Modeler.Providers.Source("Default2");
+            var Table = Destination.AddTable("AllReferencesAndID_");
+            Table.AddColumn<TimeSpan>("TimeSpanValue_", typeof(TimeSpan).To<Type, DbType>());
+            var Results = TestObject.GenerateSchema(Destination, Source);
+            Assert.Equal(0, Results.Count());
         }
 
         [Fact]

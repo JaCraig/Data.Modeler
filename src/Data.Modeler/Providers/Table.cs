@@ -125,7 +125,17 @@ namespace Data.Modeler.Providers
         /// <returns>The copy of this instance.</returns>
         public override ITable Copy(ISource source)
         {
-            return new Table(Name, source);
+            var ReturnValue = new Table(Name, source);
+            foreach (var Column in Columns)
+            {
+                ReturnValue.Columns.Add(Column.Copy(ReturnValue));
+            }
+            foreach (var Trigger in Triggers)
+            {
+                ReturnValue.Triggers.Add(Trigger.Copy(ReturnValue));
+            }
+            ReturnValue.SetupForeignKeys();
+            return ReturnValue;
         }
 
         /// <summary>

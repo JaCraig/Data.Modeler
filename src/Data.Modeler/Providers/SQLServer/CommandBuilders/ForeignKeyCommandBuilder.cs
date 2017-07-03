@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Globalization;
+using System.Linq;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -101,9 +102,11 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             {
                 IColumn CurrentColumn = currentTable[Column.Name];
                 if (Column.ForeignKey.Count > 0
-                    && (CurrentColumn == null || CurrentColumn.ForeignKey.Count != Column.ForeignKey.Count))
+                    && (CurrentColumn == null || !Column.Equals(CurrentColumn)))
                 {
-                    foreach (IColumn ForeignKey in Column.ForeignKey)
+                    foreach (IColumn ForeignKey in Column.ForeignKey.Where(x => CurrentColumn == null
+                                                                             || !CurrentColumn.ForeignKey.Any(y => y.Name == x.Name
+                                                                                                                && y.ParentTable.Name == x.ParentTable.Name)))
                     {
                         var Command = string.Format(CultureInfo.CurrentCulture,
                             "ALTER TABLE [{0}] ADD FOREIGN KEY ([{1}]) REFERENCES [{2}]([{3}])",
