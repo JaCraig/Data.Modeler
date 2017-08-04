@@ -27,10 +27,12 @@ namespace Data.Modeler.Providers
         /// Constructor
         /// </summary>
         /// <param name="name">Name</param>
+        /// <param name="schema">The schema.</param>
         /// <param name="definition">Definition</param>
         /// <param name="source">Source</param>
-        public Function(string name, string definition, ISource source)
+        public Function(string name, string schema, string definition, ISource source)
         {
+            Schema = schema;
             Name = name;
             Definition = definition;
             Source = source;
@@ -47,6 +49,12 @@ namespace Data.Modeler.Providers
         public string Name { get; set; }
 
         /// <summary>
+        /// Gets the name of the schema.
+        /// </summary>
+        /// <value>The name of the schema.</value>
+        public string Schema { get; }
+
+        /// <summary>
         /// Source
         /// </summary>
         public ISource Source { get; set; }
@@ -58,7 +66,7 @@ namespace Data.Modeler.Providers
         /// <returns>The copy</returns>
         public IFunction Copy(ISource source)
         {
-            return new Function(Name, Definition, source);
+            return new Function(Name, Schema, Definition, source);
         }
 
         /// <summary>

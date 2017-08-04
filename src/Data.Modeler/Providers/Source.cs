@@ -39,40 +39,47 @@ namespace Data.Modeler.Providers
         /// Adds a function to the database
         /// </summary>
         /// <param name="name">Function name</param>
+        /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">Function definition</param>
-        public override IFunction AddFunction(string name, string definition)
+        /// <returns>Function that was created/added</returns>
+        public override IFunction AddFunction(string name, string schemaName, string definition)
         {
-            return Functions.AddAndReturn(new Function(name, definition, this));
+            return Functions.AddAndReturn(new Function(name, schemaName, definition, this));
         }
 
         /// <summary>
         /// Adds a stored procedure to the database
         /// </summary>
         /// <param name="procedureName">Procedure name</param>
+        /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">Definition</param>
-        public override IFunction AddStoredProcedure(string procedureName, string definition)
+        /// <returns>The stored procedure</returns>
+        public override IFunction AddStoredProcedure(string procedureName, string schemaName, string definition)
         {
-            return StoredProcedures.AddAndReturn(new StoredProcedure(procedureName, definition, this));
+            return StoredProcedures.AddAndReturn(new StoredProcedure(procedureName, schemaName, definition, this));
         }
 
         /// <summary>
         /// Adds a table to the database
         /// </summary>
         /// <param name="tableName">Table name</param>
-        public override ITable AddTable(string tableName)
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns>Table that was created/added</returns>
+        public override ITable AddTable(string tableName, string schemaName)
         {
-            return Tables.AddAndReturn(new Table(tableName, this));
+            return Tables.AddAndReturn(new Table(tableName, schemaName, this));
         }
 
         /// <summary>
         /// Adds a view to the database
         /// </summary>
         /// <param name="viewName">View name</param>
+        /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">The definition.</param>
         /// <returns>The resulting view object</returns>
-        public override IFunction AddView(string viewName, string definition)
+        public override IFunction AddView(string viewName, string schemaName, string definition)
         {
-            return Views.AddAndReturn(new View(viewName, definition, this));
+            return Views.AddAndReturn(new View(viewName, schemaName, definition, this));
         }
 
         /// <summary>

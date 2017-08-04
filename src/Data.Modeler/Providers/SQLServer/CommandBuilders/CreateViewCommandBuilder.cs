@@ -78,7 +78,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             else if (view.Definition != currentView.Definition)
             {
                 ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                    "DROP VIEW [{0}]",
+                    "DROP VIEW [{0}].[{1}]",
+                    view.Schema,
                     view.Name));
                 ReturnValue.Add(GetViewCommand(view));
             }

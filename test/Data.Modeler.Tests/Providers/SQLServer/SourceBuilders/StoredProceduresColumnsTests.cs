@@ -23,7 +23,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
         {
             var TempStoredProcedureColumns = new StoredProcedureColumns();
             var TempSource = new Source("My Source");
-            TempSource.AddStoredProcedure("Procedure A", "");
+            TempSource.AddStoredProcedure("Procedure A", "dbo", "");
             var ConstraintsToAdd = new[]
             {
                 new Dynamo(new

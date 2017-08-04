@@ -10,7 +10,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void AddCheckConstraint()
         {
-            var TempTable = new Table("Name", null);
+            var TempTable = new Table("Name", "dbo", null);
             var CheckConstraint = TempTable.AddCheckConstraint("Name", "Definition");
             Assert.Empty(TempTable.Columns);
             Assert.NotEmpty(TempTable.Constraints);
@@ -26,7 +26,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void AddColumn()
         {
-            var TempTable = new Table("Name", null);
+            var TempTable = new Table("Name", "dbo", null);
             var TempColumn = TempTable.AddColumn<int>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
             Assert.NotEmpty(TempTable.Columns);
             Assert.Contains(TempColumn, TempTable.Columns);
@@ -55,7 +55,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void AddForeignKey()
         {
-            var TempTable = new Table("Name", null);
+            var TempTable = new Table("Name", "dbo", null);
             TempTable.AddForeignKey("ColumnName", "ForeignKeyTable", "ForeignKeyColumn");
             Assert.Empty(TempTable.Columns);
             Assert.Empty(TempTable.Constraints);
@@ -67,7 +67,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void AddTrigger()
         {
-            var TempTable = new Table("Name", null);
+            var TempTable = new Table("Name", "dbo", null);
             var Trigger = TempTable.AddTrigger("Name", "Definition", TriggerType.Update);
             Assert.Empty(TempTable.Columns);
             Assert.Empty(TempTable.Constraints);
@@ -84,7 +84,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void ContainsColumn()
         {
-            var TempTable = new Table("Name", null);
+            var TempTable = new Table("Name", "dbo", null);
             var TempColumn = TempTable.AddColumn<int>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
             Assert.True(TempTable.ContainsColumn("A"));
             Assert.False(TempTable.ContainsColumn("B"));
@@ -93,7 +93,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void Creation()
         {
-            var TempTable = new Table("Name", null);
+            var TempTable = new Table("Name", "dbo", null);
             Assert.Empty(TempTable.Columns);
             Assert.Empty(TempTable.Constraints);
             Assert.Equal("Name", TempTable.Name);

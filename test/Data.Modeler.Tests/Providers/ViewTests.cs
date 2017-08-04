@@ -9,7 +9,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void Creation()
         {
-            var TempView = new View("Name", "Definition", null);
+            var TempView = new View("Name", "dbo", "Definition", null);
             Assert.Empty(TempView.Columns);
             Assert.Empty(TempView.Constraints);
             Assert.Equal("Definition", TempView.Definition);

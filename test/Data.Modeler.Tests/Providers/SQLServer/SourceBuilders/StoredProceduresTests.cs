@@ -41,7 +41,11 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
         {
             var TempStoredProcedures = new StoredProcedures();
             var SQLCommand = TempStoredProcedures.GetCommand();
-            Assert.Equal(@"SELECT sys.procedures.name as NAME,OBJECT_DEFINITION(sys.procedures.object_id) as DEFINITION FROM sys.procedures", SQLCommand);
+            Assert.Equal(@"SELECT sys.schemas.name as [SCHEMA],
+sys.procedures.name as NAME,
+OBJECT_DEFINITION(sys.procedures.object_id) as DEFINITION
+FROM sys.procedures
+INNER JOIN sys.schemas ON sys.schemas.schema_id=sys.procedures.schema_id", SQLCommand);
         }
     }
 }

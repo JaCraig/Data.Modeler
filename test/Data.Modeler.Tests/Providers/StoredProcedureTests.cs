@@ -9,7 +9,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void Creation()
         {
-            var TempStoredProcedure = new StoredProcedure("Name", "Definition", null);
+            var TempStoredProcedure = new StoredProcedure("Name", "dbo", "Definition", null);
             Assert.Empty(TempStoredProcedure.Columns);
             Assert.Empty(TempStoredProcedure.Constraints);
             Assert.Equal("Definition", TempStoredProcedure.Definition);

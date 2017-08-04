@@ -37,6 +37,7 @@ namespace Data.Modeler.Providers.BaseClasses
             StoredProcedures = new List<IFunction>();
             Views = new List<IFunction>();
             Functions = new List<IFunction>();
+            Schemas = new List<string>();
         }
 
         /// <summary>
@@ -48,6 +49,12 @@ namespace Data.Modeler.Providers.BaseClasses
         /// Name of the source
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets the schemas.
+        /// </summary>
+        /// <value>The schemas.</value>
+        public ICollection<string> Schemas { get; private set; }
 
         /// <summary>
         /// Stored procedures within the source
@@ -75,32 +82,36 @@ namespace Data.Modeler.Providers.BaseClasses
         /// Adds a function to the source
         /// </summary>
         /// <param name="name">Name of the function</param>
+        /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">Definition of the function</param>
         /// <returns>Function that was created/added</returns>
-        public abstract IFunction AddFunction(string name, string definition);
+        public abstract IFunction AddFunction(string name, string schemaName, string definition);
 
         /// <summary>
         /// Adds a stored procedure to the source
         /// </summary>
         /// <param name="procedureName">Procedure name</param>
+        /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">Definition of the stored procedure</param>
         /// <returns>Stored procedure that was created/added</returns>
-        public abstract IFunction AddStoredProcedure(string procedureName, string definition);
+        public abstract IFunction AddStoredProcedure(string procedureName, string schemaName, string definition);
 
         /// <summary>
         /// Adds a table to the source
         /// </summary>
         /// <param name="tableName">Table name</param>
+        /// <param name="schemaName">Name of the schema.</param>
         /// <returns>Table that was created/added</returns>
-        public abstract ITable AddTable(string tableName);
+        public abstract ITable AddTable(string tableName, string schemaName);
 
         /// <summary>
         /// Adds a view to the source
         /// </summary>
         /// <param name="viewName">View name</param>
+        /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">The definition.</param>
         /// <returns>View that was created/added</returns>
-        public abstract IFunction AddView(string viewName, string definition);
+        public abstract IFunction AddView(string viewName, string schemaName, string definition);
 
         /// <summary>
         /// Copies this instance.

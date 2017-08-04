@@ -32,9 +32,10 @@ namespace Data.Modeler.Providers
         /// Constructor
         /// </summary>
         /// <param name="name">Name</param>
+        /// <param name="schema">The schema.</param>
         /// <param name="source">Source</param>
-        public Table(string name, ISource source)
-            : base(name, source)
+        public Table(string name, string schema, ISource source)
+            : base(name, schema, source)
         {
         }
 
@@ -125,14 +126,14 @@ namespace Data.Modeler.Providers
         /// <returns>The copy of this instance.</returns>
         public override ITable Copy(ISource source)
         {
-            var ReturnValue = new Table(Name, source);
-            foreach (var Column in Columns)
+            var ReturnValue = new Table(Name, Schema, source);
+            foreach (var TempColumn in Columns)
             {
-                ReturnValue.Columns.Add(Column.Copy(ReturnValue));
+                ReturnValue.Columns.Add(TempColumn.Copy(ReturnValue));
             }
-            foreach (var Trigger in Triggers)
+            foreach (var TempTrigger in Triggers)
             {
-                ReturnValue.Triggers.Add(Trigger.Copy(ReturnValue));
+                ReturnValue.Triggers.Add(TempTrigger.Copy(ReturnValue));
             }
             ReturnValue.SetupForeignKeys();
             return ReturnValue;

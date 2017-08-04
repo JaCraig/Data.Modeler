@@ -52,7 +52,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
                 return;
             foreach (dynamic Item in values)
             {
-                database.AddFunction(Item.NAME, Item.DEFINITION);
+                database.AddFunction(Item.NAME, Item.SCHEMA, Item.DEFINITION);
             }
         }
 
@@ -62,7 +62,11 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <returns>The command to get the source</returns>
         public string GetCommand()
         {
-            return @"SELECT SPECIFIC_NAME as NAME,ROUTINE_DEFINITION as DEFINITION FROM INFORMATION_SCHEMA.ROUTINES WHERE INFORMATION_SCHEMA.ROUTINES.ROUTINE_TYPE='FUNCTION'";
+            return @"SELECT INFORMATION_SCHEMA.ROUTINES.SPECIFIC_SCHEMA as [SCHEMA],
+SPECIFIC_NAME as NAME,
+ROUTINE_DEFINITION as DEFINITION
+FROM INFORMATION_SCHEMA.ROUTINES
+WHERE INFORMATION_SCHEMA.ROUTINES.ROUTINE_TYPE='FUNCTION'";
         }
     }
 }

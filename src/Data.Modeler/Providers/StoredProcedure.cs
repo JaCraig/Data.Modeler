@@ -31,10 +31,11 @@ namespace Data.Modeler.Providers
         /// Constructor
         /// </summary>
         /// <param name="name">Name</param>
-        /// <param name="source">Source</param>
+        /// <param name="schema">The schema.</param>
         /// <param name="definition">Definition of the stored procedure</param>
-        public StoredProcedure(string name, string definition, ISource source)
-            : base(name, source)
+        /// <param name="source">Source</param>
+        public StoredProcedure(string name, string schema, string definition, ISource source)
+            : base(name, schema, source)
         {
             Definition = definition;
         }
@@ -128,7 +129,7 @@ namespace Data.Modeler.Providers
         /// <returns>The copy of this instance.</returns>
         public override ITable Copy(ISource source)
         {
-            return new StoredProcedure(Name, Definition, source);
+            return new StoredProcedure(Name, Schema, Definition, source);
         }
 
         /// <summary>
@@ -138,7 +139,7 @@ namespace Data.Modeler.Providers
         /// <returns>The copy</returns>
         IFunction IFunction.Copy(ISource source)
         {
-            return new StoredProcedure(Name, Definition, source);
+            return new StoredProcedure(Name, Schema, Definition, source);
         }
 
         /// <summary>

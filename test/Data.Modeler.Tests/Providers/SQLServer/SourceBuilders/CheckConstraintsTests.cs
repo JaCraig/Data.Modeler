@@ -22,7 +22,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
         {
             var TempCheckConstraints = new CheckConstraints();
             var TempSource = new Source("My Source");
-            var TableA = TempSource.AddTable("Table A");
+            var TableA = TempSource.AddTable("Table A", "dbo");
             var ConstraintsToAdd = new[]
             {
                 new Dynamo(new

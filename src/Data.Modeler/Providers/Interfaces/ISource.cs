@@ -34,6 +34,12 @@ namespace Data.Modeler.Providers.Interfaces
         string Name { get; set; }
 
         /// <summary>
+        /// Gets the schemas.
+        /// </summary>
+        /// <value>The schemas.</value>
+        ICollection<string> Schemas { get; }
+
+        /// <summary>
         /// List of stored procedures
         /// </summary>
         ICollection<IFunction> StoredProcedures { get; }
@@ -59,29 +65,36 @@ namespace Data.Modeler.Providers.Interfaces
         /// Adds a function to the database
         /// </summary>
         /// <param name="name">Function name</param>
+        /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">Function definition</param>
-        IFunction AddFunction(string name, string definition);
+        /// <returns></returns>
+        IFunction AddFunction(string name, string schemaName, string definition);
 
         /// <summary>
         /// Adds a stored procedure to the database
         /// </summary>
         /// <param name="procedureName">Procedure name</param>
+        /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">Definition</param>
-        IFunction AddStoredProcedure(string procedureName, string definition);
+        /// <returns></returns>
+        IFunction AddStoredProcedure(string procedureName, string schemaName, string definition);
 
         /// <summary>
         /// Adds a table to the database
         /// </summary>
         /// <param name="tableName">Table name</param>
-        ITable AddTable(string tableName);
+        /// <param name="schemaName">Name of the schema.</param>
+        /// <returns></returns>
+        ITable AddTable(string tableName, string schemaName);
 
         /// <summary>
         /// Adds a view to the database
         /// </summary>
         /// <param name="viewName">View name</param>
+        /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">The definition.</param>
         /// <returns>The view that is created</returns>
-        IFunction AddView(string viewName, string definition);
+        IFunction AddView(string viewName, string schemaName, string definition);
 
         /// <summary>
         /// Copies this instance

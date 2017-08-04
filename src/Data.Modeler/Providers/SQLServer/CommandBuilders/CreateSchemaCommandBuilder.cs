@@ -14,14 +14,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
 using Data.Modeler.Providers.Interfaces;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -29,13 +25,13 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
     /// Function command builder
     /// </summary>
     /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
-    public class CreateFunctionCommandBuilder : ICommandBuilder
+    public class CreateSchemaCommandBuilder : ICommandBuilder
     {
         /// <summary>
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 40;
+        public int Order => 5;
 
         /// <summary>
         /// Provider name associated with the schema generator
@@ -56,42 +52,14 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 return new List<string>();
             currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
-            foreach (Function TempFunction in desiredStructure.Functions)
+            foreach (var Schema in desiredStructure.Schemas)
             {
-                var CurrentFunction = (Function)currentStructure.Functions.FirstOrDefault(x => x.Name == TempFunction.Name);
-                Commands.Add(CurrentFunction != null ? GetAlterFunctionCommand(TempFunction, CurrentFunction) : GetFunctionCommand(TempFunction));
+                if (!currentStructure.Schemas.Contains(Schema))
+                {
+                    Commands.Add(string.Format("CREATE SCHEMA {0}", Schema));
+                }
             }
             return Commands;
-        }
-
-        private static IEnumerable<string> GetAlterFunctionCommand(Function function, Function currentFunction)
-        {
-            if (function == null || currentFunction == null)
-                return new List<string>();
-            if (function.Definition != currentFunction.Definition && string.IsNullOrEmpty(function.Definition))
-                return new List<string>();
-            var ReturnValue = new List<string>();
-            if (currentFunction == null)
-            {
-                ReturnValue.Add(GetFunctionCommand(function));
-            }
-            else if (function.Definition != currentFunction.Definition)
-            {
-                ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                    "DROP FUNCTION [{0}].[{1}]",
-                    function.Schema,
-                    function.Name));
-                ReturnValue.Add(GetFunctionCommand(function));
-            }
-            return ReturnValue;
-        }
-
-        private static IEnumerable<string> GetFunctionCommand(Function function)
-        {
-            if (function == null || function.Definition == null)
-                return new List<string>();
-            var Definition = Regex.Replace(function.Definition, "-- (.*)", "");
-            return new string[] { Definition.Replace("\n", " ").Replace("\r", " ") };
         }
     }
 }

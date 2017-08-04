@@ -23,7 +23,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
         {
             var TempViews = new Views();
             var TempSource = new Source("My Source");
-            var TempTable = TempSource.AddView("View A", "");
+            var TempTable = TempSource.AddView("View A", "dbo", "");
             var ConstraintsToAdd = new[]
             {
                 new Dynamo(new

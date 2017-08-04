@@ -31,10 +31,11 @@ namespace Data.Modeler.Providers
         /// Constructor
         /// </summary>
         /// <param name="name">Name</param>
+        /// <param name="schema">The schema.</param>
         /// <param name="definition">The definition.</param>
         /// <param name="source">Source</param>
-        public View(string name, string definition, ISource source)
-            : base(name, source)
+        public View(string name, string schema, string definition, ISource source)
+            : base(name, schema, source)
         {
             Definition = definition;
         }
@@ -128,7 +129,7 @@ namespace Data.Modeler.Providers
         /// <returns>The copy of this instance.</returns>
         public override ITable Copy(ISource source)
         {
-            return new View(Name, Definition, source);
+            return new View(Name, Schema, Definition, source);
         }
 
         /// <summary>
@@ -138,7 +139,7 @@ namespace Data.Modeler.Providers
         /// <returns>The copy</returns>
         IFunction IFunction.Copy(ISource source)
         {
-            return new View(Name, Definition, source);
+            return new View(Name, Schema, Definition, source);
         }
 
         /// <summary>

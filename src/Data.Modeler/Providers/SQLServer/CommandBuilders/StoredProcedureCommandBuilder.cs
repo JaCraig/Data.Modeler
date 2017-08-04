@@ -78,7 +78,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             else if (storedProcedure.Definition != currentStoredProcedure.Definition)
             {
                 ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                    "DROP PROCEDURE [{0}]",
+                    "DROP PROCEDURE [{0}].[{1}]",
+                    storedProcedure.Schema,
                     storedProcedure.Name));
                 ReturnValue.Add(GetStoredProcedure(storedProcedure));
             }

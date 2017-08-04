@@ -21,8 +21,8 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
             var TempCheckConstraint = new TableCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
             Assert.Equal(2, Commands.Count());
-            Assert.Equal("CREATE TABLE [Table A]([Column A] Int,[Column B] NVarChar(MAX))", Commands[0]);
-            Assert.Equal("CREATE TABLE [Foreign Table]([Foreign Column] Int)", Commands[1]);
+            Assert.Equal("CREATE TABLE [dbo].[Table A]([Column A] Int,[Column B] NVarChar(MAX))", Commands[0]);
+            Assert.Equal("CREATE TABLE [dbo].[Foreign Table]([Foreign Column] Int)", Commands[1]);
         }
 
         [Fact]
@@ -31,7 +31,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
             var TempCheckConstraint = new TableCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
             Assert.Equal(1, Commands.Count());
-            Assert.Equal("ALTER TABLE [Table A] ADD [Column B] NVarChar(MAX)", Commands[0]);
+            Assert.Equal("ALTER TABLE [dbo].[Table A] ADD [Column B] NVarChar(MAX)", Commands[0]);
         }
     }
 }

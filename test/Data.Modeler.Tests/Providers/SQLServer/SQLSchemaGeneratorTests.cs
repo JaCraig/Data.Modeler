@@ -38,7 +38,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer
             var Result = TestObject.GenerateSchema(Desired, Source);
             Assert.NotNull(Result);
             Assert.Equal(1, Result.Count());
-            Assert.Equal("ALTER TABLE [Attachment] ADD [Column B] Int", Result.First());
+            Assert.Equal("ALTER TABLE [dbo].[Attachment] ADD [Column B] Int", Result.First());
         }
 
         [Fact]
@@ -69,9 +69,9 @@ namespace Data.Modeler.Tests.Providers.SQLServer
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
             var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "", "Default2"));
             var Destination = new Modeler.Providers.Source("Default2");
-            var Table = Destination.AddTable("ConcreteClass3_");
+            var Table = Destination.AddTable("ConcreteClass3_", "dbo");
             var Column1 = Table.AddColumn<int>("IInterface1_ID_", typeof(int).To<Type, DbType>());
-            var Table2 = Destination.AddTable("IInterface1_");
+            var Table2 = Destination.AddTable("IInterface1_", "dbo");
             Table2.AddColumn<int>("ID_", typeof(int).To<Type, DbType>());
             Column1.AddForeignKey("IInterface1_", "ID_");
             Table.SetupForeignKeys();
@@ -85,7 +85,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer
             var TestObject = new SQLServerSchemaGenerator(Canister.Builder.Bootstrapper.ResolveAll<ISourceBuilder>(), Canister.Builder.Bootstrapper.ResolveAll<ICommandBuilder>());
             var Source = TestObject.GetSourceStructure(new Connection(Configuration, SqlClientFactory.Instance, "", "Default2"));
             var Destination = new Modeler.Providers.Source("Default2");
-            var Table = Destination.AddTable("AllReferencesAndID_");
+            var Table = Destination.AddTable("AllReferencesAndID_", "dbo");
             Table.AddColumn<TimeSpan>("TimeSpanValue_", typeof(TimeSpan).To<Type, DbType>());
             var Results = TestObject.GenerateSchema(Destination, Source);
             Assert.Equal(0, Results.Count());

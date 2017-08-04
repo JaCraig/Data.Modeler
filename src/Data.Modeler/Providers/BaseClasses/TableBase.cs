@@ -32,9 +32,11 @@ namespace Data.Modeler.Providers.BaseClasses
         /// Constructor
         /// </summary>
         /// <param name="name">Name of the table</param>
+        /// <param name="schema">The schema.</param>
         /// <param name="source">Source that the table is from</param>
-        protected TableBase(string name, ISource source)
+        protected TableBase(string name, string schema, ISource source)
         {
+            Schema = schema;
             Name = name;
             Source = source;
             Columns = new List<IColumn>();
@@ -57,6 +59,12 @@ namespace Data.Modeler.Providers.BaseClasses
         /// Name of the table
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the schema.
+        /// </summary>
+        /// <value>The schema.</value>
+        public string Schema { get; }
 
         /// <summary>
         /// Source/Parent

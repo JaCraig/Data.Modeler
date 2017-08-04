@@ -10,7 +10,7 @@ namespace Data.Modeler.Tests.Providers
         public void AddFunction()
         {
             var TempSource = new Source("MySource");
-            var Function = TempSource.AddFunction("FunctionName", "FunctionDefinition");
+            var Function = TempSource.AddFunction("FunctionName", "dbo", "FunctionDefinition");
             Assert.Equal("FunctionName", Function.Name);
             Assert.Equal("FunctionDefinition", Function.Definition);
             Assert.Equal(TempSource, Function.Source);
@@ -20,7 +20,7 @@ namespace Data.Modeler.Tests.Providers
         public void AddStoredProcedure()
         {
             var TempSource = new Source("MySource");
-            var TempStoredProcedure = TempSource.AddStoredProcedure("ProcedureName", "ProcedureDefinition");
+            var TempStoredProcedure = TempSource.AddStoredProcedure("ProcedureName", "dbo", "ProcedureDefinition");
             Assert.Equal("ProcedureName", TempStoredProcedure.Name);
             Assert.Equal("ProcedureDefinition", TempStoredProcedure.Definition);
             Assert.Equal(TempSource, TempStoredProcedure.Source);
@@ -30,7 +30,7 @@ namespace Data.Modeler.Tests.Providers
         public void AddTable()
         {
             var TempSource = new Source("MySource");
-            var TempTable = TempSource.AddTable("TableName");
+            var TempTable = TempSource.AddTable("TableName", "dbo");
             Assert.Equal("TableName", TempTable.Name);
             Assert.Empty(TempTable.Columns);
             Assert.Empty(TempTable.Constraints);
@@ -42,7 +42,7 @@ namespace Data.Modeler.Tests.Providers
         public void AddView()
         {
             var TempSource = new Source("MySource");
-            var TempView = TempSource.AddView("ViewName", "ViewDefinition");
+            var TempView = TempSource.AddView("ViewName", "dbo", "ViewDefinition");
             Assert.Equal("ViewName", TempView.Name);
             Assert.Equal(TempSource, TempView.Source);
             Assert.Equal("ViewDefinition", TempView.Definition);
@@ -52,10 +52,10 @@ namespace Data.Modeler.Tests.Providers
         public void Copy()
         {
             var TempSource = new Source("MySource");
-            var TempTable = TempSource.AddTable("TableName");
-            var TempView = TempSource.AddView("ViewName", "ViewDefinition");
-            var TempStoredProcedure = TempSource.AddStoredProcedure("ProcedureName", "ProcedureDefinition");
-            var Function = TempSource.AddFunction("FunctionName", "FunctionDefinition");
+            var TempTable = TempSource.AddTable("TableName", "dbo");
+            var TempView = TempSource.AddView("ViewName", "dbo", "ViewDefinition");
+            var TempStoredProcedure = TempSource.AddStoredProcedure("ProcedureName", "dbo", "ProcedureDefinition");
+            var Function = TempSource.AddFunction("FunctionName", "dbo", "FunctionDefinition");
             var TempCopy = TempSource.Copy();
             Assert.Equal(TempSource, TempCopy);
         }

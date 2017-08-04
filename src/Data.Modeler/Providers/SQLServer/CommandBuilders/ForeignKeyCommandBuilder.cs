@@ -75,9 +75,11 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     foreach (IColumn ForeignKey in Column.ForeignKey)
                     {
                         var Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE [{0}] ADD FOREIGN KEY ([{1}]) REFERENCES [{2}]([{3}])",
+                            "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}].[{4}]([{5}])",
+                            Column.ParentTable.Schema,
                             Column.ParentTable.Name,
                             Column.Name,
+                            ForeignKey.ParentTable.Schema,
                             ForeignKey.ParentTable.Name,
                             ForeignKey.Name);
                         if (Column.OnDeleteCascade)
@@ -109,9 +111,11 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                                                                                                                 && y.ParentTable.Name == x.ParentTable.Name)))
                     {
                         var Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE [{0}] ADD FOREIGN KEY ([{1}]) REFERENCES [{2}]([{3}])",
+                            "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}].[{4}]([{5}])",
+                            Column.ParentTable.Schema,
                             Column.ParentTable.Name,
                             Column.Name,
+                            ForeignKey.ParentTable.Schema,
                             ForeignKey.ParentTable.Name,
                             ForeignKey.Name);
                         if (Column.OnDeleteCascade)

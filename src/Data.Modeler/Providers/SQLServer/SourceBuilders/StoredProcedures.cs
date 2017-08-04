@@ -52,7 +52,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
                 return;
             foreach (dynamic Item in values)
             {
-                database.AddStoredProcedure(Item.NAME, Item.DEFINITION);
+                database.AddStoredProcedure(Item.NAME, Item.SCHEMA, Item.DEFINITION);
             }
         }
 
@@ -62,7 +62,11 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <returns>The command to get the source</returns>
         public string GetCommand()
         {
-            return @"SELECT sys.procedures.name as NAME,OBJECT_DEFINITION(sys.procedures.object_id) as DEFINITION FROM sys.procedures";
+            return @"SELECT sys.schemas.name as [SCHEMA],
+sys.procedures.name as NAME,
+OBJECT_DEFINITION(sys.procedures.object_id) as DEFINITION
+FROM sys.procedures
+INNER JOIN sys.schemas ON sys.schemas.schema_id=sys.procedures.schema_id";
         }
     }
 }

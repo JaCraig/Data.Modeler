@@ -28,6 +28,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <summary>
         /// Columns
         /// </summary>
+        /// <value>The columns.</value>
         ICollection<IColumn> Columns { get; }
 
         /// <summary>
@@ -39,16 +40,25 @@ namespace Data.Modeler.Providers.Interfaces
         /// <summary>
         /// Name
         /// </summary>
+        /// <value>The name.</value>
         string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the schema.
+        /// </summary>
+        /// <value>The schema.</value>
+        string Schema { get; }
 
         /// <summary>
         /// Parent of the table structure
         /// </summary>
+        /// <value>The source.</value>
         ISource Source { get; }
 
         /// <summary>
         /// Triggers associated with the table (if source supports them)
         /// </summary>
+        /// <value>The triggers.</value>
         ICollection<ITrigger> Triggers { get; }
 
         /// <summary>

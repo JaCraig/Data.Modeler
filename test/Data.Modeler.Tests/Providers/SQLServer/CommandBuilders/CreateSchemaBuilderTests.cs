@@ -5,32 +5,33 @@ using Xunit;
 
 namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
 {
-    public class ForeignKeyCommandBuilderTests : CommandBuilderTestBase
+    public class CreateSchemaCommandBuilderTests : CommandBuilderTestBase
     {
         [Fact]
         public void Creation()
         {
-            var TempCheckConstraint = new ForeignKeyCommandBuilder();
+            var TempCheckConstraint = new CreateSchemaCommandBuilder();
             Assert.NotNull(TempCheckConstraint);
-            Assert.Equal(20, TempCheckConstraint.Order);
+            Assert.Equal(5, TempCheckConstraint.Order);
         }
 
         [Fact]
         public void GetCommandsNoCurrentSource()
         {
-            var TempCheckConstraint = new ForeignKeyCommandBuilder();
+            var TempCheckConstraint = new CreateSchemaCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
             Assert.Equal(1, Commands.Count());
-            Assert.Equal("ALTER TABLE [dbo].[Table A] ADD FOREIGN KEY ([Column A]) REFERENCES [dbo].[Foreign Table]([Foreign Column])", Commands[0]);
+            Assert.Equal("CREATE SCHEMA SchemaA", Commands[0]);
         }
 
         [Fact]
         public void GetCommandsWithCurrentSource()
         {
-            var TempCheckConstraint = new ForeignKeyCommandBuilder();
+            DesiredSource.Schemas.Add("SchemaB");
+            var TempCheckConstraint = new CreateSchemaCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
             Assert.Equal(1, Commands.Count());
-            Assert.Equal("ALTER TABLE [dbo].[Table A] ADD FOREIGN KEY ([Column A]) REFERENCES [dbo].[Foreign Table]([Foreign Column])", Commands[0]);
+            Assert.Equal("CREATE SCHEMA SchemaB", Commands[0]);
         }
     }
 }

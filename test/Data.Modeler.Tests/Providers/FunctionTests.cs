@@ -9,7 +9,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void Creation()
         {
-            var TempFunction = new Function("Function_Name", "SOMEDEFINITION", null);
+            var TempFunction = new Function("Function_Name", "dbo", "SOMEDEFINITION", null);
             Assert.Equal("Function_Name", TempFunction.Name);
             Assert.Equal("SOMEDEFINITION", TempFunction.Definition);
             Assert.Null(TempFunction.Source);

@@ -24,15 +24,16 @@ using System.Linq;
 namespace Data.Modeler.Providers.SQLServer.SourceBuilders
 {
     /// <summary>
-    /// Table builder, gets info and does diffs for tables
+    /// Schemas
     /// </summary>
-    public class Tables : ISourceBuilder
+    /// <seealso cref="ISourceBuilder"/>
+    public class Schemas : ISourceBuilder
     {
         /// <summary>
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 10;
+        public int Order => 5;
 
         /// <summary>
         /// Provider name associated with the schema generator
@@ -40,19 +41,20 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         public DbProviderFactory Provider => SqlClientFactory.Instance;
 
         /// <summary>
-        /// Fills the database.
+        /// Fills the source.
         /// </summary>
         /// <param name="values">The values.</param>
-        /// <param name="database">The database.</param>
-        public void FillSource(IEnumerable<dynamic> values, ISource database)
+        /// <param name="dataSource">The data source.</param>
+        /// <exception cref="ArgumentNullException">dataSource</exception>
+        public void FillSource(IEnumerable<dynamic> values, ISource dataSource)
         {
-            if (database == null)
-                throw new ArgumentNullException(nameof(database));
+            if (dataSource == null)
+                throw new ArgumentNullException(nameof(dataSource));
             if (values == null || !values.Any())
                 return;
             foreach (dynamic Item in values)
             {
-                SetupTable(database, Item);
+                dataSource.Schemas.Add(Item.Name);
             }
         }
 
@@ -62,21 +64,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <returns>The command to get the source</returns>
         public string GetCommand()
         {
-            return "SELECT TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES";
-        }
-
-        private static void SetupTable(ISource database, dynamic item)
-        {
-            if (database == null)
-                throw new ArgumentNullException(nameof(database));
-            if (item == null)
-                throw new ArgumentNullException(nameof(item));
-            string TableName = item.TABLE_NAME;
-            string TableType = item.TABLE_TYPE;
-            if (TableType == "BASE TABLE")
-                database.AddTable(TableName, item.TABLE_SCHEMA);
-            else if (TableType == "VIEW")
-                database.AddView(TableName, item.TABLE_SCHEMA, "");
+            return @"SELECT name as [Name] FROM sys.schemas WHERE schema_id < 16384 AND schema_id > 4";
         }
     }
 }

@@ -23,9 +23,9 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
         {
             var TempTableForeignKeys = new TableForeignKeys();
             var TempSource = new Source("My Source");
-            var TempTable = TempSource.AddTable("Table A");
+            var TempTable = TempSource.AddTable("Table A", "dbo");
             TempTable.AddColumn<int>("Column A", DbType.Int32, foreignKeyTable: "Table B", foreignKeyColumn: "Column B");
-            var TempForeignTable = TempSource.AddTable("Table B");
+            var TempForeignTable = TempSource.AddTable("Table B", "dbo");
             TempForeignTable.AddColumn<int>("Column B", DbType.Int32);
             var ConstraintsToAdd = new[]
             {

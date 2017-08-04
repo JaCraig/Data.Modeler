@@ -75,7 +75,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 if (CheckConstraint2 == null)
                 {
                     ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE [{0}] ADD CONSTRAINT [{1}] CHECK ({2})",
+                            "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
+                            CheckConstraint.ParentTable.Schema,
                             CheckConstraint.ParentTable.Name,
                             CheckConstraint.Name,
                             CheckConstraint.Definition));
@@ -83,11 +84,13 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 else if (!string.Equals(CheckConstraint.Definition, CheckConstraint2.Definition, StringComparison.OrdinalIgnoreCase))
                 {
                     ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                        "ALTER TABLE [{0}] DROP CONSTRAINT [{1}]",
+                        "ALTER TABLE [{0}].[{1}] DROP CONSTRAINT [{2}]",
+                        CheckConstraint.ParentTable.Schema,
                         CheckConstraint.ParentTable.Name,
                         CheckConstraint.Name));
                     ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                        "ALTER TABLE [{0}] ADD CONSTRAINT [{1}] CHECK ({2})",
+                        "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
+                        CheckConstraint.ParentTable.Schema,
                         CheckConstraint.ParentTable.Name,
                         CheckConstraint.Name,
                         CheckConstraint.Definition));
@@ -104,7 +107,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             foreach (CheckConstraint CheckConstraint in table.Constraints)
             {
                 ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE [{0}] ADD CONSTRAINT [{1}] CHECK ({2})",
+                            "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
+                            CheckConstraint.ParentTable.Schema,
                             CheckConstraint.ParentTable.Name,
                             CheckConstraint.Name,
                             CheckConstraint.Definition));

@@ -133,7 +133,8 @@ namespace Data.Modeler.Providers.SQLServer
                                  .Execute();
                 }
                 else if (Commands[x].ToUpperInvariant().Contains("CREATE TRIGGER")
-                    || Commands[x].ToUpperInvariant().Contains("CREATE FUNCTION"))
+                    || Commands[x].ToUpperInvariant().Contains("CREATE FUNCTION")
+                    || Commands[x].ToUpperInvariant().Contains("CREATE SCHEMA"))
                 {
                     if (Batch.Count > 0)
                     {

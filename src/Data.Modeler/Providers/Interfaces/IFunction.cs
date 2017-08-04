@@ -32,6 +32,12 @@ namespace Data.Modeler.Providers.Interfaces
         string Name { get; set; }
 
         /// <summary>
+        /// Gets the name of the schema.
+        /// </summary>
+        /// <value>The name of the schema.</value>
+        string Schema { get; }
+
+        /// <summary>
         /// Parent database
         /// </summary>
         ISource Source { get; }

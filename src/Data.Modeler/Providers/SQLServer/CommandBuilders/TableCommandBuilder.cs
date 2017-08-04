@@ -78,7 +78,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     if (string.IsNullOrEmpty(Column.ComputedColumnSpecification))
                     {
                         Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE [{0}] ADD [{1}] {2}",
+                            "ALTER TABLE [{0}].[{1}] ADD [{2}] {3}",
+                            table.Schema,
                             table.Name,
                             Column.Name,
                             Column.DataType.To(SqlDbType.Int).ToString());
@@ -99,7 +100,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     else
                     {
                         Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE [{0}] ADD [{1}] AS ({2})",
+                            "ALTER TABLE [{0}].[{1}] ADD [{2}] AS ({3})",
+                            table.Schema,
                             table.Name,
                             Column.Name,
                             Column.ComputedColumnSpecification);
@@ -108,7 +110,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     foreach (IColumn ForeignKey in Column.ForeignKey)
                     {
                         Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE [{0}] ADD FOREIGN KEY ([{1}]) REFERENCES [{2}]([{3}]){4}{5}{6}",
+                            "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}]([{4}]){5}{6}{7}",
+                            table.Schema,
                             table.Name,
                             Column.Name,
                             ForeignKey.ParentTable.Name,
@@ -127,7 +130,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                         && Column.Length.Between(1, 4000)))
                 {
                     Command = string.Format(CultureInfo.CurrentCulture,
-                        "ALTER TABLE [{0}] ALTER COLUMN [{1}] {2}",
+                        "ALTER TABLE [{0}].[{1}] ALTER COLUMN [{2}] {3}",
+                        table.Schema,
                         table.Name,
                         Column.Name,
                         Column.DataType.To(SqlDbType.Int).ToString());
@@ -156,7 +160,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 return new List<string>();
             var ReturnValue = new List<string>();
             var Builder = new StringBuilder();
-            Builder.Append("CREATE TABLE [").Append(table.Name).Append("](");
+            Builder.Append("CREATE TABLE [").Append(table.Schema).Append("].[").Append(table.Name).Append("](");
             string Splitter = "";
             foreach (IColumn Column in table.Columns)
             {
@@ -210,18 +214,20 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     if (Column.Index && Column.Unique)
                     {
                         ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                            "CREATE UNIQUE INDEX [Index_{0}{1}] ON [{2}]([{3}])",
+                            "CREATE UNIQUE INDEX [Index_{0}{1}] ON [{2}].[{3}]([{4}])",
                             Column.Name,
                             Counter.ToString(CultureInfo.InvariantCulture),
+                            Column.ParentTable.Schema,
                             Column.ParentTable.Name,
                             Column.Name));
                     }
                     else if (Column.Index)
                     {
                         ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
-                            "CREATE INDEX [Index_{0}{1}] ON [{2}]([{3}])",
+                            "CREATE INDEX [Index_{0}{1}] ON [{2}].[{3}]([{4}])",
                             Column.Name,
                             Counter.ToString(CultureInfo.InvariantCulture),
+                            Column.ParentTable.Schema,
                             Column.ParentTable.Name,
                             Column.Name));
                     }
