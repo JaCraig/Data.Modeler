@@ -17,6 +17,7 @@ limitations under the License.
 using BigBook;
 using BigBook.Comparison;
 using Data.Modeler.Providers.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -76,7 +77,7 @@ namespace Data.Modeler.Providers
             PrimaryKey = primaryKey;
             Unique = unique;
             ComputedColumnSpecification = computedColumnSpecification;
-            Default = new GenericEqualityComparer<T>().Equals(defaultValue, default(T)) ? "" : defaultValue.ToString();
+            SetDefaultValue(defaultValue);
             OnDeleteCascade = onDeleteCascade;
             OnUpdateCascade = onUpdateCascade;
             OnDeleteSetNull = onDeleteSetNull;
@@ -265,6 +266,19 @@ namespace Data.Modeler.Providers
                     }
                 }
             }
+        }
+
+        private void SetDefaultValue(T defaultValue)
+        {
+            Default = new GenericEqualityComparer<T>().Equals(defaultValue, default(T)) ? "" : defaultValue.ToString();
+            if (defaultValue is bool boolDefault)
+                Default = boolDefault ? "1" : "0";
+            else if (defaultValue is DateTime)
+                Default = $"\'{Default}\'";
+            else if (defaultValue is TimeSpan)
+                Default = $"\'{Default}\'";
+            else if (defaultValue is String)
+                Default = $"\'{Default}\'";
         }
     }
 }
