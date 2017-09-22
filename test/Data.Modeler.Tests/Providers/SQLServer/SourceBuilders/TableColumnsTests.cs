@@ -51,7 +51,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
             Assert.Equal(DbType.Int32, Column.DataType);
             Assert.False(Column.AutoIncrement);
             Assert.Equal("", Column.ComputedColumnSpecification);
-            Assert.Equal("", Column.Default);
+            Assert.Equal("\'\'", Column.Default);
             Assert.Empty(Column.ForeignKey);
             Assert.True(Column.Index);
             Assert.Equal(4, Column.Length);
