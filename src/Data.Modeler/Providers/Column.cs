@@ -270,7 +270,12 @@ namespace Data.Modeler.Providers
 
         private void SetDefaultValue(T defaultValue)
         {
-            Default = new GenericEqualityComparer<T>().Equals(defaultValue, default(T)) ? "" : defaultValue.ToString();
+            if (new GenericEqualityComparer<T>().Equals(defaultValue, default(T)))
+            {
+                Default = "";
+                return;
+            }
+            Default = defaultValue.ToString();
             if (defaultValue is bool boolDefault)
                 Default = boolDefault ? "1" : "0";
             else if (defaultValue is DateTime)
@@ -278,6 +283,8 @@ namespace Data.Modeler.Providers
             else if (defaultValue is TimeSpan)
                 Default = $"\'{Default}\'";
             else if (defaultValue is String)
+                Default = $"\'{Default}\'";
+            else if (defaultValue is char)
                 Default = $"\'{Default}\'";
         }
     }
