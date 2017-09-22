@@ -275,7 +275,7 @@ namespace Data.Modeler.Providers
                 Default = "";
                 return;
             }
-            Default = defaultValue.ToString();
+            Default = defaultValue.ToString().Replace("(", "").Replace(")", "").Replace("'", "''");
             if (defaultValue is bool boolDefault)
                 Default = boolDefault ? "1" : "0";
             else if (defaultValue is DateTime)

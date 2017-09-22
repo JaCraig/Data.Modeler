@@ -192,7 +192,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 }
                 if (!string.IsNullOrEmpty(Column.Default))
                 {
-                    Builder.Append(" DEFAULT ").Append(Column.Default.Replace("(", "").Replace(")", "").Replace("'", "''"));
+                    Builder.Append(" DEFAULT ").Append(Column.Default);
                 }
                 if (Column.AutoIncrement)
                 {
