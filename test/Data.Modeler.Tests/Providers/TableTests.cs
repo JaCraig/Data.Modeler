@@ -100,5 +100,72 @@ namespace Data.Modeler.Tests.Providers
             Assert.Null(TempTable.Source);
             Assert.Empty(TempTable.Triggers);
         }
+
+        [Fact]
+        public void SetupForeignKeysMultipleColumnsPointingToDifferentKey()
+        {
+            var TempSource = new Source("Source1");
+            var TempTable = TempSource.AddTable("Name", "dbo");
+            var ForeignTable1 = TempSource.AddTable("ForeignKeyTable1", "dbo");
+            var ForeignTable2 = TempSource.AddTable("ForeignKeyTable2", "dbo");
+            var TempColumn = TempTable.AddColumn<int>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, "ForeignKeyTable1", "ForeignKeyColumn", 1, null, true, true, true);
+            var TempColumn2 = TempTable.AddColumn<int>("B", System.Data.DbType.Int32, 0, true, true, true, true, true, "ForeignKeyTable2", "ForeignKeyColumn", 1, null, true, true, true);
+            var ForeignColumn1 = ForeignTable1.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
+            var ForeignColumn2 = ForeignTable2.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
+            Assert.NotEmpty(TempTable.Columns);
+            Assert.Empty(TempTable.Constraints);
+            Assert.Equal("Name", TempTable.Name);
+            Assert.NotNull(TempTable.Source);
+            Assert.Empty(TempTable.Triggers);
+            TempTable.SetupForeignKeys();
+            Assert.True(TempColumn.OnDeleteCascade);
+            Assert.True(TempColumn.OnDeleteSetNull);
+            Assert.True(TempColumn.OnUpdateCascade);
+            Assert.True(TempColumn2.OnDeleteCascade);
+            Assert.True(TempColumn2.OnDeleteSetNull);
+            Assert.True(TempColumn2.OnUpdateCascade);
+        }
+
+        [Fact]
+        public void SetupForeignKeysMultipleColumnsPointingToSameKey()
+        {
+            var TempSource = new Source("Source1");
+            var TempTable = TempSource.AddTable("Name", "dbo");
+            var ForeignTable = TempSource.AddTable("ForeignKeyTable", "dbo");
+            var TempColumn = TempTable.AddColumn<int>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, "ForeignKeyTable", "ForeignKeyColumn", 1, null, true, true, true);
+            var TempColumn2 = TempTable.AddColumn<int>("B", System.Data.DbType.Int32, 0, true, true, true, true, true, "ForeignKeyTable", "ForeignKeyColumn", 1, null, true, true, true);
+            var ForeignColumn = ForeignTable.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
+            Assert.NotEmpty(TempTable.Columns);
+            Assert.Empty(TempTable.Constraints);
+            Assert.Equal("Name", TempTable.Name);
+            Assert.NotNull(TempTable.Source);
+            Assert.Empty(TempTable.Triggers);
+            TempTable.SetupForeignKeys();
+            Assert.False(TempColumn.OnDeleteCascade);
+            Assert.False(TempColumn.OnDeleteSetNull);
+            Assert.False(TempColumn.OnUpdateCascade);
+            Assert.False(TempColumn2.OnDeleteCascade);
+            Assert.False(TempColumn2.OnDeleteSetNull);
+            Assert.False(TempColumn2.OnUpdateCascade);
+        }
+
+        [Fact]
+        public void SetupForeignKeysOneColumnPointingToKey()
+        {
+            var TempSource = new Source("Source1");
+            var TempTable = TempSource.AddTable("Name", "dbo");
+            var ForeignTable = TempSource.AddTable("ForeignKeyTable", "dbo");
+            var TempColumn = TempTable.AddColumn<int>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, "ForeignKeyTable", "ForeignKeyColumn", 1, null, true, true, true);
+            var ForeignColumn = ForeignTable.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
+            Assert.NotEmpty(TempTable.Columns);
+            Assert.Empty(TempTable.Constraints);
+            Assert.Equal("Name", TempTable.Name);
+            Assert.NotNull(TempTable.Source);
+            Assert.Empty(TempTable.Triggers);
+            TempTable.SetupForeignKeys();
+            Assert.True(TempColumn.OnDeleteCascade);
+            Assert.True(TempColumn.OnDeleteSetNull);
+            Assert.True(TempColumn.OnUpdateCascade);
+        }
     }
 }

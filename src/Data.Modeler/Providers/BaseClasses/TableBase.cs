@@ -159,6 +159,24 @@ namespace Data.Modeler.Providers.BaseClasses
             {
                 Columns[x].SetupForeignKeys();
             }
+            for (int x = 0; x < Columns.Count; ++x)
+            {
+                for (int y = x + 1; y < Columns.Count; ++y)
+                {
+                    for (int z = 0; z < Columns[x].ForeignKey.Count; ++z)
+                    {
+                        if (Columns[y].ForeignKey.Contains(Columns[x].ForeignKey[z]))
+                        {
+                            Columns[y].OnDeleteSetNull = false;
+                            Columns[y].OnDeleteCascade = false;
+                            Columns[y].OnUpdateCascade = false;
+                            Columns[x].OnDeleteSetNull = false;
+                            Columns[x].OnDeleteCascade = false;
+                            Columns[x].OnUpdateCascade = false;
+                        }
+                    }
+                }
+            }
         }
     }
 }

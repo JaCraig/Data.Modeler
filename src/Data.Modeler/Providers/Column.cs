@@ -224,7 +224,8 @@ namespace Data.Modeler.Providers
                 && OnDeleteSetNull == Item.OnDeleteSetNull
                 && OnUpdateCascade == Item.OnUpdateCascade
                 && PrimaryKey == Item.PrimaryKey
-                && Unique == Item.Unique;
+                && Unique == Item.Unique
+                && ParentTable.Name == Item.ParentTable.Name;
         }
 
         /// <summary>
