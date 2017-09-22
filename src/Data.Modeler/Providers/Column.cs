@@ -108,7 +108,7 @@ namespace Data.Modeler.Providers
         /// <summary>
         /// Foreign keys
         /// </summary>
-        public ICollection<IColumn> ForeignKey { get; private set; }
+        public IList<IColumn> ForeignKey { get; private set; }
 
         /// <summary>
         /// Index?

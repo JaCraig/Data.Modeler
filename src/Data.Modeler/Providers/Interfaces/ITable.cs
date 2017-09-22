@@ -29,7 +29,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// Columns
         /// </summary>
         /// <value>The columns.</value>
-        ICollection<IColumn> Columns { get; }
+        IList<IColumn> Columns { get; }
 
         /// <summary>
         /// Gets the constraints.

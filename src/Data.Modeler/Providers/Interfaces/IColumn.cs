@@ -48,7 +48,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <summary>
         /// Foreign keys
         /// </summary>
-        ICollection<IColumn> ForeignKey { get; }
+        IList<IColumn> ForeignKey { get; }
 
         /// <summary>
         /// Index?

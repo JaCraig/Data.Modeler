@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
 using Data.Modeler.Providers.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -47,7 +46,7 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <summary>
         /// Columns
         /// </summary>
-        public ICollection<IColumn> Columns { get; private set; }
+        public IList<IColumn> Columns { get; private set; }
 
         /// <summary>
         /// Gets the constraints.
@@ -156,7 +155,28 @@ namespace Data.Modeler.Providers.BaseClasses
         /// </summary>
         public void SetupForeignKeys()
         {
-            Columns.ForEach(x => x.SetupForeignKeys());
+            for (int x = 0; x < Columns.Count; ++x)
+            {
+                Columns[x].SetupForeignKeys();
+            }
+            for (int x = 0; x < Columns.Count; ++x)
+            {
+                for (int y = x + 1; y < Columns.Count; ++y)
+                {
+                    for (int z = 0; z < Columns[x].ForeignKey.Count; ++z)
+                    {
+                        if (Columns[y].ForeignKey.Contains(Columns[x].ForeignKey[z]))
+                        {
+                            Columns[y].OnDeleteSetNull = false;
+                            Columns[y].OnDeleteCascade = false;
+                            Columns[y].OnUpdateCascade = false;
+                            Columns[x].OnDeleteSetNull = false;
+                            Columns[x].OnDeleteCascade = false;
+                            Columns[x].OnUpdateCascade = false;
+                        }
+                    }
+                }
+            }
         }
     }
 }
