@@ -107,20 +107,6 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                             Column.ComputedColumnSpecification);
                     }
                     ReturnValue.Add(Command);
-                    foreach (IColumn ForeignKey in Column.ForeignKey)
-                    {
-                        Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}]([{4}]){5}{6}{7}",
-                            table.Schema,
-                            table.Name,
-                            Column.Name,
-                            ForeignKey.ParentTable.Name,
-                            ForeignKey.Name,
-                            Column.OnDeleteCascade ? " ON DELETE CASCADE" : "",
-                            Column.OnUpdateCascade ? " ON UPDATE CASCADE" : "",
-                            Column.OnDeleteSetNull ? " ON DELETE SET NULL" : "");
-                        ReturnValue.Add(Command);
-                    }
                 }
                 else if (CurrentColumn.DataType.To(SqlDbType.Int) != Column.DataType.To(SqlDbType.Int)
                     || (CurrentColumn.DataType.To(SqlDbType.Int) == Column.DataType.To(SqlDbType.Int)

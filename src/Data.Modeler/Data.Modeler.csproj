@@ -35,8 +35,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BigBook" Version="1.0.22" />
-    <PackageReference Include="SQLHelper.DB" Version="1.0.34" />
+    <PackageReference Include="BigBook" Version="1.0.32" />
+    <PackageReference Include="SQLHelper.DB" Version="1.0.44" />
   </ItemGroup>
 
 </Project>
