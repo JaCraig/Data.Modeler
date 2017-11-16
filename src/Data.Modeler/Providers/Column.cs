@@ -271,7 +271,7 @@ namespace Data.Modeler.Providers
 
         private void SetDefaultValue(T defaultValue)
         {
-            if (new GenericEqualityComparer<T>().Equals(defaultValue, default(T)))
+            if (new GenericEqualityComparer<T>().Equals(defaultValue, default))
             {
                 Default = "";
                 return;

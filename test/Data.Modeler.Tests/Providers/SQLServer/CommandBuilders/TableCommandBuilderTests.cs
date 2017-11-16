@@ -53,7 +53,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         {
             var TempCheckConstraint = new TableCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
-            Assert.Equal(1, Commands.Count());
+            Assert.Single(Commands);
             Assert.Equal("ALTER TABLE [dbo].[Table A] ADD [Column B] NVarChar(MAX)", Commands[0]);
         }
     }

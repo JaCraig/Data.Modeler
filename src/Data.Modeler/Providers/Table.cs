@@ -73,7 +73,7 @@ namespace Data.Modeler.Providers
         public override IColumn AddColumn<T>(string columnName, DbType columnType, int length = 0,
             bool nullable = true, bool identity = false, bool index = false,
             bool primaryKey = false, bool unique = false, string foreignKeyTable = "",
-            string foreignKeyColumn = "", T defaultValue = default(T), string computedColumnSpecification = "",
+            string foreignKeyColumn = "", T defaultValue = default, string computedColumnSpecification = "",
             bool onDeleteCascade = false, bool onUpdateCascade = false, bool onDeleteSetNull = false)
         {
             return Columns.AddAndReturn(new Column<T>(columnName,

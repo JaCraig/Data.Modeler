@@ -20,7 +20,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         {
             var TempCheckConstraint = new CreateSchemaCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
-            Assert.Equal(1, Commands.Count());
+            Assert.Single(Commands);
             Assert.Equal("CREATE SCHEMA SchemaA", Commands[0]);
         }
 
@@ -30,7 +30,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
             DesiredSource.Schemas.Add("SchemaB");
             var TempCheckConstraint = new CreateSchemaCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
-            Assert.Equal(1, Commands.Count());
+            Assert.Single(Commands);
             Assert.Equal("CREATE SCHEMA SchemaB", Commands[0]);
         }
     }

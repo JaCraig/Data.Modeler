@@ -26,6 +26,12 @@ namespace Data.Modeler.Providers.Interfaces
     public interface ITable
     {
         /// <summary>
+        /// Gets a value indicating whether this <see cref="ITable"/> is audit.
+        /// </summary>
+        /// <value><c>true</c> if audit; otherwise, <c>false</c>.</value>
+        bool Audit { get; }
+
+        /// <summary>
         /// Columns
         /// </summary>
         /// <value>The columns.</value>
@@ -98,7 +104,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <returns></returns>
         IColumn AddColumn<T>(string columnName, DbType columnType, int length = 0, bool nullable = true,
             bool identity = false, bool index = false, bool primaryKey = false, bool unique = false,
-            string foreignKeyTable = "", string foreignKeyColumn = "", T defaultValue = default(T),
+            string foreignKeyTable = "", string foreignKeyColumn = "", T defaultValue = default,
             string computedColumnSpecification = "", bool onDeleteCascade = false, bool onUpdateCascade = false,
             bool onDeleteSetNull = false);
 

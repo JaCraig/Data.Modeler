@@ -44,6 +44,12 @@ namespace Data.Modeler.Providers.BaseClasses
         }
 
         /// <summary>
+        /// Gets a value indicating whether this is audit.
+        /// </summary>
+        /// <value><c>true</c> if audit; otherwise, <c>false</c>.</value>
+        public bool Audit { get; set; }
+
+        /// <summary>
         /// Columns
         /// </summary>
         public IList<IColumn> Columns { get; private set; }
@@ -112,7 +118,7 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <returns></returns>
         public abstract IColumn AddColumn<T>(string columnName, DbType columnType, int length = 0, bool nullable = true,
             bool identity = false, bool index = false, bool primaryKey = false, bool unique = false,
-            string foreignKeyTable = "", string foreignKeyColumn = "", T defaultValue = default(T),
+            string foreignKeyTable = "", string foreignKeyColumn = "", T defaultValue = default,
             string computedColumnSpecification = "", bool onDeleteCascade = false, bool onUpdateCascade = false,
             bool onDeleteSetNull = false);
 

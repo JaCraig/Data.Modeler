@@ -20,7 +20,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         {
             var TempCheckConstraint = new ForeignKeyCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
-            Assert.Equal(1, Commands.Count());
+            Assert.Single(Commands);
             Assert.Equal("ALTER TABLE [dbo].[Table A] ADD FOREIGN KEY ([Column A]) REFERENCES [dbo].[Foreign Table]([Foreign Column])", Commands[0]);
         }
 
@@ -29,7 +29,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         {
             var TempCheckConstraint = new ForeignKeyCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
-            Assert.Equal(1, Commands.Count());
+            Assert.Single(Commands);
             Assert.Equal("ALTER TABLE [dbo].[Table A] ADD FOREIGN KEY ([Column A]) REFERENCES [dbo].[Foreign Table]([Foreign Column])", Commands[0]);
         }
     }

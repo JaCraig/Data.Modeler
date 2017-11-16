@@ -20,7 +20,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         {
             var TempCheckConstraint = new CreateDatabaseCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
-            Assert.Equal(1, Commands.Count());
+            Assert.Single(Commands);
             Assert.Equal("CREATE DATABASE [My Data]", Commands[0]);
         }
 
@@ -29,7 +29,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         {
             var TempCheckConstraint = new CreateDatabaseCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
-            Assert.Equal(0, Commands.Count());
+            Assert.Empty(Commands);
         }
     }
 }

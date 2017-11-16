@@ -20,7 +20,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         {
             var TempCheckConstraint = new CheckConstraintCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
-            Assert.Equal(1, Commands.Count());
+            Assert.Single(Commands);
             Assert.Equal("ALTER TABLE [dbo].[Table A] ADD CONSTRAINT [Constraint A] CHECK (My Definition2)", Commands[0]);
         }
 

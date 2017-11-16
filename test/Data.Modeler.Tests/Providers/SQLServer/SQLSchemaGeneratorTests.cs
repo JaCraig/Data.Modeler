@@ -37,7 +37,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer
             Desired.Tables.First().AddColumn<int>("Column B", System.Data.DbType.Int32);
             var Result = TestObject.GenerateSchema(Desired, Source);
             Assert.NotNull(Result);
-            Assert.Equal(1, Result.Count());
+            Assert.Single(Result);
             Assert.Equal("ALTER TABLE [dbo].[Attachment] ADD [Column B] Int", Result.First());
         }
 
@@ -76,7 +76,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer
             Column1.AddForeignKey("IInterface1_", "ID_");
             Table.SetupForeignKeys();
             var Results = TestObject.GenerateSchema(Destination, Source);
-            Assert.Equal(0, Results.Count());
+            Assert.Empty(Results);
         }
 
         [Fact]
@@ -88,7 +88,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer
             var Table = Destination.AddTable("AllReferencesAndID_", "dbo");
             Table.AddColumn<TimeSpan>("TimeSpanValue_", typeof(TimeSpan).To<Type, DbType>());
             var Results = TestObject.GenerateSchema(Destination, Source);
-            Assert.Equal(0, Results.Count());
+            Assert.Empty(Results);
         }
 
         [Fact]

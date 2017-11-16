@@ -190,7 +190,15 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 }
                 Splitter = ",";
             }
+            if (table.Audit)
+            {
+                Builder.Append(", SysStartTime datetime2 GENERATED ALWAYS AS ROW START NOT NULL, SysEndTime datetime2 GENERATED ALWAYS AS ROW END NOT NULL, PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime)");
+            }
             Builder.Append(")");
+            if (table.Audit)
+            {
+                Builder.AppendFormat(@"WITH ( SYSTEM_VERSIONING = ON (HISTORY_TABLE = [{0}].[{1}]) ) ", table.Schema, table.Name + "_Audit");
+            }
             ReturnValue.Add(Builder.ToString());
             int Counter = 0;
             foreach (IColumn Column in table.Columns)
