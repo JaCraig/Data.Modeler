@@ -29,7 +29,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// Gets a value indicating whether this <see cref="ITable"/> is audit.
         /// </summary>
         /// <value><c>true</c> if audit; otherwise, <c>false</c>.</value>
-        bool Audit { get; }
+        bool Audit { get; set; }
 
         /// <summary>
         /// Columns
