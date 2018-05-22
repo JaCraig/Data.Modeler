@@ -70,9 +70,9 @@ namespace Data.Modeler.Providers.Interfaces
         /// <summary>
         /// Returns the specified column
         /// </summary>
-        /// <param name="Name">Name of the column</param>
+        /// <param name="name">Name of the column</param>
         /// <returns>Column specified</returns>
-        IColumn this[string Name] { get; }
+        IColumn this[string name] { get; }
 
         /// <summary>
         /// Adds a check constraint to the table.

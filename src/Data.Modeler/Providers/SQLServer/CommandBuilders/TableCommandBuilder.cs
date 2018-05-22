@@ -150,7 +150,13 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             string Splitter = "";
             foreach (IColumn Column in table.Columns)
             {
-                Builder.Append(Splitter).Append("[" + Column.Name + "]").Append(" ").Append(Column.DataType.To(SqlDbType.Int).ToString());
+                Builder
+                    .Append(Splitter)
+                    .Append("[")
+                    .Append(Column.Name)
+                    .Append("]")
+                    .Append(" ")
+                    .Append(Column.DataType.To(SqlDbType.Int).ToString());
                 if (Column.DataType == SqlDbType.VarChar.To(DbType.Int32)
                         || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
                         || Column.DataType == SqlDbType.Binary.To(DbType.Int32))
@@ -197,7 +203,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             Builder.Append(")");
             if (table.Audit)
             {
-                Builder.AppendFormat(@"WITH ( SYSTEM_VERSIONING = ON (HISTORY_TABLE = [{0}].[{1}]) ) ", table.Schema, table.Name + "_Audit");
+                Builder.AppendFormat("WITH ( SYSTEM_VERSIONING = ON (HISTORY_TABLE = [{0}].[{1}]) ) ", table.Schema, table.Name + "_Audit");
             }
             ReturnValue.Add(Builder.ToString());
             int Counter = 0;

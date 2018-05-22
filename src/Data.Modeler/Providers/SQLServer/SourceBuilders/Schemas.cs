@@ -50,7 +50,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         {
             if (dataSource == null)
                 throw new ArgumentNullException(nameof(dataSource));
-            if (values == null || !values.Any())
+            if (values?.Any() != true)
                 return;
             foreach (dynamic Item in values)
             {
@@ -64,7 +64,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <returns>The command to get the source</returns>
         public string GetCommand()
         {
-            return @"SELECT name as [Name] FROM sys.schemas WHERE schema_id < 16384 AND schema_id > 4";
+            return "SELECT name as [Name] FROM sys.schemas WHERE schema_id < 16384 AND schema_id > 4";
         }
     }
 }

@@ -29,7 +29,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         {
             var TempCheckConstraint = new CreateViewCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
-            Assert.Equal(2, Commands.Count());
+            Assert.Equal(2, Commands.Count);
             Assert.Equal("DROP VIEW [dbo].[View A]", Commands[0]);
             Assert.Equal("My Definition 2", Commands[1]);
         }

@@ -53,13 +53,13 @@ namespace Data.Modeler.Providers.SQLServer
         /// Gets the command builders.
         /// </summary>
         /// <value>The command builders.</value>
-        private ICommandBuilder[] CommandBuilders { get; set; }
+        private ICommandBuilder[] CommandBuilders { get; }
 
         /// <summary>
         /// Gets or sets the query builders.
         /// </summary>
         /// <value>The query builders.</value>
-        private ISourceBuilder[] QueryBuilders { get; set; }
+        private ISourceBuilder[] QueryBuilders { get; }
 
         /// <summary>
         /// Checks if a constraint exists
@@ -94,16 +94,16 @@ namespace Data.Modeler.Providers.SQLServer
         /// <summary>
         /// Gets the structure of a source
         /// </summary>
-        /// <param name="source">Source to use</param>
+        /// <param name="connectionInfo">Source to use</param>
         /// <returns>The source structure</returns>
-        public ISource GetSourceStructure(IConnection source)
+        public ISource GetSourceStructure(IConnection connectionInfo)
         {
-            var DatabaseName = source.DatabaseName;
-            var DatabaseSource = new Connection(source.Configuration, source.Factory, Regex.Replace(source.ConnectionString, "Initial Catalog=(.*?;)", ""), "Name");
+            var DatabaseName = connectionInfo.DatabaseName;
+            var DatabaseSource = new Connection(connectionInfo.Configuration, connectionInfo.Factory, Regex.Replace(connectionInfo.ConnectionString, "Initial Catalog=(.*?;)", ""), "Name");
             if (!SourceExists(DatabaseName, DatabaseSource))
                 return null;
             var Temp = new Source(DatabaseName);
-            var Batch = new SQLHelper.SQLHelper(source.Configuration, source.Factory, source.ConnectionString)
+            var Batch = new SQLHelper.SQLHelper(connectionInfo.Configuration, connectionInfo.Factory, connectionInfo.ConnectionString)
                                      .CreateBatch();
             QueryBuilders.ForEach(x => Batch.AddQuery(CommandType.Text, x.GetCommand()));
             var Results = Batch.Execute();
@@ -125,16 +125,14 @@ namespace Data.Modeler.Providers.SQLServer
             var Batch = new SQLHelper.SQLHelper(connection.Configuration, connection.Factory, connection.ConnectionString);
             for (int x = 0; x < Commands.Length; ++x)
             {
-                if (Commands[x].ToUpperInvariant().Contains("CREATE DATABASE"))
+                if (Commands[x].IndexOf("CREATE DATABASE", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
                     new SQLHelper.SQLHelper(connection.Configuration, connection.Factory, DatabaseSource.ConnectionString)
                                  .CreateBatch()
                                  .AddQuery(CommandType.Text, Commands[x])
                                  .Execute();
                 }
-                else if (Commands[x].ToUpperInvariant().Contains("CREATE TRIGGER")
-                    || Commands[x].ToUpperInvariant().Contains("CREATE FUNCTION")
-                    || Commands[x].ToUpperInvariant().Contains("CREATE SCHEMA"))
+                else if (Commands[x].IndexOf("CREATE TRIGGER", System.StringComparison.InvariantCultureIgnoreCase) >= 0 || Commands[x].IndexOf("CREATE FUNCTION", System.StringComparison.InvariantCultureIgnoreCase) >= 0 || Commands[x].IndexOf("CREATE SCHEMA", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
                     if (Batch.Count > 0)
                     {
@@ -160,55 +158,55 @@ namespace Data.Modeler.Providers.SQLServer
         /// Checks if a source exists
         /// </summary>
         /// <param name="source">Source to check</param>
-        /// <param name="info">Source info to use</param>
+        /// <param name="connectionInfo">Source info to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool SourceExists(string source, IConnection info)
+        public bool SourceExists(string source, IConnection connectionInfo)
         {
-            return Exists("SELECT * FROM Master.sys.Databases WHERE name=@0", source, info);
+            return Exists("SELECT * FROM Master.sys.Databases WHERE name=@0", source, connectionInfo);
         }
 
         /// <summary>
         /// Checks if a stored procedure exists
         /// </summary>
         /// <param name="storedProcedure">Stored procedure to check</param>
-        /// <param name="source">Source to use</param>
+        /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool StoredProcedureExists(string storedProcedure, IConnection source)
+        public bool StoredProcedureExists(string storedProcedure, IConnection connectionInfo)
         {
-            return Exists("SELECT * FROM sys.Procedures WHERE name=@0", storedProcedure, source);
+            return Exists("SELECT * FROM sys.Procedures WHERE name=@0", storedProcedure, connectionInfo);
         }
 
         /// <summary>
         /// Checks if a table exists
         /// </summary>
         /// <param name="table">Table to check</param>
-        /// <param name="source">Source to use</param>
+        /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool TableExists(string table, IConnection source)
+        public bool TableExists(string table, IConnection connectionInfo)
         {
-            return Exists("SELECT * FROM sys.Tables WHERE name=@0", table, source);
+            return Exists("SELECT * FROM sys.Tables WHERE name=@0", table, connectionInfo);
         }
 
         /// <summary>
         /// Checks if a trigger exists
         /// </summary>
         /// <param name="trigger">Trigger to check</param>
-        /// <param name="source">Source to use</param>
+        /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool TriggerExists(string trigger, IConnection source)
+        public bool TriggerExists(string trigger, IConnection connectionInfo)
         {
-            return Exists("SELECT * FROM sys.triggers WHERE name=@0", trigger, source);
+            return Exists("SELECT * FROM sys.triggers WHERE name=@0", trigger, connectionInfo);
         }
 
         /// <summary>
         /// Checks if a view exists
         /// </summary>
         /// <param name="view">View to check</param>
-        /// <param name="source">Source to use</param>
+        /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool ViewExists(string view, IConnection source)
+        public bool ViewExists(string view, IConnection connectionInfo)
         {
-            return Exists("SELECT * FROM sys.views WHERE name=@0", view, source);
+            return Exists("SELECT * FROM sys.views WHERE name=@0", view, connectionInfo);
         }
 
         private bool Exists(string command, string value, IConnection source)
@@ -218,7 +216,7 @@ namespace Data.Modeler.Providers.SQLServer
             return new SQLHelper.SQLHelper(source.Configuration, source.Factory, source.ConnectionString)
                            .AddQuery(CommandType.Text, command, value)
                            .Execute()[0]
-                           .Any();
+                           .Count > 0;
         }
     }
 }

@@ -30,6 +30,7 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="name">The name.</param>
         protected SourceBase(string name)
         {
             Name = name;
@@ -54,7 +55,7 @@ namespace Data.Modeler.Providers.BaseClasses
         /// Gets the schemas.
         /// </summary>
         /// <value>The schemas.</value>
-        public ICollection<string> Schemas { get; private set; }
+        public ICollection<string> Schemas { get; }
 
         /// <summary>
         /// Stored procedures within the source

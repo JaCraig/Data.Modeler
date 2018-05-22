@@ -71,8 +71,7 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            var Item = obj as CheckConstraint;
-            if (Item == null)
+            if (!(obj is CheckConstraint Item))
                 return false;
             return Name == Item.Name && Definition == Item.Definition;
         }

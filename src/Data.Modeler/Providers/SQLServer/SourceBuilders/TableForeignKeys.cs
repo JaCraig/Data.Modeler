@@ -42,12 +42,12 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// Fills the database.
         /// </summary>
         /// <param name="values">The values.</param>
-        /// <param name="database">The database.</param>
-        public void FillSource(IEnumerable<dynamic> values, ISource database)
+        /// <param name="dataSource">The database.</param>
+        public void FillSource(IEnumerable<dynamic> values, ISource dataSource)
         {
-            if (database == null)
-                throw new ArgumentNullException(nameof(database));
-            foreach (Table TempTable in database.Tables)
+            if (dataSource == null)
+                throw new ArgumentNullException(nameof(dataSource));
+            foreach (Table TempTable in dataSource.Tables)
             {
                 TempTable.SetupForeignKeys();
             }
@@ -59,7 +59,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <returns>The command to get the source</returns>
         public string GetCommand()
         {
-            return @"SELECT sys.tables.name as [Table] FROM sys.tables";
+            return "SELECT sys.tables.name as [Table] FROM sys.tables";
         }
     }
 }

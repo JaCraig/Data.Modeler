@@ -43,16 +43,16 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// Fills the database.
         /// </summary>
         /// <param name="values">The values.</param>
-        /// <param name="database">The database.</param>
-        public void FillSource(IEnumerable<dynamic> values, ISource database)
+        /// <param name="dataSource">The database.</param>
+        public void FillSource(IEnumerable<dynamic> values, ISource dataSource)
         {
-            if (database == null)
-                throw new ArgumentNullException(nameof(database));
-            if (values == null || !values.Any())
+            if (dataSource == null)
+                throw new ArgumentNullException(nameof(dataSource));
+            if (values?.Any() != true)
                 return;
             foreach (dynamic Item in values)
             {
-                SetupTable(database, Item);
+                SetupTable(dataSource, Item);
             }
         }
 

@@ -45,16 +45,16 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// Fills the database.
         /// </summary>
         /// <param name="values">The values.</param>
-        /// <param name="database">The database.</param>
-        public void FillSource(IEnumerable<dynamic> values, ISource database)
+        /// <param name="dataSource">The database.</param>
+        public void FillSource(IEnumerable<dynamic> values, ISource dataSource)
         {
-            if (database == null)
-                throw new ArgumentNullException(nameof(database));
-            if (values == null || !values.Any())
+            if (dataSource == null)
+                throw new ArgumentNullException(nameof(dataSource));
+            if (values?.Any() != true)
                 return;
             foreach (dynamic Item in values)
             {
-                SetupColumns(database.Tables.FirstOrDefault(x => x.Name == Item.Table), Item);
+                SetupColumns(dataSource.Tables.FirstOrDefault(x => x.Name == Item.Table), Item);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
                     (item.COLUMN_TYPE == "nvarchar") ? item.MAX_LENGTH / 2 : item.MAX_LENGTH,
                     item.IS_NULLABLE,
                     item.IS_IDENTITY,
-                    !ReferenceEquals(item.IS_INDEX, null),
+                    !(item.IS_INDEX is null),
                     !string.IsNullOrEmpty(item.PRIMARY_KEY),
                     !string.IsNullOrEmpty(item.UNIQUE),
                     item.FOREIGN_KEY_TABLE,

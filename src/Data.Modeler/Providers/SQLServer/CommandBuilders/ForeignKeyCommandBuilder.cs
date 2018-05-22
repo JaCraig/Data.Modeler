@@ -106,9 +106,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 if (Column.ForeignKey.Count > 0
                     && (CurrentColumn == null || !Column.Equals(CurrentColumn)))
                 {
-                    foreach (IColumn ForeignKey in Column.ForeignKey.Where(x => CurrentColumn == null
-                                                                             || !CurrentColumn.ForeignKey.Any(y => y.Name == x.Name
-                                                                                                                && y.ParentTable.Name == x.ParentTable.Name)))
+                    foreach (IColumn ForeignKey in Column.ForeignKey.Where(x => CurrentColumn?.ForeignKey.Any(y => y.Name == x.Name
+                                                                                                                && y.ParentTable.Name == x.ParentTable.Name) != true))
                     {
                         var Command = string.Format(CultureInfo.CurrentCulture,
                             "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}].[{4}]([{5}])",

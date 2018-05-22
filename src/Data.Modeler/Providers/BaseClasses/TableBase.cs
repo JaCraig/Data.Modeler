@@ -52,13 +52,13 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <summary>
         /// Columns
         /// </summary>
-        public IList<IColumn> Columns { get; private set; }
+        public IList<IColumn> Columns { get; }
 
         /// <summary>
         /// Gets the constraints.
         /// </summary>
         /// <value>The constraints.</value>
-        public ICollection<ICheckConstraint> Constraints { get; private set; }
+        public ICollection<ICheckConstraint> Constraints { get; }
 
         /// <summary>
         /// Name of the table
@@ -74,12 +74,12 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <summary>
         /// Source/Parent
         /// </summary>
-        public ISource Source { get; private set; }
+        public ISource Source { get; }
 
         /// <summary>
         /// List of triggers associated with the table
         /// </summary>
-        public ICollection<ITrigger> Triggers { get; private set; }
+        public ICollection<ITrigger> Triggers { get; }
 
         /// <summary>
         /// The column specified

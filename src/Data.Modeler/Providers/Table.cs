@@ -149,8 +149,7 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            var Item = obj as Table;
-            if (Item == null)
+            if (!(obj is Table Item))
                 return false;
             return Columns.All(x => Item.Columns.Contains(x))
                 && Name == Item.Name

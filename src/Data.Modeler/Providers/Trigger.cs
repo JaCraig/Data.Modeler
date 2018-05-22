@@ -79,8 +79,7 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            var Item = obj as Trigger;
-            if (Item == null)
+            if (!(obj is Trigger Item))
                 return false;
             return Definition == Item.Definition
                 && Name == Item.Name

@@ -47,10 +47,8 @@ namespace Data.Modeler
                 return null;
             var SchemaGenerators = Canister.Builder.Bootstrapper.ResolveAll<ISchemaGenerator>();
             var RequestedGenerators = SchemaGenerators.Where(x => x.Provider == factory);
-            var ResolvedGenerator = RequestedGenerators.FirstOrDefault(x => !x.GetType().Namespace.ToUpperInvariant().Contains("DATA.MODELER"));
-            if (ResolvedGenerator == null)
-                ResolvedGenerator = RequestedGenerators.FirstOrDefault(x => x.GetType().Namespace.ToUpperInvariant().Contains("DATA.MODELER"));
-            return ResolvedGenerator;
+            return RequestedGenerators.FirstOrDefault(x => !(x.GetType().Namespace.IndexOf("DATA.MODELER", System.StringComparison.InvariantCultureIgnoreCase) >= 0))
+                ?? RequestedGenerators.FirstOrDefault(x => x.GetType().Namespace.IndexOf("DATA.MODELER", System.StringComparison.InvariantCultureIgnoreCase) >= 0);
         }
     }
 }

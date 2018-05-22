@@ -79,11 +79,9 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            var Item = obj as Function;
-            if (Item == null)
-                return false;
-            return Definition == Item.Definition
-                && Name == Item.Name;
+            return (obj is Function Item)
+                && (Definition == Item.Definition
+                && Name == Item.Name);
         }
 
         /// <summary>

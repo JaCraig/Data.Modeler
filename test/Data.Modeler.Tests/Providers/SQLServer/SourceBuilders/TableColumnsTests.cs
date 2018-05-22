@@ -46,7 +46,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
             };
             TempTableColumns.FillSource(ConstraintsToAdd, TempSource);
             var TempTable2 = (Modeler.Providers.Table)TempSource.Tables.First();
-            var Column = TempTable2.Columns.First();
+            var Column = TempTable2.Columns[0];
             Assert.Equal("Column A", Column.Name);
             Assert.Equal(DbType.Int32, Column.DataType);
             Assert.False(Column.AutoIncrement);

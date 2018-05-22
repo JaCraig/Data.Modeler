@@ -92,8 +92,7 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            var Item = obj as Source;
-            if (Item == null)
+            if (!(obj is Source Item))
                 return false;
             return Functions.All(x => Item.Functions.Contains(x))
                 && Name == Item.Name

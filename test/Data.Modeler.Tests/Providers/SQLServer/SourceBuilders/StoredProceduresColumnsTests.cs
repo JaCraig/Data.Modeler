@@ -36,7 +36,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
             };
             TempStoredProcedureColumns.FillSource(ConstraintsToAdd, TempSource);
             var Constraint = (StoredProcedure)TempSource.StoredProcedures.First();
-            var Column = Constraint.Columns.First();
+            var Column = Constraint.Columns[0];
             Assert.Equal(DbType.Int32, Column.DataType);
             Assert.Equal("Column A", Column.Name);
             Assert.Equal(4, Column.Length);

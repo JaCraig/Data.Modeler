@@ -39,7 +39,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
         {
             var TempSchemas = new Schemas();
             var SQLCommand = TempSchemas.GetCommand();
-            Assert.Equal(@"SELECT name as [Name] FROM sys.schemas WHERE schema_id < 16384 AND schema_id > 4", SQLCommand);
+            Assert.Equal("SELECT name as [Name] FROM sys.schemas WHERE schema_id < 16384 AND schema_id > 4", SQLCommand);
         }
     }
 }

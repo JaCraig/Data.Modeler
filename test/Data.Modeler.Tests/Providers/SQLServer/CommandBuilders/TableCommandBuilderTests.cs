@@ -21,7 +21,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         {
             var TempCheckConstraint = new TableCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
-            Assert.Equal(2, Commands.Count());
+            Assert.Equal(2, Commands.Count);
             Assert.Equal("CREATE TABLE [dbo].[Table A]([Column A] Int,[Column B] NVarChar(MAX))", Commands[0]);
             Assert.Equal("CREATE TABLE [dbo].[Foreign Table]([Foreign Column] Int)", Commands[1]);
         }
@@ -32,7 +32,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
             DesiredSource.Tables.First().AddColumn<TimeSpan>("OtherStuff", System.Data.DbType.DateTime, nullable: false);
             var TempCheckConstraint = new TableCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
-            Assert.Equal(2, Commands.Count());
+            Assert.Equal(2, Commands.Count);
             Assert.Equal("CREATE TABLE [dbo].[Table A]([Column A] Int,[Column B] NVarChar(MAX),[OtherStuff] DateTime NOT NULL)", Commands[0]);
             Assert.Equal("CREATE TABLE [dbo].[Foreign Table]([Foreign Column] Int)", Commands[1]);
         }
@@ -43,7 +43,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
             DesiredSource.Tables.First().AddColumn<string>("OtherStuff", System.Data.DbType.DateTime, nullable: false, defaultValue: "");
             var TempCheckConstraint = new TableCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
-            Assert.Equal(2, Commands.Count());
+            Assert.Equal(2, Commands.Count);
             Assert.Equal("CREATE TABLE [dbo].[Table A]([Column A] Int,[Column B] NVarChar(MAX),[OtherStuff] DateTime NOT NULL)", Commands[0]);
             Assert.Equal("CREATE TABLE [dbo].[Foreign Table]([Foreign Column] Int)", Commands[1]);
         }

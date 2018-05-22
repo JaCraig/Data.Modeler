@@ -29,7 +29,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         {
             var TempCheckConstraint = new TriggerCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
-            Assert.Equal(2, Commands.Count());
+            Assert.Equal(2, Commands.Count);
             Assert.Equal("DROP TRIGGER [Trigger A]", Commands[0]);
             Assert.Equal("My Definition 2", Commands[1]);
         }

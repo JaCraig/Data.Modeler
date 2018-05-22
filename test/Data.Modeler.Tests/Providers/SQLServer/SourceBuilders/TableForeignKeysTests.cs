@@ -33,7 +33,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
             };
             TempTableForeignKeys.FillSource(ConstraintsToAdd, TempSource);
             var TempTable2 = (Modeler.Providers.Table)TempSource.Tables.First(x => x.Name == "Table A");
-            Assert.Equal(TempForeignTable.Columns.First(), TempTable2.Columns.First().ForeignKey.First());
+            Assert.Equal(TempForeignTable.Columns[0], TempTable2.Columns[0].ForeignKey[0]);
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
         {
             var TempTableForeignKeys = new TableForeignKeys();
             var SQLCommand = TempTableForeignKeys.GetCommand();
-            Assert.Equal(@"SELECT sys.tables.name as [Table] FROM sys.tables", SQLCommand);
+            Assert.Equal("SELECT sys.tables.name as [Table] FROM sys.tables", SQLCommand);
         }
     }
 }

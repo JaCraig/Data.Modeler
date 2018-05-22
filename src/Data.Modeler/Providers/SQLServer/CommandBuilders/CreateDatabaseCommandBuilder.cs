@@ -51,9 +51,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         {
             var Result = new List<string>();
             if (currentStructure == null)
+            {
                 Result.Add(string.Format(CultureInfo.CurrentCulture,
-                    "CREATE DATABASE [{0}]",
-                    desiredStructure.Name));
+                   "CREATE DATABASE [{0}]",
+                   desiredStructure.Name));
+            }
+
             return Result;
         }
     }

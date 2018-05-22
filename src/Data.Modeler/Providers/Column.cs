@@ -93,7 +93,7 @@ namespace Data.Modeler.Providers
         /// Gets the computed column specificaation.
         /// </summary>
         /// <value>The computed column specificaation.</value>
-        public string ComputedColumnSpecification { get; private set; }
+        public string ComputedColumnSpecification { get; }
 
         /// <summary>
         /// Data type
@@ -108,7 +108,7 @@ namespace Data.Modeler.Providers
         /// <summary>
         /// Foreign keys
         /// </summary>
-        public IList<IColumn> ForeignKey { get; private set; }
+        public IList<IColumn> ForeignKey { get; }
 
         /// <summary>
         /// Index?
@@ -207,8 +207,7 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            var Item = obj as Column<T>;
-            if (Item == null)
+            if (!(obj is Column<T>Item))
                 return false;
             return AutoIncrement == Item.AutoIncrement
                 && ComputedColumnSpecification == Item.ComputedColumnSpecification
