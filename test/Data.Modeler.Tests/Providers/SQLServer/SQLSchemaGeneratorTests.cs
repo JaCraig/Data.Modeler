@@ -2,8 +2,8 @@
 using Data.Modeler.Providers.Interfaces;
 using Data.Modeler.Providers.SQLServer;
 using Data.Modeler.Tests.BaseClasses;
-using SQLHelper.ExtensionMethods;
-using SQLHelper.HelperClasses;
+using SQLHelperDB.ExtensionMethods;
+using SQLHelperDB.HelperClasses;
 using System;
 using System.Data;
 using System.Data.SqlClient;

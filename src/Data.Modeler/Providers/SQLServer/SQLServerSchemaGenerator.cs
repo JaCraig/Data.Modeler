@@ -16,8 +16,9 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
-using SQLHelper.HelperClasses;
-using SQLHelper.HelperClasses.Interfaces;
+using SQLHelperDB;
+using SQLHelperDB.HelperClasses;
+using SQLHelperDB.HelperClasses.Interfaces;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -103,7 +104,7 @@ namespace Data.Modeler.Providers.SQLServer
             if (!SourceExists(DatabaseName, DatabaseSource))
                 return null;
             var Temp = new Source(DatabaseName);
-            var Batch = new SQLHelper.SQLHelper(connectionInfo.Configuration, connectionInfo.Factory, connectionInfo.ConnectionString)
+            var Batch = new SQLHelper(connectionInfo.Configuration, connectionInfo.Factory, connectionInfo.ConnectionString)
                                      .CreateBatch();
             QueryBuilders.ForEach(x => Batch.AddQuery(CommandType.Text, x.GetCommand()));
             var Results = Batch.Execute();
@@ -122,12 +123,12 @@ namespace Data.Modeler.Providers.SQLServer
             var Commands = GenerateSchema(source, CurrentSource).ToArray();
 
             var DatabaseSource = new Connection(connection.Configuration, connection.Factory, Regex.Replace(connection.ConnectionString, "Initial Catalog=(.*?;)", ""), "Name");
-            var Batch = new SQLHelper.SQLHelper(connection.Configuration, connection.Factory, connection.ConnectionString);
+            var Batch = new SQLHelper(connection.Configuration, connection.Factory, connection.ConnectionString);
             for (int x = 0; x < Commands.Length; ++x)
             {
                 if (Commands[x].IndexOf("CREATE DATABASE", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
-                    new SQLHelper.SQLHelper(connection.Configuration, connection.Factory, DatabaseSource.ConnectionString)
+                    new SQLHelper(connection.Configuration, connection.Factory, DatabaseSource.ConnectionString)
                                  .CreateBatch()
                                  .AddQuery(CommandType.Text, Commands[x])
                                  .Execute();
@@ -213,7 +214,7 @@ namespace Data.Modeler.Providers.SQLServer
         {
             if (source == null || value == null || command == null)
                 return false;
-            return new SQLHelper.SQLHelper(source.Configuration, source.Factory, source.ConnectionString)
+            return new SQLHelper(source.Configuration, source.Factory, source.ConnectionString)
                            .AddQuery(CommandType.Text, command, value)
                            .Execute()[0]
                            .Count > 0;

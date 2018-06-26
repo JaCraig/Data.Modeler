@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 using Canister.Interfaces;
-using SQLHelper.Registration;
+using SQLHelperDB.Registration;
 using System.Reflection;
 
 namespace Data.Modeler.Registration

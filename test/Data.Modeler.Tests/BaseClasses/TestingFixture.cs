@@ -3,8 +3,9 @@ using FileCurator;
 using FileCurator.Registration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SQLHelper.ExtensionMethods;
-using SQLHelper.Registration;
+using SQLHelperDB;
+using SQLHelperDB.ExtensionMethods;
+using SQLHelperDB.Registration;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -103,7 +104,7 @@ namespace Data.Modeler.Tests.BaseClasses
                 var Queries = new FileInfo("./Scripts/script.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string Query in Queries)
                 {
-                    new SQLHelper.SQLHelper(Configuration, SqlClientFactory.Instance)
+                    new SQLHelper(Configuration, SqlClientFactory.Instance)
                         .CreateBatch()
                         .AddQuery(CommandType.Text, Query)
                         .ExecuteScalar<int>();
@@ -111,7 +112,7 @@ namespace Data.Modeler.Tests.BaseClasses
                 Queries = new FileInfo("./Scripts/testdatabase.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (string Query in Queries)
                 {
-                    new SQLHelper.SQLHelper(Configuration, SqlClientFactory.Instance, "Default2")
+                    new SQLHelper(Configuration, SqlClientFactory.Instance, "Default2")
                         .CreateBatch()
                         .AddQuery(CommandType.Text, Query)
                         .ExecuteScalar<int>();
