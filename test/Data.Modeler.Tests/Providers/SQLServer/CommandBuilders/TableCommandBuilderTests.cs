@@ -29,7 +29,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void GetCommandsNoCurrentSourceWithDefaults()
         {
-            DesiredSource.Tables.First().AddColumn<TimeSpan>("OtherStuff", System.Data.DbType.DateTime, nullable: false);
+            DesiredSource.Tables[0].AddColumn<TimeSpan>("OtherStuff", System.Data.DbType.DateTime, nullable: false);
             var TempCheckConstraint = new TableCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
             Assert.Equal(2, Commands.Count);
@@ -40,7 +40,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void GetCommandsNoCurrentSourceWithDefaults2()
         {
-            DesiredSource.Tables.First().AddColumn<string>("OtherStuff", System.Data.DbType.DateTime, nullable: false, defaultValue: "");
+            DesiredSource.Tables[0].AddColumn<string>("OtherStuff", System.Data.DbType.DateTime, nullable: false, defaultValue: "");
             var TempCheckConstraint = new TableCommandBuilder();
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
             Assert.Equal(2, Commands.Count);

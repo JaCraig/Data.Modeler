@@ -16,12 +16,11 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -35,12 +34,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 60;
+        public int Order { get; } = 60;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the commands.
@@ -50,48 +49,45 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
+        public string[] GetCommands(ISource desiredStructure, ISource currentStructure)
         {
             if (desiredStructure == null)
-                return new List<string>();
+                return Array.Empty<string>();
             currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
-            foreach (StoredProcedure TempStoredProcedure in desiredStructure.StoredProcedures)
+            for (int i = 0, desiredStructureStoredProceduresCount = desiredStructure.StoredProcedures.Count; i < desiredStructureStoredProceduresCount; i++)
             {
-                var CurrentStoredProcedure = (StoredProcedure)currentStructure.StoredProcedures.FirstOrDefault(x => x.Name == TempStoredProcedure.Name);
+                IFunction TempStoredProcedure = desiredStructure.StoredProcedures[i];
+                var CurrentStoredProcedure = currentStructure.StoredProcedures.Find(x => x.Name == TempStoredProcedure.Name);
                 Commands.Add(CurrentStoredProcedure != null ? GetAlterStoredProcedure(TempStoredProcedure, CurrentStoredProcedure) : GetStoredProcedure(TempStoredProcedure));
             }
-            return Commands;
+
+            return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterStoredProcedure(StoredProcedure storedProcedure, StoredProcedure currentStoredProcedure)
+        private static IEnumerable<string> GetAlterStoredProcedure(IFunction storedProcedure, IFunction currentStoredProcedure)
         {
             if (storedProcedure == null || currentStoredProcedure == null)
-                return new List<string>();
+                return Array.Empty<string>();
             if (storedProcedure.Definition != currentStoredProcedure.Definition && string.IsNullOrEmpty(storedProcedure.Definition))
-                return new List<string>();
-            var ReturnValue = new List<string>();
+                return Array.Empty<string>();
             if (currentStoredProcedure == null)
-            {
-                ReturnValue.Add(GetStoredProcedure(storedProcedure));
-            }
-            else if (storedProcedure.Definition != currentStoredProcedure.Definition)
-            {
-                ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                return GetStoredProcedure(storedProcedure);
+            if (storedProcedure.Definition == currentStoredProcedure.Definition)
+                return Array.Empty<string>();
+            return new List<string>{string.Format(CultureInfo.CurrentCulture,
                     "DROP PROCEDURE [{0}].[{1}]",
                     storedProcedure.Schema,
-                    storedProcedure.Name));
-                ReturnValue.Add(GetStoredProcedure(storedProcedure));
-            }
-            return ReturnValue;
+                    storedProcedure.Name),
+                GetStoredProcedure(storedProcedure)
+            };
         }
 
-        private static IEnumerable<string> GetStoredProcedure(StoredProcedure storedProcedure)
+        private static IEnumerable<string> GetStoredProcedure(IFunction storedProcedure)
         {
             if (storedProcedure == null || storedProcedure.Definition == null)
-                return new List<string>();
-            var Definition = Regex.Replace(storedProcedure.Definition, "-- (.*)", "");
-            return new string[] { Definition.Replace("\n", " ").Replace("\r", " ") };
+                return Array.Empty<string>();
+            return new string[] { storedProcedure.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " ") };
         }
     }
 }

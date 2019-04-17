@@ -24,7 +24,6 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Data.Modeler.Providers.SQLServer
 {
@@ -48,7 +47,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider { get { return SqlClientFactory.Instance; } }
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the command builders.
@@ -81,15 +80,17 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="desiredStructure">Desired source structure</param>
         /// <param name="source">Source to use</param>
         /// <returns>List of commands generated</returns>
-        public IEnumerable<string> GenerateSchema(ISource desiredStructure, ISource source)
+        public string[] GenerateSchema(ISource desiredStructure, ISource source)
         {
             var Commands = new List<string>();
             desiredStructure = desiredStructure ?? new Source("");
-            foreach (var CommandBuilder in CommandBuilders)
+            for (int i = 0, CommandBuildersLength = CommandBuilders.Length; i < CommandBuildersLength; i++)
             {
+                var CommandBuilder = CommandBuilders[i];
                 Commands.Add(CommandBuilder.GetCommands(desiredStructure, source));
             }
-            return Commands;
+
+            return Commands.ToArray();
         }
 
         /// <summary>
@@ -100,15 +101,24 @@ namespace Data.Modeler.Providers.SQLServer
         public ISource GetSourceStructure(IConnection connectionInfo)
         {
             var DatabaseName = connectionInfo.DatabaseName;
-            var DatabaseSource = new Connection(connectionInfo.Configuration, connectionInfo.Factory, Regex.Replace(connectionInfo.ConnectionString, "Initial Catalog=(.*?;)", ""), "Name");
+            var DatabaseSource = new Connection(connectionInfo.Configuration, connectionInfo.Factory, connectionInfo.ConnectionString.RemoveInitialCatalog(), "Name");
             if (!SourceExists(DatabaseName, DatabaseSource))
                 return null;
             var Temp = new Source(DatabaseName);
             var Batch = new SQLHelper(connectionInfo.Configuration, connectionInfo.Factory, connectionInfo.ConnectionString)
                                      .CreateBatch();
-            QueryBuilders.ForEach(x => Batch.AddQuery(CommandType.Text, x.GetCommand()));
+            for (int i = 0, QueryBuildersLength = QueryBuilders.Length; i < QueryBuildersLength; i++)
+            {
+                var Builder = QueryBuilders[i];
+                Batch.AddQuery(CommandType.Text, Builder.GetCommand());
+            }
+
             var Results = Batch.Execute();
-            QueryBuilders.For(0, QueryBuilders.Length - 1, (x, y) => x.FillSource(Results[y], Temp));
+            for (int x = 0, QueryBuildersLength = QueryBuilders.Length; x < QueryBuildersLength; ++x)
+            {
+                var Builder = QueryBuilders[x];
+                Builder.FillSource(Results[x], Temp);
+            }
             return Temp;
         }
 
@@ -122,7 +132,7 @@ namespace Data.Modeler.Providers.SQLServer
             var CurrentSource = GetSourceStructure(connection);
             var Commands = GenerateSchema(source, CurrentSource).ToArray();
 
-            var DatabaseSource = new Connection(connection.Configuration, connection.Factory, Regex.Replace(connection.ConnectionString, "Initial Catalog=(.*?;)", ""), "Name");
+            var DatabaseSource = new Connection(connection.Configuration, connection.Factory, connection.ConnectionString.RemoveInitialCatalog(), "Name");
             var Batch = new SQLHelper(connection.Configuration, connection.Factory, connection.ConnectionString);
             for (int x = 0; x < Commands.Length; ++x)
             {

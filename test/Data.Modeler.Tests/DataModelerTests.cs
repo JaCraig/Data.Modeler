@@ -10,11 +10,11 @@ namespace Data.Modeler.Tests
         public void CreateSource()
         {
             var Source = DataModeler.CreateSource("MyTestDatabase");
-            Assert.Equal(0, Source.Functions.Count);
+            Assert.Empty(Source.Functions);
             Assert.Equal("MyTestDatabase", Source.Name);
-            Assert.Equal(0, Source.StoredProcedures.Count);
-            Assert.Equal(0, Source.Tables.Count);
-            Assert.Equal(0, Source.Views.Count);
+            Assert.Empty(Source.StoredProcedures);
+            Assert.Empty(Source.Tables);
+            Assert.Empty(Source.Views);
         }
 
         [Fact]

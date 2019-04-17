@@ -3,7 +3,6 @@ using Data.Modeler.Providers;
 using Data.Modeler.Providers.SQLServer.SourceBuilders;
 using Data.Modeler.Tests.BaseClasses;
 using System.Data;
-using System.Linq;
 using Xunit;
 
 namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
@@ -31,11 +30,12 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
                     Procedure="Procedure A",
                     TYPE="Int",
                     NAME="Column A",
-                    LENGTH=4
+                    LENGTH=4,
+                    DEFAULT_VALUE=""
                 })
             };
             TempStoredProcedureColumns.FillSource(ConstraintsToAdd, TempSource);
-            var Constraint = (StoredProcedure)TempSource.StoredProcedures.First();
+            var Constraint = (StoredProcedure)TempSource.StoredProcedures[0];
             var Column = Constraint.Columns[0];
             Assert.Equal(DbType.Int32, Column.DataType);
             Assert.Equal("Column A", Column.Name);

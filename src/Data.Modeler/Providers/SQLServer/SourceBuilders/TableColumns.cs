@@ -34,12 +34,12 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 20;
+        public int Order { get; } = 20;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Fills the database.
@@ -54,7 +54,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
                 return;
             foreach (dynamic Item in values)
             {
-                SetupColumns(dataSource.Tables.FirstOrDefault(x => x.Name == Item.Table), Item);
+                SetupColumns(dataSource.Tables.Find(x => x.Name == Item.Table), Item);
             }
         }
 

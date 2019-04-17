@@ -35,8 +35,8 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
                 })
             };
             TempTableTriggers.FillSource(ConstraintsToAdd, TempSource);
-            var TempTable2 = TempSource.Tables.First();
-            var Trigger = TempTable2.Triggers.First();
+            var TempTable2 = TempSource.Tables[0];
+            var Trigger = TempTable2.Triggers[0];
             Assert.Equal("Trigger A", Trigger.Name);
             Assert.Equal("Definition A", Trigger.Definition);
             Assert.Equal(TriggerType.Insert, Trigger.Type);

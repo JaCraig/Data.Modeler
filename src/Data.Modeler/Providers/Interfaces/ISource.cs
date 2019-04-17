@@ -26,7 +26,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <summary>
         /// List of functions
         /// </summary>
-        ICollection<IFunction> Functions { get; }
+        List<IFunction> Functions { get; }
 
         /// <summary>
         /// Name
@@ -37,22 +37,22 @@ namespace Data.Modeler.Providers.Interfaces
         /// Gets the schemas.
         /// </summary>
         /// <value>The schemas.</value>
-        ICollection<string> Schemas { get; }
+        List<string> Schemas { get; }
 
         /// <summary>
         /// List of stored procedures
         /// </summary>
-        ICollection<IFunction> StoredProcedures { get; }
+        List<IFunction> StoredProcedures { get; }
 
         /// <summary>
         /// List of tables
         /// </summary>
-        ICollection<ITable> Tables { get; }
+        List<ITable> Tables { get; }
 
         /// <summary>
         /// List of views
         /// </summary>
-        ICollection<IFunction> Views { get; }
+        List<IFunction> Views { get; }
 
         /// <summary>
         /// Returns a table with the given name

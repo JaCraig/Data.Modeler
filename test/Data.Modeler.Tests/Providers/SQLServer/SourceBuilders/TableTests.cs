@@ -2,7 +2,6 @@
 using Data.Modeler.Providers;
 using Data.Modeler.Providers.SQLServer.SourceBuilders;
 using Data.Modeler.Tests.BaseClasses;
-using System.Linq;
 using Xunit;
 
 namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
@@ -27,18 +26,20 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
                 new Dynamo(new
                 {
                     TABLE_NAME="Table A",
-                    TABLE_TYPE="BASE TABLE"
+                    TABLE_TYPE="BASE TABLE",
+                    TABLE_SCHEMA=""
                 }),
                 new Dynamo(new
                 {
                     TABLE_NAME="View A",
-                    TABLE_TYPE="VIEW"
+                    TABLE_TYPE="VIEW",
+                    TABLE_SCHEMA=""
                 })
             };
             TempTables.FillSource(ConstraintsToAdd, TempSource);
-            var Constraint = TempSource.Tables.First();
+            var Constraint = TempSource.Tables[0];
             Assert.Equal("Table A", Constraint.Name);
-            var View = TempSource.Views.First();
+            var View = TempSource.Views[0];
             Assert.Equal("View A", View.Name);
         }
 

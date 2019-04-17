@@ -15,7 +15,6 @@ limitations under the License.
 */
 
 using SQLHelperDB.HelperClasses.Interfaces;
-using System.Collections.Generic;
 using System.Data.Common;
 
 namespace Data.Modeler.Providers.Interfaces
@@ -38,7 +37,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <param name="desiredStructure">Desired source structure</param>
         /// <param name="source">Source to use</param>
         /// <returns>List of commands generated</returns>
-        IEnumerable<string> GenerateSchema(ISource desiredStructure, ISource source);
+        string[] GenerateSchema(ISource desiredStructure, ISource source);
 
         /// <summary>
         /// Gets the structure of a source

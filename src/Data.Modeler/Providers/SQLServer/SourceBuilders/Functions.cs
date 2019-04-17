@@ -32,12 +32,12 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 80;
+        public int Order { get; } = 80;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Fills the database.

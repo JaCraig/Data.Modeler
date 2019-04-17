@@ -127,14 +127,18 @@ namespace Data.Modeler.Providers
         public override ITable Copy(ISource source)
         {
             var ReturnValue = new Table(Name, Schema, source);
-            foreach (var TempColumn in Columns)
+            for (int i = 0, ColumnsCount = Columns.Count; i < ColumnsCount; i++)
             {
+                var TempColumn = Columns[i];
                 ReturnValue.Columns.Add(TempColumn.Copy(ReturnValue));
             }
-            foreach (var TempTrigger in Triggers)
+
+            for (int i = 0, TriggersCount = Triggers.Count; i < TriggersCount; i++)
             {
+                var TempTrigger = Triggers[i];
                 ReturnValue.Triggers.Add(TempTrigger.Copy(ReturnValue));
             }
+
             ReturnValue.SetupForeignKeys();
             return ReturnValue;
         }

@@ -16,12 +16,11 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -35,12 +34,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 40;
+        public int Order { get; } = 40;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the commands.
@@ -50,48 +49,47 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
+        public string[] GetCommands(ISource desiredStructure, ISource currentStructure)
         {
             if (desiredStructure == null)
-                return new List<string>();
+                return Array.Empty<string>();
             currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
-            foreach (Function TempFunction in desiredStructure.Functions)
+            for (int i = 0, desiredStructureFunctionsCount = desiredStructure.Functions.Count; i < desiredStructureFunctionsCount; i++)
             {
-                var CurrentFunction = (Function)currentStructure.Functions.FirstOrDefault(x => x.Name == TempFunction.Name);
+                IFunction TempFunction = desiredStructure.Functions[i];
+                var CurrentFunction = currentStructure.Functions.Find(x => x.Name == TempFunction.Name);
                 Commands.Add(CurrentFunction != null ? GetAlterFunctionCommand(TempFunction, CurrentFunction) : GetFunctionCommand(TempFunction));
             }
-            return Commands;
+
+            return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterFunctionCommand(Function function, Function currentFunction)
+        private static IEnumerable<string> GetAlterFunctionCommand(IFunction function, IFunction currentFunction)
         {
             if (function == null || currentFunction == null)
-                return new List<string>();
+                return Array.Empty<string>();
             if (function.Definition != currentFunction.Definition && string.IsNullOrEmpty(function.Definition))
-                return new List<string>();
-            var ReturnValue = new List<string>();
+                return Array.Empty<string>();
             if (currentFunction == null)
+                return GetFunctionCommand(function);
+            if (function.Definition == currentFunction.Definition)
+                return Array.Empty<string>();
+            return new List<string>
             {
-                ReturnValue.Add(GetFunctionCommand(function));
-            }
-            else if (function.Definition != currentFunction.Definition)
-            {
-                ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                string.Format(CultureInfo.CurrentCulture,
                     "DROP FUNCTION [{0}].[{1}]",
                     function.Schema,
-                    function.Name));
-                ReturnValue.Add(GetFunctionCommand(function));
-            }
-            return ReturnValue;
+                    function.Name),
+                GetFunctionCommand(function)
+            };
         }
 
-        private static IEnumerable<string> GetFunctionCommand(Function function)
+        private static IEnumerable<string> GetFunctionCommand(IFunction function)
         {
             if (function == null || function.Definition == null)
-                return new List<string>();
-            var Definition = Regex.Replace(function.Definition, "-- (.*)", "");
-            return new string[] { Definition.Replace("\n", " ").Replace("\r", " ") };
+                return Array.Empty<string>();
+            return new string[] { function.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " ") };
         }
     }
 }

@@ -2,7 +2,6 @@
 using Data.Modeler.Providers;
 using Data.Modeler.Providers.SQLServer.SourceBuilders;
 using Data.Modeler.Tests.BaseClasses;
-using System.Linq;
 using Xunit;
 
 namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
@@ -33,7 +32,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
                 })
             };
             TempCheckConstraints.FillSource(ConstraintsToAdd, TempSource);
-            var Constraint = TempSource.Tables.First().Constraints.First();
+            var Constraint = TempSource.Tables[0].Constraints[0];
             Assert.Equal("Definition A", Constraint.Definition);
             Assert.Equal("Constraint A", Constraint.Name);
             Assert.Equal(TableA, Constraint.ParentTable);

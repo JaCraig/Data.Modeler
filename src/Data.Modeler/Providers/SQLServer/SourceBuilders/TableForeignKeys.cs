@@ -31,12 +31,12 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 40;
+        public int Order { get; } = 40;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Fills the database.
@@ -47,8 +47,9 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         {
             if (dataSource == null)
                 throw new ArgumentNullException(nameof(dataSource));
-            foreach (Table TempTable in dataSource.Tables)
+            for (int i = 0, dataSourceTablesCount = dataSource.Tables.Count; i < dataSourceTablesCount; i++)
             {
+                ITable TempTable = dataSource.Tables[i];
                 TempTable.SetupForeignKeys();
             }
         }

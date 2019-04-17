@@ -16,6 +16,7 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
@@ -35,12 +36,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 10;
+        public int Order { get; } = 10;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the commands.
@@ -50,27 +51,30 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
+        public string[] GetCommands(ISource desiredStructure, ISource currentStructure)
         {
             if (desiredStructure == null)
-                return new List<string>();
+                return Array.Empty<string>();
             currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
-            foreach (Table TempTable in desiredStructure.Tables)
+            for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
+                ITable TempTable = desiredStructure.Tables[i];
                 ITable CurrentTable = currentStructure[TempTable.Name];
                 Commands.Add((CurrentTable == null) ? GetTableCommand(TempTable) : GetAlterTableCommand(TempTable, CurrentTable));
             }
-            return Commands;
+
+            return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterTableCommand(Table table, ITable currentTable)
+        private static IEnumerable<string> GetAlterTableCommand(ITable table, ITable currentTable)
         {
             if (table == null || table.Columns == null)
-                return new List<string>();
+                return Array.Empty<string>();
             var ReturnValue = new List<string>();
-            foreach (IColumn Column in table.Columns)
+            for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
+                IColumn Column = table.Columns[i];
                 IColumn CurrentColumn = currentTable[Column.Name];
                 string Command = "";
                 if (CurrentColumn == null)
@@ -137,19 +141,21 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     ReturnValue.Add(Command);
                 }
             }
+
             return ReturnValue;
         }
 
-        private static IEnumerable<string> GetTableCommand(Table table)
+        private static IEnumerable<string> GetTableCommand(ITable table)
         {
             if (table == null || table.Columns == null)
-                return new List<string>();
+                return Array.Empty<string>();
             var ReturnValue = new List<string>();
             var Builder = new StringBuilder();
             Builder.Append("CREATE TABLE [").Append(table.Schema).Append("].[").Append(table.Name).Append("](");
             string Splitter = "";
-            foreach (IColumn Column in table.Columns)
+            for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
+                IColumn Column = table.Columns[i];
                 Builder
                     .Append(Splitter)
                     .Append("[")
@@ -196,6 +202,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 }
                 Splitter = ",";
             }
+
             if (table.Audit)
             {
                 Builder.Append(", SysStartTime datetime2 GENERATED ALWAYS AS ROW START NOT NULL, SysEndTime datetime2 GENERATED ALWAYS AS ROW END NOT NULL, PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime)");
@@ -207,8 +214,9 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             }
             ReturnValue.Add(Builder.ToString());
             int Counter = 0;
-            foreach (IColumn Column in table.Columns)
+            for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
+                IColumn Column = table.Columns[i];
                 if (!Column.PrimaryKey)
                 {
                     if (Column.Index && Column.Unique)
@@ -234,6 +242,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     ++Counter;
                 }
             }
+
             return ReturnValue;
         }
     }

@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using Data.Modeler.Providers.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -31,12 +32,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 5;
+        public int Order { get; } = 5;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the commands.
@@ -46,20 +47,22 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
+        public string[] GetCommands(ISource desiredStructure, ISource currentStructure)
         {
             if (desiredStructure == null)
-                return new List<string>();
+                return Array.Empty<string>();
             currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
-            foreach (var Schema in desiredStructure.Schemas)
+            for (int i = 0, desiredStructureSchemasCount = desiredStructure.Schemas.Count; i < desiredStructureSchemasCount; i++)
             {
+                var Schema = desiredStructure.Schemas[i];
                 if (!currentStructure.Schemas.Contains(Schema))
                 {
                     Commands.Add(string.Format("CREATE SCHEMA {0}", Schema));
                 }
             }
-            return Commands;
+
+            return Commands.ToArray();
         }
     }
 }

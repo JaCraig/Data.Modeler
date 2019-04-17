@@ -30,7 +30,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
                 })
             };
             TempSchemas.FillSource(ConstraintsToAdd, TempSource);
-            var Constraint = TempSource.Schemas.First();
+            var Constraint = TempSource.Schemas[0];
             Assert.Equal("SchemaA", Constraint);
         }
 

@@ -14,11 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
 using Data.Modeler.Providers.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Data.Modeler.Providers.BaseClasses
 {
@@ -44,7 +42,7 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <summary>
         /// Functions with the source
         /// </summary>
-        public ICollection<IFunction> Functions { get; private set; }
+        public List<IFunction> Functions { get; }
 
         /// <summary>
         /// Name of the source
@@ -55,29 +53,29 @@ namespace Data.Modeler.Providers.BaseClasses
         /// Gets the schemas.
         /// </summary>
         /// <value>The schemas.</value>
-        public ICollection<string> Schemas { get; }
+        public List<string> Schemas { get; }
 
         /// <summary>
         /// Stored procedures within the source
         /// </summary>
-        public ICollection<IFunction> StoredProcedures { get; private set; }
+        public List<IFunction> StoredProcedures { get; }
 
         /// <summary>
         /// Tables within the source
         /// </summary>
-        public ICollection<ITable> Tables { get; private set; }
+        public List<ITable> Tables { get; }
 
         /// <summary>
         /// Views within the source
         /// </summary>
-        public ICollection<IFunction> Views { get; private set; }
+        public List<IFunction> Views { get; }
 
         /// <summary>
         /// Gets a specific table based on the name
         /// </summary>
         /// <param name="name">Name of the table</param>
         /// <returns>The table specified</returns>
-        public ITable this[string name] { get { return Tables.FirstOrDefault(x => string.Equals(x.Name, name, StringComparison.CurrentCultureIgnoreCase)); } }
+        public ITable this[string name] => Tables.Find(x => string.Equals(x.Name, name, StringComparison.CurrentCultureIgnoreCase));
 
         /// <summary>
         /// Adds a function to the source
@@ -121,10 +119,30 @@ namespace Data.Modeler.Providers.BaseClasses
         public ISource Copy()
         {
             var Result = new Source(Name);
-            Result.Functions = Functions.ForEach(x => x.Copy(Result)).ToList();
-            Result.StoredProcedures = StoredProcedures.ForEach(x => x.Copy(Result)).ToList();
-            Result.Tables = Tables.ForEach(x => x.Copy(Result)).ToList();
-            Result.Views = Views.ForEach(x => x.Copy(Result)).ToList();
+            for (int i = 0, FunctionsCount = Functions.Count; i < FunctionsCount; i++)
+            {
+                var Function = Functions[i];
+                Result.Functions.Add(Function.Copy(Result));
+            }
+
+            for (int i = 0, StoredProceduresCount = StoredProcedures.Count; i < StoredProceduresCount; i++)
+            {
+                var StoredProcedure = StoredProcedures[i];
+                Result.StoredProcedures.Add(StoredProcedure.Copy(Result));
+            }
+
+            for (int i = 0, TablesCount = Tables.Count; i < TablesCount; i++)
+            {
+                var Table = Tables[i];
+                Result.Tables.Add(Table.Copy(Result));
+            }
+
+            for (int i = 0, ViewsCount = Views.Count; i < ViewsCount; i++)
+            {
+                var View = Views[i];
+                Result.Views.Add(View.Copy(Result));
+            }
+
             return Result;
         }
     }

@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using System.Collections.Generic;
 using System.Data.Common;
 
 namespace Data.Modeler.Providers.Interfaces
@@ -44,6 +43,6 @@ namespace Data.Modeler.Providers.Interfaces
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure);
+        string[] GetCommands(ISource desiredStructure, ISource currentStructure);
     }
 }

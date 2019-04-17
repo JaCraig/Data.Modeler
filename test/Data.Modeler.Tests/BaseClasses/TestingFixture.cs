@@ -1,4 +1,5 @@
-﻿using Data.Modeler.Registration;
+﻿using BigBook.Registration;
+using Data.Modeler.Registration;
 using FileCurator;
 using FileCurator.Registration;
 using Microsoft.Extensions.Configuration;
@@ -27,14 +28,14 @@ namespace Data.Modeler.Tests.BaseClasses
 
         public IConfigurationRoot Configuration { get; set; }
 
-        protected string ConnectionString => "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
+        protected string ConnectionString { get; } = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
 
-        protected string ConnectionString2 => "Data Source=localhost;Initial Catalog=TestDatabaseForeignKeys;Integrated Security=SSPI;Pooling=false";
+        protected string ConnectionString2 { get; } = "Data Source=localhost;Initial Catalog=TestDatabaseForeignKeys;Integrated Security=SSPI;Pooling=false";
 
-        protected string ConnectionStringNew => "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
+        protected string ConnectionStringNew { get; } = "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
 
-        protected string DatabaseName => "TestDatabase";
-        protected string MasterString => "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+        protected string DatabaseName { get; } = "TestDatabase";
+        protected string MasterString { get; } = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
 
         public void Dispose()
         {
@@ -130,6 +131,7 @@ namespace Data.Modeler.Tests.BaseClasses
                                                 .RegisterDataModeler()
                                                 .RegisterSQLHelper()
                                                 .RegisterFileCurator()
+                                                .RegisterBigBookOfDataTypes()
                                                 .Build();
                 Container.Register(Configuration, ServiceLifetime.Singleton);
             }

@@ -18,7 +18,6 @@ using Data.Modeler.Providers.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 
 namespace Data.Modeler.Providers.BaseClasses
 {
@@ -52,13 +51,13 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <summary>
         /// Columns
         /// </summary>
-        public IList<IColumn> Columns { get; }
+        public List<IColumn> Columns { get; }
 
         /// <summary>
         /// Gets the constraints.
         /// </summary>
         /// <value>The constraints.</value>
-        public ICollection<ICheckConstraint> Constraints { get; }
+        public List<ICheckConstraint> Constraints { get; }
 
         /// <summary>
         /// Name of the table
@@ -79,14 +78,14 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <summary>
         /// List of triggers associated with the table
         /// </summary>
-        public ICollection<ITrigger> Triggers { get; }
+        public List<ITrigger> Triggers { get; }
 
         /// <summary>
         /// The column specified
         /// </summary>
         /// <param name="name">Name of the column</param>
         /// <returns>The column specified</returns>
-        public IColumn this[string name] { get { return Columns.FirstOrDefault(x => string.Equals(x.Name, name, StringComparison.CurrentCultureIgnoreCase)); } }
+        public IColumn this[string name] => Columns.Find(x => string.Equals(x.Name, name, StringComparison.CurrentCultureIgnoreCase));
 
         /// <summary>
         /// Adds a check constraint to the table.

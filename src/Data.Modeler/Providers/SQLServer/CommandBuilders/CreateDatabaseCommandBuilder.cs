@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 using Data.Modeler.Providers.Interfaces;
-using System.Collections.Generic;
+using System;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Globalization;
@@ -32,12 +32,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 1;
+        public int Order { get; } = 1;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the commands.
@@ -47,17 +47,15 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
+        public string[] GetCommands(ISource desiredStructure, ISource currentStructure)
         {
-            var Result = new List<string>();
-            if (currentStructure == null)
-            {
-                Result.Add(string.Format(CultureInfo.CurrentCulture,
-                   "CREATE DATABASE [{0}]",
-                   desiredStructure.Name));
-            }
-
-            return Result;
+            if (currentStructure != null)
+                return Array.Empty<string>();
+            return new string[] {
+                string.Format(CultureInfo.CurrentCulture,
+                "CREATE DATABASE [{0}]",
+                desiredStructure.Name)
+            };
         }
     }
 }

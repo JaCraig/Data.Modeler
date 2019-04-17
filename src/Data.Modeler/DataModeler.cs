@@ -47,8 +47,8 @@ namespace Data.Modeler
                 return null;
             var SchemaGenerators = Canister.Builder.Bootstrapper.ResolveAll<ISchemaGenerator>();
             var RequestedGenerators = SchemaGenerators.Where(x => x.Provider == factory);
-            return RequestedGenerators.FirstOrDefault(x => !(x.GetType().Namespace.IndexOf("DATA.MODELER", System.StringComparison.InvariantCultureIgnoreCase) >= 0))
-                ?? RequestedGenerators.FirstOrDefault(x => x.GetType().Namespace.IndexOf("DATA.MODELER", System.StringComparison.InvariantCultureIgnoreCase) >= 0);
+            return RequestedGenerators.FirstOrDefault(x => x.GetType().Assembly != typeof(DataModeler).Assembly)
+                ?? RequestedGenerators.FirstOrDefault(x => x.GetType().Assembly == typeof(DataModeler).Assembly);
         }
     }
 }

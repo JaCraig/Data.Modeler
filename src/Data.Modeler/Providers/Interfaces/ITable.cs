@@ -35,13 +35,13 @@ namespace Data.Modeler.Providers.Interfaces
         /// Columns
         /// </summary>
         /// <value>The columns.</value>
-        IList<IColumn> Columns { get; }
+        List<IColumn> Columns { get; }
 
         /// <summary>
         /// Gets the constraints.
         /// </summary>
         /// <value>The constraints.</value>
-        ICollection<ICheckConstraint> Constraints { get; }
+        List<ICheckConstraint> Constraints { get; }
 
         /// <summary>
         /// Name
@@ -65,7 +65,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// Triggers associated with the table (if source supports them)
         /// </summary>
         /// <value>The triggers.</value>
-        ICollection<ITrigger> Triggers { get; }
+        List<ITrigger> Triggers { get; }
 
         /// <summary>
         /// Returns the specified column

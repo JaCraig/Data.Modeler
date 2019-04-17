@@ -21,7 +21,6 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Globalization;
-using System.Linq;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -35,12 +34,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 31;
+        public int Order { get; } = 31;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the commands.
@@ -50,28 +49,31 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
+        public string[] GetCommands(ISource desiredStructure, ISource currentStructure)
         {
             if (desiredStructure == null)
-                return new List<string>();
+                return Array.Empty<string>();
             currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
-            foreach (Table TempTable in desiredStructure.Tables)
+            for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
+                ITable TempTable = desiredStructure.Tables[i];
                 ITable CurrentTable = currentStructure[TempTable.Name];
                 Commands.Add((CurrentTable == null) ? GetCheckConstraintCommand(TempTable) : GetAlterCheckConstraintCommand(TempTable, CurrentTable));
             }
-            return Commands;
+
+            return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterCheckConstraintCommand(Table table, ITable currentTable)
+        private static IEnumerable<string> GetAlterCheckConstraintCommand(ITable table, ITable currentTable)
         {
             if (table == null || table.Constraints == null)
-                return new List<string>();
+                return Array.Empty<string>();
             var ReturnValue = new List<string>();
-            foreach (CheckConstraint CheckConstraint in table.Constraints)
+            for (int i = 0, tableConstraintsCount = table.Constraints.Count; i < tableConstraintsCount; i++)
             {
-                var CheckConstraint2 = currentTable.Constraints.FirstOrDefault(x => CheckConstraint.Name == x.Name);
+                ICheckConstraint CheckConstraint = table.Constraints[i];
+                var CheckConstraint2 = currentTable.Constraints.Find(x => CheckConstraint.Name == x.Name);
                 if (CheckConstraint2 == null)
                 {
                     ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
@@ -96,16 +98,18 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                         CheckConstraint.Definition));
                 }
             }
+
             return ReturnValue;
         }
 
-        private static IEnumerable<string> GetCheckConstraintCommand(Table table)
+        private static IEnumerable<string> GetCheckConstraintCommand(ITable table)
         {
             if (table == null || table.Constraints == null)
-                return new List<string>();
+                return Array.Empty<string>();
             var ReturnValue = new List<string>();
-            foreach (CheckConstraint CheckConstraint in table.Constraints)
+            for (int i = 0, tableConstraintsCount = table.Constraints.Count; i < tableConstraintsCount; i++)
             {
+                ICheckConstraint CheckConstraint = table.Constraints[i];
                 ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
                             "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
                             CheckConstraint.ParentTable.Schema,
@@ -113,6 +117,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                             CheckConstraint.Name,
                             CheckConstraint.Definition));
             }
+
             return ReturnValue;
         }
     }

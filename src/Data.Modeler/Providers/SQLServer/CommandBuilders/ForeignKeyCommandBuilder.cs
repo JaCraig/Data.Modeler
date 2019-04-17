@@ -16,6 +16,7 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -34,12 +35,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 20;
+        public int Order { get; } = 20;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the commands.
@@ -49,39 +50,43 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
+        public string[] GetCommands(ISource desiredStructure, ISource currentStructure)
         {
             if (desiredStructure == null)
-                return new List<string>();
+                return Array.Empty<string>();
             currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
-            foreach (Table TempTable in desiredStructure.Tables)
+            for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
+                ITable TempTable = desiredStructure.Tables[i];
                 ITable CurrentTable = currentStructure[TempTable.Name];
                 Commands.Add((CurrentTable == null) ? GetForeignKeyCommand(TempTable) : GetForeignKeyCommand(TempTable, CurrentTable));
             }
-            return Commands;
+
+            return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetForeignKeyCommand(Table table)
+        private static IEnumerable<string> GetForeignKeyCommand(ITable table)
         {
             if (table == null || table.Columns == null)
-                return new List<string>();
+                return Array.Empty<string>();
             var ReturnValue = new List<string>();
-            foreach (IColumn Column in table.Columns)
+            for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
+                IColumn Column = table.Columns[i];
                 if (Column.ForeignKey.Count > 0)
                 {
-                    foreach (IColumn ForeignKey in Column.ForeignKey)
+                    for (int j = 0, ColumnForeignKeyCount = Column.ForeignKey.Count; j < ColumnForeignKeyCount; j++)
                     {
+                        IColumn ForeignKey = Column.ForeignKey[j];
                         var Command = string.Format(CultureInfo.CurrentCulture,
-                            "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}].[{4}]([{5}])",
-                            Column.ParentTable.Schema,
-                            Column.ParentTable.Name,
-                            Column.Name,
-                            ForeignKey.ParentTable.Schema,
-                            ForeignKey.ParentTable.Name,
-                            ForeignKey.Name);
+                                    "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}].[{4}]([{5}])",
+                                    Column.ParentTable.Schema,
+                                    Column.ParentTable.Name,
+                                    Column.Name,
+                                    ForeignKey.ParentTable.Schema,
+                                    ForeignKey.ParentTable.Name,
+                                    ForeignKey.Name);
                         if (Column.OnDeleteCascade)
                             Command += " ON DELETE CASCADE";
                         if (Column.OnUpdateCascade)
@@ -92,16 +97,18 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     }
                 }
             }
+
             return ReturnValue;
         }
 
-        private static IEnumerable<string> GetForeignKeyCommand(Table table, ITable currentTable)
+        private static IEnumerable<string> GetForeignKeyCommand(ITable table, ITable currentTable)
         {
             if (table == null || table.Columns == null)
-                return new List<string>();
+                return Array.Empty<string>();
             var ReturnValue = new List<string>();
-            foreach (IColumn Column in table.Columns)
+            for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
+                IColumn Column = table.Columns[i];
                 IColumn CurrentColumn = currentTable[Column.Name];
                 if (Column.ForeignKey.Count > 0
                     && (CurrentColumn == null || !Column.Equals(CurrentColumn)))
@@ -127,6 +134,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     }
                 }
             }
+
             return ReturnValue;
         }
     }

@@ -16,12 +16,11 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -35,12 +34,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 50;
+        public int Order { get; } = 50;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the commands.
@@ -50,48 +49,46 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
+        public string[] GetCommands(ISource desiredStructure, ISource currentStructure)
         {
             if (desiredStructure == null)
-                return new List<string>();
+                return Array.Empty<string>();
             currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
-            foreach (View TempView in desiredStructure.Views)
+            for (int i = 0, desiredStructureViewsCount = desiredStructure.Views.Count; i < desiredStructureViewsCount; i++)
             {
-                var CurrentView = (View)currentStructure.Views.FirstOrDefault(x => x.Name == TempView.Name);
+                IFunction TempView = desiredStructure.Views[i];
+                var CurrentView = (View)currentStructure.Views.Find(x => x.Name == TempView.Name);
                 Commands.Add(CurrentView != null ? GetAlterViewCommand(TempView, CurrentView) : GetViewCommand(TempView));
             }
-            return Commands;
+
+            return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterViewCommand(View view, View currentView)
+        private static IEnumerable<string> GetAlterViewCommand(IFunction view, IFunction currentView)
         {
             if (view == null || currentView == null)
-                return new List<string>();
+                return Array.Empty<string>();
             if (view.Definition != currentView.Definition && string.IsNullOrEmpty(view.Definition))
-                return new List<string>();
-            var ReturnValue = new List<string>();
+                return Array.Empty<string>();
             if (currentView == null)
-            {
-                ReturnValue.Add(GetViewCommand(view));
-            }
-            else if (view.Definition != currentView.Definition)
-            {
-                ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                return GetViewCommand(view);
+            if (view.Definition == currentView.Definition)
+                return Array.Empty<string>();
+            return new List<string> {
+                string.Format(CultureInfo.CurrentCulture,
                     "DROP VIEW [{0}].[{1}]",
                     view.Schema,
-                    view.Name));
-                ReturnValue.Add(GetViewCommand(view));
-            }
-            return ReturnValue;
+                    view.Name),
+                GetViewCommand(view)
+            };
         }
 
-        private static IEnumerable<string> GetViewCommand(View view)
+        private static IEnumerable<string> GetViewCommand(IFunction view)
         {
             if (view == null || view.Definition == null)
-                return new List<string>();
-            var Definition = Regex.Replace(view.Definition, "-- (.*)", "");
-            return new string[] { Definition.Replace("\n", " ").Replace("\r", " ") };
+                return Array.Empty<string>();
+            return new string[] { view.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " ") };
         }
     }
 }

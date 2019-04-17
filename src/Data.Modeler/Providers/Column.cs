@@ -108,7 +108,7 @@ namespace Data.Modeler.Providers
         /// <summary>
         /// Foreign keys
         /// </summary>
-        public IList<IColumn> ForeignKey { get; }
+        public List<IColumn> ForeignKey { get; }
 
         /// <summary>
         /// Index?
@@ -160,8 +160,16 @@ namespace Data.Modeler.Providers
         /// </summary>
         public bool Unique { get; set; }
 
+        /// <summary>
+        /// Gets or sets the foreign key columns.
+        /// </summary>
+        /// <value>The foreign key columns.</value>
         private List<string> ForeignKeyColumns { get; set; }
 
+        /// <summary>
+        /// Gets or sets the foreign key tables.
+        /// </summary>
+        /// <value>The foreign key tables.</value>
         private List<string> ForeignKeyTables { get; set; }
 
         /// <summary>
@@ -184,7 +192,7 @@ namespace Data.Modeler.Providers
         /// <returns>The copy</returns>
         public IColumn Copy(ITable parentTable)
         {
-            var Result = new Column<T>(Name, DataType, Length,
+            return new Column<T>(Name, DataType, Length,
                 Nullable, AutoIncrement, Index,
                 PrimaryKey, Unique, "",
                 "", Default.To<string, T>(), ComputedColumnSpecification,
@@ -194,7 +202,6 @@ namespace Data.Modeler.Providers
                 ForeignKeyColumns = ForeignKeyColumns.ToList(),
                 ForeignKeyTables = ForeignKeyTables.ToList()
             };
-            return Result;
         }
 
         /// <summary>
@@ -207,7 +214,7 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is Column<T>Item))
+            if (!(obj is Column<T> Item))
                 return false;
             return AutoIncrement == Item.AutoIncrement
                 && ComputedColumnSpecification == Item.ComputedColumnSpecification
@@ -249,18 +256,21 @@ namespace Data.Modeler.Providers
             {
                 if (TempDatabase != null)
                 {
-                    foreach (Table TempTable in TempDatabase.Tables)
+                    for (int i = 0, TempDatabaseTablesCount = TempDatabase.Tables.Count; i < TempDatabaseTablesCount; i++)
                     {
+                        ITable TempTable = TempDatabase.Tables[i];
                         if (TempTable.Name == ForeignKeyTables[x])
                         {
-                            foreach (IColumn TempColumn in TempTable.Columns)
+                            for (int j = 0, TempTableColumnsCount = TempTable.Columns.Count; j < TempTableColumnsCount; j++)
                             {
+                                IColumn TempColumn = TempTable.Columns[j];
                                 if (TempColumn.Name == ForeignKeyColumns[x])
                                 {
                                     ForeignKey.Add(TempColumn);
                                     break;
                                 }
                             }
+
                             break;
                         }
                     }
@@ -284,7 +294,7 @@ namespace Data.Modeler.Providers
                 Default = $"\'{Default}\'";
             else if (defaultValue is TimeSpan)
                 Default = $"\'{Default}\'";
-            else if (defaultValue is String)
+            else if (defaultValue is string)
                 Default = $"\'{Default}\'";
             else if (defaultValue is char)
                 Default = $"\'{Default}\'";

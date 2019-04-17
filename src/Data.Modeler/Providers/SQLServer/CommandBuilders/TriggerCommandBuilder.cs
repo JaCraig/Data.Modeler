@@ -21,8 +21,6 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Globalization;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -36,12 +34,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// Gets the order.
         /// </summary>
         /// <value>The order.</value>
-        public int Order => 30;
+        public int Order { get; } = 30;
 
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider => SqlClientFactory.Instance;
+        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
         /// Gets the commands.
@@ -51,57 +49,60 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        public IEnumerable<string> GetCommands(ISource desiredStructure, ISource currentStructure)
+        public string[] GetCommands(ISource desiredStructure, ISource currentStructure)
         {
             if (desiredStructure == null)
-                return new List<string>();
+                return Array.Empty<string>();
             currentStructure = currentStructure ?? new Source(desiredStructure.Name);
             var Commands = new List<string>();
-            foreach (Table TempTable in desiredStructure.Tables)
+            for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
+                ITable TempTable = desiredStructure.Tables[i];
                 ITable CurrentTable = currentStructure[TempTable.Name];
                 Commands.Add((CurrentTable == null) ? GetTriggerCommand(TempTable) : GetAlterTriggerCommand(TempTable, CurrentTable));
             }
-            return Commands;
+
+            return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterTriggerCommand(Table table, ITable currentTable)
+        private static IEnumerable<string> GetAlterTriggerCommand(ITable table, ITable currentTable)
         {
             if (table == null || table.Triggers == null)
-                return new List<string>();
+                return Array.Empty<string>();
             var ReturnValue = new List<string>();
-            foreach (Trigger Trigger in table.Triggers)
+            for (int i = 0, tableTriggersCount = table.Triggers.Count; i < tableTriggersCount; i++)
             {
-                var Trigger2 = currentTable.Triggers.FirstOrDefault(x => Trigger.Name == x.Name);
+                ITrigger Trigger = table.Triggers[i];
+                var Trigger2 = currentTable.Triggers.Find(x => Trigger.Name == x.Name);
                 string Definition1 = Trigger.Definition;
                 var Definition2 = Trigger2.Definition;
                 if (Definition2 == null)
                 {
-                    var Definition = Regex.Replace(Trigger.Definition, "-- (.*)", "");
-                    ReturnValue.Add(Definition.Replace("\n", " ").Replace("\r", " "));
+                    ReturnValue.Add(Trigger.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " "));
                 }
                 else if (!string.Equals(Definition1, Definition2, StringComparison.OrdinalIgnoreCase))
                 {
                     ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
                         "DROP TRIGGER [{0}]",
                         Trigger.Name));
-                    var Definition = Regex.Replace(Trigger.Definition, "-- (.*)", "");
-                    ReturnValue.Add(Definition.Replace("\n", " ").Replace("\r", " "));
+                    ReturnValue.Add(Trigger.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " "));
                 }
             }
+
             return ReturnValue;
         }
 
-        private static IEnumerable<string> GetTriggerCommand(Table table)
+        private static IEnumerable<string> GetTriggerCommand(ITable table)
         {
             if (table == null || table.Triggers == null)
-                return new List<string>();
+                return Array.Empty<string>();
             var ReturnValue = new List<string>();
-            foreach (Trigger Trigger in table.Triggers)
+            for (int i = 0, tableTriggersCount = table.Triggers.Count; i < tableTriggersCount; i++)
             {
-                var Definition = Regex.Replace(Trigger.Definition, "-- (.*)", "");
-                ReturnValue.Add(Definition.Replace("\n", " ").Replace("\r", " "));
+                ITrigger Trigger = table.Triggers[i];
+                ReturnValue.Add(Trigger.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " "));
             }
+
             return ReturnValue;
         }
     }

@@ -2,7 +2,6 @@
 using Data.Modeler.Providers;
 using Data.Modeler.Providers.SQLServer.SourceBuilders;
 using Data.Modeler.Tests.BaseClasses;
-using System.Linq;
 using Xunit;
 
 namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
@@ -27,11 +26,12 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
                 new Dynamo(new
                 {
                     NAME="Constraint A",
-                    DEFINITION="Definition A"
+                    DEFINITION="Definition A",
+                    SCHEMA=""
                 })
             };
             TempStoredProcedures.FillSource(ConstraintsToAdd, TempSource);
-            var Constraint = TempSource.StoredProcedures.First();
+            var Constraint = TempSource.StoredProcedures[0];
             Assert.Equal("Definition A", Constraint.Definition);
             Assert.Equal("Constraint A", Constraint.Name);
         }

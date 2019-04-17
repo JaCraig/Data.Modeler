@@ -29,7 +29,7 @@ namespace Data.Modeler.Modules
         /// <summary>
         /// Order to run this in
         /// </summary>
-        public int Order => 40;
+        public int Order { get; } = 40;
 
         /// <summary>
         /// Loads the module using the bootstrapper
