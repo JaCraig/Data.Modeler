@@ -84,7 +84,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             };
         }
 
-        private static IEnumerable<string> GetViewCommand(IFunction view)
+        private static string[] GetViewCommand(IFunction view)
         {
             if (view == null || view.Definition == null)
                 return Array.Empty<string>();

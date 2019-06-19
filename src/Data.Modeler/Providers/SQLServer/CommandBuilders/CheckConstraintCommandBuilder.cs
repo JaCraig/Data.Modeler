@@ -65,7 +65,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterCheckConstraintCommand(ITable table, ITable currentTable)
+        private static string[] GetAlterCheckConstraintCommand(ITable table, ITable currentTable)
         {
             if (table == null || table.Constraints == null)
                 return Array.Empty<string>();
@@ -99,23 +99,23 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 }
             }
 
-            return ReturnValue;
+            return ReturnValue.ToArray();
         }
 
-        private static IEnumerable<string> GetCheckConstraintCommand(ITable table)
+        private static string[] GetCheckConstraintCommand(ITable table)
         {
             if (table == null || table.Constraints == null)
                 return Array.Empty<string>();
-            var ReturnValue = new List<string>();
+            var ReturnValue = new string[table.Constraints.Count];
             for (int i = 0, tableConstraintsCount = table.Constraints.Count; i < tableConstraintsCount; i++)
             {
                 ICheckConstraint CheckConstraint = table.Constraints[i];
-                ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                ReturnValue[i] = string.Format(CultureInfo.CurrentCulture,
                             "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
                             CheckConstraint.ParentTable.Schema,
                             CheckConstraint.ParentTable.Name,
                             CheckConstraint.Name,
-                            CheckConstraint.Definition));
+                            CheckConstraint.Definition);
             }
 
             return ReturnValue;

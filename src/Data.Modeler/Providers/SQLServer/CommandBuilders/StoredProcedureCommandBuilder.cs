@@ -83,7 +83,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             };
         }
 
-        private static IEnumerable<string> GetStoredProcedure(IFunction storedProcedure)
+        private static string[] GetStoredProcedure(IFunction storedProcedure)
         {
             if (storedProcedure == null || storedProcedure.Definition == null)
                 return Array.Empty<string>();

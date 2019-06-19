@@ -85,7 +85,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             };
         }
 
-        private static IEnumerable<string> GetFunctionCommand(IFunction function)
+        private static string[] GetFunctionCommand(IFunction function)
         {
             if (function == null || function.Definition == null)
                 return Array.Empty<string>();
