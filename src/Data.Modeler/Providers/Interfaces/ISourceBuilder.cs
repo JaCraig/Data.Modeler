@@ -41,7 +41,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// </summary>
         /// <param name="values">The values.</param>
         /// <param name="dataSource">The data source.</param>
-        void FillSource(IEnumerable<dynamic> values, ISource dataSource);
+        void FillSource(List<dynamic> values, ISource dataSource);
 
         /// <summary>
         /// Gets the command.

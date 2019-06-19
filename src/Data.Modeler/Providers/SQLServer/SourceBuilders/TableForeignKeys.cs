@@ -43,7 +43,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// </summary>
         /// <param name="values">The values.</param>
         /// <param name="dataSource">The database.</param>
-        public void FillSource(IEnumerable<dynamic> values, ISource dataSource)
+        public void FillSource(List<dynamic> values, ISource dataSource)
         {
             if (dataSource == null)
                 throw new ArgumentNullException(nameof(dataSource));

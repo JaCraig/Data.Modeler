@@ -2,6 +2,7 @@
 using Data.Modeler.Providers;
 using Data.Modeler.Providers.SQLServer.SourceBuilders;
 using Data.Modeler.Tests.BaseClasses;
+using System.Collections.Generic;
 using System.Data;
 using Xunit;
 
@@ -23,7 +24,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
             var TempStoredProcedureColumns = new StoredProcedureColumns();
             var TempSource = new Source("My Source");
             TempSource.AddStoredProcedure("Procedure A", "dbo", "");
-            var ConstraintsToAdd = new[]
+            var ConstraintsToAdd = new List<dynamic>
             {
                 new Dynamo(new
                 {

@@ -2,6 +2,7 @@
 using Data.Modeler.Providers;
 using Data.Modeler.Providers.SQLServer.SourceBuilders;
 using Data.Modeler.Tests.BaseClasses;
+using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Xunit;
@@ -27,7 +28,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
             TempTable.AddColumn<int>("Column A", DbType.Int32, foreignKeyTable: "Table B", foreignKeyColumn: "Column B");
             var TempForeignTable = TempSource.AddTable("Table B", "dbo");
             TempForeignTable.AddColumn<int>("Column B", DbType.Int32);
-            var ConstraintsToAdd = new[]
+            var ConstraintsToAdd = new List<dynamic>
             {
                 new Dynamo(new                {                })
             };

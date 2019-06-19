@@ -2,8 +2,8 @@
 using Data.Modeler.Providers;
 using Data.Modeler.Providers.SQLServer.SourceBuilders;
 using Data.Modeler.Tests.BaseClasses;
+using System.Collections.Generic;
 using System.Data;
-using System.Linq;
 using Xunit;
 
 namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
@@ -24,7 +24,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
             var TempTableColumns = new TableColumns();
             var TempSource = new Source("My Source");
             var TempTable = TempSource.AddTable("Table A", "dbo");
-            var ConstraintsToAdd = new[]
+            var ConstraintsToAdd = new List<dynamic>
             {
                 new Dynamo(new
                 {
