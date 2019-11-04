@@ -64,10 +64,7 @@ namespace Data.Modeler.Providers
         /// </summary>
         /// <param name="source">The source.</param>
         /// <returns>The copy</returns>
-        public IFunction Copy(ISource source)
-        {
-            return new Function(Name, Schema, Definition, source);
-        }
+        public IFunction Copy(ISource source) => new Function(Name, Schema, Definition, source);
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
@@ -91,9 +88,6 @@ namespace Data.Modeler.Providers
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures
         /// like a hash table.
         /// </returns>
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
+        public override int GetHashCode() => Name.GetHashCode();
     }
 }

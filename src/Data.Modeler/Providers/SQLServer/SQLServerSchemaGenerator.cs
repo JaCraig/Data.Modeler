@@ -67,10 +67,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="constraint">The constraint to check.</param>
         /// <param name="source">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool ConstraintExists(string constraint, IConnection source)
-        {
-            return Exists("SELECT * FROM sys.check_constraints WHERE name=@0", constraint, source);
-        }
+        public bool ConstraintExists(string constraint, IConnection source) => Exists("SELECT * FROM sys.check_constraints WHERE name=@0", constraint, source);
 
         /// <summary>
         /// Generates a list of commands used to modify the source. If it does not exist prior, the
@@ -134,7 +131,7 @@ namespace Data.Modeler.Providers.SQLServer
 
             var DatabaseSource = new Connection(connection.Configuration, connection.Factory, connection.ConnectionString.RemoveInitialCatalog(), "Name");
             var Batch = new SQLHelper(connection.Configuration, connection.Factory, connection.ConnectionString);
-            for (int x = 0; x < Commands.Length; ++x)
+            for (var x = 0; x < Commands.Length; ++x)
             {
                 if (Commands[x].IndexOf("CREATE DATABASE", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
@@ -171,10 +168,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="source">Source to check</param>
         /// <param name="connectionInfo">Source info to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool SourceExists(string source, IConnection connectionInfo)
-        {
-            return Exists("SELECT * FROM Master.sys.Databases WHERE name=@0", source, connectionInfo);
-        }
+        public bool SourceExists(string source, IConnection connectionInfo) => Exists("SELECT * FROM Master.sys.Databases WHERE name=@0", source, connectionInfo);
 
         /// <summary>
         /// Checks if a stored procedure exists
@@ -182,10 +176,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="storedProcedure">Stored procedure to check</param>
         /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool StoredProcedureExists(string storedProcedure, IConnection connectionInfo)
-        {
-            return Exists("SELECT * FROM sys.Procedures WHERE name=@0", storedProcedure, connectionInfo);
-        }
+        public bool StoredProcedureExists(string storedProcedure, IConnection connectionInfo) => Exists("SELECT * FROM sys.Procedures WHERE name=@0", storedProcedure, connectionInfo);
 
         /// <summary>
         /// Checks if a table exists
@@ -193,10 +184,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="table">Table to check</param>
         /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool TableExists(string table, IConnection connectionInfo)
-        {
-            return Exists("SELECT * FROM sys.Tables WHERE name=@0", table, connectionInfo);
-        }
+        public bool TableExists(string table, IConnection connectionInfo) => Exists("SELECT * FROM sys.Tables WHERE name=@0", table, connectionInfo);
 
         /// <summary>
         /// Checks if a trigger exists
@@ -204,10 +192,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="trigger">Trigger to check</param>
         /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool TriggerExists(string trigger, IConnection connectionInfo)
-        {
-            return Exists("SELECT * FROM sys.triggers WHERE name=@0", trigger, connectionInfo);
-        }
+        public bool TriggerExists(string trigger, IConnection connectionInfo) => Exists("SELECT * FROM sys.triggers WHERE name=@0", trigger, connectionInfo);
 
         /// <summary>
         /// Checks if a view exists
@@ -215,10 +200,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="view">View to check</param>
         /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool ViewExists(string view, IConnection connectionInfo)
-        {
-            return Exists("SELECT * FROM sys.views WHERE name=@0", view, connectionInfo);
-        }
+        public bool ViewExists(string view, IConnection connectionInfo) => Exists("SELECT * FROM sys.views WHERE name=@0", view, connectionInfo);
 
         private bool Exists(string command, string value, IConnection source)
         {

@@ -57,7 +57,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var Commands = new List<string>();
             for (int i = 0, desiredStructureFunctionsCount = desiredStructure.Functions.Count; i < desiredStructureFunctionsCount; i++)
             {
-                IFunction TempFunction = desiredStructure.Functions[i];
+                var TempFunction = desiredStructure.Functions[i];
                 var CurrentFunction = currentStructure.Functions.Find(x => x.Name == TempFunction.Name);
                 Commands.Add(CurrentFunction != null ? GetAlterFunctionCommand(TempFunction, CurrentFunction) : GetFunctionCommand(TempFunction));
             }

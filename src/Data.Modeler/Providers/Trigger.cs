@@ -64,10 +64,7 @@ namespace Data.Modeler.Providers
         /// </summary>
         /// <param name="parentTable">The new parent table.</param>
         /// <returns>The copy</returns>
-        public ITrigger Copy(ITable parentTable)
-        {
-            return new Trigger(Name, Definition, Type, parentTable);
-        }
+        public ITrigger Copy(ITable parentTable) => new Trigger(Name, Definition, Type, parentTable);
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
@@ -93,9 +90,6 @@ namespace Data.Modeler.Providers
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures
         /// like a hash table.
         /// </returns>
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
+        public override int GetHashCode() => Name.GetHashCode();
     }
 }

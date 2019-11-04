@@ -49,7 +49,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
                 throw new ArgumentNullException(nameof(dataSource));
             for (int i = 0, dataSourceTablesCount = dataSource.Tables.Count; i < dataSourceTablesCount; i++)
             {
-                ITable TempTable = dataSource.Tables[i];
+                var TempTable = dataSource.Tables[i];
                 TempTable.SetupForeignKeys();
             }
         }
@@ -58,9 +58,6 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// Gets the command.
         /// </summary>
         /// <returns>The command to get the source</returns>
-        public string GetCommand()
-        {
-            return "SELECT sys.tables.name as [Table] FROM sys.tables";
-        }
+        public string GetCommand() => "SELECT sys.tables.name as [Table] FROM sys.tables";
     }
 }

@@ -59,8 +59,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var Commands = new List<string>();
             for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
-                ITable TempTable = desiredStructure.Tables[i];
-                ITable CurrentTable = currentStructure[TempTable.Name];
+                var TempTable = desiredStructure.Tables[i];
+                var CurrentTable = currentStructure[TempTable.Name];
                 Commands.Add((CurrentTable == null) ? GetTableCommand(TempTable) : GetAlterTableCommand(TempTable, CurrentTable));
             }
 
@@ -74,9 +74,9 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var ReturnValue = new List<string>();
             for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
-                IColumn Column = table.Columns[i];
-                IColumn CurrentColumn = currentTable[Column.Name];
-                string Command = "";
+                var Column = table.Columns[i];
+                var CurrentColumn = currentTable[Column.Name];
+                var Command = "";
                 if (CurrentColumn == null)
                 {
                     if (string.IsNullOrEmpty(Column.ComputedColumnSpecification))
@@ -152,10 +152,10 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var ReturnValue = new List<string>();
             var Builder = new StringBuilder();
             Builder.Append("CREATE TABLE [").Append(table.Schema).Append("].[").Append(table.Name).Append("](");
-            string Splitter = "";
+            var Splitter = "";
             for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
-                IColumn Column = table.Columns[i];
+                var Column = table.Columns[i];
                 Builder
                     .Append(Splitter)
                     .Append("[")
@@ -213,10 +213,10 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 Builder.AppendFormat("WITH ( SYSTEM_VERSIONING = ON (HISTORY_TABLE = [{0}].[{1}]) ) ", table.Schema, table.Name + "_Audit");
             }
             ReturnValue.Add(Builder.ToString());
-            int Counter = 0;
+            var Counter = 0;
             for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
-                IColumn Column = table.Columns[i];
+                var Column = table.Columns[i];
                 if (!Column.PrimaryKey)
                 {
                     if (Column.Index && Column.Unique)

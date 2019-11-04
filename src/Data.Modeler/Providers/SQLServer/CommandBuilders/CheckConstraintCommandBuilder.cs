@@ -57,8 +57,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var Commands = new List<string>();
             for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
-                ITable TempTable = desiredStructure.Tables[i];
-                ITable CurrentTable = currentStructure[TempTable.Name];
+                var TempTable = desiredStructure.Tables[i];
+                var CurrentTable = currentStructure[TempTable.Name];
                 Commands.Add((CurrentTable == null) ? GetCheckConstraintCommand(TempTable) : GetAlterCheckConstraintCommand(TempTable, CurrentTable));
             }
 
@@ -72,7 +72,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var ReturnValue = new List<string>();
             for (int i = 0, tableConstraintsCount = table.Constraints.Count; i < tableConstraintsCount; i++)
             {
-                ICheckConstraint CheckConstraint = table.Constraints[i];
+                var CheckConstraint = table.Constraints[i];
                 var CheckConstraint2 = currentTable.Constraints.Find(x => CheckConstraint.Name == x.Name);
                 if (CheckConstraint2 == null)
                 {
@@ -109,7 +109,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var ReturnValue = new string[table.Constraints.Count];
             for (int i = 0, tableConstraintsCount = table.Constraints.Count; i < tableConstraintsCount; i++)
             {
-                ICheckConstraint CheckConstraint = table.Constraints[i];
+                var CheckConstraint = table.Constraints[i];
                 ReturnValue[i] = string.Format(CultureInfo.CurrentCulture,
                             "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
                             CheckConstraint.ParentTable.Schema,

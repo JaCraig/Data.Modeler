@@ -61,10 +61,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// Gets the command.
         /// </summary>
         /// <returns>The command to get the source</returns>
-        public string GetCommand()
-        {
-            return "SELECT TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES";
-        }
+        public string GetCommand() => "SELECT TABLE_CATALOG, TABLE_SCHEMA, TABLE_NAME, TABLE_TYPE FROM INFORMATION_SCHEMA.TABLES";
 
         private static void SetupTable(ISource database, dynamic item)
         {

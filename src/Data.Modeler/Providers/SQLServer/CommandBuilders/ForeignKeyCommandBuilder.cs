@@ -58,8 +58,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var Commands = new List<string>();
             for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
-                ITable TempTable = desiredStructure.Tables[i];
-                ITable CurrentTable = currentStructure[TempTable.Name];
+                var TempTable = desiredStructure.Tables[i];
+                var CurrentTable = currentStructure[TempTable.Name];
                 Commands.Add((CurrentTable == null) ? GetForeignKeyCommand(TempTable) : GetForeignKeyCommand(TempTable, CurrentTable));
             }
 
@@ -73,12 +73,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var ReturnValue = new List<string>();
             for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
-                IColumn Column = table.Columns[i];
+                var Column = table.Columns[i];
                 if (Column.ForeignKey.Count > 0)
                 {
                     for (int j = 0, ColumnForeignKeyCount = Column.ForeignKey.Count; j < ColumnForeignKeyCount; j++)
                     {
-                        IColumn ForeignKey = Column.ForeignKey[j];
+                        var ForeignKey = Column.ForeignKey[j];
                         var Command = string.Format(CultureInfo.CurrentCulture,
                                     "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}].[{4}]([{5}])",
                                     Column.ParentTable.Schema,
@@ -108,12 +108,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var ReturnValue = new List<string>();
             for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
-                IColumn Column = table.Columns[i];
-                IColumn CurrentColumn = currentTable[Column.Name];
+                var Column = table.Columns[i];
+                var CurrentColumn = currentTable[Column.Name];
                 if (Column.ForeignKey.Count > 0
                     && (CurrentColumn == null || !Column.Equals(CurrentColumn)))
                 {
-                    foreach (IColumn ForeignKey in Column.ForeignKey.Where(x => CurrentColumn?.ForeignKey.Any(y => y.Name == x.Name
+                    foreach (var ForeignKey in Column.ForeignKey.Where(x => CurrentColumn?.ForeignKey.Any(y => y.Name == x.Name
                                                                                                                 && y.ParentTable.Name == x.ParentTable.Name) != true))
                     {
                         var Command = string.Format(CultureInfo.CurrentCulture,

@@ -63,9 +63,6 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// Gets the command.
         /// </summary>
         /// <returns>The command to get the source</returns>
-        public string GetCommand()
-        {
-            return "SELECT name as [Name] FROM sys.schemas WHERE schema_id < 16384 AND schema_id > 4";
-        }
+        public string GetCommand() => "SELECT name as [Name] FROM sys.schemas WHERE schema_id < 16384 AND schema_id > 4";
     }
 }

@@ -51,10 +51,7 @@ namespace Data.Modeler.Providers
         /// <param name="name">The name.</param>
         /// <param name="definition">The definition.</param>
         /// <returns>The check constraint added to the table</returns>
-        public override ICheckConstraint AddCheckConstraint(string name, string definition)
-        {
-            return null;
-        }
+        public override ICheckConstraint AddCheckConstraint(string name, string definition) => null;
 
         /// <summary>
         /// Adds a column
@@ -117,30 +114,21 @@ namespace Data.Modeler.Providers
         /// <param name="definition">Definition of the trigger</param>
         /// <param name="type">Trigger type</param>
         /// <returns>The trigger specified</returns>
-        public override ITrigger AddTrigger(string name, string definition, TriggerType type)
-        {
-            return null;
-        }
+        public override ITrigger AddTrigger(string name, string definition, TriggerType type) => null;
 
         /// <summary>
         /// Copies this instance.
         /// </summary>
         /// <param name="source">The source.</param>
         /// <returns>The copy of this instance.</returns>
-        public override ITable Copy(ISource source)
-        {
-            return new StoredProcedure(Name, Schema, Definition, source);
-        }
+        public override ITable Copy(ISource source) => new StoredProcedure(Name, Schema, Definition, source);
 
         /// <summary>
         /// Copies the specified instance
         /// </summary>
         /// <param name="source">The source.</param>
         /// <returns>The copy</returns>
-        IFunction IFunction.Copy(ISource source)
-        {
-            return new StoredProcedure(Name, Schema, Definition, source);
-        }
+        IFunction IFunction.Copy(ISource source) => new StoredProcedure(Name, Schema, Definition, source);
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
@@ -165,9 +153,6 @@ namespace Data.Modeler.Providers
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures
         /// like a hash table.
         /// </returns>
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
+        public override int GetHashCode() => Name.GetHashCode();
     }
 }

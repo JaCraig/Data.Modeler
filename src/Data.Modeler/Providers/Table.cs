@@ -45,10 +45,7 @@ namespace Data.Modeler.Providers
         /// <param name="name">The name.</param>
         /// <param name="definition">The definition.</param>
         /// <returns>The check constraint added to the table</returns>
-        public override ICheckConstraint AddCheckConstraint(string name, string definition)
-        {
-            return Constraints.AddAndReturn(new CheckConstraint(name, definition, this));
-        }
+        public override ICheckConstraint AddCheckConstraint(string name, string definition) => Constraints.AddAndReturn(new CheckConstraint(name, definition, this));
 
         /// <summary>
         /// Adds a column
@@ -114,10 +111,7 @@ namespace Data.Modeler.Providers
         /// <param name="definition">Definition of the trigger</param>
         /// <param name="type">Trigger type</param>
         /// <returns>The trigger specified</returns>
-        public override ITrigger AddTrigger(string name, string definition, TriggerType type)
-        {
-            return Triggers.AddAndReturn(new Trigger(name, definition, type, this));
-        }
+        public override ITrigger AddTrigger(string name, string definition, TriggerType type) => Triggers.AddAndReturn(new Trigger(name, definition, type, this));
 
         /// <summary>
         /// Copies this instance.
@@ -168,9 +162,6 @@ namespace Data.Modeler.Providers
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures
         /// like a hash table.
         /// </returns>
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
+        public override int GetHashCode() => Name.GetHashCode();
     }
 }

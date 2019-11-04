@@ -143,10 +143,7 @@ namespace Data.Modeler.Providers.BaseClasses
         /// </summary>
         /// <param name="columnName">Column name</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool ContainsColumn(string columnName)
-        {
-            return this[columnName] != null;
-        }
+        public bool ContainsColumn(string columnName) => this[columnName] != null;
 
         /// <summary>
         /// Copies this instance.
@@ -160,15 +157,15 @@ namespace Data.Modeler.Providers.BaseClasses
         /// </summary>
         public void SetupForeignKeys()
         {
-            for (int x = 0; x < Columns.Count; ++x)
+            for (var x = 0; x < Columns.Count; ++x)
             {
                 Columns[x].SetupForeignKeys();
             }
-            for (int x = 0; x < Columns.Count; ++x)
+            for (var x = 0; x < Columns.Count; ++x)
             {
-                for (int y = x + 1; y < Columns.Count; ++y)
+                for (var y = x + 1; y < Columns.Count; ++y)
                 {
-                    for (int z = 0; z < Columns[x].ForeignKey.Count; ++z)
+                    for (var z = 0; z < Columns[x].ForeignKey.Count; ++z)
                     {
                         if (Columns[y].ForeignKey.Contains(Columns[x].ForeignKey[z]))
                         {

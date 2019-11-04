@@ -57,7 +57,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var Commands = new List<string>();
             for (int i = 0, desiredStructureStoredProceduresCount = desiredStructure.StoredProcedures.Count; i < desiredStructureStoredProceduresCount; i++)
             {
-                IFunction TempStoredProcedure = desiredStructure.StoredProcedures[i];
+                var TempStoredProcedure = desiredStructure.StoredProcedures[i];
                 var CurrentStoredProcedure = currentStructure.StoredProcedures.Find(x => x.Name == TempStoredProcedure.Name);
                 Commands.Add(CurrentStoredProcedure != null ? GetAlterStoredProcedure(TempStoredProcedure, CurrentStoredProcedure) : GetStoredProcedure(TempStoredProcedure));
             }

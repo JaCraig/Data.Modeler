@@ -241,29 +241,26 @@ namespace Data.Modeler.Providers
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures
         /// like a hash table.
         /// </returns>
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
+        public override int GetHashCode() => Name.GetHashCode();
 
         /// <summary>
         /// Sets up the foreign key list
         /// </summary>
         public void SetupForeignKeys()
         {
-            ISource TempDatabase = ParentTable.Source;
-            for (int x = 0; x < ForeignKeyColumns.Count; ++x)
+            var TempDatabase = ParentTable.Source;
+            for (var x = 0; x < ForeignKeyColumns.Count; ++x)
             {
                 if (TempDatabase != null)
                 {
                     for (int i = 0, TempDatabaseTablesCount = TempDatabase.Tables.Count; i < TempDatabaseTablesCount; i++)
                     {
-                        ITable TempTable = TempDatabase.Tables[i];
+                        var TempTable = TempDatabase.Tables[i];
                         if (TempTable.Name == ForeignKeyTables[x])
                         {
                             for (int j = 0, TempTableColumnsCount = TempTable.Columns.Count; j < TempTableColumnsCount; j++)
                             {
-                                IColumn TempColumn = TempTable.Columns[j];
+                                var TempColumn = TempTable.Columns[j];
                                 if (TempColumn.Name == ForeignKeyColumns[x])
                                 {
                                     ForeignKey.Add(TempColumn);

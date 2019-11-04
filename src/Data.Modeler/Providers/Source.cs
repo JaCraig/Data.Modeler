@@ -42,10 +42,7 @@ namespace Data.Modeler.Providers
         /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">Function definition</param>
         /// <returns>Function that was created/added</returns>
-        public override IFunction AddFunction(string name, string schemaName, string definition)
-        {
-            return Functions.AddAndReturn(new Function(name, schemaName, definition, this));
-        }
+        public override IFunction AddFunction(string name, string schemaName, string definition) => Functions.AddAndReturn(new Function(name, schemaName, definition, this));
 
         /// <summary>
         /// Adds a stored procedure to the database
@@ -54,10 +51,7 @@ namespace Data.Modeler.Providers
         /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">Definition</param>
         /// <returns>The stored procedure</returns>
-        public override IFunction AddStoredProcedure(string procedureName, string schemaName, string definition)
-        {
-            return StoredProcedures.AddAndReturn(new StoredProcedure(procedureName, schemaName, definition, this));
-        }
+        public override IFunction AddStoredProcedure(string procedureName, string schemaName, string definition) => StoredProcedures.AddAndReturn(new StoredProcedure(procedureName, schemaName, definition, this));
 
         /// <summary>
         /// Adds a table to the database
@@ -65,10 +59,7 @@ namespace Data.Modeler.Providers
         /// <param name="tableName">Table name</param>
         /// <param name="schemaName">Name of the schema.</param>
         /// <returns>Table that was created/added</returns>
-        public override ITable AddTable(string tableName, string schemaName)
-        {
-            return Tables.AddAndReturn(new Table(tableName, schemaName, this));
-        }
+        public override ITable AddTable(string tableName, string schemaName) => Tables.AddAndReturn(new Table(tableName, schemaName, this));
 
         /// <summary>
         /// Adds a view to the database
@@ -77,10 +68,7 @@ namespace Data.Modeler.Providers
         /// <param name="schemaName">Name of the schema.</param>
         /// <param name="definition">The definition.</param>
         /// <returns>The resulting view object</returns>
-        public override IFunction AddView(string viewName, string schemaName, string definition)
-        {
-            return Views.AddAndReturn(new View(viewName, schemaName, definition, this));
-        }
+        public override IFunction AddView(string viewName, string schemaName, string definition) => Views.AddAndReturn(new View(viewName, schemaName, definition, this));
 
         /// <summary>
         /// Determines whether the specified <see cref="System.Object"/>, is equal to this instance.
@@ -108,9 +96,6 @@ namespace Data.Modeler.Providers
         /// A hash code for this instance, suitable for use in hashing algorithms and data structures
         /// like a hash table.
         /// </returns>
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
+        public override int GetHashCode() => Name.GetHashCode();
     }
 }

@@ -57,7 +57,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var Commands = new List<string>();
             for (int i = 0, desiredStructureViewsCount = desiredStructure.Views.Count; i < desiredStructureViewsCount; i++)
             {
-                IFunction TempView = desiredStructure.Views[i];
+                var TempView = desiredStructure.Views[i];
                 var CurrentView = (View)currentStructure.Views.Find(x => x.Name == TempView.Name);
                 Commands.Add(CurrentView != null ? GetAlterViewCommand(TempView, CurrentView) : GetViewCommand(TempView));
             }

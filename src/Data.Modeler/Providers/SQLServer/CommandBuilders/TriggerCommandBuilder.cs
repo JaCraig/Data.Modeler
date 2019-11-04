@@ -57,8 +57,8 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var Commands = new List<string>();
             for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
-                ITable TempTable = desiredStructure.Tables[i];
-                ITable CurrentTable = currentStructure[TempTable.Name];
+                var TempTable = desiredStructure.Tables[i];
+                var CurrentTable = currentStructure[TempTable.Name];
                 Commands.Add((CurrentTable == null) ? GetTriggerCommand(TempTable) : GetAlterTriggerCommand(TempTable, CurrentTable));
             }
 
@@ -72,9 +72,9 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var ReturnValue = new List<string>();
             for (int i = 0, tableTriggersCount = table.Triggers.Count; i < tableTriggersCount; i++)
             {
-                ITrigger Trigger = table.Triggers[i];
+                var Trigger = table.Triggers[i];
                 var Trigger2 = currentTable.Triggers.Find(x => Trigger.Name == x.Name);
-                string Definition1 = Trigger.Definition;
+                var Definition1 = Trigger.Definition;
                 var Definition2 = Trigger2.Definition;
                 if (Definition2 == null)
                 {
@@ -99,7 +99,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var ReturnValue = new List<string>();
             for (int i = 0, tableTriggersCount = table.Triggers.Count; i < tableTriggersCount; i++)
             {
-                ITrigger Trigger = table.Triggers[i];
+                var Trigger = table.Triggers[i];
                 ReturnValue.Add(Trigger.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " "));
             }
 

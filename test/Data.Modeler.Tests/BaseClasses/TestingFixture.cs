@@ -103,7 +103,7 @@ namespace Data.Modeler.Tests.BaseClasses
                     }
                 }
                 var Queries = new FileInfo("./Scripts/script.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (string Query in Queries)
+                foreach (var Query in Queries)
                 {
                     new SQLHelper(Configuration, SqlClientFactory.Instance)
                         .CreateBatch()
@@ -111,7 +111,7 @@ namespace Data.Modeler.Tests.BaseClasses
                         .ExecuteScalar<int>();
                 }
                 Queries = new FileInfo("./Scripts/testdatabase.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (string Query in Queries)
+                foreach (var Query in Queries)
                 {
                     new SQLHelper(Configuration, SqlClientFactory.Instance, "Default2")
                         .CreateBatch()

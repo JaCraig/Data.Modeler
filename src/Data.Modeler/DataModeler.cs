@@ -31,10 +31,7 @@ namespace Data.Modeler
         /// </summary>
         /// <param name="name">The name.</param>
         /// <returns>The source requested.</returns>
-        public static ISource CreateSource(string name)
-        {
-            return new Source(name);
-        }
+        public static ISource CreateSource(string name) => new Source(name);
 
         /// <summary>
         /// Gets the schema generator based on the DbProviderFactory sent in.
