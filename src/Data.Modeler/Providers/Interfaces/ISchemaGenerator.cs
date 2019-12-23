@@ -44,7 +44,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// </summary>
         /// <param name="connectionInfo">The connection information.</param>
         /// <returns>The source structure</returns>
-        ISource GetSourceStructure(IConnection connectionInfo);
+        ISource? GetSourceStructure(IConnection connectionInfo);
 
         /// <summary>
         /// Sets up the specified source.

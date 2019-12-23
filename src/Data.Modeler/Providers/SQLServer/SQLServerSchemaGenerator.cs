@@ -30,7 +30,7 @@ namespace Data.Modeler.Providers.SQLServer
     /// <summary>
     /// SQL Server schema generator
     /// </summary>
-    /// <seealso cref="Data.Modeler.Providers.Interfaces.ISchemaGenerator"/>
+    /// <seealso cref="ISchemaGenerator"/>
     public class SQLServerSchemaGenerator : ISchemaGenerator
     {
         /// <summary>
@@ -77,10 +77,10 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="desiredStructure">Desired source structure</param>
         /// <param name="source">Source to use</param>
         /// <returns>List of commands generated</returns>
-        public string[] GenerateSchema(ISource desiredStructure, ISource source)
+        public string[] GenerateSchema(ISource desiredStructure, ISource? source)
         {
             var Commands = new List<string>();
-            desiredStructure = desiredStructure ?? new Source("");
+            desiredStructure ??= new Source("");
             for (int i = 0, CommandBuildersLength = CommandBuilders.Length; i < CommandBuildersLength; i++)
             {
                 var CommandBuilder = CommandBuilders[i];
@@ -95,9 +95,9 @@ namespace Data.Modeler.Providers.SQLServer
         /// </summary>
         /// <param name="connectionInfo">Source to use</param>
         /// <returns>The source structure</returns>
-        public ISource GetSourceStructure(IConnection connectionInfo)
+        public ISource? GetSourceStructure(IConnection connectionInfo)
         {
-            var DatabaseName = connectionInfo.DatabaseName;
+            var DatabaseName = connectionInfo.DatabaseName ?? "";
             var DatabaseSource = new Connection(connectionInfo.Configuration, connectionInfo.Factory, connectionInfo.ConnectionString.RemoveInitialCatalog(), "Name");
             if (!SourceExists(DatabaseName, DatabaseSource))
                 return null;

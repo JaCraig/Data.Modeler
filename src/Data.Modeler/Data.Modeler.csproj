@@ -10,7 +10,7 @@
     <Description>Data.Modeler helps to model database schemas using C#.</Description>
     <AssemblyTitle>Data.Modeler</AssemblyTitle>
     <Authors>James Craig</Authors>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Data.Modeler</AssemblyName>
     <PackageId>Data.Modeler</PackageId>
@@ -21,7 +21,8 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>2.0.$(BuildNumber)</Version>
+    <Version>3.0.$(BuildNumber)</Version>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -33,8 +34,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BigBook" Version="2.1.12" />
-    <PackageReference Include="SQLHelper.DB" Version="2.0.16" />
+    <PackageReference Include="BigBook" Version="3.0.0" />
+    <PackageReference Include="SQLHelper.DB" Version="3.0.0" />
   </ItemGroup>
 
 </Project>

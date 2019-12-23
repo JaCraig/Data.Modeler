@@ -49,11 +49,11 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        public string[] GetCommands(ISource desiredStructure, ISource currentStructure)
+        public string[] GetCommands(ISource desiredStructure, ISource? currentStructure)
         {
             if (desiredStructure == null)
                 return Array.Empty<string>();
-            currentStructure = currentStructure ?? new Source(desiredStructure.Name);
+            currentStructure ??= new Source(desiredStructure.Name);
             var Commands = new List<string>();
             for (int i = 0, desiredStructureViewsCount = desiredStructure.Views.Count; i < desiredStructureViewsCount; i++)
             {

@@ -33,16 +33,6 @@ namespace Data.Modeler.Providers
         /// <summary>
         /// Constructor
         /// </summary>
-        public Column()
-        {
-            ForeignKey = new List<IColumn>();
-            ForeignKeyColumns = new List<string>();
-            ForeignKeyTables = new List<string>();
-        }
-
-        /// <summary>
-        /// Constructor
-        /// </summary>
         /// <param name="name">Name of the column</param>
         /// <param name="columnType">The data type</param>
         /// <param name="length">The data length</param>
@@ -64,10 +54,11 @@ namespace Data.Modeler.Providers
             string foreignKeyColumn, T defaultValue, string computedColumnSpecification, bool onDeleteCascade, bool onUpdateCascade,
             bool onDeleteSetNull, ITable parentTable)
         {
-            Name = name;
             ForeignKey = new List<IColumn>();
             ForeignKeyColumns = new List<string>();
             ForeignKeyTables = new List<string>();
+            Default = "";
+            Name = name;
             ParentTable = parentTable;
             DataType = columnType;
             Length = length;
@@ -238,8 +229,8 @@ namespace Data.Modeler.Providers
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures
-        /// like a hash table.
+        /// A hash code for this instance, suitable for use in hashing algorithms and data
+        /// structures like a hash table.
         /// </returns>
         public override int GetHashCode() => Name.GetHashCode();
 
@@ -277,12 +268,12 @@ namespace Data.Modeler.Providers
 
         private void SetDefaultValue(T defaultValue)
         {
-            if (new GenericEqualityComparer<T>().Equals(defaultValue, default))
+            if (new GenericEqualityComparer<T>().Equals(defaultValue, default!))
             {
                 Default = "";
                 return;
             }
-            Default = defaultValue.ToString().Replace("(", "").Replace(")", "").Replace("'", "''");
+            Default = defaultValue?.ToString().Replace("(", "").Replace(")", "").Replace("'", "''") ?? "";
             if (string.IsNullOrEmpty(Default))
                 return;
             if (defaultValue is bool boolDefault)

@@ -93,7 +93,7 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <param name="name">The name.</param>
         /// <param name="definition">The definition.</param>
         /// <returns>The check constraint added to the table</returns>
-        public abstract ICheckConstraint AddCheckConstraint(string name, string definition);
+        public abstract ICheckConstraint? AddCheckConstraint(string name, string definition);
 
         /// <summary>
         /// Adds a column
@@ -136,7 +136,7 @@ namespace Data.Modeler.Providers.BaseClasses
         /// <param name="definition">Definition of the trigger</param>
         /// <param name="type">Trigger type</param>
         /// <returns>The trigger specified</returns>
-        public abstract ITrigger AddTrigger(string name, string definition, Enums.TriggerType type);
+        public abstract ITrigger? AddTrigger(string name, string definition, Enums.TriggerType type);
 
         /// <summary>
         /// Determines if a column exists in the table

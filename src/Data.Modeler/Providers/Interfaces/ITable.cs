@@ -80,7 +80,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <param name="name">The name.</param>
         /// <param name="definition">The definition.</param>
         /// <returns>The check constraint added to the table</returns>
-        ICheckConstraint AddCheckConstraint(string name, string definition);
+        ICheckConstraint? AddCheckConstraint(string name, string definition);
 
         /// <summary>
         /// Adds a column
@@ -123,7 +123,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <param name="definition">Trigger definition</param>
         /// <param name="type">Trigger type</param>
         /// <returns>Trigger added to the table</returns>
-        ITrigger AddTrigger(string name, string definition, TriggerType type);
+        ITrigger? AddTrigger(string name, string definition, TriggerType type);
 
         /// <summary>
         /// Determines if a column exists in the table

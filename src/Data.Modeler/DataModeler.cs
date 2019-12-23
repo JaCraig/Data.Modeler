@@ -38,7 +38,7 @@ namespace Data.Modeler
         /// </summary>
         /// <param name="factory">The DbProviderFactory.</param>
         /// <returns>The requested schema generator</returns>
-        public static ISchemaGenerator GetSchemaGenerator(DbProviderFactory factory)
+        public static ISchemaGenerator? GetSchemaGenerator(DbProviderFactory factory)
         {
             if (Canister.Builder.Bootstrapper == null)
                 return null;

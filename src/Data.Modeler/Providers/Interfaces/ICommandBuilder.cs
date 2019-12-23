@@ -43,6 +43,6 @@ namespace Data.Modeler.Providers.Interfaces
         /// <returns>
         /// The list of commands needed to change the structure from the current to the desired structure
         /// </returns>
-        string[] GetCommands(ISource desiredStructure, ISource currentStructure);
+        string[] GetCommands(ISource desiredStructure, ISource? currentStructure);
     }
 }
