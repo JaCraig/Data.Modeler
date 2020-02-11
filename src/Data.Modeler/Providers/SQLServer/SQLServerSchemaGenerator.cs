@@ -50,10 +50,22 @@ namespace Data.Modeler.Providers.SQLServer
         public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
 
         /// <summary>
+        /// Gets or sets the batch.
+        /// </summary>
+        /// <value>The batch.</value>
+        private SQLHelper Batch { get; set; }
+
+        /// <summary>
         /// Gets the command builders.
         /// </summary>
         /// <value>The command builders.</value>
         private ICommandBuilder[] CommandBuilders { get; }
+
+        /// <summary>
+        /// Gets or sets the one off queries.
+        /// </summary>
+        /// <value>The one off queries.</value>
+        private SQLHelper OneOffQueries { get; set; }
 
         /// <summary>
         /// Gets or sets the query builders.
@@ -104,8 +116,8 @@ namespace Data.Modeler.Providers.SQLServer
             if (!SourceExists(DatabaseName, DatabaseSource))
                 return null;
             var Temp = new Source(DatabaseName);
-            var Batch = new SQLHelper(connectionInfo.Configuration, connectionInfo.Factory, connectionInfo.ConnectionString)
-                                     .CreateBatch();
+            Batch ??= new SQLHelper(connectionInfo);
+            Batch.CreateBatch(connectionInfo);
             for (int i = 0, QueryBuildersLength = QueryBuilders.Length; i < QueryBuildersLength; i++)
             {
                 var Builder = QueryBuilders[i];
@@ -133,14 +145,15 @@ namespace Data.Modeler.Providers.SQLServer
             var CurrentSource = GetSourceStructure(connection);
             var Commands = GenerateSchema(source, CurrentSource).ToArray();
 
-            var DatabaseSource = new Connection(connection.Configuration, connection.Factory, connection.ConnectionString.RemoveInitialCatalog(), "Name");
-            var Batch = new SQLHelper(connection.Configuration, connection.Factory, connection.ConnectionString);
+            var DatabaseConnectionString = connection.ConnectionString.RemoveInitialCatalog();
+            Batch ??= new SQLHelper(connection);
+            Batch.CreateBatch(connection);
             for (var x = 0; x < Commands.Length; ++x)
             {
                 if (Commands[x].IndexOf("CREATE DATABASE", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
-                    new SQLHelper(connection.Configuration, connection.Factory, DatabaseSource.ConnectionString)
-                                 .CreateBatch()
+                    OneOffQueries ??= new SQLHelper(connection.Configuration, connection.Factory, DatabaseConnectionString);
+                    OneOffQueries.CreateBatch(connection.Configuration, connection.Factory, DatabaseConnectionString)
                                  .AddQuery(CommandType.Text, Commands[x])
                                  .Execute();
                 }
@@ -213,11 +226,12 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="value">The value.</param>
         /// <param name="source">The source.</param>
         /// <returns>True if it does, false otherwise.</returns>
-        private static bool Exists(string command, string value, IConnection source)
+        private bool Exists(string command, string value, IConnection source)
         {
             if (source == null || value == null || command == null)
                 return false;
-            return new SQLHelper(source.Configuration, source.Factory, source.ConnectionString)
+            OneOffQueries ??= new SQLHelper(source.Configuration, source.Factory, source.ConnectionString);
+            return OneOffQueries.CreateBatch(source.Configuration, source.Factory, source.ConnectionString)
                            .AddQuery(CommandType.Text, command, value)
                            .Execute()[0]
                            .Count > 0;
