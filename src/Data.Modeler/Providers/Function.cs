@@ -15,6 +15,7 @@ limitations under the License.
 */
 
 using Data.Modeler.Providers.Interfaces;
+using System;
 
 namespace Data.Modeler.Providers
 {
@@ -77,17 +78,17 @@ namespace Data.Modeler.Providers
         public override bool Equals(object obj)
         {
             return (obj is Function Item)
-                && (Definition == Item.Definition
-                && Name == Item.Name);
+                && Definition == Item.Definition
+                && Name == Item.Name;
         }
 
         /// <summary>
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures
-        /// like a hash table.
+        /// A hash code for this instance, suitable for use in hashing algorithms and data
+        /// structures like a hash table.
         /// </returns>
-        public override int GetHashCode() => Name.GetHashCode();
+        public override int GetHashCode() => Name.GetHashCode(StringComparison.InvariantCulture);
     }
 }

@@ -39,21 +39,17 @@ namespace Data.Modeler.Tests.BaseClasses
 
         public void Dispose()
         {
-            using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
+            using var TempConnection = SqlClientFactory.Instance.CreateConnection();
+            TempConnection.ConnectionString = MasterString;
+            using var TempCommand = TempConnection.CreateCommand();
+            try
             {
-                TempConnection.ConnectionString = MasterString;
-                using (var TempCommand = TempConnection.CreateCommand())
-                {
-                    try
-                    {
-                        TempCommand.CommandText = "ALTER DATABASE TestDatabase SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase SET ONLINE\r\nDROP DATABASE TestDatabase\r\nALTER DATABASE TestDatabaseForeignKeys SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabaseForeignKeys SET ONLINE\r\nDROP DATABASE TestDatabaseForeignKeys";
-                        TempCommand.Open();
-                        TempCommand.ExecuteNonQuery();
-                    }
-                    catch { }
-                    finally { TempCommand.Close(); }
-                }
+                TempCommand.CommandText = "ALTER DATABASE TestDatabase SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase SET ONLINE\r\nDROP DATABASE TestDatabase\r\nALTER DATABASE TestDatabaseForeignKeys SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabaseForeignKeys SET ONLINE\r\nDROP DATABASE TestDatabaseForeignKeys";
+                TempCommand.Open();
+                TempCommand.ExecuteNonQuery();
             }
+            catch { }
+            finally { TempCommand.Close(); }
         }
 
         private void SetupConfiguration()
@@ -77,30 +73,26 @@ namespace Data.Modeler.Tests.BaseClasses
                 using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
                 {
                     TempConnection.ConnectionString = MasterString;
-                    using (var TempCommand = TempConnection.CreateCommand())
+                    using var TempCommand = TempConnection.CreateCommand();
+                    try
                     {
-                        try
-                        {
-                            TempCommand.CommandText = "Create Database TestDatabase";
-                            TempCommand.Open();
-                            TempCommand.ExecuteNonQuery();
-                        }
-                        finally { TempCommand.Close(); }
+                        TempCommand.CommandText = "Create Database TestDatabase";
+                        TempCommand.Open();
+                        TempCommand.ExecuteNonQuery();
                     }
+                    finally { TempCommand.Close(); }
                 }
                 using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
                 {
                     TempConnection.ConnectionString = MasterString;
-                    using (var TempCommand = TempConnection.CreateCommand())
+                    using var TempCommand = TempConnection.CreateCommand();
+                    try
                     {
-                        try
-                        {
-                            TempCommand.CommandText = "Create Database TestDatabaseForeignKeys";
-                            TempCommand.Open();
-                            TempCommand.ExecuteNonQuery();
-                        }
-                        finally { TempCommand.Close(); }
+                        TempCommand.CommandText = "Create Database TestDatabaseForeignKeys";
+                        TempCommand.Open();
+                        TempCommand.ExecuteNonQuery();
                     }
+                    finally { TempCommand.Close(); }
                 }
                 var Queries = new FileInfo("./Scripts/script.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var Query in Queries)

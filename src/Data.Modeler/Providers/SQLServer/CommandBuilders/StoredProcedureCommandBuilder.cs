@@ -75,7 +75,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 return GetStoredProcedure(storedProcedure);
             if (storedProcedure.Definition == currentStoredProcedure.Definition)
                 return Array.Empty<string>();
-            return new List<string>{string.Format(CultureInfo.CurrentCulture,
+            return new List<string>{string.Format(CultureInfo.InvariantCulture,
                     "DROP PROCEDURE [{0}].[{1}]",
                     storedProcedure.Schema,
                     storedProcedure.Name),
@@ -87,7 +87,13 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         {
             if (storedProcedure == null || storedProcedure.Definition == null)
                 return Array.Empty<string>();
-            return new string[] { storedProcedure.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " ") };
+            return new string[] {
+                storedProcedure
+                    .Definition
+                    .RemoveComments()
+                    .Replace("\n", " ",StringComparison.Ordinal)
+                    .Replace("\r", " ", StringComparison.Ordinal)
+            };
         }
     }
 }

@@ -76,7 +76,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             if (view.Definition == currentView.Definition)
                 return Array.Empty<string>();
             return new List<string> {
-                string.Format(CultureInfo.CurrentCulture,
+                string.Format(CultureInfo.InvariantCulture,
                     "DROP VIEW [{0}].[{1}]",
                     view.Schema,
                     view.Name),
@@ -88,7 +88,13 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         {
             if (view == null || view.Definition == null)
                 return Array.Empty<string>();
-            return new string[] { view.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " ") };
+            return new string[] {
+                view
+                    .Definition
+                    .RemoveComments()
+                    .Replace("\n", " ",StringComparison.Ordinal)
+                    .Replace("\r", " ",StringComparison.Ordinal)
+            };
         }
     }
 }

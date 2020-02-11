@@ -27,7 +27,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
     /// <summary>
     /// Function command builder
     /// </summary>
-    /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
+    /// <seealso cref="ICommandBuilder"/>
     public class CreateFunctionCommandBuilder : ICommandBuilder
     {
         /// <summary>
@@ -77,7 +77,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 return Array.Empty<string>();
             return new List<string>
             {
-                string.Format(CultureInfo.CurrentCulture,
+                string.Format(CultureInfo.InvariantCulture,
                     "DROP FUNCTION [{0}].[{1}]",
                     function.Schema,
                     function.Name),
@@ -89,7 +89,13 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         {
             if (function == null || function.Definition == null)
                 return Array.Empty<string>();
-            return new string[] { function.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " ") };
+            return new string[] {
+                function
+                    .Definition
+                    .RemoveComments()
+                    .Replace("\n", " ", StringComparison.Ordinal)
+                    .Replace("\r", " ", StringComparison.Ordinal)
+            };
         }
     }
 }

@@ -16,6 +16,7 @@ limitations under the License.
 
 using Data.Modeler.Providers.Enums;
 using Data.Modeler.Providers.Interfaces;
+using System;
 
 namespace Data.Modeler.Providers
 {
@@ -76,9 +77,8 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is Trigger Item))
-                return false;
-            return Definition == Item.Definition
+            return (obj is Trigger Item)
+                && Definition == Item.Definition
                 && Name == Item.Name
                 && Type == Item.Type;
         }
@@ -87,9 +87,9 @@ namespace Data.Modeler.Providers
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures
-        /// like a hash table.
+        /// A hash code for this instance, suitable for use in hashing algorithms and data
+        /// structures like a hash table.
         /// </returns>
-        public override int GetHashCode() => Name.GetHashCode();
+        public override int GetHashCode() => Name.GetHashCode(StringComparison.InvariantCulture);
     }
 }

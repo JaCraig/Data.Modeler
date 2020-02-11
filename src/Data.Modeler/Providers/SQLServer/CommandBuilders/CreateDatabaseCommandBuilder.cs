@@ -49,10 +49,10 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public string[] GetCommands(ISource desiredStructure, ISource? currentStructure)
         {
-            if (currentStructure != null)
+            if (currentStructure != null || desiredStructure == null)
                 return Array.Empty<string>();
             return new string[] {
-                string.Format(CultureInfo.CurrentCulture,
+                string.Format(CultureInfo.InvariantCulture,
                 "CREATE DATABASE [{0}]",
                 desiredStructure.Name)
             };

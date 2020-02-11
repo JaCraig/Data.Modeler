@@ -37,9 +37,11 @@ namespace Data.Modeler.Modules
         /// <param name="bootstrapper">The bootstrapper.</param>
         public void Load(IBootstrapper bootstrapper)
         {
-            bootstrapper.RegisterAll<ICommandBuilder>();
-            bootstrapper.RegisterAll<ISourceBuilder>();
-            bootstrapper.RegisterAll<ISchemaGenerator>(ServiceLifetime.Singleton);
+            if (bootstrapper == null)
+                return;
+            bootstrapper.RegisterAll<ICommandBuilder>()
+                .RegisterAll<ISourceBuilder>()
+                .RegisterAll<ISchemaGenerator>(ServiceLifetime.Singleton);
         }
     }
 }

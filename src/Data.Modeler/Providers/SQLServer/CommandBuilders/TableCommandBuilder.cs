@@ -81,7 +81,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 {
                     if (string.IsNullOrEmpty(Column.ComputedColumnSpecification))
                     {
-                        Command = string.Format(CultureInfo.CurrentCulture,
+                        Command = string.Format(CultureInfo.InvariantCulture,
                             "ALTER TABLE [{0}].[{1}] ADD [{2}] {3}",
                             table.Schema,
                             table.Name,
@@ -103,7 +103,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     }
                     else
                     {
-                        Command = string.Format(CultureInfo.CurrentCulture,
+                        Command = string.Format(CultureInfo.InvariantCulture,
                             "ALTER TABLE [{0}].[{1}] ADD [{2}] AS ({3})",
                             table.Schema,
                             table.Name,
@@ -119,7 +119,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                         && CurrentColumn.Length.Between(1, 4000)
                         && Column.Length.Between(1, 4000)))
                 {
-                    Command = string.Format(CultureInfo.CurrentCulture,
+                    Command = string.Format(CultureInfo.InvariantCulture,
                         "ALTER TABLE [{0}].[{1}] ALTER COLUMN [{2}] {3}",
                         table.Schema,
                         table.Name,
@@ -198,7 +198,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 }
                 if (!string.IsNullOrEmpty(Column.ComputedColumnSpecification))
                 {
-                    Builder.AppendFormat(" AS ({0})", Column.ComputedColumnSpecification);
+                    Builder.AppendFormat(CultureInfo.InvariantCulture, " AS ({0})", Column.ComputedColumnSpecification);
                 }
                 Splitter = ",";
             }
@@ -210,7 +210,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             Builder.Append(")");
             if (table.Audit)
             {
-                Builder.AppendFormat("WITH ( SYSTEM_VERSIONING = ON (HISTORY_TABLE = [{0}].[{1}]) ) ", table.Schema, table.Name + "_Audit");
+                Builder.AppendFormat(CultureInfo.InvariantCulture, "WITH ( SYSTEM_VERSIONING = ON (HISTORY_TABLE = [{0}].[{1}]) ) ", table.Schema, table.Name + "_Audit");
             }
             ReturnValue.Add(Builder.ToString());
             var Counter = 0;
@@ -221,7 +221,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 {
                     if (Column.Index && Column.Unique)
                     {
-                        ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                        ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
                             "CREATE UNIQUE INDEX [Index_{0}{1}] ON [{2}].[{3}]([{4}])",
                             Column.Name,
                             Counter.ToString(CultureInfo.InvariantCulture),
@@ -231,7 +231,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     }
                     else if (Column.Index)
                     {
-                        ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                        ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
                             "CREATE INDEX [Index_{0}{1}] ON [{2}].[{3}]([{4}])",
                             Column.Name,
                             Counter.ToString(CultureInfo.InvariantCulture),

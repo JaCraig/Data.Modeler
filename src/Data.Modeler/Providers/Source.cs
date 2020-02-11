@@ -17,6 +17,7 @@ limitations under the License.
 using BigBook;
 using Data.Modeler.Providers.BaseClasses;
 using Data.Modeler.Providers.Interfaces;
+using System;
 using System.Linq;
 
 namespace Data.Modeler.Providers
@@ -80,9 +81,8 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is Source Item))
-                return false;
-            return Functions.All(x => Item.Functions.Contains(x))
+            return (obj is Source Item)
+                && Functions.All(x => Item.Functions.Contains(x))
                 && Name == Item.Name
                 && StoredProcedures.All(x => Item.StoredProcedures.Contains(x))
                 && Tables.All(x => Item.Tables.Contains(x))
@@ -93,9 +93,9 @@ namespace Data.Modeler.Providers
         /// Returns a hash code for this instance.
         /// </summary>
         /// <returns>
-        /// A hash code for this instance, suitable for use in hashing algorithms and data structures
-        /// like a hash table.
+        /// A hash code for this instance, suitable for use in hashing algorithms and data
+        /// structures like a hash table.
         /// </returns>
-        public override int GetHashCode() => Name.GetHashCode();
+        public override int GetHashCode() => Name.GetHashCode(StringComparison.InvariantCulture);
     }
 }

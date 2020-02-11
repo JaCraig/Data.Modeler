@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -58,7 +59,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 var Schema = desiredStructure.Schemas[i];
                 if (!currentStructure.Schemas.Contains(Schema))
                 {
-                    Commands.Add(string.Format("CREATE SCHEMA {0}", Schema));
+                    Commands.Add(string.Format(CultureInfo.InvariantCulture, "CREATE SCHEMA {0}", Schema));
                 }
             }
 

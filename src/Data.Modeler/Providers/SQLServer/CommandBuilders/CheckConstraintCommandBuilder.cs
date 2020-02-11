@@ -76,7 +76,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 var CheckConstraint2 = currentTable.Constraints.Find(x => CheckConstraint.Name == x.Name);
                 if (CheckConstraint2 == null)
                 {
-                    ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                    ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
                             "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
                             CheckConstraint.ParentTable.Schema,
                             CheckConstraint.ParentTable.Name,
@@ -85,12 +85,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 }
                 else if (!string.Equals(CheckConstraint.Definition, CheckConstraint2.Definition, StringComparison.OrdinalIgnoreCase))
                 {
-                    ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                    ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
                         "ALTER TABLE [{0}].[{1}] DROP CONSTRAINT [{2}]",
                         CheckConstraint.ParentTable.Schema,
                         CheckConstraint.ParentTable.Name,
                         CheckConstraint.Name));
-                    ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                    ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
                         "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
                         CheckConstraint.ParentTable.Schema,
                         CheckConstraint.ParentTable.Name,
@@ -110,7 +110,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             for (int i = 0, tableConstraintsCount = table.Constraints.Count; i < tableConstraintsCount; i++)
             {
                 var CheckConstraint = table.Constraints[i];
-                ReturnValue[i] = string.Format(CultureInfo.CurrentCulture,
+                ReturnValue[i] = string.Format(CultureInfo.InvariantCulture,
                             "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
                             CheckConstraint.ParentTable.Schema,
                             CheckConstraint.ParentTable.Name,

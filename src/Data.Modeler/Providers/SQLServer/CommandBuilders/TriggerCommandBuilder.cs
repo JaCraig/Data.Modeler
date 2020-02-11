@@ -78,14 +78,22 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 var Definition2 = Trigger2.Definition;
                 if (Definition2 == null)
                 {
-                    ReturnValue.Add(Trigger.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " "));
+                    ReturnValue.Add(Trigger
+                        .Definition
+                        .RemoveComments()
+                        .Replace("\n", " ", StringComparison.Ordinal)
+                        .Replace("\r", " ", StringComparison.Ordinal));
                 }
                 else if (!string.Equals(Definition1, Definition2, StringComparison.OrdinalIgnoreCase))
                 {
-                    ReturnValue.Add(string.Format(CultureInfo.CurrentCulture,
+                    ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
                         "DROP TRIGGER [{0}]",
                         Trigger.Name));
-                    ReturnValue.Add(Trigger.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " "));
+                    ReturnValue.Add(Trigger
+                        .Definition
+                        .RemoveComments()
+                        .Replace("\n", " ", StringComparison.Ordinal)
+                        .Replace("\r", " ", StringComparison.Ordinal));
                 }
             }
 
@@ -100,7 +108,11 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             for (int i = 0, tableTriggersCount = table.Triggers.Count; i < tableTriggersCount; i++)
             {
                 var Trigger = table.Triggers[i];
-                ReturnValue.Add(Trigger.Definition.RemoveComments().Replace("\n", " ").Replace("\r", " "));
+                ReturnValue.Add(Trigger
+                    .Definition
+                    .RemoveComments()
+                    .Replace("\n", " ", StringComparison.Ordinal)
+                    .Replace("\r", " ", StringComparison.Ordinal));
             }
 
             return ReturnValue;

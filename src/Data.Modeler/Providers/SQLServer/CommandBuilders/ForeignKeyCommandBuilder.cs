@@ -79,7 +79,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     for (int j = 0, ColumnForeignKeyCount = Column.ForeignKey.Count; j < ColumnForeignKeyCount; j++)
                     {
                         var ForeignKey = Column.ForeignKey[j];
-                        var Command = string.Format(CultureInfo.CurrentCulture,
+                        var Command = string.Format(CultureInfo.InvariantCulture,
                                     "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}].[{4}]([{5}])",
                                     Column.ParentTable.Schema,
                                     Column.ParentTable.Name,
@@ -116,7 +116,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     foreach (var ForeignKey in Column.ForeignKey.Where(x => CurrentColumn?.ForeignKey.Any(y => y.Name == x.Name
                                                                                                                 && y.ParentTable.Name == x.ParentTable.Name) != true))
                     {
-                        var Command = string.Format(CultureInfo.CurrentCulture,
+                        var Command = string.Format(CultureInfo.InvariantCulture,
                             "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}].[{4}]([{5}])",
                             Column.ParentTable.Schema,
                             Column.ParentTable.Name,

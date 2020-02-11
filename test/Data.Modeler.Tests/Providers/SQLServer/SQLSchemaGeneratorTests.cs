@@ -109,20 +109,16 @@ namespace Data.Modeler.Tests.Providers.SQLServer
             TestObject.Setup(Source, new Connection(Configuration, SqlClientFactory.Instance, "", "DefaultNew"));
             TestObject.SourceExists("TestDatabase2", new Connection(Configuration, SqlClientFactory.Instance, "", "DefaultNew"));
 
-            using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
+            using var TempConnection = SqlClientFactory.Instance.CreateConnection();
+            TempConnection.ConnectionString = MasterString;
+            using var TempCommand = TempConnection.CreateCommand();
+            try
             {
-                TempConnection.ConnectionString = MasterString;
-                using (var TempCommand = TempConnection.CreateCommand())
-                {
-                    try
-                    {
-                        TempCommand.CommandText = "ALTER DATABASE TestDatabase2 SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase2 SET ONLINE\r\nDROP DATABASE TestDatabase2";
-                        TempCommand.Open();
-                        TempCommand.ExecuteNonQuery();
-                    }
-                    finally { TempCommand.Close(); }
-                }
+                TempCommand.CommandText = "ALTER DATABASE TestDatabase2 SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase2 SET ONLINE\r\nDROP DATABASE TestDatabase2";
+                TempCommand.Open();
+                TempCommand.ExecuteNonQuery();
             }
+            finally { TempCommand.Close(); }
         }
 
         [Fact]

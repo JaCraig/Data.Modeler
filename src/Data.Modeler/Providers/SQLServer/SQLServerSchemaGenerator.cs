@@ -97,6 +97,8 @@ namespace Data.Modeler.Providers.SQLServer
         /// <returns>The source structure</returns>
         public ISource? GetSourceStructure(IConnection connectionInfo)
         {
+            if (connectionInfo == null)
+                return null;
             var DatabaseName = connectionInfo.DatabaseName ?? "";
             var DatabaseSource = new Connection(connectionInfo.Configuration, connectionInfo.Factory, connectionInfo.ConnectionString.RemoveInitialCatalog(), "Name");
             if (!SourceExists(DatabaseName, DatabaseSource))
@@ -126,6 +128,8 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="connection">The connection.</param>
         public void Setup(ISource source, IConnection connection)
         {
+            if (connection == null)
+                return;
             var CurrentSource = GetSourceStructure(connection);
             var Commands = GenerateSchema(source, CurrentSource).ToArray();
 
@@ -202,7 +206,14 @@ namespace Data.Modeler.Providers.SQLServer
         /// <returns>True if it exists, false otherwise</returns>
         public bool ViewExists(string view, IConnection connectionInfo) => Exists("SELECT * FROM sys.views WHERE name=@0", view, connectionInfo);
 
-        private bool Exists(string command, string value, IConnection source)
+        /// <summary>
+        /// Determines if something exists.
+        /// </summary>
+        /// <param name="command">The command.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="source">The source.</param>
+        /// <returns>True if it does, false otherwise.</returns>
+        private static bool Exists(string command, string value, IConnection source)
         {
             if (source == null || value == null || command == null)
                 return false;

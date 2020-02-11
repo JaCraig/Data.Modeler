@@ -18,6 +18,7 @@ using BigBook;
 using Data.Modeler.Providers.BaseClasses;
 using Data.Modeler.Providers.Enums;
 using Data.Modeler.Providers.Interfaces;
+using System;
 using System.Data;
 
 namespace Data.Modeler.Providers
@@ -140,9 +141,8 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is StoredProcedure Item))
-                return false;
-            return Definition == Item.Definition
+            return (obj is StoredProcedure Item)
+                && Definition == Item.Definition
                 && Name == Item.Name;
         }
 
@@ -153,6 +153,6 @@ namespace Data.Modeler.Providers
         /// A hash code for this instance, suitable for use in hashing algorithms and data
         /// structures like a hash table.
         /// </returns>
-        public override int GetHashCode() => Name.GetHashCode();
+        public override int GetHashCode() => Name.GetHashCode(StringComparison.InvariantCulture);
     }
 }

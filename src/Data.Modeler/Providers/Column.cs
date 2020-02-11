@@ -205,9 +205,8 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is Column<T> Item))
-                return false;
-            return AutoIncrement == Item.AutoIncrement
+            return (obj is Column<T> Item)
+                && AutoIncrement == Item.AutoIncrement
                 && ComputedColumnSpecification == Item.ComputedColumnSpecification
                 && DataType == Item.DataType
                 && Default == Item.Default
@@ -232,7 +231,7 @@ namespace Data.Modeler.Providers
         /// A hash code for this instance, suitable for use in hashing algorithms and data
         /// structures like a hash table.
         /// </returns>
-        public override int GetHashCode() => Name.GetHashCode();
+        public override int GetHashCode() => Name.GetHashCode(StringComparison.InvariantCulture);
 
         /// <summary>
         /// Sets up the foreign key list
@@ -273,7 +272,11 @@ namespace Data.Modeler.Providers
                 Default = "";
                 return;
             }
-            Default = defaultValue?.ToString().Replace("(", "").Replace(")", "").Replace("'", "''") ?? "";
+            Default = defaultValue?
+                .ToString()
+                .Replace("(", "", StringComparison.Ordinal)
+                .Replace(")", "", StringComparison.Ordinal)
+                .Replace("'", "''", StringComparison.Ordinal) ?? "";
             if (string.IsNullOrEmpty(Default))
                 return;
             if (defaultValue is bool boolDefault)
