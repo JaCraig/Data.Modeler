@@ -141,9 +141,8 @@ namespace Data.Modeler.Providers
         /// </returns>
         public override bool Equals(object obj)
         {
-            if (!(obj is View Item))
-                return false;
-            return Definition == Item.Definition
+            return (obj is View Item)
+                && Definition == Item.Definition
                 && Name == Item.Name;
         }
 
