@@ -52,10 +52,10 @@ namespace Data.Modeler.Tests.Providers
         public void Copy()
         {
             var TempSource = new Source("MySource");
-            var TempTable = TempSource.AddTable("TableName", "dbo");
-            var TempView = TempSource.AddView("ViewName", "dbo", "ViewDefinition");
-            var TempStoredProcedure = TempSource.AddStoredProcedure("ProcedureName", "dbo", "ProcedureDefinition");
-            var Function = TempSource.AddFunction("FunctionName", "dbo", "FunctionDefinition");
+            _ = TempSource.AddTable("TableName", "dbo");
+            _ = TempSource.AddView("ViewName", "dbo", "ViewDefinition");
+            _ = TempSource.AddStoredProcedure("ProcedureName", "dbo", "ProcedureDefinition");
+            _ = TempSource.AddFunction("FunctionName", "dbo", "FunctionDefinition");
             var TempCopy = TempSource.Copy();
             Assert.Equal(TempSource, TempCopy);
         }

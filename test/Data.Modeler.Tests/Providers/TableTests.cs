@@ -85,7 +85,7 @@ namespace Data.Modeler.Tests.Providers
         public void ContainsColumn()
         {
             var TempTable = new Table("Name", "dbo", null);
-            var TempColumn = TempTable.AddColumn<int>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
+            _ = TempTable.AddColumn<int>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
             Assert.True(TempTable.ContainsColumn("A"));
             Assert.False(TempTable.ContainsColumn("B"));
         }
@@ -110,8 +110,8 @@ namespace Data.Modeler.Tests.Providers
             var ForeignTable2 = TempSource.AddTable("ForeignKeyTable2", "dbo");
             var TempColumn = TempTable.AddColumn<int>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, "ForeignKeyTable1", "ForeignKeyColumn", 1, null, true, true, true);
             var TempColumn2 = TempTable.AddColumn<int>("B", System.Data.DbType.Int32, 0, true, true, true, true, true, "ForeignKeyTable2", "ForeignKeyColumn", 1, null, true, true, true);
-            var ForeignColumn1 = ForeignTable1.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
-            var ForeignColumn2 = ForeignTable2.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
+            _ = ForeignTable1.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
+            _ = ForeignTable2.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
             Assert.NotEmpty(TempTable.Columns);
             Assert.Empty(TempTable.Constraints);
             Assert.Equal("Name", TempTable.Name);
@@ -134,7 +134,7 @@ namespace Data.Modeler.Tests.Providers
             var ForeignTable = TempSource.AddTable("ForeignKeyTable", "dbo");
             var TempColumn = TempTable.AddColumn<int>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, "ForeignKeyTable", "ForeignKeyColumn", 1, null, true, true, true);
             var TempColumn2 = TempTable.AddColumn<int>("B", System.Data.DbType.Int32, 0, true, true, true, true, true, "ForeignKeyTable", "ForeignKeyColumn", 1, null, true, true, true);
-            var ForeignColumn = ForeignTable.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
+            _ = ForeignTable.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
             Assert.NotEmpty(TempTable.Columns);
             Assert.Empty(TempTable.Constraints);
             Assert.Equal("Name", TempTable.Name);
@@ -156,7 +156,7 @@ namespace Data.Modeler.Tests.Providers
             var TempTable = TempSource.AddTable("Name", "dbo");
             var ForeignTable = TempSource.AddTable("ForeignKeyTable", "dbo");
             var TempColumn = TempTable.AddColumn<int>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, "ForeignKeyTable", "ForeignKeyColumn", 1, null, true, true, true);
-            var ForeignColumn = ForeignTable.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
+            _ = ForeignTable.AddColumn<int>("ForeignKeyColumn", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, 1, null, true, true, true);
             Assert.NotEmpty(TempTable.Columns);
             Assert.Empty(TempTable.Constraints);
             Assert.Equal("Name", TempTable.Name);

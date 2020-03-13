@@ -53,7 +53,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// Gets or sets the batch.
         /// </summary>
         /// <value>The batch.</value>
-        private SQLHelper Batch { get; set; }
+        private SQLHelper? Batch { get; set; }
 
         /// <summary>
         /// Gets the command builders.
@@ -65,7 +65,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// Gets or sets the one off queries.
         /// </summary>
         /// <value>The one off queries.</value>
-        private SQLHelper OneOffQueries { get; set; }
+        private SQLHelper? OneOffQueries { get; set; }
 
         /// <summary>
         /// Gets or sets the query builders.

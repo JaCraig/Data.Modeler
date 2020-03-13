@@ -23,7 +23,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.SourceBuilders
         {
             var TempTableTriggers = new TableTriggers();
             var TempSource = new Source("My Source");
-            var TempTable = TempSource.AddTable("Table A", "dbo");
+            _ = TempSource.AddTable("Table A", "dbo");
             var ConstraintsToAdd = new List<dynamic>
             {
                 new Dynamo(new
