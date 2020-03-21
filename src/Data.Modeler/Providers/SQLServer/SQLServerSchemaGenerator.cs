@@ -16,6 +16,7 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.Configuration;
 using SQLHelperDB;
 using SQLHelperDB.HelperClasses;
 using SQLHelperDB.HelperClasses.Interfaces;
@@ -38,11 +39,19 @@ namespace Data.Modeler.Providers.SQLServer
         /// </summary>
         /// <param name="queryBuilders">The query builders.</param>
         /// <param name="commandBuilders">The command builders.</param>
-        public SQLServerSchemaGenerator(IEnumerable<ISourceBuilder> queryBuilders, IEnumerable<ICommandBuilder> commandBuilders)
+        /// <param name="configuration">The configuration.</param>
+        public SQLServerSchemaGenerator(IEnumerable<ISourceBuilder> queryBuilders, IEnumerable<ICommandBuilder> commandBuilders, IConfiguration configuration)
         {
             CommandBuilders = commandBuilders.Where(x => x.Provider == Provider).OrderBy(x => x.Order).ToArray();
             QueryBuilders = queryBuilders.Where(x => x.Provider == Provider).OrderBy(x => x.Order).ToArray();
+            Configuration = configuration;
         }
+
+        /// <summary>
+        /// Gets the configuration.
+        /// </summary>
+        /// <value>The configuration.</value>
+        public IConfiguration Configuration { get; }
 
         /// <summary>
         /// Provider name associated with the schema generator
@@ -112,7 +121,7 @@ namespace Data.Modeler.Providers.SQLServer
             if (connectionInfo == null)
                 return null;
             var DatabaseName = connectionInfo.DatabaseName ?? "";
-            var DatabaseSource = new Connection(connectionInfo.Configuration, connectionInfo.Factory, connectionInfo.ConnectionString.RemoveInitialCatalog(), "Name");
+            var DatabaseSource = new Connection(Configuration, connectionInfo.Factory, connectionInfo.ConnectionString.RemoveInitialCatalog(), "Name");
             if (!SourceExists(DatabaseName, DatabaseSource))
                 return null;
             var Temp = new Source(DatabaseName);
@@ -152,8 +161,8 @@ namespace Data.Modeler.Providers.SQLServer
             {
                 if (Commands[x].IndexOf("CREATE DATABASE", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
-                    OneOffQueries ??= new SQLHelper(connection.Configuration, connection.Factory, DatabaseConnectionString);
-                    OneOffQueries.CreateBatch(connection.Configuration, connection.Factory, DatabaseConnectionString)
+                    OneOffQueries ??= new SQLHelper(Configuration, connection.Factory, DatabaseConnectionString);
+                    OneOffQueries.CreateBatch(Configuration, connection.Factory, DatabaseConnectionString)
                                  .AddQuery(CommandType.Text, Commands[x])
                                  .Execute();
                 }
@@ -230,8 +239,8 @@ namespace Data.Modeler.Providers.SQLServer
         {
             if (source == null || value == null || command == null)
                 return false;
-            OneOffQueries ??= new SQLHelper(source.Configuration, source.Factory, source.ConnectionString);
-            return OneOffQueries.CreateBatch(source.Configuration, source.Factory, source.ConnectionString)
+            OneOffQueries ??= new SQLHelper(Configuration, source.Factory, source.ConnectionString);
+            return OneOffQueries.CreateBatch(Configuration, source.Factory, source.ConnectionString)
                            .AddQuery(CommandType.Text, command, value)
                            .Execute()[0]
                            .Count > 0;

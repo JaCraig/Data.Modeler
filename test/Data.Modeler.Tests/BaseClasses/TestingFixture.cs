@@ -26,7 +26,7 @@ namespace Data.Modeler.Tests.BaseClasses
             SetupDatabases();
         }
 
-        public IConfigurationRoot Configuration { get; set; }
+        public IConfiguration Configuration { get; set; }
 
         protected string ConnectionString { get; } = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
 
