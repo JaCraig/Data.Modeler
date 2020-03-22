@@ -48,7 +48,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <param name="dataSource">The database.</param>
         public void FillSource(List<dynamic> values, ISource dataSource)
         {
-            if (dataSource == null)
+            if (dataSource is null)
                 throw new ArgumentNullException(nameof(dataSource));
             if (values?.Any() != true)
                 return;
@@ -80,9 +80,9 @@ WHERE sys.systypes.xusertype <> 256";
         /// <param name="item">The item.</param>
         private static void SetupStoredProcedures(ITable storedProcedure, dynamic item)
         {
-            if (storedProcedure == null)
+            if (storedProcedure is null)
                 throw new ArgumentNullException(nameof(storedProcedure));
-            if (item == null)
+            if (item is null)
                 throw new ArgumentNullException(nameof(item));
             string Type = item.TYPE;
             string Name = item.NAME;

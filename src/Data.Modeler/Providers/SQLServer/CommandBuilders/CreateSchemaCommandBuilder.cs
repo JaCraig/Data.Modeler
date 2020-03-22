@@ -15,11 +15,12 @@ limitations under the License.
 */
 
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Globalization;
+using System.Text;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -29,6 +30,21 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
     /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
     public class CreateSchemaCommandBuilder : ICommandBuilder
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateSchemaCommandBuilder"/> class.
+        /// </summary>
+        /// <param name="objectPool">The object pool.</param>
+        public CreateSchemaCommandBuilder(ObjectPool<StringBuilder> objectPool)
+        {
+            ObjectPool = objectPool;
+        }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        public ObjectPool<StringBuilder> ObjectPool { get; }
+
         /// <summary>
         /// Gets the order.
         /// </summary>
@@ -50,18 +66,21 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public string[] GetCommands(ISource desiredStructure, ISource? currentStructure)
         {
-            if (desiredStructure == null)
+            if (desiredStructure is null)
                 return Array.Empty<string>();
             currentStructure ??= new Source(desiredStructure.Name);
             var Commands = new List<string>();
+            var Builder = ObjectPool.Get();
             for (int i = 0, desiredStructureSchemasCount = desiredStructure.Schemas.Count; i < desiredStructureSchemasCount; i++)
             {
                 var Schema = desiredStructure.Schemas[i];
                 if (!currentStructure.Schemas.Contains(Schema))
                 {
-                    Commands.Add(string.Format(CultureInfo.InvariantCulture, "CREATE SCHEMA {0}", Schema));
+                    Commands.Add(Builder.Append("CREATE SCHEMA ").Append(Schema).ToString());
+                    Builder.Clear();
                 }
             }
+            ObjectPool.Return(Builder);
 
             return Commands.ToArray();
         }

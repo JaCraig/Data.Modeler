@@ -10,7 +10,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void Creation()
         {
-            var TempCheckConstraint = new TriggerCommandBuilder();
+            var TempCheckConstraint = new TriggerCommandBuilder(ObjectPool);
             Assert.NotNull(TempCheckConstraint);
             Assert.Equal(30, TempCheckConstraint.Order);
         }
@@ -18,7 +18,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void GetCommandsNoCurrentSource()
         {
-            var TempCheckConstraint = new TriggerCommandBuilder();
+            var TempCheckConstraint = new TriggerCommandBuilder(ObjectPool);
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
             Assert.Single(Commands);
             Assert.Equal("My Definition 2", Commands[0]);
@@ -27,7 +27,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void GetCommandsWithCurrentSource()
         {
-            var TempCheckConstraint = new TriggerCommandBuilder();
+            var TempCheckConstraint = new TriggerCommandBuilder(ObjectPool);
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
             Assert.Equal(2, Commands.Count);
             Assert.Equal("DROP TRIGGER [Trigger A]", Commands[0]);

@@ -57,7 +57,7 @@ namespace Data.Modeler.Providers
             ForeignKey = new List<IColumn>();
             ForeignKeyColumns = new List<string>();
             ForeignKeyTables = new List<string>();
-            Default = "";
+            Default = string.Empty;
             Name = name;
             ParentTable = parentTable;
             DataType = columnType;
@@ -185,8 +185,8 @@ namespace Data.Modeler.Providers
         {
             return new Column<T>(Name, DataType, Length,
                 Nullable, AutoIncrement, Index,
-                PrimaryKey, Unique, "",
-                "", Default.To<string, T>(), ComputedColumnSpecification,
+                PrimaryKey, Unique, string.Empty,
+                string.Empty, Default.To<string, T>(), ComputedColumnSpecification,
                 OnDeleteCascade, OnUpdateCascade, OnDeleteSetNull,
                 parentTable)
             {
@@ -239,44 +239,47 @@ namespace Data.Modeler.Providers
         public void SetupForeignKeys()
         {
             var TempDatabase = ParentTable.Source;
+            if (TempDatabase is null)
+                return;
             for (var x = 0; x < ForeignKeyColumns.Count; ++x)
             {
-                if (TempDatabase != null)
+                for (int i = 0, TempDatabaseTablesCount = TempDatabase.Tables.Count; i < TempDatabaseTablesCount; i++)
                 {
-                    for (int i = 0, TempDatabaseTablesCount = TempDatabase.Tables.Count; i < TempDatabaseTablesCount; i++)
+                    var TempTable = TempDatabase.Tables[i];
+                    if (TempTable.Name == ForeignKeyTables[x])
                     {
-                        var TempTable = TempDatabase.Tables[i];
-                        if (TempTable.Name == ForeignKeyTables[x])
+                        for (int j = 0, TempTableColumnsCount = TempTable.Columns.Count; j < TempTableColumnsCount; j++)
                         {
-                            for (int j = 0, TempTableColumnsCount = TempTable.Columns.Count; j < TempTableColumnsCount; j++)
+                            var TempColumn = TempTable.Columns[j];
+                            if (TempColumn.Name == ForeignKeyColumns[x])
                             {
-                                var TempColumn = TempTable.Columns[j];
-                                if (TempColumn.Name == ForeignKeyColumns[x])
-                                {
-                                    ForeignKey.Add(TempColumn);
-                                    break;
-                                }
+                                ForeignKey.Add(TempColumn);
+                                break;
                             }
-
-                            break;
                         }
+
+                        break;
                     }
                 }
             }
         }
 
+        /// <summary>
+        /// Sets the default value.
+        /// </summary>
+        /// <param name="defaultValue">The default value.</param>
         private void SetDefaultValue(T defaultValue)
         {
             if (new GenericEqualityComparer<T>().Equals(defaultValue, default!))
             {
-                Default = "";
+                Default = string.Empty;
                 return;
             }
             Default = defaultValue?
                 .ToString()
-                .Replace("(", "", StringComparison.Ordinal)
-                .Replace(")", "", StringComparison.Ordinal)
-                .Replace("'", "''", StringComparison.Ordinal) ?? "";
+                .Replace("(", string.Empty, StringComparison.Ordinal)
+                .Replace(")", string.Empty, StringComparison.Ordinal)
+                .Replace("'", "''", StringComparison.Ordinal) ?? string.Empty;
             if (string.IsNullOrEmpty(Default))
                 return;
             if (defaultValue is bool boolDefault)

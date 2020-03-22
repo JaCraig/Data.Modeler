@@ -16,11 +16,12 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Globalization;
+using System.Text;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -30,6 +31,21 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
     /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
     public class CheckConstraintCommandBuilder : ICommandBuilder
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CheckConstraintCommandBuilder"/> class.
+        /// </summary>
+        /// <param name="objectPool">The object pool.</param>
+        public CheckConstraintCommandBuilder(ObjectPool<StringBuilder> objectPool)
+        {
+            ObjectPool = objectPool;
+        }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        public ObjectPool<StringBuilder> ObjectPool { get; }
+
         /// <summary>
         /// Gets the order.
         /// </summary>
@@ -51,71 +67,96 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public string[] GetCommands(ISource desiredStructure, ISource? currentStructure)
         {
-            if (desiredStructure == null)
+            if (desiredStructure is null)
                 return Array.Empty<string>();
             currentStructure ??= new Source(desiredStructure.Name);
             var Commands = new List<string>();
+            var Builder = ObjectPool.Get();
             for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
                 var TempTable = desiredStructure.Tables[i];
                 var CurrentTable = currentStructure[TempTable.Name];
-                Commands.Add((CurrentTable == null) ? GetCheckConstraintCommand(TempTable) : GetAlterCheckConstraintCommand(TempTable, CurrentTable));
+                Commands.Add((CurrentTable is null) ? GetCheckConstraintCommand(TempTable, Builder) : GetAlterCheckConstraintCommand(TempTable, CurrentTable, Builder));
             }
+            ObjectPool.Return(Builder);
 
             return Commands.ToArray();
         }
 
-        private static string[] GetAlterCheckConstraintCommand(ITable table, ITable currentTable)
+        /// <summary>
+        /// Gets the alter check constraint command.
+        /// </summary>
+        /// <param name="table">The table.</param>
+        /// <param name="currentTable">The current table.</param>
+        /// <param name="builder">The builder.</param>
+        /// <returns></returns>
+        private static string[] GetAlterCheckConstraintCommand(ITable table, ITable currentTable, StringBuilder builder)
         {
-            if (table == null || table.Constraints == null)
+            if (table is null || table.Constraints is null)
                 return Array.Empty<string>();
             var ReturnValue = new List<string>();
             for (int i = 0, tableConstraintsCount = table.Constraints.Count; i < tableConstraintsCount; i++)
             {
                 var CheckConstraint = table.Constraints[i];
                 var CheckConstraint2 = currentTable.Constraints.Find(x => CheckConstraint.Name == x.Name);
-                if (CheckConstraint2 == null)
+                if (CheckConstraint2 is null)
                 {
-                    ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
-                            "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
-                            CheckConstraint.ParentTable.Schema,
-                            CheckConstraint.ParentTable.Name,
-                            CheckConstraint.Name,
-                            CheckConstraint.Definition));
+                    ReturnValue.Add(GetAlterTable(builder, CheckConstraint));
+                    builder.Clear();
                 }
                 else if (!string.Equals(CheckConstraint.Definition, CheckConstraint2.Definition, StringComparison.OrdinalIgnoreCase))
                 {
-                    ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
-                        "ALTER TABLE [{0}].[{1}] DROP CONSTRAINT [{2}]",
-                        CheckConstraint.ParentTable.Schema,
-                        CheckConstraint.ParentTable.Name,
-                        CheckConstraint.Name));
-                    ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
-                        "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
-                        CheckConstraint.ParentTable.Schema,
-                        CheckConstraint.ParentTable.Name,
-                        CheckConstraint.Name,
-                        CheckConstraint.Definition));
+                    ReturnValue.Add(builder.Append("ALTER TABLE [")
+                        .Append(CheckConstraint.ParentTable.Schema)
+                        .Append("].[")
+                        .Append(CheckConstraint.ParentTable.Name)
+                        .Append("] DROP CONSTRAINT [")
+                        .Append(CheckConstraint.Name)
+                        .Append("]")
+                        .ToString());
+                    builder.Clear();
+                    ReturnValue.Add(GetAlterTable(builder, CheckConstraint));
+                    builder.Clear();
                 }
             }
 
             return ReturnValue.ToArray();
         }
 
-        private static string[] GetCheckConstraintCommand(ITable table)
+        /// <summary>
+        /// Gets the alter table.
+        /// </summary>
+        /// <param name="Builder">The builder.</param>
+        /// <param name="CheckConstraint">The check constraint.</param>
+        /// <returns>The alter table constraint.</returns>
+        private static string GetAlterTable(StringBuilder Builder, ICheckConstraint CheckConstraint)
         {
-            if (table == null || table.Constraints == null)
+            return Builder.Append("ALTER TABLE [").Append(CheckConstraint.ParentTable.Schema)
+                                    .Append("].[")
+                                    .Append(CheckConstraint.ParentTable.Name)
+                                    .Append("] ADD CONSTRAINT [")
+                                    .Append(CheckConstraint.Name)
+                                    .Append("] CHECK (")
+                                    .Append(CheckConstraint.Definition)
+                                    .Append(")").ToString();
+        }
+
+        /// <summary>
+        /// Gets the check constraint command.
+        /// </summary>
+        /// <param name="table">The table.</param>
+        /// <param name="builder">The builder.</param>
+        /// <returns></returns>
+        private static string[] GetCheckConstraintCommand(ITable table, StringBuilder builder)
+        {
+            if (table is null || table.Constraints is null)
                 return Array.Empty<string>();
             var ReturnValue = new string[table.Constraints.Count];
             for (int i = 0, tableConstraintsCount = table.Constraints.Count; i < tableConstraintsCount; i++)
             {
                 var CheckConstraint = table.Constraints[i];
-                ReturnValue[i] = string.Format(CultureInfo.InvariantCulture,
-                            "ALTER TABLE [{0}].[{1}] ADD CONSTRAINT [{2}] CHECK ({3})",
-                            CheckConstraint.ParentTable.Schema,
-                            CheckConstraint.ParentTable.Name,
-                            CheckConstraint.Name,
-                            CheckConstraint.Definition);
+                ReturnValue[i] = GetAlterTable(builder, CheckConstraint);
+                builder.Clear();
             }
 
             return ReturnValue;

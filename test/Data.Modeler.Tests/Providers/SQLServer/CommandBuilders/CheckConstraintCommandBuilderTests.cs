@@ -10,7 +10,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void Creation()
         {
-            var TempCheckConstraint = new CheckConstraintCommandBuilder();
+            var TempCheckConstraint = new CheckConstraintCommandBuilder(ObjectPool);
             Assert.NotNull(TempCheckConstraint);
             Assert.Equal(31, TempCheckConstraint.Order);
         }
@@ -18,7 +18,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void GetCommandsNoCurrentSource()
         {
-            var TempCheckConstraint = new CheckConstraintCommandBuilder();
+            var TempCheckConstraint = new CheckConstraintCommandBuilder(ObjectPool);
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
             Assert.Single(Commands);
             Assert.Equal("ALTER TABLE [dbo].[Table A] ADD CONSTRAINT [Constraint A] CHECK (My Definition2)", Commands[0]);
@@ -27,7 +27,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void GetCommandsWithCurrentSource()
         {
-            var TempCheckConstraint = new CheckConstraintCommandBuilder();
+            var TempCheckConstraint = new CheckConstraintCommandBuilder(ObjectPool);
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
             Assert.Equal(2, Commands.Count);
             Assert.Equal("ALTER TABLE [dbo].[Table A] DROP CONSTRAINT [Constraint A]", Commands[0]);

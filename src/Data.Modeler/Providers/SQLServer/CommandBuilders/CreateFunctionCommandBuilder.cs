@@ -16,11 +16,12 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Globalization;
+using System.Text;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -30,6 +31,21 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
     /// <seealso cref="ICommandBuilder"/>
     public class CreateFunctionCommandBuilder : ICommandBuilder
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateFunctionCommandBuilder"/> class.
+        /// </summary>
+        /// <param name="objectPool">The object pool.</param>
+        public CreateFunctionCommandBuilder(ObjectPool<StringBuilder> objectPool)
+        {
+            ObjectPool = objectPool;
+        }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        public ObjectPool<StringBuilder> ObjectPool { get; }
+
         /// <summary>
         /// Gets the order.
         /// </summary>
@@ -51,43 +67,61 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public string[] GetCommands(ISource desiredStructure, ISource? currentStructure)
         {
-            if (desiredStructure == null)
+            if (desiredStructure is null)
                 return Array.Empty<string>();
             currentStructure ??= new Source(desiredStructure.Name);
             var Commands = new List<string>();
+            var Builder = ObjectPool.Get();
             for (int i = 0, desiredStructureFunctionsCount = desiredStructure.Functions.Count; i < desiredStructureFunctionsCount; i++)
             {
                 var TempFunction = desiredStructure.Functions[i];
                 var CurrentFunction = currentStructure.Functions.Find(x => x.Name == TempFunction.Name);
-                Commands.Add(CurrentFunction != null ? GetAlterFunctionCommand(TempFunction, CurrentFunction) : GetFunctionCommand(TempFunction));
+                Commands.Add(CurrentFunction != null ? GetAlterFunctionCommand(TempFunction, CurrentFunction, Builder) : GetFunctionCommand(TempFunction));
             }
+            ObjectPool.Return(Builder);
 
             return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterFunctionCommand(IFunction function, IFunction currentFunction)
+        /// <summary>
+        /// Gets the alter function command.
+        /// </summary>
+        /// <param name="function">The function.</param>
+        /// <param name="currentFunction">The current function.</param>
+        /// <param name="builder">The builder.</param>
+        /// <returns></returns>
+        private static IEnumerable<string> GetAlterFunctionCommand(IFunction function, IFunction currentFunction, StringBuilder builder)
         {
-            if (function == null || currentFunction == null)
-                return Array.Empty<string>();
-            if (function.Definition != currentFunction.Definition && string.IsNullOrEmpty(function.Definition))
-                return Array.Empty<string>();
-            if (currentFunction == null)
-                return GetFunctionCommand(function);
-            if (function.Definition == currentFunction.Definition)
-                return Array.Empty<string>();
-            return new List<string>
+            if (function is null
+                || currentFunction is null
+                || (function.Definition != currentFunction.Definition && string.IsNullOrEmpty(function.Definition))
+                || function.Definition == currentFunction.Definition)
             {
-                string.Format(CultureInfo.InvariantCulture,
-                    "DROP FUNCTION [{0}].[{1}]",
-                    function.Schema,
-                    function.Name),
+                return Array.Empty<string>();
+            }
+
+            var ReturnValue = new List<string>
+            {
+                builder.Append("DROP FUNCTION [")
+                .Append(function.Schema)
+                .Append("].[")
+                .Append(function.Name)
+                .Append("]")
+                .ToString(),
                 GetFunctionCommand(function)
             };
+            builder.Clear();
+            return ReturnValue;
         }
 
+        /// <summary>
+        /// Gets the function command.
+        /// </summary>
+        /// <param name="function">The function.</param>
+        /// <returns></returns>
         private static string[] GetFunctionCommand(IFunction function)
         {
-            if (function == null || function.Definition == null)
+            if (function is null || function.Definition is null)
                 return Array.Empty<string>();
             return new string[] {
                 function

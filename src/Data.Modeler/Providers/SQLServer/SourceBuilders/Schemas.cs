@@ -48,7 +48,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <exception cref="ArgumentNullException">dataSource</exception>
         public void FillSource(List<dynamic> values, ISource dataSource)
         {
-            if (dataSource == null)
+            if (dataSource is null)
                 throw new ArgumentNullException(nameof(dataSource));
             if (values?.Any() != true)
                 return;

@@ -4,6 +4,7 @@ using FileCurator;
 using FileCurator.Registration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB;
 using SQLHelperDB.ExtensionMethods;
 using SQLHelperDB.Registration;
@@ -12,6 +13,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
+using System.Text;
 using Xunit;
 
 namespace Data.Modeler.Tests.BaseClasses
@@ -27,15 +29,12 @@ namespace Data.Modeler.Tests.BaseClasses
         }
 
         public IConfiguration Configuration { get; set; }
-
         protected string ConnectionString { get; } = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
-
         protected string ConnectionString2 { get; } = "Data Source=localhost;Initial Catalog=TestDatabaseForeignKeys;Integrated Security=SSPI;Pooling=false";
-
         protected string ConnectionStringNew { get; } = "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
-
         protected string DatabaseName { get; } = "TestDatabase";
         protected string MasterString { get; } = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+        protected ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
 
         public void Dispose()
         {

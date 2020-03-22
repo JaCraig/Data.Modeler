@@ -16,6 +16,7 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -32,6 +33,21 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
     /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
     public class TableCommandBuilder : ICommandBuilder
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TableCommandBuilder"/> class.
+        /// </summary>
+        /// <param name="objectPool">The object pool.</param>
+        public TableCommandBuilder(ObjectPool<StringBuilder> objectPool)
+        {
+            ObjectPool = objectPool;
+        }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        public ObjectPool<StringBuilder> ObjectPool { get; }
+
         /// <summary>
         /// Gets the order.
         /// </summary>
@@ -53,64 +69,75 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public string[] GetCommands(ISource desiredStructure, ISource? currentStructure)
         {
-            if (desiredStructure == null)
+            if (desiredStructure is null)
                 return Array.Empty<string>();
             currentStructure ??= new Source(desiredStructure.Name);
             var Commands = new List<string>();
+            var Builder = ObjectPool.Get();
             for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
                 var TempTable = desiredStructure.Tables[i];
                 var CurrentTable = currentStructure[TempTable.Name];
-                Commands.Add((CurrentTable == null) ? GetTableCommand(TempTable) : GetAlterTableCommand(TempTable, CurrentTable));
+                Commands.Add((CurrentTable is null) ? GetTableCommand(TempTable, Builder) : GetAlterTableCommand(TempTable, CurrentTable, Builder));
             }
+            ObjectPool.Return(Builder);
 
             return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterTableCommand(ITable table, ITable currentTable)
+        /// <summary>
+        /// Gets the alter table command.
+        /// </summary>
+        /// <param name="table">The table.</param>
+        /// <param name="currentTable">The current table.</param>
+        /// <param name="builder">The builder.</param>
+        /// <returns></returns>
+        private static IEnumerable<string> GetAlterTableCommand(ITable table, ITable currentTable, StringBuilder builder)
         {
-            if (table == null || table.Columns == null)
+            if (table is null || table.Columns is null)
                 return Array.Empty<string>();
             var ReturnValue = new List<string>();
             for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
                 var Column = table.Columns[i];
                 var CurrentColumn = currentTable[Column.Name];
-                string Command;
-                if (CurrentColumn == null)
+                if (CurrentColumn is null)
                 {
                     if (string.IsNullOrEmpty(Column.ComputedColumnSpecification))
                     {
-                        Command = string.Format(CultureInfo.InvariantCulture,
-                            "ALTER TABLE [{0}].[{1}] ADD [{2}] {3}",
-                            table.Schema,
-                            table.Name,
-                            Column.Name,
-                            Column.DataType.To(SqlDbType.Int).ToString());
+                        builder.Append("ALTER TABLE [")
+                            .Append(table.Schema)
+                            .Append("].[")
+                            .Append(table.Name)
+                            .Append("] ADD [")
+                            .Append(Column.Name)
+                            .Append("] ")
+                            .Append(Column.DataType.To(SqlDbType.Int).ToString());
                         if (Column.DataType == SqlDbType.VarChar.To(DbType.Int32)
                             || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
                             || Column.DataType == SqlDbType.Binary.To(DbType.Int32))
                         {
-                            Command += (Column.Length <= 0 || Column.Length >= 4000) ?
-                                            "(MAX)" :
-                                            "(" + Column.Length.ToString(CultureInfo.InvariantCulture) + ")";
+                            GetColumnLength(builder, Column);
                         }
                         else if (Column.DataType == SqlDbType.Decimal.To(DbType.Int32))
                         {
-                            var Precision = (Column.Length * 2).Clamp(38, 18);
-                            Command += "(" + Precision.ToString(CultureInfo.InvariantCulture) + "," + Column.Length.Clamp(38, 0).ToString(CultureInfo.InvariantCulture) + ")";
+                            GetColumnPrecision(builder, Column);
                         }
                     }
                     else
                     {
-                        Command = string.Format(CultureInfo.InvariantCulture,
-                            "ALTER TABLE [{0}].[{1}] ADD [{2}] AS ({3})",
-                            table.Schema,
-                            table.Name,
-                            Column.Name,
-                            Column.ComputedColumnSpecification);
+                        builder.Append("ALTER TABLE [")
+                            .Append(table.Schema)
+                            .Append("].[")
+                            .Append(table.Name)
+                            .Append("] ADD [")
+                            .Append(Column.Name)
+                            .Append("] AS (")
+                            .Append(Column.ComputedColumnSpecification)
+                            .Append(")");
                     }
-                    ReturnValue.Add(Command);
+                    ReturnValue.Add(builder.ToString());
+                    builder.Clear();
                 }
                 else if (CurrentColumn.DataType.To(SqlDbType.Int) != Column.DataType.To(SqlDbType.Int)
                     || (CurrentColumn.DataType.To(SqlDbType.Int) == Column.DataType.To(SqlDbType.Int)
@@ -119,44 +146,70 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                         && CurrentColumn.Length.Between(1, 4000)
                         && Column.Length.Between(1, 4000)))
                 {
-                    Command = string.Format(CultureInfo.InvariantCulture,
-                        "ALTER TABLE [{0}].[{1}] ALTER COLUMN [{2}] {3}",
-                        table.Schema,
-                        table.Name,
-                        Column.Name,
-                        Column.DataType.To(SqlDbType.Int).ToString());
+                    builder.Append("ALTER TABLE [")
+                        .Append(table.Schema)
+                        .Append("].[")
+                        .Append(table.Name)
+                        .Append("] ALTER COLUMN [")
+                        .Append(Column.Name)
+                        .Append("] ")
+                        .Append(Column.DataType.To(SqlDbType.Int).ToString());
                     if (Column.DataType == SqlDbType.VarChar.To(DbType.Int32)
                         || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
                         || Column.DataType == SqlDbType.Binary.To(DbType.Int32))
                     {
-                        Command += (Column.Length <= 0 || Column.Length >= 4000) ?
-                                        "(MAX)" :
-                                        "(" + Column.Length.ToString(CultureInfo.InvariantCulture) + ")";
+                        GetColumnLength(builder, Column);
                     }
                     else if (Column.DataType == SqlDbType.Decimal.To(DbType.Int32))
                     {
-                        var Precision = (Column.Length * 2).Clamp(38, 18);
-                        Command += "(" + Precision.ToString(CultureInfo.InvariantCulture) + "," + Column.Length.Clamp(38, 0).ToString(CultureInfo.InvariantCulture) + ")";
+                        GetColumnPrecision(builder, Column);
                     }
-                    ReturnValue.Add(Command);
+                    ReturnValue.Add(builder.ToString());
+                    builder.Clear();
                 }
             }
 
             return ReturnValue;
         }
 
-        private static IEnumerable<string> GetTableCommand(ITable table)
+        /// <summary>
+        /// Gets the length of the column.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
+        /// <param name="Column">The column.</param>
+        private static void GetColumnLength(StringBuilder builder, IColumn Column)
         {
-            if (table == null || table.Columns == null)
+            builder.Append("(")
+                    .Append((Column.Length <= 0 || Column.Length >= 4000) ? "MAX" : Column.Length.ToString(CultureInfo.InvariantCulture))
+                    .Append(")");
+        }
+
+        /// <summary>
+        /// Gets the column precision.
+        /// </summary>
+        /// <param name="builder">The builder.</param>
+        /// <param name="Column">The column.</param>
+        private static void GetColumnPrecision(StringBuilder builder, IColumn Column)
+        {
+            var Precision = (Column.Length * 2).Clamp(38, 18);
+            builder.Append("(")
+                .Append(Precision.ToString(CultureInfo.InvariantCulture))
+                .Append(",")
+                .Append(Column.Length.Clamp(38, 0).ToString(CultureInfo.InvariantCulture))
+                .Append(")");
+        }
+
+        private static IEnumerable<string> GetTableCommand(ITable table, StringBuilder builder)
+        {
+            if (table is null || table.Columns is null)
                 return Array.Empty<string>();
             var ReturnValue = new List<string>();
-            var Builder = new StringBuilder();
-            Builder.Append("CREATE TABLE [").Append(table.Schema).Append("].[").Append(table.Name).Append("](");
-            var Splitter = "";
+            builder.Append("CREATE TABLE [").Append(table.Schema).Append("].[").Append(table.Name).Append("](");
+            var Splitter = string.Empty;
             for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
                 var Column = table.Columns[i];
-                Builder
+                builder
                     .Append(Splitter)
                     .Append("[")
                     .Append(Column.Name)
@@ -167,77 +220,72 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                         || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
                         || Column.DataType == SqlDbType.Binary.To(DbType.Int32))
                 {
-                    Builder.Append((Column.Length <= 0 || Column.Length >= 4000) ?
-                                    "(MAX)" :
-                                    "(" + Column.Length.ToString(CultureInfo.InvariantCulture) + ")");
+                    GetColumnLength(builder, Column);
                 }
                 else if (Column.DataType == SqlDbType.Decimal.To(DbType.Int32))
                 {
-                    var Precision = (Column.Length * 2).Clamp(38, 18);
-                    Builder.Append("(").Append(Precision).Append(",").Append(Column.Length.Clamp(38, 0)).Append(")");
+                    GetColumnPrecision(builder, Column);
                 }
                 if (!Column.Nullable)
                 {
-                    Builder.Append(" NOT NULL");
+                    builder.Append(" NOT NULL");
                 }
                 if (Column.Unique)
                 {
-                    Builder.Append(" UNIQUE");
+                    builder.Append(" UNIQUE");
                 }
                 if (Column.PrimaryKey)
                 {
-                    Builder.Append(" PRIMARY KEY");
+                    builder.Append(" PRIMARY KEY");
                 }
                 if (!string.IsNullOrEmpty(Column.Default))
                 {
-                    Builder.Append(" DEFAULT ").Append(Column.Default);
+                    builder.Append(" DEFAULT ").Append(Column.Default);
                 }
                 if (Column.AutoIncrement)
                 {
-                    Builder.Append(" IDENTITY");
+                    builder.Append(" IDENTITY");
                 }
                 if (!string.IsNullOrEmpty(Column.ComputedColumnSpecification))
                 {
-                    Builder.AppendFormat(CultureInfo.InvariantCulture, " AS ({0})", Column.ComputedColumnSpecification);
+                    builder.Append(" AS (").Append(Column.ComputedColumnSpecification).Append(")");
                 }
                 Splitter = ",";
             }
 
             if (table.Audit)
             {
-                Builder.Append(", SysStartTime datetime2 GENERATED ALWAYS AS ROW START NOT NULL, SysEndTime datetime2 GENERATED ALWAYS AS ROW END NOT NULL, PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime)");
+                builder.Append(", SysStartTime datetime2 GENERATED ALWAYS AS ROW START NOT NULL, SysEndTime datetime2 GENERATED ALWAYS AS ROW END NOT NULL, PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime)");
             }
-            Builder.Append(")");
+            builder.Append(")");
             if (table.Audit)
             {
-                Builder.AppendFormat(CultureInfo.InvariantCulture, "WITH ( SYSTEM_VERSIONING = ON (HISTORY_TABLE = [{0}].[{1}]) ) ", table.Schema, table.Name + "_Audit");
+                builder.Append("WITH ( SYSTEM_VERSIONING = ON (HISTORY_TABLE = [").Append(table.Schema).Append("].[").Append(table.Name).Append("_Audit]) ) ");
             }
-            ReturnValue.Add(Builder.ToString());
+            ReturnValue.Add(builder.ToString());
+            builder.Clear();
             var Counter = 0;
             for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
             {
                 var Column = table.Columns[i];
                 if (!Column.PrimaryKey)
                 {
-                    if (Column.Index && Column.Unique)
+                    if (Column.Index)
                     {
-                        ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
-                            "CREATE UNIQUE INDEX [Index_{0}{1}] ON [{2}].[{3}]([{4}])",
-                            Column.Name,
-                            Counter.ToString(CultureInfo.InvariantCulture),
-                            Column.ParentTable.Schema,
-                            Column.ParentTable.Name,
-                            Column.Name));
-                    }
-                    else if (Column.Index)
-                    {
-                        ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
-                            "CREATE INDEX [Index_{0}{1}] ON [{2}].[{3}]([{4}])",
-                            Column.Name,
-                            Counter.ToString(CultureInfo.InvariantCulture),
-                            Column.ParentTable.Schema,
-                            Column.ParentTable.Name,
-                            Column.Name));
+                        ReturnValue.Add(builder.Append("CREATE")
+                            .Append(Column.Unique ? " UNIQUE" : string.Empty)
+                            .Append("INDEX [Index_")
+                            .Append(Column.Name)
+                            .Append(Counter.ToString(CultureInfo.InvariantCulture))
+                            .Append("] ON [")
+                            .Append(Column.ParentTable.Schema)
+                            .Append("].[")
+                            .Append(Column.ParentTable.Name)
+                            .Append("]([")
+                            .Append(Column.Name)
+                            .Append("])")
+                            .ToString());
+                        builder.Clear();
                     }
                     ++Counter;
                 }

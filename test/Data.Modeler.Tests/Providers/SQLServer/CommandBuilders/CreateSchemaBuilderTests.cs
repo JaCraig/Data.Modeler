@@ -10,7 +10,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void Creation()
         {
-            var TempCheckConstraint = new CreateSchemaCommandBuilder();
+            var TempCheckConstraint = new CreateSchemaCommandBuilder(ObjectPool);
             Assert.NotNull(TempCheckConstraint);
             Assert.Equal(5, TempCheckConstraint.Order);
         }
@@ -18,7 +18,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void GetCommandsNoCurrentSource()
         {
-            var TempCheckConstraint = new CreateSchemaCommandBuilder();
+            var TempCheckConstraint = new CreateSchemaCommandBuilder(ObjectPool);
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
             Assert.Single(Commands);
             Assert.Equal("CREATE SCHEMA SchemaA", Commands[0]);
@@ -28,7 +28,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         public void GetCommandsWithCurrentSource()
         {
             DesiredSource.Schemas.Add("SchemaB");
-            var TempCheckConstraint = new CreateSchemaCommandBuilder();
+            var TempCheckConstraint = new CreateSchemaCommandBuilder(ObjectPool);
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
             Assert.Single(Commands);
             Assert.Equal("CREATE SCHEMA SchemaB", Commands[0]);

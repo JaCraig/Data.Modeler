@@ -40,7 +40,7 @@ namespace Data.Modeler
         /// <returns>The requested schema generator</returns>
         public static ISchemaGenerator? GetSchemaGenerator(DbProviderFactory factory)
         {
-            if (Canister.Builder.Bootstrapper == null)
+            if (Canister.Builder.Bootstrapper is null)
                 return null;
             var SchemaGenerators = Canister.Builder.Bootstrapper.ResolveAll<ISchemaGenerator>();
             var RequestedGenerators = SchemaGenerators.Where(x => x.Provider == factory);

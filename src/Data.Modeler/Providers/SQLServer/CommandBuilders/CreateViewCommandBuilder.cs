@@ -16,11 +16,12 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Globalization;
+using System.Text;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -30,6 +31,21 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
     /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
     public class CreateViewCommandBuilder : ICommandBuilder
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateViewCommandBuilder"/> class.
+        /// </summary>
+        /// <param name="objectPool">The object pool.</param>
+        public CreateViewCommandBuilder(ObjectPool<StringBuilder> objectPool)
+        {
+            ObjectPool = objectPool;
+        }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        public ObjectPool<StringBuilder> ObjectPool { get; }
+
         /// <summary>
         /// Gets the order.
         /// </summary>
@@ -51,42 +67,59 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public string[] GetCommands(ISource desiredStructure, ISource? currentStructure)
         {
-            if (desiredStructure == null)
+            if (desiredStructure is null)
                 return Array.Empty<string>();
             currentStructure ??= new Source(desiredStructure.Name);
             var Commands = new List<string>();
+            var Builder = ObjectPool.Get();
             for (int i = 0, desiredStructureViewsCount = desiredStructure.Views.Count; i < desiredStructureViewsCount; i++)
             {
                 var TempView = desiredStructure.Views[i];
                 var CurrentView = (View)currentStructure.Views.Find(x => x.Name == TempView.Name);
-                Commands.Add(CurrentView != null ? GetAlterViewCommand(TempView, CurrentView) : GetViewCommand(TempView));
+                Commands.Add(CurrentView != null ? GetAlterViewCommand(TempView, CurrentView, Builder) : GetViewCommand(TempView));
             }
-
+            ObjectPool.Return(Builder);
             return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterViewCommand(IFunction view, IFunction currentView)
+        /// <summary>
+        /// Gets the alter view command.
+        /// </summary>
+        /// <param name="view">The view.</param>
+        /// <param name="currentView">The current view.</param>
+        /// <param name="builder">The builder.</param>
+        /// <returns></returns>
+        private static IEnumerable<string> GetAlterViewCommand(IFunction view, IFunction currentView, StringBuilder builder)
         {
-            if (view == null || currentView == null)
+            if (view is null
+                || currentView is null
+                || (view.Definition != currentView.Definition && string.IsNullOrEmpty(view.Definition))
+                || view.Definition == currentView.Definition)
+            {
                 return Array.Empty<string>();
-            if (view.Definition != currentView.Definition && string.IsNullOrEmpty(view.Definition))
-                return Array.Empty<string>();
-            if (currentView == null)
-                return GetViewCommand(view);
-            if (view.Definition == currentView.Definition)
-                return Array.Empty<string>();
-            return new List<string> {
-                string.Format(CultureInfo.InvariantCulture,
-                    "DROP VIEW [{0}].[{1}]",
-                    view.Schema,
-                    view.Name),
+            }
+
+            var ReturnValue = new List<string> {
+                builder.Append("DROP VIEW [")
+                .Append(view.Schema)
+                .Append("].[")
+                .Append(view.Name)
+                .Append("]")
+                .ToString(),
                 GetViewCommand(view)
             };
+            builder.Clear();
+            return ReturnValue;
         }
 
+        /// <summary>
+        /// Gets the view command.
+        /// </summary>
+        /// <param name="view">The view.</param>
+        /// <returns></returns>
         private static string[] GetViewCommand(IFunction view)
         {
-            if (view == null || view.Definition == null)
+            if (view is null || view.Definition is null)
                 return Array.Empty<string>();
             return new string[] {
                 view

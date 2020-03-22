@@ -16,11 +16,12 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Globalization;
+using System.Text;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -30,6 +31,21 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
     /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
     public class TriggerCommandBuilder : ICommandBuilder
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TriggerCommandBuilder"/> class.
+        /// </summary>
+        /// <param name="objectPool">The object pool.</param>
+        public TriggerCommandBuilder(ObjectPool<StringBuilder> objectPool)
+        {
+            ObjectPool = objectPool;
+        }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        public ObjectPool<StringBuilder> ObjectPool { get; }
+
         /// <summary>
         /// Gets the order.
         /// </summary>
@@ -51,23 +67,25 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public string[] GetCommands(ISource desiredStructure, ISource? currentStructure)
         {
-            if (desiredStructure == null)
+            if (desiredStructure is null)
                 return Array.Empty<string>();
             currentStructure ??= new Source(desiredStructure.Name);
             var Commands = new List<string>();
+            var Builder = ObjectPool.Get();
             for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
                 var TempTable = desiredStructure.Tables[i];
                 var CurrentTable = currentStructure[TempTable.Name];
-                Commands.Add((CurrentTable == null) ? GetTriggerCommand(TempTable) : GetAlterTriggerCommand(TempTable, CurrentTable));
+                Commands.Add((CurrentTable is null) ? GetTriggerCommand(TempTable) : GetAlterTriggerCommand(TempTable, CurrentTable, Builder));
             }
+            ObjectPool.Return(Builder);
 
             return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterTriggerCommand(ITable table, ITable currentTable)
+        private static IEnumerable<string> GetAlterTriggerCommand(ITable table, ITable currentTable, StringBuilder builder)
         {
-            if (table == null || table.Triggers == null)
+            if (table is null || table.Triggers is null)
                 return Array.Empty<string>();
             var ReturnValue = new List<string>();
             for (int i = 0, tableTriggersCount = table.Triggers.Count; i < tableTriggersCount; i++)
@@ -76,7 +94,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 var Trigger2 = currentTable.Triggers.Find(x => Trigger.Name == x.Name);
                 var Definition1 = Trigger.Definition;
                 var Definition2 = Trigger2.Definition;
-                if (Definition2 == null)
+                if (Definition2 is null)
                 {
                     ReturnValue.Add(Trigger
                         .Definition
@@ -86,14 +104,13 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 }
                 else if (!string.Equals(Definition1, Definition2, StringComparison.OrdinalIgnoreCase))
                 {
-                    ReturnValue.Add(string.Format(CultureInfo.InvariantCulture,
-                        "DROP TRIGGER [{0}]",
-                        Trigger.Name));
+                    ReturnValue.Add(builder.Append("DROP TRIGGER [").Append(Trigger.Name).Append("]").ToString());
                     ReturnValue.Add(Trigger
                         .Definition
                         .RemoveComments()
                         .Replace("\n", " ", StringComparison.Ordinal)
                         .Replace("\r", " ", StringComparison.Ordinal));
+                    builder.Clear();
                 }
             }
 
@@ -102,7 +119,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 
         private static IEnumerable<string> GetTriggerCommand(ITable table)
         {
-            if (table == null || table.Triggers == null)
+            if (table is null || table.Triggers is null)
                 return Array.Empty<string>();
             var ReturnValue = new List<string>();
             for (int i = 0, tableTriggersCount = table.Triggers.Count; i < tableTriggersCount; i++)

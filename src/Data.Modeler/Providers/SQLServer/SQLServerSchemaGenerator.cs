@@ -101,7 +101,7 @@ namespace Data.Modeler.Providers.SQLServer
         public string[] GenerateSchema(ISource desiredStructure, ISource? source)
         {
             var Commands = new List<string>();
-            desiredStructure ??= new Source("");
+            desiredStructure ??= new Source(string.Empty);
             for (int i = 0, CommandBuildersLength = CommandBuilders.Length; i < CommandBuildersLength; i++)
             {
                 var CommandBuilder = CommandBuilders[i];
@@ -118,9 +118,9 @@ namespace Data.Modeler.Providers.SQLServer
         /// <returns>The source structure</returns>
         public ISource? GetSourceStructure(IConnection connectionInfo)
         {
-            if (connectionInfo == null)
+            if (connectionInfo is null)
                 return null;
-            var DatabaseName = connectionInfo.DatabaseName ?? "";
+            var DatabaseName = connectionInfo.DatabaseName ?? string.Empty;
             var DatabaseSource = new Connection(Configuration, connectionInfo.Factory, connectionInfo.ConnectionString.RemoveInitialCatalog(), "Name");
             if (!SourceExists(DatabaseName, DatabaseSource))
                 return null;
@@ -149,7 +149,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="connection">The connection.</param>
         public void Setup(ISource source, IConnection connection)
         {
-            if (connection == null)
+            if (connection is null)
                 return;
             var CurrentSource = GetSourceStructure(connection);
             var Commands = GenerateSchema(source, CurrentSource).ToArray();
@@ -237,7 +237,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <returns>True if it does, false otherwise.</returns>
         private bool Exists(string command, string value, IConnection source)
         {
-            if (source == null || value == null || command == null)
+            if (source is null || value is null || command is null)
                 return false;
             OneOffQueries ??= new SQLHelper(Configuration, source.Factory, source.ConnectionString);
             return OneOffQueries.CreateBatch(Configuration, source.Factory, source.ConnectionString)

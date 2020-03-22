@@ -31,7 +31,7 @@ namespace Data.Modeler.Registration
         /// <returns>The bootstrapper</returns>
         public static IBootstrapper? RegisterDataModeler(this IBootstrapper bootstrapper)
         {
-            if (bootstrapper == null)
+            if (bootstrapper is null)
                 return bootstrapper;
             return bootstrapper.AddAssembly(typeof(RegistrationExtensions).Assembly)
                                .RegisterSQLHelper();

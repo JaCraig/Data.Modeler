@@ -16,11 +16,12 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Globalization;
+using System.Text;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -30,6 +31,21 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
     /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
     public class StoredProcedureCommandBuilder : ICommandBuilder
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StoredProcedureCommandBuilder"/> class.
+        /// </summary>
+        /// <param name="objectPool">The object pool.</param>
+        public StoredProcedureCommandBuilder(ObjectPool<StringBuilder> objectPool)
+        {
+            ObjectPool = objectPool;
+        }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        public ObjectPool<StringBuilder> ObjectPool { get; }
+
         /// <summary>
         /// Gets the order.
         /// </summary>
@@ -51,41 +67,60 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public string[] GetCommands(ISource desiredStructure, ISource? currentStructure)
         {
-            if (desiredStructure == null)
+            if (desiredStructure is null)
                 return Array.Empty<string>();
             currentStructure ??= new Source(desiredStructure.Name);
             var Commands = new List<string>();
+            var Builder = ObjectPool.Get();
             for (int i = 0, desiredStructureStoredProceduresCount = desiredStructure.StoredProcedures.Count; i < desiredStructureStoredProceduresCount; i++)
             {
                 var TempStoredProcedure = desiredStructure.StoredProcedures[i];
                 var CurrentStoredProcedure = currentStructure.StoredProcedures.Find(x => x.Name == TempStoredProcedure.Name);
-                Commands.Add(CurrentStoredProcedure != null ? GetAlterStoredProcedure(TempStoredProcedure, CurrentStoredProcedure) : GetStoredProcedure(TempStoredProcedure));
+                Commands.Add(CurrentStoredProcedure != null ? GetAlterStoredProcedure(TempStoredProcedure, CurrentStoredProcedure, Builder) : GetStoredProcedure(TempStoredProcedure));
             }
+            ObjectPool.Return(Builder);
 
             return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetAlterStoredProcedure(IFunction storedProcedure, IFunction currentStoredProcedure)
+        /// <summary>
+        /// Gets the alter stored procedure.
+        /// </summary>
+        /// <param name="storedProcedure">The stored procedure.</param>
+        /// <param name="currentStoredProcedure">The current stored procedure.</param>
+        /// <param name="builder">The builder.</param>
+        /// <returns></returns>
+        private static IEnumerable<string> GetAlterStoredProcedure(IFunction storedProcedure, IFunction currentStoredProcedure, StringBuilder builder)
         {
-            if (storedProcedure == null || currentStoredProcedure == null)
+            if (storedProcedure is null
+                || currentStoredProcedure is null
+                || (storedProcedure.Definition != currentStoredProcedure.Definition && string.IsNullOrEmpty(storedProcedure.Definition))
+                || storedProcedure.Definition == currentStoredProcedure.Definition)
+            {
                 return Array.Empty<string>();
-            if (storedProcedure.Definition != currentStoredProcedure.Definition && string.IsNullOrEmpty(storedProcedure.Definition))
-                return Array.Empty<string>();
-            if (currentStoredProcedure == null)
-                return GetStoredProcedure(storedProcedure);
-            if (storedProcedure.Definition == currentStoredProcedure.Definition)
-                return Array.Empty<string>();
-            return new List<string>{string.Format(CultureInfo.InvariantCulture,
-                    "DROP PROCEDURE [{0}].[{1}]",
-                    storedProcedure.Schema,
-                    storedProcedure.Name),
+            }
+
+            var Result = new List<string>{
+                 builder.Append("DROP PROCEDURE [")
+                 .Append(storedProcedure.Schema)
+                 .Append("].[")
+                 .Append(storedProcedure.Name)
+                 .Append("]")
+                 .ToString(),
                 GetStoredProcedure(storedProcedure)
             };
+            builder.Clear();
+            return Result;
         }
 
+        /// <summary>
+        /// Gets the stored procedure.
+        /// </summary>
+        /// <param name="storedProcedure">The stored procedure.</param>
+        /// <returns></returns>
         private static string[] GetStoredProcedure(IFunction storedProcedure)
         {
-            if (storedProcedure == null || storedProcedure.Definition == null)
+            if (storedProcedure is null || storedProcedure.Definition is null)
                 return Array.Empty<string>();
             return new string[] {
                 storedProcedure

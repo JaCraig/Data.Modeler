@@ -46,7 +46,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <param name="dataSource">The database.</param>
         public void FillSource(List<dynamic> values, ISource dataSource)
         {
-            if (dataSource == null)
+            if (dataSource is null)
                 throw new ArgumentNullException(nameof(dataSource));
             if (values?.Any() != true)
                 return;
@@ -65,16 +65,16 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
 
         private static void SetupTable(ISource database, dynamic item)
         {
-            if (database == null)
+            if (database is null)
                 throw new ArgumentNullException(nameof(database));
-            if (item == null)
+            if (item is null)
                 throw new ArgumentNullException(nameof(item));
             string TableName = item.TABLE_NAME;
             string TableType = item.TABLE_TYPE;
             if (TableType == "BASE TABLE")
                 database.AddTable(TableName, item.TABLE_SCHEMA);
             else if (TableType == "VIEW")
-                database.AddView(TableName, item.TABLE_SCHEMA, "");
+                database.AddView(TableName, item.TABLE_SCHEMA, string.Empty);
         }
     }
 }

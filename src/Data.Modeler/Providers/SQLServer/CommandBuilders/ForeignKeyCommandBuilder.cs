@@ -16,12 +16,13 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.ObjectPool;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Globalization;
 using System.Linq;
+using System.Text;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -31,6 +32,21 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
     /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
     public class ForeignKeyCommandBuilder : ICommandBuilder
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ForeignKeyCommandBuilder"/> class.
+        /// </summary>
+        /// <param name="objectPool">The object pool.</param>
+        public ForeignKeyCommandBuilder(ObjectPool<StringBuilder> objectPool)
+        {
+            ObjectPool = objectPool;
+        }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        public ObjectPool<StringBuilder> ObjectPool { get; }
+
         /// <summary>
         /// Gets the order.
         /// </summary>
@@ -52,23 +68,61 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public string[] GetCommands(ISource desiredStructure, ISource? currentStructure)
         {
-            if (desiredStructure == null)
+            if (desiredStructure is null)
                 return Array.Empty<string>();
             currentStructure ??= new Source(desiredStructure.Name);
             var Commands = new List<string>();
+            var Builder = ObjectPool.Get();
             for (int i = 0, desiredStructureTablesCount = desiredStructure.Tables.Count; i < desiredStructureTablesCount; i++)
             {
                 var TempTable = desiredStructure.Tables[i];
                 var CurrentTable = currentStructure[TempTable.Name];
-                Commands.Add((CurrentTable == null) ? GetForeignKeyCommand(TempTable) : GetForeignKeyCommand(TempTable, CurrentTable));
+                Commands.Add((CurrentTable is null) ? GetForeignKeyCommand(TempTable, Builder) : GetForeignKeyCommand(TempTable, CurrentTable, Builder));
             }
+            ObjectPool.Return(Builder);
 
             return Commands.ToArray();
         }
 
-        private static IEnumerable<string> GetForeignKeyCommand(ITable table)
+        /// <summary>
+        /// Gets the alter table.
+        /// </summary>
+        /// <param name="Column">The column.</param>
+        /// <param name="ForeignKey">The foreign key.</param>
+        /// <param name="builder">The builder.</param>
+        /// <returns></returns>
+        private static string GetAlterTable(IColumn Column, IColumn ForeignKey, StringBuilder builder)
         {
-            if (table == null || table.Columns == null)
+            var Command = builder.Append("ALTER TABLE [")
+                .Append(Column.ParentTable.Schema)
+                .Append("].[")
+                .Append(Column.ParentTable.Name)
+                .Append("] ADD FOREIGN KEY ([")
+                .Append(Column.Name)
+                .Append("]) REFERENCES [")
+                .Append(ForeignKey.ParentTable.Schema)
+                .Append("].[")
+                .Append(ForeignKey.ParentTable.Name)
+                .Append("]([")
+                .Append(ForeignKey.Name)
+                .Append("])")
+                .Append(Column.OnDeleteCascade ? " ON DELETE CASCADE" : string.Empty)
+                .Append(Column.OnUpdateCascade ? " ON UPDATE CASCADE" : string.Empty)
+                .Append(Column.OnDeleteSetNull ? " ON DELETE SET NULL" : string.Empty)
+                .ToString();
+            builder.Clear();
+            return Command;
+        }
+
+        /// <summary>
+        /// Gets the foreign key command.
+        /// </summary>
+        /// <param name="table">The table.</param>
+        /// <param name="builder">The builder.</param>
+        /// <returns></returns>
+        private static IEnumerable<string> GetForeignKeyCommand(ITable table, StringBuilder builder)
+        {
+            if (table is null || table.Columns is null)
                 return Array.Empty<string>();
             var ReturnValue = new List<string>();
             for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
@@ -79,21 +133,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     for (int j = 0, ColumnForeignKeyCount = Column.ForeignKey.Count; j < ColumnForeignKeyCount; j++)
                     {
                         var ForeignKey = Column.ForeignKey[j];
-                        var Command = string.Format(CultureInfo.InvariantCulture,
-                                    "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}].[{4}]([{5}])",
-                                    Column.ParentTable.Schema,
-                                    Column.ParentTable.Name,
-                                    Column.Name,
-                                    ForeignKey.ParentTable.Schema,
-                                    ForeignKey.ParentTable.Name,
-                                    ForeignKey.Name);
-                        if (Column.OnDeleteCascade)
-                            Command += " ON DELETE CASCADE";
-                        if (Column.OnUpdateCascade)
-                            Command += " ON UPDATE CASCADE";
-                        if (Column.OnDeleteSetNull)
-                            Command += " ON DELETE SET NULL";
-                        ReturnValue.Add(Command);
+                        ReturnValue.Add(GetAlterTable(Column, ForeignKey, builder));
                     }
                 }
             }
@@ -101,9 +141,16 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             return ReturnValue;
         }
 
-        private static IEnumerable<string> GetForeignKeyCommand(ITable table, ITable currentTable)
+        /// <summary>
+        /// Gets the foreign key command.
+        /// </summary>
+        /// <param name="table">The table.</param>
+        /// <param name="currentTable">The current table.</param>
+        /// <param name="builder">The builder.</param>
+        /// <returns></returns>
+        private static IEnumerable<string> GetForeignKeyCommand(ITable table, ITable currentTable, StringBuilder builder)
         {
-            if (table == null || table.Columns == null)
+            if (table is null || table.Columns is null)
                 return Array.Empty<string>();
             var ReturnValue = new List<string>();
             for (int i = 0, tableColumnsCount = table.Columns.Count; i < tableColumnsCount; i++)
@@ -111,26 +158,12 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 var Column = table.Columns[i];
                 var CurrentColumn = currentTable[Column.Name];
                 if (Column.ForeignKey.Count > 0
-                    && (CurrentColumn == null || !Column.Equals(CurrentColumn)))
+                    && (CurrentColumn is null || !Column.Equals(CurrentColumn)))
                 {
                     foreach (var ForeignKey in Column.ForeignKey.Where(x => CurrentColumn?.ForeignKey.Any(y => y.Name == x.Name
                                                                                                                 && y.ParentTable.Name == x.ParentTable.Name) != true))
                     {
-                        var Command = string.Format(CultureInfo.InvariantCulture,
-                            "ALTER TABLE [{0}].[{1}] ADD FOREIGN KEY ([{2}]) REFERENCES [{3}].[{4}]([{5}])",
-                            Column.ParentTable.Schema,
-                            Column.ParentTable.Name,
-                            Column.Name,
-                            ForeignKey.ParentTable.Schema,
-                            ForeignKey.ParentTable.Name,
-                            ForeignKey.Name);
-                        if (Column.OnDeleteCascade)
-                            Command += " ON DELETE CASCADE";
-                        if (Column.OnUpdateCascade)
-                            Command += " ON UPDATE CASCADE";
-                        if (Column.OnDeleteSetNull)
-                            Command += " ON DELETE SET NULL";
-                        ReturnValue.Add(Command);
+                        ReturnValue.Add(GetAlterTable(Column, ForeignKey, builder));
                     }
                 }
             }

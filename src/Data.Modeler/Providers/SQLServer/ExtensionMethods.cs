@@ -19,13 +19,13 @@ namespace Data.Modeler.Providers.SQLServer
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns>The text with comments removed.</returns>
-        public static string RemoveComments(this string text) => CommentRegex.Replace(text, "");
+        public static string RemoveComments(this string text) => CommentRegex.Replace(text, string.Empty);
 
         /// <summary>
         /// Removes the initial catalog.
         /// </summary>
         /// <param name="text">The text.</param>
         /// <returns>The text without the initial catalog.</returns>
-        public static string RemoveInitialCatalog(this string text) => ConnectionRegex.Replace(text, "");
+        public static string RemoveInitialCatalog(this string text) => ConnectionRegex.Replace(text, string.Empty);
     }
 }

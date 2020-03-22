@@ -10,7 +10,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void Creation()
         {
-            var TempCheckConstraint = new StoredProcedureCommandBuilder();
+            var TempCheckConstraint = new StoredProcedureCommandBuilder(ObjectPool);
             Assert.NotNull(TempCheckConstraint);
             Assert.Equal(60, TempCheckConstraint.Order);
         }
@@ -18,7 +18,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void GetCommandsNoCurrentSource()
         {
-            var TempCheckConstraint = new StoredProcedureCommandBuilder();
+            var TempCheckConstraint = new StoredProcedureCommandBuilder(ObjectPool);
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
             Assert.Single(Commands);
             Assert.Equal("My Definition 2", Commands[0]);
@@ -27,7 +27,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void GetCommandsWithCurrentSource()
         {
-            var TempCheckConstraint = new StoredProcedureCommandBuilder();
+            var TempCheckConstraint = new StoredProcedureCommandBuilder(ObjectPool);
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
             Assert.Equal(2, Commands.Count);
             Assert.Equal("DROP PROCEDURE [dbo].[Stored Procedure A]", Commands[0]);

@@ -10,7 +10,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void Creation()
         {
-            var TempCheckConstraint = new CreateDatabaseCommandBuilder();
+            var TempCheckConstraint = new CreateDatabaseCommandBuilder(ObjectPool);
             Assert.NotNull(TempCheckConstraint);
             Assert.Equal(1, TempCheckConstraint.Order);
         }
@@ -18,7 +18,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void GetCommandsNoCurrentSource()
         {
-            var TempCheckConstraint = new CreateDatabaseCommandBuilder();
+            var TempCheckConstraint = new CreateDatabaseCommandBuilder(ObjectPool);
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, null).ToList();
             Assert.Single(Commands);
             Assert.Equal("CREATE DATABASE [My Data]", Commands[0]);
@@ -27,7 +27,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer.CommandBuilders
         [Fact]
         public void GetCommandsWithCurrentSource()
         {
-            var TempCheckConstraint = new CreateDatabaseCommandBuilder();
+            var TempCheckConstraint = new CreateDatabaseCommandBuilder(ObjectPool);
             var Commands = TempCheckConstraint.GetCommands(DesiredSource, CurrentSource).ToList();
             Assert.Empty(Commands);
         }

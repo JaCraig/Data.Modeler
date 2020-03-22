@@ -15,10 +15,11 @@ limitations under the License.
 */
 
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.ObjectPool;
 using System;
 using System.Data.Common;
 using System.Data.SqlClient;
-using System.Globalization;
+using System.Text;
 
 namespace Data.Modeler.Providers.SQLServer.CommandBuilders
 {
@@ -28,6 +29,21 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
     /// <seealso cref="Data.Modeler.Providers.Interfaces.ICommandBuilder"/>
     public class CreateDatabaseCommandBuilder : ICommandBuilder
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CreateDatabaseCommandBuilder"/> class.
+        /// </summary>
+        /// <param name="objectPool">The object pool.</param>
+        public CreateDatabaseCommandBuilder(ObjectPool<StringBuilder> objectPool)
+        {
+            ObjectPool = objectPool;
+        }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        public ObjectPool<StringBuilder> ObjectPool { get; }
+
         /// <summary>
         /// Gets the order.
         /// </summary>
@@ -49,13 +65,17 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// </returns>
         public string[] GetCommands(ISource desiredStructure, ISource? currentStructure)
         {
-            if (currentStructure != null || desiredStructure == null)
+            if (currentStructure != null || desiredStructure is null)
                 return Array.Empty<string>();
-            return new string[] {
-                string.Format(CultureInfo.InvariantCulture,
-                "CREATE DATABASE [{0}]",
-                desiredStructure.Name)
+            var Builder = ObjectPool.Get();
+            var Result = new string[] {
+                Builder.Append("CREATE DATABASE [")
+                .Append(desiredStructure.Name)
+                .Append("]")
+                .ToString()
             };
+            ObjectPool.Return(Builder);
+            return Result;
         }
     }
 }
