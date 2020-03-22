@@ -274,7 +274,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     {
                         ReturnValue.Add(builder.Append("CREATE")
                             .Append(Column.Unique ? " UNIQUE" : string.Empty)
-                            .Append("INDEX [Index_")
+                            .Append(" INDEX [Index_")
                             .Append(Column.Name)
                             .Append(Counter.ToString(CultureInfo.InvariantCulture))
                             .Append("] ON [")
