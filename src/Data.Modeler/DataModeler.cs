@@ -16,6 +16,8 @@ limitations under the License.
 
 using Data.Modeler.Providers;
 using Data.Modeler.Providers.Interfaces;
+using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Linq;
 
@@ -24,8 +26,34 @@ namespace Data.Modeler
     /// <summary>
     /// Data modeler class.
     /// </summary>
-    public static class DataModeler
+    public class DataModeler
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DataModeler"/> class.
+        /// </summary>
+        /// <param name="generators">The generators.</param>
+        public DataModeler(IEnumerable<ISchemaGenerator> generators)
+        {
+            generators ??= Array.Empty<ISchemaGenerator>();
+            Generators = new Dictionary<DbProviderFactory, ISchemaGenerator>();
+            foreach (var Item in generators.Where(x => x.GetType().Assembly != typeof(DataModeler).Assembly))
+            {
+                if (!Generators.ContainsKey(Item.Provider))
+                    Generators.Add(Item.Provider, Item);
+            }
+            foreach (var Item in generators.Where(x => x.GetType().Assembly == typeof(DataModeler).Assembly))
+            {
+                if (!Generators.ContainsKey(Item.Provider))
+                    Generators.Add(Item.Provider, Item);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the generators.
+        /// </summary>
+        /// <value>The generators.</value>
+        private Dictionary<DbProviderFactory, ISchemaGenerator> Generators { get; set; }
+
         /// <summary>
         /// Creates the source.
         /// </summary>
@@ -38,14 +66,10 @@ namespace Data.Modeler
         /// </summary>
         /// <param name="factory">The DbProviderFactory.</param>
         /// <returns>The requested schema generator</returns>
-        public static ISchemaGenerator? GetSchemaGenerator(DbProviderFactory factory)
+        public ISchemaGenerator? GetSchemaGenerator(DbProviderFactory factory)
         {
-            if (Canister.Builder.Bootstrapper is null)
-                return null;
-            var SchemaGenerators = Canister.Builder.Bootstrapper.ResolveAll<ISchemaGenerator>();
-            var RequestedGenerators = SchemaGenerators.Where(x => x.Provider == factory);
-            return RequestedGenerators.FirstOrDefault(x => x.GetType().Assembly != typeof(DataModeler).Assembly)
-                ?? RequestedGenerators.FirstOrDefault(x => x.GetType().Assembly == typeof(DataModeler).Assembly);
+            Generators.TryGetValue(factory, out var Result);
+            return Result;
         }
     }
 }

@@ -39,7 +39,8 @@ namespace Data.Modeler.Modules
         {
             bootstrapper?.RegisterAll<ICommandBuilder>()
                          .RegisterAll<ISourceBuilder>()
-                         .RegisterAll<ISchemaGenerator>(ServiceLifetime.Singleton);
+                         .RegisterAll<ISchemaGenerator>(ServiceLifetime.Singleton)
+                         .Register<DataModeler>(ServiceLifetime.Singleton);
         }
     }
 }

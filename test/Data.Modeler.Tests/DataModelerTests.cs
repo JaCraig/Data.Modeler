@@ -20,7 +20,7 @@ namespace Data.Modeler.Tests
         [Fact]
         public void GetSchemaGenerator()
         {
-            var Generator = DataModeler.GetSchemaGenerator(SqlClientFactory.Instance);
+            var Generator = Canister.Builder.Bootstrapper.Resolve<DataModeler>().GetSchemaGenerator(SqlClientFactory.Instance);
             Assert.Equal(SqlClientFactory.Instance, Generator.Provider);
         }
     }
