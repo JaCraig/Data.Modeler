@@ -25,6 +25,7 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.SQLServer
 {
@@ -88,7 +89,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="constraint">The constraint to check.</param>
         /// <param name="source">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool ConstraintExists(string constraint, IConnection source) => Exists("SELECT * FROM sys.check_constraints WHERE name=@0", constraint, source);
+        public Task<bool> ConstraintExistsAsync(string constraint, IConnection source) => ExistsAsync("SELECT * FROM sys.check_constraints WHERE name=@0", constraint, source);
 
         /// <summary>
         /// Generates a list of commands used to modify the source. If it does not exist prior, the
@@ -116,13 +117,13 @@ namespace Data.Modeler.Providers.SQLServer
         /// </summary>
         /// <param name="connectionInfo">Source to use</param>
         /// <returns>The source structure</returns>
-        public ISource? GetSourceStructure(IConnection connectionInfo)
+        public async Task<ISource?> GetSourceStructureAsync(IConnection connectionInfo)
         {
             if (connectionInfo is null)
                 return null;
             var DatabaseName = connectionInfo.DatabaseName ?? string.Empty;
             var DatabaseSource = new Connection(Configuration, connectionInfo.Factory, connectionInfo.ConnectionString.RemoveInitialCatalog(), "Name");
-            if (!SourceExists(DatabaseName, DatabaseSource))
+            if (!await SourceExistsAsync(DatabaseName, DatabaseSource).ConfigureAwait(false))
                 return null;
             var Temp = new Source(DatabaseName);
             Batch ??= new SQLHelper(connectionInfo);
@@ -133,7 +134,7 @@ namespace Data.Modeler.Providers.SQLServer
                 Batch.AddQuery(CommandType.Text, Builder.GetCommand());
             }
 
-            var Results = Batch.Execute();
+            var Results = await Batch.ExecuteAsync().ConfigureAwait(false);
             for (int x = 0, QueryBuildersLength = QueryBuilders.Length; x < QueryBuildersLength; ++x)
             {
                 var Builder = QueryBuilders[x];
@@ -147,11 +148,11 @@ namespace Data.Modeler.Providers.SQLServer
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="connection">The connection.</param>
-        public void Setup(ISource source, IConnection connection)
+        public async Task SetupAsync(ISource source, IConnection connection)
         {
             if (connection is null)
                 return;
-            var CurrentSource = GetSourceStructure(connection);
+            var CurrentSource = await GetSourceStructureAsync(connection).ConfigureAwait(false);
             var Commands = GenerateSchema(source, CurrentSource).ToArray();
 
             var DatabaseConnectionString = connection.ConnectionString.RemoveInitialCatalog();
@@ -162,21 +163,21 @@ namespace Data.Modeler.Providers.SQLServer
                 if (Commands[x].IndexOf("CREATE DATABASE", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
                     OneOffQueries ??= new SQLHelper(Configuration, connection.Factory, DatabaseConnectionString);
-                    OneOffQueries.CreateBatch(Configuration, connection.Factory, DatabaseConnectionString)
+                    await OneOffQueries.CreateBatch(Configuration, connection.Factory, DatabaseConnectionString)
                                  .AddQuery(CommandType.Text, Commands[x])
-                                 .Execute();
+                                 .ExecuteAsync().ConfigureAwait(false);
                 }
                 else if (Commands[x].IndexOf("CREATE TRIGGER", System.StringComparison.InvariantCultureIgnoreCase) >= 0 || Commands[x].IndexOf("CREATE FUNCTION", System.StringComparison.InvariantCultureIgnoreCase) >= 0 || Commands[x].IndexOf("CREATE SCHEMA", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
                     if (Batch.Count > 0)
                     {
-                        Batch.Execute();
+                        await Batch.ExecuteAsync().ConfigureAwait(false);
                         Batch.CreateBatch();
                     }
                     Batch.AddQuery(CommandType.Text, Commands[x]);
                     if (x < Commands.Length - 1)
                     {
-                        Batch.Execute();
+                        await Batch.ExecuteAsync().ConfigureAwait(false);
                         Batch.CreateBatch();
                     }
                 }
@@ -185,7 +186,7 @@ namespace Data.Modeler.Providers.SQLServer
                     Batch.AddQuery(CommandType.Text, Commands[x]);
                 }
             }
-            Batch.Execute();
+            await Batch.ExecuteAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -194,7 +195,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="source">Source to check</param>
         /// <param name="connectionInfo">Source info to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool SourceExists(string source, IConnection connectionInfo) => Exists("SELECT * FROM Master.sys.Databases WHERE name=@0", source, connectionInfo);
+        public Task<bool> SourceExistsAsync(string source, IConnection connectionInfo) => ExistsAsync("SELECT * FROM Master.sys.Databases WHERE name=@0", source, connectionInfo);
 
         /// <summary>
         /// Checks if a stored procedure exists
@@ -202,7 +203,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="storedProcedure">Stored procedure to check</param>
         /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool StoredProcedureExists(string storedProcedure, IConnection connectionInfo) => Exists("SELECT * FROM sys.Procedures WHERE name=@0", storedProcedure, connectionInfo);
+        public Task<bool> StoredProcedureExistsAsync(string storedProcedure, IConnection connectionInfo) => ExistsAsync("SELECT * FROM sys.Procedures WHERE name=@0", storedProcedure, connectionInfo);
 
         /// <summary>
         /// Checks if a table exists
@@ -210,7 +211,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="table">Table to check</param>
         /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool TableExists(string table, IConnection connectionInfo) => Exists("SELECT * FROM sys.Tables WHERE name=@0", table, connectionInfo);
+        public Task<bool> TableExistsAsync(string table, IConnection connectionInfo) => ExistsAsync("SELECT * FROM sys.Tables WHERE name=@0", table, connectionInfo);
 
         /// <summary>
         /// Checks if a trigger exists
@@ -218,7 +219,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="trigger">Trigger to check</param>
         /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool TriggerExists(string trigger, IConnection connectionInfo) => Exists("SELECT * FROM sys.triggers WHERE name=@0", trigger, connectionInfo);
+        public Task<bool> TriggerExistsAsync(string trigger, IConnection connectionInfo) => ExistsAsync("SELECT * FROM sys.triggers WHERE name=@0", trigger, connectionInfo);
 
         /// <summary>
         /// Checks if a view exists
@@ -226,7 +227,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="view">View to check</param>
         /// <param name="connectionInfo">Source to use</param>
         /// <returns>True if it exists, false otherwise</returns>
-        public bool ViewExists(string view, IConnection connectionInfo) => Exists("SELECT * FROM sys.views WHERE name=@0", view, connectionInfo);
+        public Task<bool> ViewExistsAsync(string view, IConnection connectionInfo) => ExistsAsync("SELECT * FROM sys.views WHERE name=@0", view, connectionInfo);
 
         /// <summary>
         /// Determines if something exists.
@@ -235,14 +236,14 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="value">The value.</param>
         /// <param name="source">The source.</param>
         /// <returns>True if it does, false otherwise.</returns>
-        private bool Exists(string command, string value, IConnection source)
+        private async Task<bool> ExistsAsync(string command, string value, IConnection source)
         {
             if (source is null || value is null || command is null)
                 return false;
             OneOffQueries ??= new SQLHelper(Configuration, source.Factory, source.ConnectionString);
-            return OneOffQueries.CreateBatch(Configuration, source.Factory, source.ConnectionString)
+            return (await OneOffQueries.CreateBatch(Configuration, source.Factory, source.ConnectionString)
                            .AddQuery(CommandType.Text, command, value)
-                           .Execute()[0]
+                           .ExecuteAsync().ConfigureAwait(false))[0]
                            .Count > 0;
         }
     }

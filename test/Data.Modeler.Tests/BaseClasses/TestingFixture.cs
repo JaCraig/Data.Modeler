@@ -14,6 +14,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 
 namespace Data.Modeler.Tests.BaseClasses
@@ -25,7 +26,8 @@ namespace Data.Modeler.Tests.BaseClasses
         {
             SetupConfiguration();
             SetupIoC();
-            SetupDatabases();
+            var TempTask = Task.Run(async () => await SetupDatabasesAsync().ConfigureAwait(false));
+            TempTask.GetAwaiter().GetResult();
         }
 
         public IConfiguration Configuration { get; set; }
@@ -65,7 +67,7 @@ namespace Data.Modeler.Tests.BaseClasses
                              .Build();
         }
 
-        private void SetupDatabases()
+        private async Task SetupDatabasesAsync()
         {
             try
             {
@@ -96,18 +98,18 @@ namespace Data.Modeler.Tests.BaseClasses
                 var Queries = new FileInfo("./Scripts/script.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var Query in Queries)
                 {
-                    new SQLHelper(Configuration, SqlClientFactory.Instance)
+                    await new SQLHelper(Configuration, SqlClientFactory.Instance)
                         .CreateBatch()
                         .AddQuery(CommandType.Text, Query)
-                        .ExecuteScalar<int>();
+                        .ExecuteScalarAsync<int>().ConfigureAwait(false);
                 }
                 Queries = new FileInfo("./Scripts/testdatabase.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var Query in Queries)
                 {
-                    new SQLHelper(Configuration, SqlClientFactory.Instance, "Default2")
+                    await new SQLHelper(Configuration, SqlClientFactory.Instance, "Default2")
                         .CreateBatch()
                         .AddQuery(CommandType.Text, Query)
-                        .ExecuteScalar<int>();
+                        .ExecuteScalarAsync<int>().ConfigureAwait(false);
                 }
             }
             catch { }

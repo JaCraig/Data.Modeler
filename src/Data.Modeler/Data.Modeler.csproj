@@ -21,7 +21,8 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>3.0.$(BuildNumber)</Version>
+    <Version>3.0.13.0</Version>
+    <!--$(BuildNumber)</Version>-->
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
@@ -34,12 +35,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BigBook" Version="3.0.17" />
+    <PackageReference Include="BigBook" Version="3.0.18" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SQLHelper.DB" Version="3.1.10" />
+    <PackageReference Include="SQLHelper.DB" Version="3.1.11" />
   </ItemGroup>
-
 </Project>

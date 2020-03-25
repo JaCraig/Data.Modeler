@@ -16,6 +16,7 @@ limitations under the License.
 
 using SQLHelperDB.HelperClasses.Interfaces;
 using System.Data.Common;
+using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.Interfaces
 {
@@ -44,14 +45,14 @@ namespace Data.Modeler.Providers.Interfaces
         /// </summary>
         /// <param name="connectionInfo">The connection information.</param>
         /// <returns>The source structure</returns>
-        ISource? GetSourceStructure(IConnection connectionInfo);
+        Task<ISource?> GetSourceStructureAsync(IConnection connectionInfo);
 
         /// <summary>
         /// Sets up the specified source.
         /// </summary>
         /// <param name="source">The source.</param>
         /// <param name="connection">The connection.</param>
-        void Setup(ISource source, IConnection connection);
+        Task SetupAsync(ISource source, IConnection connection);
 
         /// <summary>
         /// Checks if a source exists
@@ -59,7 +60,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <param name="source">The source.</param>
         /// <param name="connectionInfo">The connection.</param>
         /// <returns>True if it exists, false otherwise</returns>
-        bool SourceExists(string source, IConnection connectionInfo);
+        Task<bool> SourceExistsAsync(string source, IConnection connectionInfo);
 
         /// <summary>
         /// Checks if a stored procedure exists
@@ -67,7 +68,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <param name="storedProcedure">Stored procedure to check</param>
         /// <param name="connectionInfo">The connection information.</param>
         /// <returns>True if it exists, false otherwise</returns>
-        bool StoredProcedureExists(string storedProcedure, IConnection connectionInfo);
+        Task<bool> StoredProcedureExistsAsync(string storedProcedure, IConnection connectionInfo);
 
         /// <summary>
         /// Checks if a table exists
@@ -75,7 +76,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <param name="table">Table to check</param>
         /// <param name="connectionInfo">The connection information.</param>
         /// <returns>True if it exists, false otherwise</returns>
-        bool TableExists(string table, IConnection connectionInfo);
+        Task<bool> TableExistsAsync(string table, IConnection connectionInfo);
 
         /// <summary>
         /// Checks if a trigger exists
@@ -83,7 +84,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <param name="trigger">Trigger to check</param>
         /// <param name="connectionInfo">The connection information.</param>
         /// <returns>True if it exists, false otherwise</returns>
-        bool TriggerExists(string trigger, IConnection connectionInfo);
+        Task<bool> TriggerExistsAsync(string trigger, IConnection connectionInfo);
 
         /// <summary>
         /// Checks if a view exists
@@ -91,6 +92,6 @@ namespace Data.Modeler.Providers.Interfaces
         /// <param name="view">View to check</param>
         /// <param name="connectionInfo">The connection information.</param>
         /// <returns>True if it exists, false otherwise</returns>
-        bool ViewExists(string view, IConnection connectionInfo);
+        Task<bool> ViewExistsAsync(string view, IConnection connectionInfo);
     }
 }
