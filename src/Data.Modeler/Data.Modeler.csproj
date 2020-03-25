@@ -21,8 +21,7 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>3.0.13.0</Version>
-    <!--$(BuildNumber)</Version>-->
+    <Version>3.0.$(BuildNumber)</Version>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
