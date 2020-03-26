@@ -15,8 +15,10 @@ limitations under the License.
 */
 
 using BigBook;
+using BigBook.DataMapper;
 using Data.Modeler.Providers.Interfaces;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB;
 using SQLHelperDB.HelperClasses;
 using SQLHelperDB.HelperClasses.Interfaces;
@@ -25,6 +27,7 @@ using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Data.Modeler.Providers.SQLServer
@@ -41,18 +44,42 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="queryBuilders">The query builders.</param>
         /// <param name="commandBuilders">The command builders.</param>
         /// <param name="configuration">The configuration.</param>
-        public SQLServerSchemaGenerator(IEnumerable<ISourceBuilder> queryBuilders, IEnumerable<ICommandBuilder> commandBuilders, IConfiguration configuration)
+        /// <param name="objectPool">The object pool.</param>
+        /// <param name="aspectus">The aspectus.</param>
+        /// <param name="dataMapper">The data mapper.</param>
+        public SQLServerSchemaGenerator(IEnumerable<ISourceBuilder> queryBuilders, IEnumerable<ICommandBuilder> commandBuilders, IConfiguration configuration, ObjectPool<StringBuilder> objectPool, Aspectus.Aspectus aspectus, Manager dataMapper)
         {
             CommandBuilders = commandBuilders.Where(x => x.Provider == Provider).OrderBy(x => x.Order).ToArray();
             QueryBuilders = queryBuilders.Where(x => x.Provider == Provider).OrderBy(x => x.Order).ToArray();
             Configuration = configuration;
+            ObjectPool = objectPool;
+            Aspectus = aspectus;
+            DataMapper = dataMapper;
         }
+
+        /// <summary>
+        /// Gets the aspectus.
+        /// </summary>
+        /// <value>The aspectus.</value>
+        public Aspectus.Aspectus Aspectus { get; }
 
         /// <summary>
         /// Gets the configuration.
         /// </summary>
         /// <value>The configuration.</value>
         public IConfiguration Configuration { get; }
+
+        /// <summary>
+        /// Gets the data mapper.
+        /// </summary>
+        /// <value>The data mapper.</value>
+        public Manager DataMapper { get; }
+
+        /// <summary>
+        /// Gets the object pool.
+        /// </summary>
+        /// <value>The object pool.</value>
+        public ObjectPool<StringBuilder> ObjectPool { get; }
 
         /// <summary>
         /// Provider name associated with the schema generator
@@ -126,7 +153,7 @@ namespace Data.Modeler.Providers.SQLServer
             if (!await SourceExistsAsync(DatabaseName, DatabaseSource).ConfigureAwait(false))
                 return null;
             var Temp = new Source(DatabaseName);
-            Batch ??= new SQLHelper(connectionInfo);
+            Batch ??= new SQLHelper(connectionInfo, ObjectPool, Aspectus, DataMapper);
             Batch.CreateBatch(connectionInfo);
             for (int i = 0, QueryBuildersLength = QueryBuilders.Length; i < QueryBuildersLength; i++)
             {
@@ -156,13 +183,13 @@ namespace Data.Modeler.Providers.SQLServer
             var Commands = GenerateSchema(source, CurrentSource).ToArray();
 
             var DatabaseConnectionString = connection.ConnectionString.RemoveInitialCatalog();
-            Batch ??= new SQLHelper(connection);
+            Batch ??= new SQLHelper(connection, ObjectPool, Aspectus, DataMapper);
             Batch.CreateBatch(connection);
             for (var x = 0; x < Commands.Length; ++x)
             {
                 if (Commands[x].IndexOf("CREATE DATABASE", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
-                    OneOffQueries ??= new SQLHelper(Configuration, connection.Factory, DatabaseConnectionString);
+                    OneOffQueries ??= new SQLHelper(Configuration, connection.Factory, DatabaseConnectionString, ObjectPool, Aspectus, DataMapper);
                     await OneOffQueries.CreateBatch(Configuration, connection.Factory, DatabaseConnectionString)
                                  .AddQuery(CommandType.Text, Commands[x])
                                  .ExecuteAsync().ConfigureAwait(false);
@@ -240,7 +267,7 @@ namespace Data.Modeler.Providers.SQLServer
         {
             if (source is null || value is null || command is null)
                 return false;
-            OneOffQueries ??= new SQLHelper(Configuration, source.Factory, source.ConnectionString);
+            OneOffQueries ??= new SQLHelper(Configuration, source.Factory, source.ConnectionString, ObjectPool, Aspectus, DataMapper);
             return (await OneOffQueries.CreateBatch(Configuration, source.Factory, source.ConnectionString)
                            .AddQuery(CommandType.Text, command, value)
                            .ExecuteAsync().ConfigureAwait(false))[0]

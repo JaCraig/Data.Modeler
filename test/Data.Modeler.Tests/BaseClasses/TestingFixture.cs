@@ -1,4 +1,5 @@
-﻿using BigBook.Registration;
+﻿using BigBook.DataMapper;
+using BigBook.Registration;
 using Data.Modeler.Registration;
 using FileCurator;
 using FileCurator.Registration;
@@ -30,11 +31,13 @@ namespace Data.Modeler.Tests.BaseClasses
             TempTask.GetAwaiter().GetResult();
         }
 
+        protected Aspectus.Aspectus Aspectus => Canister.Builder.Bootstrapper.Resolve<Aspectus.Aspectus>();
         public IConfiguration Configuration { get; set; }
         protected string ConnectionString { get; } = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
         protected string ConnectionString2 { get; } = "Data Source=localhost;Initial Catalog=TestDatabaseForeignKeys;Integrated Security=SSPI;Pooling=false";
         protected string ConnectionStringNew { get; } = "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
         protected string DatabaseName { get; } = "TestDatabase";
+        protected Manager DataMapper => Canister.Builder.Bootstrapper.Resolve<Manager>();
         protected string MasterString { get; } = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
         protected ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
 
