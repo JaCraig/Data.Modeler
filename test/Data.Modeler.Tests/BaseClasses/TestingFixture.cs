@@ -38,6 +38,7 @@ namespace Data.Modeler.Tests.BaseClasses
         protected string ConnectionStringNew { get; } = "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
         protected string DatabaseName { get; } = "TestDatabase";
         protected Manager DataMapper => Canister.Builder.Bootstrapper.Resolve<Manager>();
+        protected SQLHelper Helper => Canister.Builder.Bootstrapper.Resolve<SQLHelper>();
         protected string MasterString { get; } = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
         protected ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
 
@@ -72,6 +73,7 @@ namespace Data.Modeler.Tests.BaseClasses
 
         private async Task SetupDatabasesAsync()
         {
+            var TempHelper = Helper;
             try
             {
                 using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
@@ -101,7 +103,7 @@ namespace Data.Modeler.Tests.BaseClasses
                 var Queries = new FileInfo("./Scripts/script.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var Query in Queries)
                 {
-                    await new SQLHelper(Configuration, SqlClientFactory.Instance)
+                    await TempHelper
                         .CreateBatch()
                         .AddQuery(CommandType.Text, Query)
                         .ExecuteScalarAsync<int>().ConfigureAwait(false);
@@ -109,8 +111,8 @@ namespace Data.Modeler.Tests.BaseClasses
                 Queries = new FileInfo("./Scripts/testdatabase.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var Query in Queries)
                 {
-                    await new SQLHelper(Configuration, SqlClientFactory.Instance, "Default2")
-                        .CreateBatch()
+                    await TempHelper
+                        .CreateBatch(database: "Default2")
                         .AddQuery(CommandType.Text, Query)
                         .ExecuteScalarAsync<int>().ConfigureAwait(false);
                 }

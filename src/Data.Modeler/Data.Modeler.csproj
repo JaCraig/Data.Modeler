@@ -34,11 +34,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BigBook" Version="3.0.21" />
+    <PackageReference Include="BigBook" Version="3.0.22" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SQLHelper.DB" Version="3.1.13" />
+    <PackageReference Include="SQLHelper.DB" Version="3.1.14" />
   </ItemGroup>
 </Project>
