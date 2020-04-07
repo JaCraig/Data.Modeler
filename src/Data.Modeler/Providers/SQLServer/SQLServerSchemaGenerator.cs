@@ -157,26 +157,37 @@ namespace Data.Modeler.Providers.SQLServer
                 return;
             var CurrentSource = await GetSourceStructureAsync(connection).ConfigureAwait(false);
             var Commands = GenerateSchema(source, CurrentSource).ToArray();
+            await SetupAsync(Commands, connection).ConfigureAwait(false);
+        }
 
+        /// <summary>
+        /// Sets up the specified source.
+        /// </summary>
+        /// <param name="schemaChanges">The schema changes.</param>
+        /// <param name="connection">The connection.</param>
+        public async Task SetupAsync(string[] schemaChanges, IConnection connection)
+        {
+            if (connection is null || schemaChanges is null)
+                return;
             var DatabaseConnectionString = connection.ConnectionString.RemoveInitialCatalog();
             Batch.CreateBatch(connection);
-            for (var x = 0; x < Commands.Length; ++x)
+            for (var x = 0; x < schemaChanges.Length; ++x)
             {
-                if (Commands[x].IndexOf("CREATE DATABASE", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
+                if (schemaChanges[x].IndexOf("CREATE DATABASE", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
                     await OneOffQueries.CreateBatch(connection.Factory, DatabaseConnectionString)
-                                 .AddQuery(CommandType.Text, Commands[x])
+                                 .AddQuery(CommandType.Text, schemaChanges[x])
                                  .ExecuteAsync().ConfigureAwait(false);
                 }
-                else if (Commands[x].IndexOf("CREATE TRIGGER", System.StringComparison.InvariantCultureIgnoreCase) >= 0 || Commands[x].IndexOf("CREATE FUNCTION", System.StringComparison.InvariantCultureIgnoreCase) >= 0 || Commands[x].IndexOf("CREATE SCHEMA", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
+                else if (schemaChanges[x].IndexOf("CREATE TRIGGER", System.StringComparison.InvariantCultureIgnoreCase) >= 0 || schemaChanges[x].IndexOf("CREATE FUNCTION", System.StringComparison.InvariantCultureIgnoreCase) >= 0 || schemaChanges[x].IndexOf("CREATE SCHEMA", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
                 {
                     if (Batch.Count > 0)
                     {
                         await Batch.ExecuteAsync().ConfigureAwait(false);
                         Batch.CreateBatch();
                     }
-                    Batch.AddQuery(CommandType.Text, Commands[x]);
-                    if (x < Commands.Length - 1)
+                    Batch.AddQuery(CommandType.Text, schemaChanges[x]);
+                    if (x < schemaChanges.Length - 1)
                     {
                         await Batch.ExecuteAsync().ConfigureAwait(false);
                         Batch.CreateBatch();
@@ -184,7 +195,7 @@ namespace Data.Modeler.Providers.SQLServer
                 }
                 else
                 {
-                    Batch.AddQuery(CommandType.Text, Commands[x]);
+                    Batch.AddQuery(CommandType.Text, schemaChanges[x]);
                 }
             }
             await Batch.ExecuteAsync().ConfigureAwait(false);
