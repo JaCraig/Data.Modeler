@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# SecurityIntelliSenseCS: MS Security rules violation
+dotnet_diagnostic.SecurityIntelliSenseCS.severity = none

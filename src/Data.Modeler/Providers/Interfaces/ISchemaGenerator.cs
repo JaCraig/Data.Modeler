@@ -55,6 +55,13 @@ namespace Data.Modeler.Providers.Interfaces
         Task SetupAsync(ISource source, IConnection connection);
 
         /// <summary>
+        /// Sets up the specified source.
+        /// </summary>
+        /// <param name="schemaChanges">The schema changes.</param>
+        /// <param name="connection">The connection.</param>
+        Task SetupAsync(string[] schemaChanges, IConnection connection);
+
+        /// <summary>
         /// Checks if a source exists
         /// </summary>
         /// <param name="source">The source.</param>
