@@ -37,11 +37,11 @@
     <None Include="..\..\.editorconfig" Link=".editorconfig" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="BigBook" Version="3.0.37" />
+    <PackageReference Include="BigBook" Version="3.0.39" />
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="3.0.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="SQLHelper.DB" Version="3.1.26" />
+    <PackageReference Include="SQLHelper.DB" Version="3.1.27" />
   </ItemGroup>
 </Project>
