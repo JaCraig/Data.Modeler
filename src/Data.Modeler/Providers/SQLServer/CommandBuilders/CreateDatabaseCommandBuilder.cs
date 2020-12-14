@@ -71,7 +71,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             var Result = new string[] {
                 Builder.Append("CREATE DATABASE [")
                 .Append(desiredStructure.Name)
-                .Append("]")
+                .Append(']')
                 .ToString()
             };
             ObjectPool.Return(Builder);

@@ -31,16 +31,16 @@ namespace Data.Modeler.Tests.BaseClasses
             TempTask.GetAwaiter().GetResult();
         }
 
-        protected Aspectus.Aspectus Aspectus => Canister.Builder.Bootstrapper.Resolve<Aspectus.Aspectus>();
+        protected static Aspectus.Aspectus Aspectus => Canister.Builder.Bootstrapper.Resolve<Aspectus.Aspectus>();
         public IConfiguration Configuration { get; set; }
+        protected static Manager DataMapper => Canister.Builder.Bootstrapper.Resolve<Manager>();
+        protected static SQLHelper Helper => Canister.Builder.Bootstrapper.Resolve<SQLHelper>();
+        protected static ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
         protected string ConnectionString { get; } = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
         protected string ConnectionString2 { get; } = "Data Source=localhost;Initial Catalog=TestDatabaseForeignKeys;Integrated Security=SSPI;Pooling=false";
         protected string ConnectionStringNew { get; } = "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
         protected string DatabaseName { get; } = "TestDatabase";
-        protected Manager DataMapper => Canister.Builder.Bootstrapper.Resolve<Manager>();
-        protected SQLHelper Helper => Canister.Builder.Bootstrapper.Resolve<SQLHelper>();
         protected string MasterString { get; } = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
-        protected ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
 
         public void Dispose()
         {
@@ -124,7 +124,9 @@ namespace Data.Modeler.Tests.BaseClasses
         {
             if (Canister.Builder.Bootstrapper == null)
             {
-                var Container = Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
+                var Services = new ServiceCollection();
+                Services.AddLogging();
+                var Container = Canister.Builder.CreateContainer(Services)
                                                 .AddAssembly(typeof(TestingFixture).GetTypeInfo().Assembly)
                                                 .RegisterDataModeler()
                                                 .RegisterSQLHelper()

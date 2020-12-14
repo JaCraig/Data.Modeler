@@ -104,7 +104,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 }
                 else if (!string.Equals(Definition1, Definition2, StringComparison.OrdinalIgnoreCase))
                 {
-                    ReturnValue.Add(builder.Append("DROP TRIGGER [").Append(Trigger.Name).Append("]").ToString());
+                    ReturnValue.Add(builder.Append("DROP TRIGGER [").Append(Trigger.Name).Append(']').ToString());
                     ReturnValue.Add(Trigger
                         .Definition
                         .RemoveComments()

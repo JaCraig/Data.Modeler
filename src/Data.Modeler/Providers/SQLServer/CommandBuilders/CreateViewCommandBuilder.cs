@@ -104,7 +104,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 .Append(view.Schema)
                 .Append("].[")
                 .Append(view.Name)
-                .Append("]")
+                .Append(']')
                 .ToString(),
                 GetViewCommand(view)
             };

@@ -106,7 +106,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 .Append(function.Schema)
                 .Append("].[")
                 .Append(function.Name)
-                .Append("]")
+                .Append(']')
                 .ToString(),
                 GetFunctionCommand(function)
             };

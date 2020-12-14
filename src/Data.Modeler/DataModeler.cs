@@ -52,7 +52,7 @@ namespace Data.Modeler
         /// Gets or sets the generators.
         /// </summary>
         /// <value>The generators.</value>
-        private Dictionary<DbProviderFactory, ISchemaGenerator> Generators { get; set; }
+        private Dictionary<DbProviderFactory, ISchemaGenerator> Generators { get; }
 
         /// <summary>
         /// Creates the source.

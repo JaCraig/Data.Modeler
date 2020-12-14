@@ -134,7 +134,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                             .Append(Column.Name)
                             .Append("] AS (")
                             .Append(Column.ComputedColumnSpecification)
-                            .Append(")");
+                            .Append(')');
                     }
                     ReturnValue.Add(builder.ToString());
                     builder.Clear();
@@ -179,9 +179,9 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <param name="Column">The column.</param>
         private static void GetColumnLength(StringBuilder builder, IColumn Column)
         {
-            builder.Append("(")
+            builder.Append('(')
                     .Append((Column.Length <= 0 || Column.Length >= 4000) ? "MAX" : Column.Length.ToString(CultureInfo.InvariantCulture))
-                    .Append(")");
+                    .Append(')');
         }
 
         /// <summary>
@@ -192,11 +192,11 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         private static void GetColumnPrecision(StringBuilder builder, IColumn Column)
         {
             var Precision = (Column.Length * 2).Clamp(38, 18);
-            builder.Append("(")
+            builder.Append('(')
                 .Append(Precision.ToString(CultureInfo.InvariantCulture))
-                .Append(",")
+                .Append(',')
                 .Append(Column.Length.Clamp(38, 0).ToString(CultureInfo.InvariantCulture))
-                .Append(")");
+                .Append(')');
         }
 
         private static IEnumerable<string> GetTableCommand(ITable table, StringBuilder builder)
@@ -211,10 +211,10 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 var Column = table.Columns[i];
                 builder
                     .Append(Splitter)
-                    .Append("[")
+                    .Append('[')
                     .Append(Column.Name)
-                    .Append("]")
-                    .Append(" ")
+                    .Append(']')
+                    .Append(' ')
                     .Append(Column.DataType.To(SqlDbType.Int).ToString());
                 if (Column.DataType == SqlDbType.VarChar.To(DbType.Int32)
                         || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
@@ -248,7 +248,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                 }
                 if (!string.IsNullOrEmpty(Column.ComputedColumnSpecification))
                 {
-                    builder.Append(" AS (").Append(Column.ComputedColumnSpecification).Append(")");
+                    builder.Append(" AS (").Append(Column.ComputedColumnSpecification).Append(')');
                 }
                 Splitter = ",";
             }
@@ -257,7 +257,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
             {
                 builder.Append(", SysStartTime datetime2 GENERATED ALWAYS AS ROW START NOT NULL, SysEndTime datetime2 GENERATED ALWAYS AS ROW END NOT NULL, PERIOD FOR SYSTEM_TIME (SysStartTime, SysEndTime)");
             }
-            builder.Append(")");
+            builder.Append(')');
             if (table.Audit)
             {
                 builder.Append("WITH ( SYSTEM_VERSIONING = ON (HISTORY_TABLE = [").Append(table.Schema).Append("].[").Append(table.Name).Append("_Audit]) ) ");

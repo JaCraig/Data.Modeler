@@ -112,7 +112,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                         .Append(CheckConstraint.ParentTable.Name)
                         .Append("] DROP CONSTRAINT [")
                         .Append(CheckConstraint.Name)
-                        .Append("]")
+                        .Append(']')
                         .ToString());
                     builder.Clear();
                     ReturnValue.Add(GetAlterTable(builder, CheckConstraint));
@@ -138,7 +138,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                                     .Append(CheckConstraint.Name)
                                     .Append("] CHECK (")
                                     .Append(CheckConstraint.Definition)
-                                    .Append(")").ToString();
+                                    .Append(')').ToString();
         }
 
         /// <summary>

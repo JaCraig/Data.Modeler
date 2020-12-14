@@ -105,7 +105,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                  .Append(storedProcedure.Schema)
                  .Append("].[")
                  .Append(storedProcedure.Name)
-                 .Append("]")
+                 .Append(']')
                  .ToString(),
                 GetStoredProcedure(storedProcedure)
             };

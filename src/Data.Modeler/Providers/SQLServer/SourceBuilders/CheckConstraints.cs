@@ -53,7 +53,7 @@ FROM sys.check_constraints
 INNER JOIN sys.tables ON sys.tables.object_id=sys.check_constraints.parent_object_id";
         }
 
-        private void SetupConstraint(ITable table, dynamic item)
+        private static void SetupConstraint(ITable table, dynamic item)
         {
             var FinalDefinition = ((string)item.Definition).Remove(0, 1);
             table.AddCheckConstraint(item.Name, FinalDefinition.Remove(FinalDefinition.Length - 1));
