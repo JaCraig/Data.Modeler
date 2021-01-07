@@ -1,19 +1,14 @@
 ﻿using BigBook.DataMapper;
-using BigBook.Registration;
-using Data.Modeler.Registration;
 using FileCurator;
-using FileCurator.Registration;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
 using SQLHelperDB;
 using SQLHelperDB.ExtensionMethods;
-using SQLHelperDB.Registration;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -125,15 +120,13 @@ namespace Data.Modeler.Tests.BaseClasses
             if (Canister.Builder.Bootstrapper == null)
             {
                 var Services = new ServiceCollection();
-                Services.AddLogging();
-                var Container = Canister.Builder.CreateContainer(Services)
-                                                .AddAssembly(typeof(TestingFixture).GetTypeInfo().Assembly)
+                Services.AddLogging()
+                    .AddSingleton(Configuration)
+                    .AddCanisterModules(x => x.AddAssembly(typeof(TestingFixture).Assembly)
                                                 .RegisterDataModeler()
                                                 .RegisterSQLHelper()
                                                 .RegisterFileCurator()
-                                                .RegisterBigBookOfDataTypes()
-                                                .Build();
-                Container.Register(Configuration, ServiceLifetime.Singleton);
+                                                .RegisterBigBookOfDataTypes());
             }
         }
     }

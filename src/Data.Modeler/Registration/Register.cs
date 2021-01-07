@@ -15,9 +15,8 @@ limitations under the License.
 */
 
 using Canister.Interfaces;
-using SQLHelperDB.Registration;
 
-namespace Data.Modeler.Registration
+namespace Microsoft.Extensions.DependencyInjection
 {
     /// <summary>
     /// Registration extension methods
@@ -29,12 +28,10 @@ namespace Data.Modeler.Registration
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
         /// <returns>The bootstrapper</returns>
-        public static IBootstrapper? RegisterDataModeler(this IBootstrapper bootstrapper)
+        public static ICanisterConfiguration? RegisterDataModeler(this ICanisterConfiguration? bootstrapper)
         {
-            if (bootstrapper is null)
-                return bootstrapper;
-            return bootstrapper.AddAssembly(typeof(RegistrationExtensions).Assembly)
-                               .RegisterSQLHelper();
+            return bootstrapper?.AddAssembly(typeof(RegistrationExtensions).Assembly)
+                                .RegisterSQLHelper();
         }
     }
 }
