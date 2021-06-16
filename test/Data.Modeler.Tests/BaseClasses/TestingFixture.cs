@@ -1,5 +1,4 @@
-﻿using BigBook.DataMapper;
-using FileCurator;
+﻿using FileCurator;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
@@ -28,7 +27,6 @@ namespace Data.Modeler.Tests.BaseClasses
 
         protected static Aspectus.Aspectus Aspectus => Canister.Builder.Bootstrapper.Resolve<Aspectus.Aspectus>();
         public IConfiguration Configuration { get; set; }
-        protected static Manager DataMapper => Canister.Builder.Bootstrapper.Resolve<Manager>();
         protected static SQLHelper Helper => Canister.Builder.Bootstrapper.Resolve<SQLHelper>();
         protected static ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
         protected string ConnectionString { get; } = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
@@ -122,11 +120,7 @@ namespace Data.Modeler.Tests.BaseClasses
                 var Services = new ServiceCollection();
                 Services.AddLogging()
                     .AddSingleton(Configuration)
-                    .AddCanisterModules(x => x.AddAssembly(typeof(TestingFixture).Assembly)
-                                                .RegisterDataModeler()
-                                                .RegisterSQLHelper()
-                                                .RegisterFileCurator()
-                                                .RegisterBigBookOfDataTypes());
+                    .AddCanisterModules();
             }
         }
     }

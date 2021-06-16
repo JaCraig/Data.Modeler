@@ -1,8 +1,8 @@
-﻿using BigBook;
-using Data.Modeler.Providers.Interfaces;
+﻿using Data.Modeler.Providers.Interfaces;
 using Data.Modeler.Providers.SQLServer;
 using Data.Modeler.Tests.BaseClasses;
 using Microsoft.Extensions.Configuration;
+using ObjectCartographer;
 using SQLHelperDB.ExtensionMethods;
 using SQLHelperDB.HelperClasses;
 using System;
@@ -71,9 +71,9 @@ namespace Data.Modeler.Tests.Providers.SQLServer
             var Source = await TestObject.GetSourceStructureAsync(new Connection(Configuration, SqlClientFactory.Instance, "", "Default2")).ConfigureAwait(false);
             var Destination = new Modeler.Providers.Source("Default2");
             var Table = Destination.AddTable("ConcreteClass3_", "dbo");
-            var Column1 = Table.AddColumn<int>("IInterface1_ID_", typeof(int).To<Type, DbType>());
+            var Column1 = Table.AddColumn<int>("IInterface1_ID_", typeof(int).To<DbType>());
             var Table2 = Destination.AddTable("IInterface1_", "dbo");
-            Table2.AddColumn<int>("ID_", typeof(int).To<Type, DbType>());
+            Table2.AddColumn<int>("ID_", typeof(int).To<DbType>());
             Column1.AddForeignKey("IInterface1_", "ID_");
             Table.SetupForeignKeys();
             var Results = TestObject.GenerateSchema(Destination, Source);
@@ -87,7 +87,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer
             var Source = await TestObject.GetSourceStructureAsync(new Connection(Configuration, SqlClientFactory.Instance, "", "Default2")).ConfigureAwait(false);
             var Destination = new Modeler.Providers.Source("Default2");
             var Table = Destination.AddTable("AllReferencesAndID_", "dbo");
-            Table.AddColumn<TimeSpan>("TimeSpanValue_", typeof(TimeSpan).To<Type, DbType>());
+            Table.AddColumn<TimeSpan>("TimeSpanValue_", typeof(TimeSpan).To<DbType>());
             var Results = TestObject.GenerateSchema(Destination, Source);
             Assert.Empty(Results);
         }

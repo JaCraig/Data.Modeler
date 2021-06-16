@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using ObjectCartographer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -93,7 +93,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
             if (ColumnType == "nvarchar")
                 MaxLength /= 2;
             bool Nullable = item.IS_NULLABLE;
-            View.AddColumn<string>(ColumnName, ColumnType.To<string, SqlDbType>().To(DbType.Int32), MaxLength, Nullable);
+            View.AddColumn<string>(ColumnName, ColumnType.To<SqlDbType>().To<DbType>(), MaxLength, Nullable);
         }
     }
 }

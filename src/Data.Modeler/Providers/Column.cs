@@ -17,6 +17,7 @@ limitations under the License.
 using BigBook;
 using BigBook.Comparison;
 using Data.Modeler.Providers.Interfaces;
+using ObjectCartographer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -186,7 +187,7 @@ namespace Data.Modeler.Providers
             return new Column<T>(Name, DataType, Length,
                 Nullable, AutoIncrement, Index,
                 PrimaryKey, Unique, string.Empty,
-                string.Empty, Default.To<string, T>(), ComputedColumnSpecification,
+                string.Empty, Default.To<T>(), ComputedColumnSpecification,
                 OnDeleteCascade, OnUpdateCascade, OnDeleteSetNull,
                 parentTable)
             {

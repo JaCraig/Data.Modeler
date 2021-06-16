@@ -14,9 +14,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
 using Data.Modeler.Providers.Enums;
 using Data.Modeler.Providers.Interfaces;
+using ObjectCartographer;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
@@ -87,7 +87,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
             string Name = item.Name;
             int Type = item.Type;
             string Definition = item.Definition;
-            table.AddTrigger(Name, Definition, Type.ToString(CultureInfo.InvariantCulture).To<string, TriggerType>());
+            table.AddTrigger(Name, Definition, Type.ToString(CultureInfo.InvariantCulture).To<TriggerType>());
         }
     }
 }

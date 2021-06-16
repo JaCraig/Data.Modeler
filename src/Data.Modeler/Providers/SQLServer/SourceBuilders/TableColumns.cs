@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using ObjectCartographer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -104,7 +104,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
             {
                 string ColumnType = item.COLUMN_TYPE;
                 table.AddColumn<string>(item.Column,
-                    ColumnType.To<string, SqlDbType>().To(DbType.Int32),
+                    ColumnType.To<SqlDbType>().To<DbType>(),
                     (item.COLUMN_TYPE == "nvarchar") ? item.MAX_LENGTH / 2 : item.MAX_LENGTH,
                     item.IS_NULLABLE,
                     item.IS_IDENTITY,

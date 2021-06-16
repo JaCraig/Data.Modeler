@@ -17,6 +17,7 @@ limitations under the License.
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
 using Microsoft.Extensions.ObjectPool;
+using ObjectCartographer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -112,14 +113,14 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                             .Append("] ADD [")
                             .Append(Column.Name)
                             .Append("] ")
-                            .Append(Column.DataType.To(SqlDbType.Int).ToString());
-                        if (Column.DataType == SqlDbType.VarChar.To(DbType.Int32)
-                            || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
-                            || Column.DataType == SqlDbType.Binary.To(DbType.Int32))
+                            .Append(Column.DataType.To<SqlDbType>().ToString());
+                        if (Column.DataType == SqlDbType.VarChar.To<DbType>()
+                            || Column.DataType == SqlDbType.NVarChar.To<DbType>()
+                            || Column.DataType == SqlDbType.Binary.To<DbType>())
                         {
                             GetColumnLength(builder, Column);
                         }
-                        else if (Column.DataType == SqlDbType.Decimal.To(DbType.Int32))
+                        else if (Column.DataType == SqlDbType.Decimal.To<DbType>())
                         {
                             GetColumnPrecision(builder, Column);
                         }
@@ -139,9 +140,9 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     ReturnValue.Add(builder.ToString());
                     builder.Clear();
                 }
-                else if (CurrentColumn.DataType.To(SqlDbType.Int) != Column.DataType.To(SqlDbType.Int)
-                    || (CurrentColumn.DataType.To(SqlDbType.Int) == Column.DataType.To(SqlDbType.Int)
-                        && CurrentColumn.DataType == SqlDbType.NVarChar.To(DbType.Int32)
+                else if (CurrentColumn.DataType.To<SqlDbType>() != Column.DataType.To<SqlDbType>()
+                    || (CurrentColumn.DataType.To<SqlDbType>() == Column.DataType.To<SqlDbType>()
+                        && CurrentColumn.DataType == SqlDbType.NVarChar.To<DbType>()
                         && CurrentColumn.Length != Column.Length
                         && CurrentColumn.Length.Between(1, 4000)
                         && Column.Length.Between(1, 4000)))
@@ -153,14 +154,14 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                         .Append("] ALTER COLUMN [")
                         .Append(Column.Name)
                         .Append("] ")
-                        .Append(Column.DataType.To(SqlDbType.Int).ToString());
-                    if (Column.DataType == SqlDbType.VarChar.To(DbType.Int32)
-                        || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
-                        || Column.DataType == SqlDbType.Binary.To(DbType.Int32))
+                        .Append(Column.DataType.To<SqlDbType>().ToString());
+                    if (Column.DataType == SqlDbType.VarChar.To<DbType>()
+                        || Column.DataType == SqlDbType.NVarChar.To<DbType>()
+                        || Column.DataType == SqlDbType.Binary.To<DbType>())
                     {
                         GetColumnLength(builder, Column);
                     }
-                    else if (Column.DataType == SqlDbType.Decimal.To(DbType.Int32))
+                    else if (Column.DataType == SqlDbType.Decimal.To<DbType>())
                     {
                         GetColumnPrecision(builder, Column);
                     }
@@ -215,14 +216,14 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
                     .Append(Column.Name)
                     .Append(']')
                     .Append(' ')
-                    .Append(Column.DataType.To(SqlDbType.Int).ToString());
-                if (Column.DataType == SqlDbType.VarChar.To(DbType.Int32)
-                        || Column.DataType == SqlDbType.NVarChar.To(DbType.Int32)
-                        || Column.DataType == SqlDbType.Binary.To(DbType.Int32))
+                    .Append(Column.DataType.To<SqlDbType>().ToString());
+                if (Column.DataType == SqlDbType.VarChar.To<DbType>()
+                        || Column.DataType == SqlDbType.NVarChar.To<DbType>()
+                        || Column.DataType == SqlDbType.Binary.To<DbType>())
                 {
                     GetColumnLength(builder, Column);
                 }
-                else if (Column.DataType == SqlDbType.Decimal.To(DbType.Int32))
+                else if (Column.DataType == SqlDbType.Decimal.To<DbType>())
                 {
                     GetColumnPrecision(builder, Column);
                 }

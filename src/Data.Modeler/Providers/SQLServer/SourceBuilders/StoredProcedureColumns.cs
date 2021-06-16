@@ -14,8 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using ObjectCartographer;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -90,7 +90,7 @@ WHERE sys.systypes.xusertype <> 256";
             if (Type == "nvarchar")
                 Length /= 2;
             string Default = item.DEFAULT_VALUE;
-            storedProcedure.AddColumn<string>(Name, Type.To<string, SqlDbType>().To(DbType.Int32), Length, defaultValue: Default);
+            storedProcedure.AddColumn<string>(Name, Type.To<SqlDbType>().To<DbType>(), Length, defaultValue: Default);
         }
     }
 }
