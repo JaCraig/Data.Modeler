@@ -10,7 +10,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void Bool()
         {
-            var TempColumn = new Column<bool>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, default(bool), null, true, true, true, null);
+            var TempColumn = new Column<bool>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, default, null, true, true, true, null);
             Assert.True(TempColumn.AutoIncrement);
             Assert.Equal(System.Data.DbType.Int32, TempColumn.DataType);
             Assert.Equal("", TempColumn.Default);
@@ -52,7 +52,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void DateTime()
         {
-            var TempColumn = new Column<DateTime>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, default(DateTime), null, true, true, true, null);
+            var TempColumn = new Column<DateTime>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, default, null, true, true, true, null);
             Assert.True(TempColumn.AutoIncrement);
             Assert.Equal(System.Data.DbType.Int32, TempColumn.DataType);
             Assert.Equal("", TempColumn.Default);
@@ -73,7 +73,7 @@ namespace Data.Modeler.Tests.Providers
         [Fact]
         public void TimeSpan()
         {
-            var TempColumn = new Column<TimeSpan>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, default(TimeSpan), null, true, true, true, null);
+            var TempColumn = new Column<TimeSpan>("A", System.Data.DbType.Int32, 0, true, true, true, true, true, null, null, default, null, true, true, true, null);
             Assert.True(TempColumn.AutoIncrement);
             Assert.Equal(System.Data.DbType.Int32, TempColumn.DataType);
             Assert.Equal("", TempColumn.Default);

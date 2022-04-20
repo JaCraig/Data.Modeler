@@ -108,7 +108,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
                     (item.COLUMN_TYPE == "nvarchar") ? item.MAX_LENGTH / 2 : item.MAX_LENGTH,
                     item.IS_NULLABLE,
                     item.IS_IDENTITY,
-                    !(item.IS_INDEX is null),
+                    item.IS_INDEX is not null,
                     !string.IsNullOrEmpty(item.PRIMARY_KEY),
                     !string.IsNullOrEmpty(item.UNIQUE),
                     item.FOREIGN_KEY_TABLE,

@@ -7,12 +7,12 @@ namespace Data.Modeler.Providers.SQLServer
         /// <summary>
         /// The comment regex
         /// </summary>
-        private static readonly Regex CommentRegex = new Regex("-- (.*)", RegexOptions.Compiled);
+        private static readonly Regex CommentRegex = new("-- (.*)", RegexOptions.Compiled);
 
         /// <summary>
         /// The connection regex
         /// </summary>
-        private static readonly Regex ConnectionRegex = new Regex("Initial Catalog=(.*?;)", RegexOptions.Compiled);
+        private static readonly Regex ConnectionRegex = new("Initial Catalog=(.*?;)", RegexOptions.Compiled);
 
         /// <summary>
         /// Removes the comments.
