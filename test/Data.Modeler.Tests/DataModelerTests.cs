@@ -1,4 +1,5 @@
 ﻿using Data.Modeler.Tests.BaseClasses;
+using Microsoft.Extensions.DependencyInjection;
 using System.Data.SqlClient;
 using Xunit;
 
@@ -20,7 +21,7 @@ namespace Data.Modeler.Tests
         [Fact]
         public void GetSchemaGenerator()
         {
-            var Generator = Canister.Builder.Bootstrapper.Resolve<DataModeler>().GetSchemaGenerator(SqlClientFactory.Instance);
+            var Generator = GetServiceProvider().GetService<DataModeler>().GetSchemaGenerator(SqlClientFactory.Instance);
             Assert.Equal(SqlClientFactory.Instance, Generator.Provider);
         }
     }

@@ -35,12 +35,12 @@ namespace Data.Modeler.Modules
         /// Loads the module using the bootstrapper
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
-        public void Load(IBootstrapper bootstrapper)
+        public void Load(IServiceCollection bootstrapper)
         {
-            bootstrapper?.RegisterAll<ICommandBuilder>()
-                         .RegisterAll<ISourceBuilder>()
-                         .RegisterAll<ISchemaGenerator>(ServiceLifetime.Singleton)
-                         .Register<DataModeler>(ServiceLifetime.Singleton);
+            bootstrapper?.AddAllTransient<ICommandBuilder>()
+                         ?.AddAllTransient<ISourceBuilder>()
+                         ?.AddAllSingleton<ISchemaGenerator>()
+                         ?.AddSingleton<DataModeler>();
         }
     }
 }

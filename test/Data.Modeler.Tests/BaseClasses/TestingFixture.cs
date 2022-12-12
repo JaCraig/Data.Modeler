@@ -25,15 +25,25 @@ namespace Data.Modeler.Tests.BaseClasses
             TempTask.GetAwaiter().GetResult();
         }
 
-        protected static Aspectus.Aspectus Aspectus => Canister.Builder.Bootstrapper.Resolve<Aspectus.Aspectus>();
-        public IConfiguration Configuration { get; set; }
-        protected static SQLHelper Helper => Canister.Builder.Bootstrapper.Resolve<SQLHelper>();
-        protected static ObjectPool<StringBuilder> ObjectPool => Canister.Builder.Bootstrapper.Resolve<ObjectPool<StringBuilder>>();
-        protected string ConnectionString { get; } = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
-        protected string ConnectionString2 { get; } = "Data Source=localhost;Initial Catalog=TestDatabaseForeignKeys;Integrated Security=SSPI;Pooling=false";
-        protected string ConnectionStringNew { get; } = "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
-        protected string DatabaseName { get; } = "TestDatabase";
-        protected string MasterString { get; } = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+        public static IConfiguration Configuration { get; set; }
+        protected static Aspectus.Aspectus Aspectus => GetServiceProvider().GetService<Aspectus.Aspectus>();
+        protected static string ConnectionString { get; } = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false";
+        protected static string ConnectionString2 { get; } = "Data Source=localhost;Initial Catalog=TestDatabaseForeignKeys;Integrated Security=SSPI;Pooling=false";
+        protected static string ConnectionStringNew { get; } = "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false";
+        protected static string DatabaseName { get; } = "TestDatabase";
+        protected static SQLHelper Helper => GetServiceProvider().GetService<SQLHelper>();
+        protected static string MasterString { get; } = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false";
+        protected static ObjectPool<StringBuilder> ObjectPool => GetServiceProvider().GetService<ObjectPool<StringBuilder>>();
+
+        /// <summary>
+        /// The service provider lock
+        /// </summary>
+        private static readonly object ServiceProviderLock = new object();
+
+        /// <summary>
+        /// The service provider
+        /// </summary>
+        private static IServiceProvider ServiceProvider;
 
         public void Dispose()
         {
@@ -50,7 +60,24 @@ namespace Data.Modeler.Tests.BaseClasses
             finally { TempCommand.Close(); }
         }
 
-        private void SetupConfiguration()
+        /// <summary>
+        /// Gets the service provider.
+        /// </summary>
+        /// <returns></returns>
+        protected static IServiceProvider GetServiceProvider()
+        {
+            if (ServiceProvider is not null)
+                return ServiceProvider;
+            lock (ServiceProviderLock)
+            {
+                if (ServiceProvider is not null)
+                    return ServiceProvider;
+                ServiceProvider = new ServiceCollection().AddLogging().AddSingleton(Configuration).AddCanisterModules()?.BuildServiceProvider();
+            }
+            return ServiceProvider;
+        }
+
+        private static void SetupConfiguration()
         {
             var dict = new Dictionary<string, string>
                 {
@@ -115,13 +142,6 @@ namespace Data.Modeler.Tests.BaseClasses
 
         private void SetupIoC()
         {
-            if (Canister.Builder.Bootstrapper == null)
-            {
-                var Services = new ServiceCollection();
-                Services.AddLogging()
-                    .AddSingleton(Configuration)
-                    .AddCanisterModules();
-            }
         }
     }
 }
