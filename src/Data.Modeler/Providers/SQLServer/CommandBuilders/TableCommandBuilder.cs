@@ -16,13 +16,13 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.ObjectPool;
 using ObjectCartographer;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Globalization;
 using System.Text;
 
@@ -58,7 +58,7 @@ namespace Data.Modeler.Providers.SQLServer.CommandBuilders
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
+        public DbProviderFactory[] Providers { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
 
         /// <summary>
         /// Gets the commands.

@@ -15,12 +15,12 @@ limitations under the License.
 */
 
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Data.SqlClient;
 using ObjectCartographer;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace Data.Modeler.Providers.SQLServer.SourceBuilders
@@ -39,7 +39,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
+        public DbProviderFactory[] Providers { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
 
         /// <summary>
         /// Fills the database.

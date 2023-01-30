@@ -28,7 +28,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// <summary>
         /// Provider associated with the schema generator
         /// </summary>
-        DbProviderFactory Provider { get; }
+        DbProviderFactory[] Providers { get; }
 
         /// <summary>
         /// Generates a list of commands used to modify the source. If it does not exist prior, the

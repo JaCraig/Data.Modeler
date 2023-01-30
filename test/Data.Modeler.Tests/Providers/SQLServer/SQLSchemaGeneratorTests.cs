@@ -27,7 +27,7 @@ namespace Data.Modeler.Tests.Providers.SQLServer
         public void Creation()
         {
             var TestObject = new SQLServerSchemaGenerator(GetServiceProvider().GetServices<ISourceBuilder>(), GetServiceProvider().GetServices<ICommandBuilder>(), GetServiceProvider().GetService<IConfiguration>(), Helper, Helper);
-            Assert.Equal(SqlClientFactory.Instance, TestObject.Provider);
+            Assert.Contains(SqlClientFactory.Instance, TestObject.Providers);
         }
 
         [Fact]

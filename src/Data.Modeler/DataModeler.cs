@@ -38,13 +38,19 @@ namespace Data.Modeler
             Generators = new Dictionary<DbProviderFactory, ISchemaGenerator>();
             foreach (var Item in generators.Where(x => x.GetType().Assembly != typeof(DataModeler).Assembly))
             {
-                if (!Generators.ContainsKey(Item.Provider))
-                    Generators.Add(Item.Provider, Item);
+                foreach (var Provider in Item.Providers)
+                {
+                    if (!Generators.ContainsKey(Provider))
+                        Generators.Add(Provider, Item);
+                }
             }
             foreach (var Item in generators.Where(x => x.GetType().Assembly == typeof(DataModeler).Assembly))
             {
-                if (!Generators.ContainsKey(Item.Provider))
-                    Generators.Add(Item.Provider, Item);
+                foreach (var Provider in Item.Providers)
+                {
+                    if (!Generators.ContainsKey(Provider))
+                        Generators.Add(Provider, Item);
+                }
             }
         }
 

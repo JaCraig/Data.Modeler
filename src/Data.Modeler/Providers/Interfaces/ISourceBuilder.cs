@@ -34,7 +34,7 @@ namespace Data.Modeler.Providers.Interfaces
         /// Gets the provider this source builder supports
         /// </summary>
         /// <value>The provider.</value>
-        DbProviderFactory Provider { get; }
+        DbProviderFactory[] Providers { get; }
 
         /// <summary>
         /// Fills the source.

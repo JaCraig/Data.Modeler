@@ -22,7 +22,7 @@ namespace Data.Modeler.Tests
         public void GetSchemaGenerator()
         {
             var Generator = GetServiceProvider().GetService<DataModeler>().GetSchemaGenerator(SqlClientFactory.Instance);
-            Assert.Equal(SqlClientFactory.Instance, Generator.Provider);
+            Assert.Contains(SqlClientFactory.Instance, Generator.Providers);
         }
     }
 }

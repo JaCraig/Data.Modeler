@@ -16,6 +16,7 @@ limitations under the License.
 
 using BigBook;
 using Data.Modeler.Providers.Interfaces;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using SQLHelperDB;
 using SQLHelperDB.HelperClasses;
@@ -23,7 +24,6 @@ using SQLHelperDB.HelperClasses.Interfaces;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -45,8 +45,8 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="oneOffQueries">The one off queries.</param>
         public SQLServerSchemaGenerator(IEnumerable<ISourceBuilder> queryBuilders, IEnumerable<ICommandBuilder> commandBuilders, IConfiguration configuration, SQLHelper batch, SQLHelper oneOffQueries)
         {
-            CommandBuilders = commandBuilders.Where(x => x.Provider == Provider).OrderBy(x => x.Order).ToArray();
-            QueryBuilders = queryBuilders.Where(x => x.Provider == Provider).OrderBy(x => x.Order).ToArray();
+            CommandBuilders = commandBuilders.Where(x => x.Providers.Any(y => Providers.Contains(y))).OrderBy(x => x.Order).ToArray();
+            QueryBuilders = queryBuilders.Where(x => x.Providers.Any(y => Providers.Contains(y))).OrderBy(x => x.Order).ToArray();
             Configuration = configuration;
             OneOffQueries = oneOffQueries;
             Batch = batch;
@@ -61,7 +61,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory Provider { get; } = SqlClientFactory.Instance;
+        public DbProviderFactory[] Providers { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
 
         /// <summary>
         /// Gets or sets the batch.
