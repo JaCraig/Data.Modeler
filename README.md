@@ -6,11 +6,9 @@ Data.Modeler is a library used to interact with model database schemas in C#. Wo
 
 ## Basic Usage
 
-The system relies on an IoC wrapper called [Canister](https://github.com/JaCraig/Canister). While Canister has a built in IoC container, it's purpose is to actually wrap your container of choice in a way that simplifies setup and usage for other libraries that don't want to be tied to a specific IoC container. Data.Modeler uses it to detect and pull in schema generators. As such you must set up Canister in order to use Data.Modeler:
+In order to use Data.Modeler, you need to first wire up the system with your ServiceCollection. In order to do this, all you need to do is make one method call:
 
-    Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
-                    .RegisterDataModeler()
-                    .Build();
+    serviceCollection.AddCanisterModules();
 					
 This line is required prior to using the DataModeler class for the first time. Once Canister is set up, you can call the DataModeler class provided:
 
@@ -26,12 +24,12 @@ The "MySource" string is the database name that you wish to use.
 
 Once you have your ISource object, you can start adding on to it:
 
-    var Table = Source.AddTable("TableName");
+    var Table = Source.AddTable("TableName", "dbo");
 	var Column = Table.AddColumn<int>("ColumnName",DbType.Int32);
 	var CheckConstraint = Table.AddCheckConstraint("CheckConstraintName", "Check Constraint Definition");
-	var View = Source.AddView("ViewName","View Creation Code");
-	var Function = Source.AddFunction("FunctionName","Function Creation Code");
-	var StoredProcedure = Source.AddStoredProcedure("StoredProcedureName","Stored Procedure Creation Code");
+	var View = Source.AddView("ViewName","View Creation Code", "dbo");
+	var Function = Source.AddFunction("FunctionName","Function Creation Code", "dbo");
+	var StoredProcedure = Source.AddStoredProcedure("StoredProcedureName","Stored Procedure Creation Code", "dbo");
 	
 From there the schema provider can be used to either generate the commands needed to create the database or what commands are needed to alter an existing database to the desired schema:
 
@@ -47,14 +45,7 @@ The connection object must be fed a IConfiguration object, a DbProviderFactory f
 
 ## Adding a ISchemaGenerator
 
-The schema generator is what the system uses to generate the individual commands. Data.Modeler comes with one for SQL Server but in order to add your own you must create a class that inherits from ISchemaGenerator. You must also register it with Canister:
-
-    Canister.Builder.CreateContainer(new List<ServiceDescriptor>())
-                    .RegisterDataModeler()
-					.AddAssembly(typeof(MySchemaGenerator).GetTypeInfo().Assembly)
-                    .Build();
-					
-From there the system will automatically pick up the schema generator and allow you to use it:
+The schema generator is what the system uses to generate the individual commands. Data.Modeler comes with one for SQL Server but in order to add your own you must create a class that inherits from ISchemaGenerator. From there the system will automatically pick up the schema generator and allow you to use it:
 
     var SchemaProvider = DataModeler.GetSchemaGenerator(MyDbFactoryProvider);
 	
@@ -70,7 +61,6 @@ Install-Package Data.Modeler
 
 In order to build the library you will require the following as a minimum:
 
-1. Visual Studio 2015 with Update 3
-2. .Net Core 1.0 SDK
+1. Visual Studio 2022
 
 Other than that, just clone the project and you should be able to load the solution and build without too much effort.

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29806.167
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{67245598-32C4-45A9-88D0-5012D4412B5D}"
 EndProject
@@ -15,6 +15,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Modeler", "src\Data.Modeler\Data.Modeler.csproj", "{979C156A-0817-4369-A8FC-E2FED475D8B7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data.Modeler.Tests", "test\Data.Modeler.Tests\Data.Modeler.Tests.csproj", "{55551ED2-E800-474E-A492-606865FA8B83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Modeler.Example", "Data.Modeler.Example\Data.Modeler.Example.csproj", "{8A803BAD-73C5-43D2-8A09-050B79E16EAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,10 @@ Global
 		{55551ED2-E800-474E-A492-606865FA8B83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{55551ED2-E800-474E-A492-606865FA8B83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{55551ED2-E800-474E-A492-606865FA8B83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A803BAD-73C5-43D2-8A09-050B79E16EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A803BAD-73C5-43D2-8A09-050B79E16EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A803BAD-73C5-43D2-8A09-050B79E16EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A803BAD-73C5-43D2-8A09-050B79E16EAC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
