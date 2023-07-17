@@ -1,0 +1,911 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class SQLServerSchemaGenerator
+ | Data.Modeler API Reference </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class SQLServerSchemaGenerator
+ | Data.Modeler API Reference ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="../styles/config.css">
+      <link rel="stylesheet" href="../styles/discord.css">
+      <link rel="stylesheet" href="../styles/singulink.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="../">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="../index.html">
+              <img src="../images/icon.png" alt="Data.Modeler" class="logomark">
+              <span class="brand-title">Data.Modeler</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="../index.html">
+                          <img src="../images/icon.png" alt="Data.Modeler" class="logomark">
+                          <span class="brand-title">Data.Modeler</span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+
+                        <div id="sidetoggle">
+                          <div id="sidetoc"></div>
+                        </div>
+                </div>
+                <div class="footer">
+  <strong><a href='https://github.com/JaCraig/Data.Modeler'>Open in Github</a></strong>
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator">
+
+
+
+  <h1 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator" class="text-break">Class SQLServerSchemaGenerator
+</h1>
+  <div class="markdown level0 summary"><p>SQL Server schema generator</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">SQLServerSchemaGenerator</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="Data.html">Data</a>.<a class="xref" href="Data.Modeler.html">Modeler</a>.<a class="xref" href="Data.Modeler.Providers.html">Providers</a>.<a class="xref" href="Data.Modeler.Providers.SQLServer.html">SQLServer</a></h6>
+  <h6><strong>Assembly</strong>: Data.Modeler.dll</h6>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SQLServerSchemaGenerator : ISchemaGenerator</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator__ctor_System_Collections_Generic_IEnumerable_Data_Modeler_Providers_Interfaces_ISourceBuilder__System_Collections_Generic_IEnumerable_Data_Modeler_Providers_Interfaces_ICommandBuilder__Microsoft_Extensions_Configuration_IConfiguration_SQLHelperDB_SQLHelper_SQLHelperDB_SQLHelper_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.%23ctor(System.Collections.Generic.IEnumerable%7BData.Modeler.Providers.Interfaces.ISourceBuilder%7D%2CSystem.Collections.Generic.IEnumerable%7BData.Modeler.Providers.Interfaces.ICommandBuilder%7D%2CMicrosoft.Extensions.Configuration.IConfiguration%2CSQLHelperDB.SQLHelper%2CSQLHelperDB.SQLHelper)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L46">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator__ctor_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.#ctor*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator__ctor_System_Collections_Generic_IEnumerable_Data_Modeler_Providers_Interfaces_ISourceBuilder__System_Collections_Generic_IEnumerable_Data_Modeler_Providers_Interfaces_ICommandBuilder__Microsoft_Extensions_Configuration_IConfiguration_SQLHelperDB_SQLHelper_SQLHelperDB_SQLHelper_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.#ctor(System.Collections.Generic.IEnumerable{Data.Modeler.Providers.Interfaces.ISourceBuilder},System.Collections.Generic.IEnumerable{Data.Modeler.Providers.Interfaces.ICommandBuilder},Microsoft.Extensions.Configuration.IConfiguration,SQLHelperDB.SQLHelper,SQLHelperDB.SQLHelper)">SQLServerSchemaGenerator(IEnumerable&lt;ISourceBuilder&gt;, IEnumerable&lt;ICommandBuilder&gt;, IConfiguration, SQLHelper, SQLHelper)</h4>
+  <div class="markdown level1 summary"><p>Constructor</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SQLServerSchemaGenerator(IEnumerable&lt;ISourceBuilder&gt; queryBuilders, IEnumerable&lt;ICommandBuilder&gt; commandBuilders, IConfiguration configuration, SQLHelper batch, SQLHelper oneOffQueries)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Data.Modeler.Providers.Interfaces.ISourceBuilder.html">ISourceBuilder</a>&gt;</td>
+        <td><span class="parametername">queryBuilders</span></td>
+        <td><p>The query builders.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Data.Modeler.Providers.Interfaces.ICommandBuilder.html">ICommandBuilder</a>&gt;</td>
+        <td><span class="parametername">commandBuilders</span></td>
+        <td><p>The command builders.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration.iconfiguration">IConfiguration</a></td>
+        <td><span class="parametername">configuration</span></td>
+        <td><p>The configuration.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://github.com/JaCraig/SQLHelper/blob/0027a68cf67cc11eda15924d51ea0cb6dd7585c0/src/SQLHelper.DB/SQLHelper.cs">SQLHelper</a></td>
+        <td><span class="parametername">batch</span></td>
+        <td><p>The batch.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://github.com/JaCraig/SQLHelper/blob/0027a68cf67cc11eda15924d51ea0cb6dd7585c0/src/SQLHelper.DB/SQLHelper.cs">SQLHelper</a></td>
+        <td><span class="parametername">oneOffQueries</span></td>
+        <td><p>The one off queries.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator__ctor_System_Collections_Generic_IEnumerable_Data_Modeler_Providers_Interfaces_ISourceBuilder__System_Collections_Generic_IEnumerable_Data_Modeler_Providers_Interfaces_ICommandBuilder__Microsoft_Extensions_Configuration_IConfiguration_SQLHelperDB_SQLHelper_SQLHelperDB_SQLHelper__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Configuration.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L59">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Configuration_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Configuration" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration">Configuration</h4>
+  <div class="markdown level1 summary"><p>Gets the configuration.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IConfiguration Configuration { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.extensions.configuration.iconfiguration">IConfiguration</a></td>
+        <td><p>The configuration.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Configuration_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Providers.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L64">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Providers_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Providers" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers">Providers</h4>
+  <div class="markdown level1 summary"><p>Provider name associated with the schema generator</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DbProviderFactory[] Providers { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.common.dbproviderfactory">DbProviderFactory</a>[]</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Providers_seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ConstraintExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync(System.String%2CSQLHelperDB.HelperClasses.Interfaces.IConnection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L96">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ConstraintExistsAsync_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ConstraintExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)">ConstraintExistsAsync(string, IConnection)</h4>
+  <div class="markdown level1 summary"><p>Checks if a constraint exists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; ConstraintExistsAsync(string constraint, IConnection source)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">constraint</span></td>
+        <td><p>The constraint to check.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://github.com/JaCraig/SQLHelper/blob/0027a68cf67cc11eda15924d51ea0cb6dd7585c0/src/SQLHelper.DB/HelperClasses/Interfaces/IConnection.cs">IConnection</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Source to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>True if it exists, false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ConstraintExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GenerateSchema_Data_Modeler_Providers_Interfaces_ISource_Data_Modeler_Providers_Interfaces_ISource_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema(Data.Modeler.Providers.Interfaces.ISource%2CData.Modeler.Providers.Interfaces.ISource)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L106">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GenerateSchema_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GenerateSchema_Data_Modeler_Providers_Interfaces_ISource_Data_Modeler_Providers_Interfaces_ISource_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema(Data.Modeler.Providers.Interfaces.ISource,Data.Modeler.Providers.Interfaces.ISource)">GenerateSchema(ISource, ISource?)</h4>
+  <div class="markdown level1 summary"><p>Generates a list of commands used to modify the source. If it does not exist prior, the
+commands will create the source from scratch. Otherwise the commands will only add new
+fields, tables, etc. It does not delete old fields.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string[] GenerateSchema(ISource desiredStructure, ISource? source)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Data.Modeler.Providers.Interfaces.ISource.html">ISource</a></td>
+        <td><span class="parametername">desiredStructure</span></td>
+        <td><p>Desired source structure</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Data.Modeler.Providers.Interfaces.ISource.html">ISource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Source to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><p>List of commands generated</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GenerateSchema_Data_Modeler_Providers_Interfaces_ISource_Data_Modeler_Providers_Interfaces_ISource__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GetSourceStructureAsync_SQLHelperDB_HelperClasses_Interfaces_IConnection_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync(SQLHelperDB.HelperClasses.Interfaces.IConnection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L124">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GetSourceStructureAsync_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GetSourceStructureAsync_SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync(SQLHelperDB.HelperClasses.Interfaces.IConnection)">GetSourceStructureAsync(IConnection)</h4>
+  <div class="markdown level1 summary"><p>Gets the structure of a source</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;ISource?&gt; GetSourceStructureAsync(IConnection connectionInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://github.com/JaCraig/SQLHelper/blob/0027a68cf67cc11eda15924d51ea0cb6dd7585c0/src/SQLHelper.DB/HelperClasses/Interfaces/IConnection.cs">IConnection</a></td>
+        <td><span class="parametername">connectionInfo</span></td>
+        <td><p>Source to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Data.Modeler.Providers.Interfaces.ISource.html">ISource</a>&gt;</td>
+        <td><p>The source structure</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GetSourceStructureAsync_SQLHelperDB_HelperClasses_Interfaces_IConnection__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_Data_Modeler_Providers_Interfaces_ISource_SQLHelperDB_HelperClasses_Interfaces_IConnection_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(Data.Modeler.Providers.Interfaces.ISource%2CSQLHelperDB.HelperClasses.Interfaces.IConnection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L154">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_Data_Modeler_Providers_Interfaces_ISource_SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(Data.Modeler.Providers.Interfaces.ISource,SQLHelperDB.HelperClasses.Interfaces.IConnection)">SetupAsync(ISource, IConnection)</h4>
+  <div class="markdown level1 summary"><p>Sets up the specified database schema</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task SetupAsync(ISource source, IConnection connection)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Data.Modeler.Providers.Interfaces.ISource.html">ISource</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>The source.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://github.com/JaCraig/SQLHelper/blob/0027a68cf67cc11eda15924d51ea0cb6dd7585c0/src/SQLHelper.DB/HelperClasses/Interfaces/IConnection.cs">IConnection</a></td>
+        <td><span class="parametername">connection</span></td>
+        <td><p>The connection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_Data_Modeler_Providers_Interfaces_ISource_SQLHelperDB_HelperClasses_Interfaces_IConnection__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_System_String___SQLHelperDB_HelperClasses_Interfaces_IConnection_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(System.String%5B%5D%2CSQLHelperDB.HelperClasses.Interfaces.IConnection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L168">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_System_String___SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(System.String[],SQLHelperDB.HelperClasses.Interfaces.IConnection)">SetupAsync(string[], IConnection)</h4>
+  <div class="markdown level1 summary"><p>Sets up the specified source.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task SetupAsync(string[] schemaChanges, IConnection connection)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><span class="parametername">schemaChanges</span></td>
+        <td><p>The schema changes.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://github.com/JaCraig/SQLHelper/blob/0027a68cf67cc11eda15924d51ea0cb6dd7585c0/src/SQLHelper.DB/HelperClasses/Interfaces/IConnection.cs">IConnection</a></td>
+        <td><span class="parametername">connection</span></td>
+        <td><p>The connection.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_System_String___SQLHelperDB_HelperClasses_Interfaces_IConnection__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SourceExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync(System.String%2CSQLHelperDB.HelperClasses.Interfaces.IConnection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L210">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SourceExistsAsync_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SourceExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)">SourceExistsAsync(string, IConnection)</h4>
+  <div class="markdown level1 summary"><p>Checks if a source exists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; SourceExistsAsync(string source, IConnection connectionInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">source</span></td>
+        <td><p>Source to check</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://github.com/JaCraig/SQLHelper/blob/0027a68cf67cc11eda15924d51ea0cb6dd7585c0/src/SQLHelper.DB/HelperClasses/Interfaces/IConnection.cs">IConnection</a></td>
+        <td><span class="parametername">connectionInfo</span></td>
+        <td><p>Source info to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>True if it exists, false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SourceExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_StoredProcedureExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync(System.String%2CSQLHelperDB.HelperClasses.Interfaces.IConnection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L218">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_StoredProcedureExistsAsync_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_StoredProcedureExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)">StoredProcedureExistsAsync(string, IConnection)</h4>
+  <div class="markdown level1 summary"><p>Checks if a stored procedure exists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; StoredProcedureExistsAsync(string storedProcedure, IConnection connectionInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">storedProcedure</span></td>
+        <td><p>Stored procedure to check</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://github.com/JaCraig/SQLHelper/blob/0027a68cf67cc11eda15924d51ea0cb6dd7585c0/src/SQLHelper.DB/HelperClasses/Interfaces/IConnection.cs">IConnection</a></td>
+        <td><span class="parametername">connectionInfo</span></td>
+        <td><p>Source to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>True if it exists, false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_StoredProcedureExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TableExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync(System.String%2CSQLHelperDB.HelperClasses.Interfaces.IConnection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L226">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TableExistsAsync_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TableExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)">TableExistsAsync(string, IConnection)</h4>
+  <div class="markdown level1 summary"><p>Checks if a table exists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; TableExistsAsync(string table, IConnection connectionInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">table</span></td>
+        <td><p>Table to check</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://github.com/JaCraig/SQLHelper/blob/0027a68cf67cc11eda15924d51ea0cb6dd7585c0/src/SQLHelper.DB/HelperClasses/Interfaces/IConnection.cs">IConnection</a></td>
+        <td><span class="parametername">connectionInfo</span></td>
+        <td><p>Source to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>True if it exists, false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TableExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TriggerExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync(System.String%2CSQLHelperDB.HelperClasses.Interfaces.IConnection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L234">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TriggerExistsAsync_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TriggerExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)">TriggerExistsAsync(string, IConnection)</h4>
+  <div class="markdown level1 summary"><p>Checks if a trigger exists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; TriggerExistsAsync(string trigger, IConnection connectionInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">trigger</span></td>
+        <td><p>Trigger to check</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://github.com/JaCraig/SQLHelper/blob/0027a68cf67cc11eda15924d51ea0cb6dd7585c0/src/SQLHelper.DB/HelperClasses/Interfaces/IConnection.cs">IConnection</a></td>
+        <td><span class="parametername">connectionInfo</span></td>
+        <td><p>Source to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>True if it exists, false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TriggerExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ViewExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync(System.String%2CSQLHelperDB.HelperClasses.Interfaces.IConnection)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/SQLServer/SQLServerSchemaGenerator.cs/#L242">View Source</a>
+  </span>
+  <a id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ViewExistsAsync_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync*"></a>
+  <h4 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ViewExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_" data-uid="Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)">ViewExistsAsync(string, IConnection)</h4>
+  <div class="markdown level1 summary"><p>Checks if a view exists</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; ViewExistsAsync(string view, IConnection connectionInfo)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">view</span></td>
+        <td><p>View to check</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://github.com/JaCraig/SQLHelper/blob/0027a68cf67cc11eda15924d51ea0cb6dd7585c0/src/SQLHelper.DB/HelperClasses/Interfaces/IConnection.cs">IConnection</a></td>
+        <td><span class="parametername">connectionInfo</span></td>
+        <td><p>Source to use</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a>&gt;</td>
+        <td><p>True if it exists, false otherwise</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ViewExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection__seealso">See Also</h5>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a>
+  </div>
+  <h3 id="seealso">See Also</h3>
+  <div class="seealso">
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ISchemaGenerator.html">ISchemaGenerator</a></div>
+  </div>
+
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>&#169; James Craig. All rights reserved.</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="../styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="../styles/docfx.js"></script>
+        <script type="text/javascript" src="../styles/main.js"></script>
+        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+</html>

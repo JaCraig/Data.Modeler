@@ -1,0 +1,621 @@
+{
+  "homepages": [],
+  "source_base_path": "/home/runner/work/Data.Modeler/Data.Modeler/docfx_project",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.DataModeler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.DataModeler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Modules.DataModelerModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Modules.DataModelerModule.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Modules.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Modules.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.BaseClasses.SourceBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.BaseClasses.SourceBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.BaseClasses.TableBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.BaseClasses.TableBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.BaseClasses.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.BaseClasses.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.CheckConstraint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.CheckConstraint.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Column-1.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Column-1.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Enums.TriggerType.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Enums.TriggerType.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Enums.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Enums.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Function.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Function.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Interfaces.ICheckConstraint.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Interfaces.ICheckConstraint.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Interfaces.IColumn.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Interfaces.IColumn.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Interfaces.ICommandBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Interfaces.ICommandBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Interfaces.IFunction.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Interfaces.IFunction.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Interfaces.ISchemaGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Interfaces.ISchemaGenerator.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Interfaces.ISource.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Interfaces.ISource.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Interfaces.ISourceBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Interfaces.ISourceBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Interfaces.ITable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Interfaces.ITable.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Interfaces.ITrigger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Interfaces.ITrigger.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Interfaces.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Interfaces.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CheckConstraintCommandBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CheckConstraintCommandBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateDatabaseCommandBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateDatabaseCommandBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateFunctionCommandBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateFunctionCommandBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateSchemaCommandBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateSchemaCommandBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateViewCommandBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateViewCommandBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.ForeignKeyCommandBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.ForeignKeyCommandBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.StoredProcedureCommandBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.StoredProcedureCommandBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.TableCommandBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.TableCommandBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.TriggerCommandBuilder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.TriggerCommandBuilder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.CheckConstraints.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.CheckConstraints.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Functions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Functions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Schemas.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Schemas.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.StoredProcedureColumns.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.StoredProcedureColumns.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.StoredProcedures.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.StoredProcedures.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableColumns.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableColumns.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableForeignKeys.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableForeignKeys.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableTriggers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableTriggers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Views.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Views.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.SQLServer.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.SQLServer.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Source.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Source.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.StoredProcedure.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.StoredProcedure.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Table.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Table.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.Trigger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.Trigger.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.View.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.View.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Providers.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Providers.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Microsoft.Extensions.DependencyInjection.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "articles/intro.md",
+      "output": {
+        ".html": {
+          "relative_path": "articles/intro.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "articles/toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "articles/toc.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Resource",
+      "source_relative_path": "images/icon.png",
+      "output": {
+        "resource": {
+          "relative_path": "images/icon.png"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".html": {
+          "relative_path": "toc.html"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "version_info": {},
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

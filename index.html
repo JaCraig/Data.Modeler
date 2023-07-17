@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Data.Modeler | Data.Modeler API Reference </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Data.Modeler | Data.Modeler API Reference ">
+      <meta name="generator" content="docfx ">
+  
+      <link rel="shortcut icon" href="favicon.ico">
+      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
+      <link rel="stylesheet" href="styles/config.css">
+      <link rel="stylesheet" href="styles/discord.css">
+      <link rel="stylesheet" href="styles/singulink.css">
+      <link rel="stylesheet" href="styles/main.css">
+      <meta property="docfx:navrel" content="toc.html">
+      <meta property="docfx:tocrel" content="toc.html">
+  
+  <meta property="docfx:rel" content="">
+  <meta property="docfx:newtab" content="true">
+    </head>
+    <body>
+        <div class="top-navbar">
+            <a class="burger-icon" onclick="toggleMenu()">
+                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
+            </a>
+
+
+            <a class="brand" href="index.html">
+              <img src="images/icon.png" alt="Data.Modeler" class="logomark">
+              <span class="brand-title">Data.Modeler</span>
+            </a>        </div>
+
+        <div class="body-content">
+            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+
+            <nav id="sidebar" role="navigation">
+                <div class="sidebar">
+
+                    <div>
+                      <div class="mobile-hide">
+
+                        <a class="brand" href="index.html">
+                          <img src="images/icon.png" alt="Data.Modeler" class="logomark">
+                          <span class="brand-title">Data.Modeler</span>
+                        </a>                      </div>
+
+                      <div class="sidesearch">
+                        <form id="search" role="search" class="search">
+                            <i class="bi bi-search search-icon"></i>
+                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
+                        </form>
+                      </div>
+
+                      <div id="navbar">
+                      </div>
+                    </div>                    <div class="sidebar-item-separator"></div>
+                </div>
+                <div class="footer">
+  <strong><a href='https://github.com/JaCraig/Data.Modeler'>Open in Github</a></strong>
+  
+                </div>            </nav>
+
+            <main class="main-panel">
+
+                <div id="search-results" style="display: none;">
+                  <h1 class="search-list">Search Results for <span></span></h1>
+                  <div class="sr-items">
+                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
+                  </div>
+                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+                </div>
+ 
+
+                <div role="main" class="hide-when-search">
+
+                        <div class="subnav navbar navbar-default">
+                          <div class="container hide-when-search" id="breadcrumb">
+                            <ul class="breadcrumb">
+                              <li></li>
+                            </ul>
+                          </div>
+                        </div>
+
+                         <div id="contribution">
+                               <a href="https://github.com/JaCraig/Data.Modeler/blob/master/docfx_project/index.md/#L1" class="contribution-link">Improve this Doc</a>
+                         </div>
+
+                    <article class="content wrap" id="_content" data-uid="">
+<h1 id="datamodeler">Data.Modeler</h1>
+
+<p><a href="https://ci.appveyor.com/project/JaCraig/data-modeler"><img src="https://ci.appveyor.com/api/projects/status/15bedpade50j03f2?svg=true" alt="Build status"></a></p>
+<p>Data.Modeler is a library used to interact with model database schemas in C#. Works with .Net Core.</p>
+<h2 id="basic-usage">Basic Usage</h2>
+<p>In order to use Data.Modeler, you need to first wire up the system with your ServiceCollection. In order to do this, all you need to do is make one method call:</p>
+<pre><code>serviceCollection.AddCanisterModules();
+				
+</code></pre>
+<p>This line is required prior to using the DataModeler class for the first time. Once Canister is set up, you can call the DataModeler class provided:</p>
+<pre><code>var SchemaProvider = DataModeler.GetSchemaGenerator(SqlClientFactory.Instance);
+</code></pre>
+<p>Note that the above gets the schema provider for SQL Server but for other databases you must provide the DbProviderFactory associated with it. You can also start creating a schema:</p>
+<pre><code>var Source = DataModeler.CreateSource(&quot;MySource&quot;);
+</code></pre>
+<p>The &quot;MySource&quot; string is the database name that you wish to use.</p>
+<h2 id="creating-a-schema">Creating a Schema</h2>
+<p>Once you have your ISource object, you can start adding on to it:</p>
+<pre><code>var Table = Source.AddTable(&quot;TableName&quot;, &quot;dbo&quot;);
+var Column = Table.AddColumn&lt;int&gt;(&quot;ColumnName&quot;,DbType.Int32);
+var CheckConstraint = Table.AddCheckConstraint(&quot;CheckConstraintName&quot;, &quot;Check Constraint Definition&quot;);
+var View = Source.AddView(&quot;ViewName&quot;,&quot;View Creation Code&quot;, &quot;dbo&quot;);
+var Function = Source.AddFunction(&quot;FunctionName&quot;,&quot;Function Creation Code&quot;, &quot;dbo&quot;);
+var StoredProcedure = Source.AddStoredProcedure(&quot;StoredProcedureName&quot;,&quot;Stored Procedure Creation Code&quot;, &quot;dbo&quot;);
+</code></pre>
+<p>From there the schema provider can be used to either generate the commands needed to create the database or what commands are needed to alter an existing database to the desired schema:</p>
+<pre><code>var MyCommands = SchemaProvider.GenerateSchema(DesiredSchema, SourceSchema);
+</code></pre>
+<p>If SourceSchema is null, then it will treat it as the database doesn't exist. If the SourceSchema is not null, it will act as though the database exists and the DesiredSchema is what you want the final schema to look like. Note that deleting columns, tables, etc. is not done by the system. It will, however, generate calls to drop functions, stored procedures, views, constraints, etc. if they need to be updated. Another thing you can do is have the system apply those changes for you:</p>
+<pre><code>SchemaProvider.Setup(DesiredSchema,new Connection(Configuration, SqlClientFactory.Instance, &quot;Default&quot;));
+</code></pre>
+<p>The connection object must be fed a IConfiguration object, a DbProviderFactory for the database type you wish it to connect to, and either the name of your connection string in the configuration object or a connection string:</p>
+<pre><code>SchemaProvider.Setup(DesiredSchema,new Connection(Configuration, SqlClientFactory.Instance, &quot;Data Source=localhost;Initial Catalog=ExampleDatabase;Integrated Security=SSPI;Pooling=false&quot;));
+</code></pre>
+<h2 id="adding-a-ischemagenerator">Adding a ISchemaGenerator</h2>
+<p>The schema generator is what the system uses to generate the individual commands. Data.Modeler comes with one for SQL Server but in order to add your own you must create a class that inherits from ISchemaGenerator. From there the system will automatically pick up the schema generator and allow you to use it:</p>
+<pre><code>var SchemaProvider = DataModeler.GetSchemaGenerator(MyDbFactoryProvider);
+</code></pre>
+<p>Note that you can also create one for SQL Server and the system will actually return the one that you create instead of the one built into the system.</p>
+<h2 id="installation">Installation</h2>
+<p>The library is available via Nuget with the package name &quot;Data.Modeler&quot;. To install it run the following command in the Package Manager Console:</p>
+<p>Install-Package Data.Modeler</p>
+<h2 id="build-process">Build Process</h2>
+<p>In order to build the library you will require the following as a minimum:</p>
+<ol>
+<li>Visual Studio 2022</li>
+</ol>
+<p>Other than that, just clone the project and you should be able to load the solution and build without too much effort.</p>
+</article>
+                </div>
+
+                <div class="copyright-footer">
+                    <span>&#169; James Craig. All rights reserved.</span>
+                </div>
+            </main>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+        <script type="text/javascript" src="styles/jquery.twbsPagination.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
+        <script type="text/javascript" src="styles/url.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
+        <script type="text/javascript" src="styles/docfx.js"></script>
+        <script type="text/javascript" src="styles/main.js"></script>
+        <script type="text/javascript" src="styles/singulink.js"></script>    </body>
+</html>
