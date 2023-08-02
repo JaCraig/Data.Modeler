@@ -2283,124 +2283,6 @@ references:
   isSpec: "True"
   fullName: Data.Modeler.Providers.Interfaces.ITrigger.Type
   nameWithType: ITrigger.Type
-- uid: Data.Modeler.Providers.Source
-  name: Source
-  href: api/Data.Modeler.Providers.Source.html
-  commentId: T:Data.Modeler.Providers.Source
-  fullName: Data.Modeler.Providers.Source
-  nameWithType: Source
-- uid: Data.Modeler.Providers.Source.#ctor(System.String)
-  name: Source(string)
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source__ctor_System_String_
-  commentId: M:Data.Modeler.Providers.Source.#ctor(System.String)
-  name.vb: New(String)
-  fullName: Data.Modeler.Providers.Source.Source(string)
-  fullName.vb: Data.Modeler.Providers.Source.New(String)
-  nameWithType: Source.Source(string)
-  nameWithType.vb: Source.New(String)
-- uid: Data.Modeler.Providers.Source.#ctor*
-  name: Source
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source__ctor_
-  commentId: Overload:Data.Modeler.Providers.Source.#ctor
-  isSpec: "True"
-  name.vb: New
-  fullName: Data.Modeler.Providers.Source.Source
-  fullName.vb: Data.Modeler.Providers.Source.New
-  nameWithType: Source.Source
-  nameWithType.vb: Source.New
-- uid: Data.Modeler.Providers.Source.AddFunction(System.String,System.String,System.String)
-  name: AddFunction(string, string, string)
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddFunction_System_String_System_String_System_String_
-  commentId: M:Data.Modeler.Providers.Source.AddFunction(System.String,System.String,System.String)
-  name.vb: AddFunction(String, String, String)
-  fullName: Data.Modeler.Providers.Source.AddFunction(string, string, string)
-  fullName.vb: Data.Modeler.Providers.Source.AddFunction(String, String, String)
-  nameWithType: Source.AddFunction(string, string, string)
-  nameWithType.vb: Source.AddFunction(String, String, String)
-- uid: Data.Modeler.Providers.Source.AddFunction*
-  name: AddFunction
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddFunction_
-  commentId: Overload:Data.Modeler.Providers.Source.AddFunction
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.Source.AddFunction
-  nameWithType: Source.AddFunction
-- uid: Data.Modeler.Providers.Source.AddStoredProcedure(System.String,System.String,System.String)
-  name: AddStoredProcedure(string, string, string)
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddStoredProcedure_System_String_System_String_System_String_
-  commentId: M:Data.Modeler.Providers.Source.AddStoredProcedure(System.String,System.String,System.String)
-  name.vb: AddStoredProcedure(String, String, String)
-  fullName: Data.Modeler.Providers.Source.AddStoredProcedure(string, string, string)
-  fullName.vb: Data.Modeler.Providers.Source.AddStoredProcedure(String, String, String)
-  nameWithType: Source.AddStoredProcedure(string, string, string)
-  nameWithType.vb: Source.AddStoredProcedure(String, String, String)
-- uid: Data.Modeler.Providers.Source.AddStoredProcedure*
-  name: AddStoredProcedure
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddStoredProcedure_
-  commentId: Overload:Data.Modeler.Providers.Source.AddStoredProcedure
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.Source.AddStoredProcedure
-  nameWithType: Source.AddStoredProcedure
-- uid: Data.Modeler.Providers.Source.AddTable(System.String,System.String)
-  name: AddTable(string, string)
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddTable_System_String_System_String_
-  commentId: M:Data.Modeler.Providers.Source.AddTable(System.String,System.String)
-  name.vb: AddTable(String, String)
-  fullName: Data.Modeler.Providers.Source.AddTable(string, string)
-  fullName.vb: Data.Modeler.Providers.Source.AddTable(String, String)
-  nameWithType: Source.AddTable(string, string)
-  nameWithType.vb: Source.AddTable(String, String)
-- uid: Data.Modeler.Providers.Source.AddTable*
-  name: AddTable
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddTable_
-  commentId: Overload:Data.Modeler.Providers.Source.AddTable
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.Source.AddTable
-  nameWithType: Source.AddTable
-- uid: Data.Modeler.Providers.Source.AddView(System.String,System.String,System.String)
-  name: AddView(string, string, string)
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddView_System_String_System_String_System_String_
-  commentId: M:Data.Modeler.Providers.Source.AddView(System.String,System.String,System.String)
-  name.vb: AddView(String, String, String)
-  fullName: Data.Modeler.Providers.Source.AddView(string, string, string)
-  fullName.vb: Data.Modeler.Providers.Source.AddView(String, String, String)
-  nameWithType: Source.AddView(string, string, string)
-  nameWithType.vb: Source.AddView(String, String, String)
-- uid: Data.Modeler.Providers.Source.AddView*
-  name: AddView
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddView_
-  commentId: Overload:Data.Modeler.Providers.Source.AddView
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.Source.AddView
-  nameWithType: Source.AddView
-- uid: Data.Modeler.Providers.Source.Equals(System.Object)
-  name: Equals(object)
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_Equals_System_Object_
-  commentId: M:Data.Modeler.Providers.Source.Equals(System.Object)
-  name.vb: Equals(Object)
-  fullName: Data.Modeler.Providers.Source.Equals(object)
-  fullName.vb: Data.Modeler.Providers.Source.Equals(Object)
-  nameWithType: Source.Equals(object)
-  nameWithType.vb: Source.Equals(Object)
-- uid: Data.Modeler.Providers.Source.Equals*
-  name: Equals
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_Equals_
-  commentId: Overload:Data.Modeler.Providers.Source.Equals
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.Source.Equals
-  nameWithType: Source.Equals
-- uid: Data.Modeler.Providers.Source.GetHashCode
-  name: GetHashCode()
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_GetHashCode
-  commentId: M:Data.Modeler.Providers.Source.GetHashCode
-  fullName: Data.Modeler.Providers.Source.GetHashCode()
-  nameWithType: Source.GetHashCode()
-- uid: Data.Modeler.Providers.Source.GetHashCode*
-  name: GetHashCode
-  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_GetHashCode_
-  commentId: Overload:Data.Modeler.Providers.Source.GetHashCode
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.Source.GetHashCode
-  nameWithType: Source.GetHashCode
 - uid: Data.Modeler.Providers.SQLServer
   name: Data.Modeler.Providers.SQLServer
   href: api/Data.Modeler.Providers.SQLServer.html
@@ -3133,6 +3015,204 @@ references:
   isSpec: "True"
   fullName: Data.Modeler.Providers.SQLServer.CommandBuilders.TriggerCommandBuilder.Providers
   nameWithType: TriggerCommandBuilder.Providers
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator
+  name: SQLServerSchemaGenerator
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html
+  commentId: T:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator
+  nameWithType: SQLServerSchemaGenerator
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.#ctor(System.Collections.Generic.IEnumerable{Data.Modeler.Providers.Interfaces.ISourceBuilder},System.Collections.Generic.IEnumerable{Data.Modeler.Providers.Interfaces.ICommandBuilder},Microsoft.Extensions.Configuration.IConfiguration,SQLHelperDB.SQLHelper,SQLHelperDB.SQLHelper)
+  name: SQLServerSchemaGenerator(IEnumerable<ISourceBuilder>, IEnumerable<ICommandBuilder>, IConfiguration, SQLHelper, SQLHelper)
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator__ctor_System_Collections_Generic_IEnumerable_Data_Modeler_Providers_Interfaces_ISourceBuilder__System_Collections_Generic_IEnumerable_Data_Modeler_Providers_Interfaces_ICommandBuilder__Microsoft_Extensions_Configuration_IConfiguration_SQLHelperDB_SQLHelper_SQLHelperDB_SQLHelper_
+  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.#ctor(System.Collections.Generic.IEnumerable{Data.Modeler.Providers.Interfaces.ISourceBuilder},System.Collections.Generic.IEnumerable{Data.Modeler.Providers.Interfaces.ICommandBuilder},Microsoft.Extensions.Configuration.IConfiguration,SQLHelperDB.SQLHelper,SQLHelperDB.SQLHelper)
+  name.vb: New(IEnumerable(Of ISourceBuilder), IEnumerable(Of ICommandBuilder), IConfiguration, SQLHelper, SQLHelper)
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SQLServerSchemaGenerator(System.Collections.Generic.IEnumerable<Data.Modeler.Providers.Interfaces.ISourceBuilder>, System.Collections.Generic.IEnumerable<Data.Modeler.Providers.Interfaces.ICommandBuilder>, Microsoft.Extensions.Configuration.IConfiguration, SQLHelperDB.SQLHelper, SQLHelperDB.SQLHelper)
+  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.New(System.Collections.Generic.IEnumerable(Of Data.Modeler.Providers.Interfaces.ISourceBuilder), System.Collections.Generic.IEnumerable(Of Data.Modeler.Providers.Interfaces.ICommandBuilder), Microsoft.Extensions.Configuration.IConfiguration, SQLHelperDB.SQLHelper, SQLHelperDB.SQLHelper)
+  nameWithType: SQLServerSchemaGenerator.SQLServerSchemaGenerator(IEnumerable<ISourceBuilder>, IEnumerable<ICommandBuilder>, IConfiguration, SQLHelper, SQLHelper)
+  nameWithType.vb: SQLServerSchemaGenerator.New(IEnumerable(Of ISourceBuilder), IEnumerable(Of ICommandBuilder), IConfiguration, SQLHelper, SQLHelper)
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.#ctor*
+  name: SQLServerSchemaGenerator
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator__ctor_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SQLServerSchemaGenerator
+  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.New
+  nameWithType: SQLServerSchemaGenerator.SQLServerSchemaGenerator
+  nameWithType.vb: SQLServerSchemaGenerator.New
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration
+  name: Configuration
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Configuration
+  commentId: P:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration
+  nameWithType: SQLServerSchemaGenerator.Configuration
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration*
+  name: Configuration
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Configuration_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration
+  nameWithType: SQLServerSchemaGenerator.Configuration
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: ConstraintExistsAsync(string, IConnection)
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ConstraintExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name.vb: ConstraintExistsAsync(String, IConnection)
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: SQLServerSchemaGenerator.ConstraintExistsAsync(string, IConnection)
+  nameWithType.vb: SQLServerSchemaGenerator.ConstraintExistsAsync(String, IConnection)
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync*
+  name: ConstraintExistsAsync
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ConstraintExistsAsync_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync
+  nameWithType: SQLServerSchemaGenerator.ConstraintExistsAsync
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema(Data.Modeler.Providers.Interfaces.ISource,Data.Modeler.Providers.Interfaces.ISource)
+  name: GenerateSchema(ISource, ISource?)
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GenerateSchema_Data_Modeler_Providers_Interfaces_ISource_Data_Modeler_Providers_Interfaces_ISource_
+  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema(Data.Modeler.Providers.Interfaces.ISource,Data.Modeler.Providers.Interfaces.ISource)
+  name.vb: GenerateSchema(ISource, ISource)
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema(Data.Modeler.Providers.Interfaces.ISource, Data.Modeler.Providers.Interfaces.ISource?)
+  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema(Data.Modeler.Providers.Interfaces.ISource, Data.Modeler.Providers.Interfaces.ISource)
+  nameWithType: SQLServerSchemaGenerator.GenerateSchema(ISource, ISource?)
+  nameWithType.vb: SQLServerSchemaGenerator.GenerateSchema(ISource, ISource)
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema*
+  name: GenerateSchema
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GenerateSchema_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema
+  nameWithType: SQLServerSchemaGenerator.GenerateSchema
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: GetSourceStructureAsync(IConnection)
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GetSourceStructureAsync_SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync(SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: SQLServerSchemaGenerator.GetSourceStructureAsync(IConnection)
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync*
+  name: GetSourceStructureAsync
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GetSourceStructureAsync_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync
+  nameWithType: SQLServerSchemaGenerator.GetSourceStructureAsync
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers
+  name: Providers
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Providers
+  commentId: P:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers
+  nameWithType: SQLServerSchemaGenerator.Providers
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers*
+  name: Providers
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Providers_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers
+  nameWithType: SQLServerSchemaGenerator.Providers
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(Data.Modeler.Providers.Interfaces.ISource,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: SetupAsync(ISource, IConnection)
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_Data_Modeler_Providers_Interfaces_ISource_SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(Data.Modeler.Providers.Interfaces.ISource,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(Data.Modeler.Providers.Interfaces.ISource, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: SQLServerSchemaGenerator.SetupAsync(ISource, IConnection)
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(System.String[],SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: SetupAsync(string[], IConnection)
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_System_String___SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(System.String[],SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name.vb: SetupAsync(String(), IConnection)
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(string[], SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(String(), SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: SQLServerSchemaGenerator.SetupAsync(string[], IConnection)
+  nameWithType.vb: SQLServerSchemaGenerator.SetupAsync(String(), IConnection)
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync*
+  name: SetupAsync
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync
+  nameWithType: SQLServerSchemaGenerator.SetupAsync
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: SourceExistsAsync(string, IConnection)
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SourceExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name.vb: SourceExistsAsync(String, IConnection)
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: SQLServerSchemaGenerator.SourceExistsAsync(string, IConnection)
+  nameWithType.vb: SQLServerSchemaGenerator.SourceExistsAsync(String, IConnection)
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync*
+  name: SourceExistsAsync
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SourceExistsAsync_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync
+  nameWithType: SQLServerSchemaGenerator.SourceExistsAsync
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: StoredProcedureExistsAsync(string, IConnection)
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_StoredProcedureExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name.vb: StoredProcedureExistsAsync(String, IConnection)
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: SQLServerSchemaGenerator.StoredProcedureExistsAsync(string, IConnection)
+  nameWithType.vb: SQLServerSchemaGenerator.StoredProcedureExistsAsync(String, IConnection)
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync*
+  name: StoredProcedureExistsAsync
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_StoredProcedureExistsAsync_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync
+  nameWithType: SQLServerSchemaGenerator.StoredProcedureExistsAsync
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: TableExistsAsync(string, IConnection)
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TableExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name.vb: TableExistsAsync(String, IConnection)
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: SQLServerSchemaGenerator.TableExistsAsync(string, IConnection)
+  nameWithType.vb: SQLServerSchemaGenerator.TableExistsAsync(String, IConnection)
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync*
+  name: TableExistsAsync
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TableExistsAsync_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync
+  nameWithType: SQLServerSchemaGenerator.TableExistsAsync
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: TriggerExistsAsync(string, IConnection)
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TriggerExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name.vb: TriggerExistsAsync(String, IConnection)
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: SQLServerSchemaGenerator.TriggerExistsAsync(string, IConnection)
+  nameWithType.vb: SQLServerSchemaGenerator.TriggerExistsAsync(String, IConnection)
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync*
+  name: TriggerExistsAsync
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TriggerExistsAsync_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync
+  nameWithType: SQLServerSchemaGenerator.TriggerExistsAsync
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name: ViewExistsAsync(string, IConnection)
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ViewExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
+  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  name.vb: ViewExistsAsync(String, IConnection)
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
+  nameWithType: SQLServerSchemaGenerator.ViewExistsAsync(string, IConnection)
+  nameWithType.vb: SQLServerSchemaGenerator.ViewExistsAsync(String, IConnection)
+- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync*
+  name: ViewExistsAsync
+  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ViewExistsAsync_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync
+  nameWithType: SQLServerSchemaGenerator.ViewExistsAsync
 - uid: Data.Modeler.Providers.SQLServer.SourceBuilders
   name: Data.Modeler.Providers.SQLServer.SourceBuilders
   href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.html
@@ -3566,67 +3646,6 @@ references:
   isSpec: "True"
   fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.TableForeignKeys.Providers
   nameWithType: TableForeignKeys.Providers
-- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables
-  name: Tables
-  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html
-  commentId: T:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables
-  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables
-  nameWithType: Tables
-- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource(System.Collections.Generic.List{System.Object},Data.Modeler.Providers.Interfaces.ISource)
-  name: FillSource(List<dynamic>, ISource)
-  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_FillSource_System_Collections_Generic_List_System_Object__Data_Modeler_Providers_Interfaces_ISource_
-  commentId: M:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource(System.Collections.Generic.List{System.Object},Data.Modeler.Providers.Interfaces.ISource)
-  name.vb: FillSource(List(Of Object), ISource)
-  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource(System.Collections.Generic.List<dynamic>, Data.Modeler.Providers.Interfaces.ISource)
-  fullName.vb: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource(System.Collections.Generic.List(Of Object), Data.Modeler.Providers.Interfaces.ISource)
-  nameWithType: Tables.FillSource(List<dynamic>, ISource)
-  nameWithType.vb: Tables.FillSource(List(Of Object), ISource)
-- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource*
-  name: FillSource
-  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_FillSource_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource
-  nameWithType: Tables.FillSource
-- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand
-  name: GetCommand()
-  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_GetCommand
-  commentId: M:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand
-  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand()
-  nameWithType: Tables.GetCommand()
-- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand*
-  name: GetCommand
-  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_GetCommand_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand
-  nameWithType: Tables.GetCommand
-- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order
-  name: Order
-  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_Order
-  commentId: P:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order
-  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order
-  nameWithType: Tables.Order
-- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order*
-  name: Order
-  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_Order_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order
-  nameWithType: Tables.Order
-- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers
-  name: Providers
-  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_Providers
-  commentId: P:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers
-  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers
-  nameWithType: Tables.Providers
-- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers*
-  name: Providers
-  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_Providers_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers
-  nameWithType: Tables.Providers
 - uid: Data.Modeler.Providers.SQLServer.SourceBuilders.TableTriggers
   name: TableTriggers
   href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableTriggers.html
@@ -3688,6 +3707,67 @@ references:
   isSpec: "True"
   fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.TableTriggers.Providers
   nameWithType: TableTriggers.Providers
+- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables
+  name: Tables
+  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html
+  commentId: T:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables
+  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables
+  nameWithType: Tables
+- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource(System.Collections.Generic.List{System.Object},Data.Modeler.Providers.Interfaces.ISource)
+  name: FillSource(List<dynamic>, ISource)
+  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_FillSource_System_Collections_Generic_List_System_Object__Data_Modeler_Providers_Interfaces_ISource_
+  commentId: M:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource(System.Collections.Generic.List{System.Object},Data.Modeler.Providers.Interfaces.ISource)
+  name.vb: FillSource(List(Of Object), ISource)
+  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource(System.Collections.Generic.List<dynamic>, Data.Modeler.Providers.Interfaces.ISource)
+  fullName.vb: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource(System.Collections.Generic.List(Of Object), Data.Modeler.Providers.Interfaces.ISource)
+  nameWithType: Tables.FillSource(List<dynamic>, ISource)
+  nameWithType.vb: Tables.FillSource(List(Of Object), ISource)
+- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource*
+  name: FillSource
+  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_FillSource_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.FillSource
+  nameWithType: Tables.FillSource
+- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand
+  name: GetCommand()
+  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_GetCommand
+  commentId: M:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand
+  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand()
+  nameWithType: Tables.GetCommand()
+- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand*
+  name: GetCommand
+  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_GetCommand_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.GetCommand
+  nameWithType: Tables.GetCommand
+- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order
+  name: Order
+  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_Order
+  commentId: P:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order
+  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order
+  nameWithType: Tables.Order
+- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order*
+  name: Order
+  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_Order_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Order
+  nameWithType: Tables.Order
+- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers
+  name: Providers
+  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_Providers
+  commentId: P:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers
+  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers
+  nameWithType: Tables.Providers
+- uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers*
+  name: Providers
+  href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html#Data_Modeler_Providers_SQLServer_SourceBuilders_Tables_Providers_
+  commentId: Overload:Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers
+  isSpec: "True"
+  fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.Providers
+  nameWithType: Tables.Providers
 - uid: Data.Modeler.Providers.SQLServer.SourceBuilders.Views
   name: Views
   href: api/Data.Modeler.Providers.SQLServer.SourceBuilders.Views.html
@@ -3749,204 +3829,124 @@ references:
   isSpec: "True"
   fullName: Data.Modeler.Providers.SQLServer.SourceBuilders.Views.Providers
   nameWithType: Views.Providers
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator
-  name: SQLServerSchemaGenerator
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html
-  commentId: T:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator
-  nameWithType: SQLServerSchemaGenerator
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.#ctor(System.Collections.Generic.IEnumerable{Data.Modeler.Providers.Interfaces.ISourceBuilder},System.Collections.Generic.IEnumerable{Data.Modeler.Providers.Interfaces.ICommandBuilder},Microsoft.Extensions.Configuration.IConfiguration,SQLHelperDB.SQLHelper,SQLHelperDB.SQLHelper)
-  name: SQLServerSchemaGenerator(IEnumerable<ISourceBuilder>, IEnumerable<ICommandBuilder>, IConfiguration, SQLHelper, SQLHelper)
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator__ctor_System_Collections_Generic_IEnumerable_Data_Modeler_Providers_Interfaces_ISourceBuilder__System_Collections_Generic_IEnumerable_Data_Modeler_Providers_Interfaces_ICommandBuilder__Microsoft_Extensions_Configuration_IConfiguration_SQLHelperDB_SQLHelper_SQLHelperDB_SQLHelper_
-  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.#ctor(System.Collections.Generic.IEnumerable{Data.Modeler.Providers.Interfaces.ISourceBuilder},System.Collections.Generic.IEnumerable{Data.Modeler.Providers.Interfaces.ICommandBuilder},Microsoft.Extensions.Configuration.IConfiguration,SQLHelperDB.SQLHelper,SQLHelperDB.SQLHelper)
-  name.vb: New(IEnumerable(Of ISourceBuilder), IEnumerable(Of ICommandBuilder), IConfiguration, SQLHelper, SQLHelper)
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SQLServerSchemaGenerator(System.Collections.Generic.IEnumerable<Data.Modeler.Providers.Interfaces.ISourceBuilder>, System.Collections.Generic.IEnumerable<Data.Modeler.Providers.Interfaces.ICommandBuilder>, Microsoft.Extensions.Configuration.IConfiguration, SQLHelperDB.SQLHelper, SQLHelperDB.SQLHelper)
-  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.New(System.Collections.Generic.IEnumerable(Of Data.Modeler.Providers.Interfaces.ISourceBuilder), System.Collections.Generic.IEnumerable(Of Data.Modeler.Providers.Interfaces.ICommandBuilder), Microsoft.Extensions.Configuration.IConfiguration, SQLHelperDB.SQLHelper, SQLHelperDB.SQLHelper)
-  nameWithType: SQLServerSchemaGenerator.SQLServerSchemaGenerator(IEnumerable<ISourceBuilder>, IEnumerable<ICommandBuilder>, IConfiguration, SQLHelper, SQLHelper)
-  nameWithType.vb: SQLServerSchemaGenerator.New(IEnumerable(Of ISourceBuilder), IEnumerable(Of ICommandBuilder), IConfiguration, SQLHelper, SQLHelper)
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.#ctor*
-  name: SQLServerSchemaGenerator
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator__ctor_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.#ctor
+- uid: Data.Modeler.Providers.Source
+  name: Source
+  href: api/Data.Modeler.Providers.Source.html
+  commentId: T:Data.Modeler.Providers.Source
+  fullName: Data.Modeler.Providers.Source
+  nameWithType: Source
+- uid: Data.Modeler.Providers.Source.#ctor(System.String)
+  name: Source(string)
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source__ctor_System_String_
+  commentId: M:Data.Modeler.Providers.Source.#ctor(System.String)
+  name.vb: New(String)
+  fullName: Data.Modeler.Providers.Source.Source(string)
+  fullName.vb: Data.Modeler.Providers.Source.New(String)
+  nameWithType: Source.Source(string)
+  nameWithType.vb: Source.New(String)
+- uid: Data.Modeler.Providers.Source.#ctor*
+  name: Source
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source__ctor_
+  commentId: Overload:Data.Modeler.Providers.Source.#ctor
   isSpec: "True"
   name.vb: New
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SQLServerSchemaGenerator
-  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.New
-  nameWithType: SQLServerSchemaGenerator.SQLServerSchemaGenerator
-  nameWithType.vb: SQLServerSchemaGenerator.New
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration
-  name: Configuration
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Configuration
-  commentId: P:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration
-  nameWithType: SQLServerSchemaGenerator.Configuration
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration*
-  name: Configuration
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Configuration_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration
+  fullName: Data.Modeler.Providers.Source.Source
+  fullName.vb: Data.Modeler.Providers.Source.New
+  nameWithType: Source.Source
+  nameWithType.vb: Source.New
+- uid: Data.Modeler.Providers.Source.AddFunction(System.String,System.String,System.String)
+  name: AddFunction(string, string, string)
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddFunction_System_String_System_String_System_String_
+  commentId: M:Data.Modeler.Providers.Source.AddFunction(System.String,System.String,System.String)
+  name.vb: AddFunction(String, String, String)
+  fullName: Data.Modeler.Providers.Source.AddFunction(string, string, string)
+  fullName.vb: Data.Modeler.Providers.Source.AddFunction(String, String, String)
+  nameWithType: Source.AddFunction(string, string, string)
+  nameWithType.vb: Source.AddFunction(String, String, String)
+- uid: Data.Modeler.Providers.Source.AddFunction*
+  name: AddFunction
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddFunction_
+  commentId: Overload:Data.Modeler.Providers.Source.AddFunction
   isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Configuration
-  nameWithType: SQLServerSchemaGenerator.Configuration
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name: ConstraintExistsAsync(string, IConnection)
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ConstraintExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
-  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name.vb: ConstraintExistsAsync(String, IConnection)
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  nameWithType: SQLServerSchemaGenerator.ConstraintExistsAsync(string, IConnection)
-  nameWithType.vb: SQLServerSchemaGenerator.ConstraintExistsAsync(String, IConnection)
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync*
-  name: ConstraintExistsAsync
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ConstraintExistsAsync_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync
+  fullName: Data.Modeler.Providers.Source.AddFunction
+  nameWithType: Source.AddFunction
+- uid: Data.Modeler.Providers.Source.AddStoredProcedure(System.String,System.String,System.String)
+  name: AddStoredProcedure(string, string, string)
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddStoredProcedure_System_String_System_String_System_String_
+  commentId: M:Data.Modeler.Providers.Source.AddStoredProcedure(System.String,System.String,System.String)
+  name.vb: AddStoredProcedure(String, String, String)
+  fullName: Data.Modeler.Providers.Source.AddStoredProcedure(string, string, string)
+  fullName.vb: Data.Modeler.Providers.Source.AddStoredProcedure(String, String, String)
+  nameWithType: Source.AddStoredProcedure(string, string, string)
+  nameWithType.vb: Source.AddStoredProcedure(String, String, String)
+- uid: Data.Modeler.Providers.Source.AddStoredProcedure*
+  name: AddStoredProcedure
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddStoredProcedure_
+  commentId: Overload:Data.Modeler.Providers.Source.AddStoredProcedure
   isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ConstraintExistsAsync
-  nameWithType: SQLServerSchemaGenerator.ConstraintExistsAsync
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema(Data.Modeler.Providers.Interfaces.ISource,Data.Modeler.Providers.Interfaces.ISource)
-  name: GenerateSchema(ISource, ISource?)
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GenerateSchema_Data_Modeler_Providers_Interfaces_ISource_Data_Modeler_Providers_Interfaces_ISource_
-  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema(Data.Modeler.Providers.Interfaces.ISource,Data.Modeler.Providers.Interfaces.ISource)
-  name.vb: GenerateSchema(ISource, ISource)
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema(Data.Modeler.Providers.Interfaces.ISource, Data.Modeler.Providers.Interfaces.ISource?)
-  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema(Data.Modeler.Providers.Interfaces.ISource, Data.Modeler.Providers.Interfaces.ISource)
-  nameWithType: SQLServerSchemaGenerator.GenerateSchema(ISource, ISource?)
-  nameWithType.vb: SQLServerSchemaGenerator.GenerateSchema(ISource, ISource)
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema*
-  name: GenerateSchema
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GenerateSchema_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema
+  fullName: Data.Modeler.Providers.Source.AddStoredProcedure
+  nameWithType: Source.AddStoredProcedure
+- uid: Data.Modeler.Providers.Source.AddTable(System.String,System.String)
+  name: AddTable(string, string)
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddTable_System_String_System_String_
+  commentId: M:Data.Modeler.Providers.Source.AddTable(System.String,System.String)
+  name.vb: AddTable(String, String)
+  fullName: Data.Modeler.Providers.Source.AddTable(string, string)
+  fullName.vb: Data.Modeler.Providers.Source.AddTable(String, String)
+  nameWithType: Source.AddTable(string, string)
+  nameWithType.vb: Source.AddTable(String, String)
+- uid: Data.Modeler.Providers.Source.AddTable*
+  name: AddTable
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddTable_
+  commentId: Overload:Data.Modeler.Providers.Source.AddTable
   isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GenerateSchema
-  nameWithType: SQLServerSchemaGenerator.GenerateSchema
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync(SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name: GetSourceStructureAsync(IConnection)
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GetSourceStructureAsync_SQLHelperDB_HelperClasses_Interfaces_IConnection_
-  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync(SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync(SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  nameWithType: SQLServerSchemaGenerator.GetSourceStructureAsync(IConnection)
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync*
-  name: GetSourceStructureAsync
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_GetSourceStructureAsync_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync
+  fullName: Data.Modeler.Providers.Source.AddTable
+  nameWithType: Source.AddTable
+- uid: Data.Modeler.Providers.Source.AddView(System.String,System.String,System.String)
+  name: AddView(string, string, string)
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddView_System_String_System_String_System_String_
+  commentId: M:Data.Modeler.Providers.Source.AddView(System.String,System.String,System.String)
+  name.vb: AddView(String, String, String)
+  fullName: Data.Modeler.Providers.Source.AddView(string, string, string)
+  fullName.vb: Data.Modeler.Providers.Source.AddView(String, String, String)
+  nameWithType: Source.AddView(string, string, string)
+  nameWithType.vb: Source.AddView(String, String, String)
+- uid: Data.Modeler.Providers.Source.AddView*
+  name: AddView
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_AddView_
+  commentId: Overload:Data.Modeler.Providers.Source.AddView
   isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.GetSourceStructureAsync
-  nameWithType: SQLServerSchemaGenerator.GetSourceStructureAsync
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers
-  name: Providers
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Providers
-  commentId: P:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers
-  nameWithType: SQLServerSchemaGenerator.Providers
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers*
-  name: Providers
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_Providers_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers
+  fullName: Data.Modeler.Providers.Source.AddView
+  nameWithType: Source.AddView
+- uid: Data.Modeler.Providers.Source.Equals(System.Object)
+  name: Equals(object)
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_Equals_System_Object_
+  commentId: M:Data.Modeler.Providers.Source.Equals(System.Object)
+  name.vb: Equals(Object)
+  fullName: Data.Modeler.Providers.Source.Equals(object)
+  fullName.vb: Data.Modeler.Providers.Source.Equals(Object)
+  nameWithType: Source.Equals(object)
+  nameWithType.vb: Source.Equals(Object)
+- uid: Data.Modeler.Providers.Source.Equals*
+  name: Equals
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_Equals_
+  commentId: Overload:Data.Modeler.Providers.Source.Equals
   isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.Providers
-  nameWithType: SQLServerSchemaGenerator.Providers
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(Data.Modeler.Providers.Interfaces.ISource,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name: SetupAsync(ISource, IConnection)
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_Data_Modeler_Providers_Interfaces_ISource_SQLHelperDB_HelperClasses_Interfaces_IConnection_
-  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(Data.Modeler.Providers.Interfaces.ISource,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(Data.Modeler.Providers.Interfaces.ISource, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  nameWithType: SQLServerSchemaGenerator.SetupAsync(ISource, IConnection)
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(System.String[],SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name: SetupAsync(string[], IConnection)
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_System_String___SQLHelperDB_HelperClasses_Interfaces_IConnection_
-  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(System.String[],SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name.vb: SetupAsync(String(), IConnection)
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(string[], SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync(String(), SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  nameWithType: SQLServerSchemaGenerator.SetupAsync(string[], IConnection)
-  nameWithType.vb: SQLServerSchemaGenerator.SetupAsync(String(), IConnection)
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync*
-  name: SetupAsync
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SetupAsync_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync
+  fullName: Data.Modeler.Providers.Source.Equals
+  nameWithType: Source.Equals
+- uid: Data.Modeler.Providers.Source.GetHashCode
+  name: GetHashCode()
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_GetHashCode
+  commentId: M:Data.Modeler.Providers.Source.GetHashCode
+  fullName: Data.Modeler.Providers.Source.GetHashCode()
+  nameWithType: Source.GetHashCode()
+- uid: Data.Modeler.Providers.Source.GetHashCode*
+  name: GetHashCode
+  href: api/Data.Modeler.Providers.Source.html#Data_Modeler_Providers_Source_GetHashCode_
+  commentId: Overload:Data.Modeler.Providers.Source.GetHashCode
   isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SetupAsync
-  nameWithType: SQLServerSchemaGenerator.SetupAsync
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name: SourceExistsAsync(string, IConnection)
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SourceExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
-  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name.vb: SourceExistsAsync(String, IConnection)
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  nameWithType: SQLServerSchemaGenerator.SourceExistsAsync(string, IConnection)
-  nameWithType.vb: SQLServerSchemaGenerator.SourceExistsAsync(String, IConnection)
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync*
-  name: SourceExistsAsync
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_SourceExistsAsync_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.SourceExistsAsync
-  nameWithType: SQLServerSchemaGenerator.SourceExistsAsync
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name: StoredProcedureExistsAsync(string, IConnection)
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_StoredProcedureExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
-  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name.vb: StoredProcedureExistsAsync(String, IConnection)
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  nameWithType: SQLServerSchemaGenerator.StoredProcedureExistsAsync(string, IConnection)
-  nameWithType.vb: SQLServerSchemaGenerator.StoredProcedureExistsAsync(String, IConnection)
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync*
-  name: StoredProcedureExistsAsync
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_StoredProcedureExistsAsync_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.StoredProcedureExistsAsync
-  nameWithType: SQLServerSchemaGenerator.StoredProcedureExistsAsync
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name: TableExistsAsync(string, IConnection)
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TableExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
-  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name.vb: TableExistsAsync(String, IConnection)
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  nameWithType: SQLServerSchemaGenerator.TableExistsAsync(string, IConnection)
-  nameWithType.vb: SQLServerSchemaGenerator.TableExistsAsync(String, IConnection)
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync*
-  name: TableExistsAsync
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TableExistsAsync_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TableExistsAsync
-  nameWithType: SQLServerSchemaGenerator.TableExistsAsync
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name: TriggerExistsAsync(string, IConnection)
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TriggerExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
-  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name.vb: TriggerExistsAsync(String, IConnection)
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  nameWithType: SQLServerSchemaGenerator.TriggerExistsAsync(string, IConnection)
-  nameWithType.vb: SQLServerSchemaGenerator.TriggerExistsAsync(String, IConnection)
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync*
-  name: TriggerExistsAsync
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_TriggerExistsAsync_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.TriggerExistsAsync
-  nameWithType: SQLServerSchemaGenerator.TriggerExistsAsync
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name: ViewExistsAsync(string, IConnection)
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ViewExistsAsync_System_String_SQLHelperDB_HelperClasses_Interfaces_IConnection_
-  commentId: M:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync(System.String,SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  name.vb: ViewExistsAsync(String, IConnection)
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync(string, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  fullName.vb: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync(String, SQLHelperDB.HelperClasses.Interfaces.IConnection)
-  nameWithType: SQLServerSchemaGenerator.ViewExistsAsync(string, IConnection)
-  nameWithType.vb: SQLServerSchemaGenerator.ViewExistsAsync(String, IConnection)
-- uid: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync*
-  name: ViewExistsAsync
-  href: api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html#Data_Modeler_Providers_SQLServer_SQLServerSchemaGenerator_ViewExistsAsync_
-  commentId: Overload:Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync
-  isSpec: "True"
-  fullName: Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.ViewExistsAsync
-  nameWithType: SQLServerSchemaGenerator.ViewExistsAsync
+  fullName: Data.Modeler.Providers.Source.GetHashCode
+  nameWithType: Source.GetHashCode
 - uid: Data.Modeler.Providers.StoredProcedure
   name: StoredProcedure
   href: api/Data.Modeler.Providers.StoredProcedure.html
