@@ -1,125 +1,142 @@
 ﻿<!DOCTYPE html>
-<!--[if IE]><![endif]-->
 <html>
-
-    <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <head>
+    <meta charset="utf-8">
       <title>Class TableBase
  | Data.Modeler API Reference </title>
-      <meta name="viewport" content="width=device-width">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="title" content="Class TableBase
  | Data.Modeler API Reference ">
-      <meta name="generator" content="docfx ">
-  
-      <link rel="shortcut icon" href="../favicon.ico">
-      <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/night-owl.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" integrity="sha384-EvBWSlnoFgZlXJvpzS+MAUEjvN7+gcCwH+qh7GRFOGgZO0PuwOFro7qPOJnLfe7l" crossorigin="anonymous">
-      <link rel="stylesheet" href="../styles/config.css">
-      <link rel="stylesheet" href="../styles/discord.css">
-      <link rel="stylesheet" href="../styles/singulink.css">
-      <link rel="stylesheet" href="../styles/main.css">
-      <meta property="docfx:navrel" content="../toc.json">
-      <meta property="docfx:tocrel" content="toc.json">
-  
-  <meta property="docfx:rel" content="../">
-  <meta property="docfx:newtab" content="true">
-    </head>
-    <body>
-        <div class="top-navbar">
-            <a class="burger-icon" onclick="toggleMenu()">
-                <svg name="Hamburger" style="vertical-align: middle;" width="34" height="34" viewbox="0 0 24 24"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M20 6H4V9H20V6ZM4 10.999H20V13.999H4V10.999ZM4 15.999H20V18.999H4V15.999Z"></path></svg>
-            </a>
+      
+      <link rel="icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../public/docfx.min.css">
+      <link rel="stylesheet" href="../public/main.css">
+      <meta name="docfx:navrel" content="../toc.html">
+      <meta name="docfx:tocrel" content="toc.html">
+      
+      <meta name="docfx:rel" content="../">
+      
+      
+      <meta name="docfx:docurl" content="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">
+      <meta name="loc:inThisArticle" content="In this article">
+      <meta name="loc:searchResultsCount" content="{count} results for &quot;{query}&quot;">
+      <meta name="loc:searchNoResults" content="No results for &quot;{query}&quot;">
+      <meta name="loc:tocFilter" content="Filter by title">
+      <meta name="loc:nextArticle" content="Next">
+      <meta name="loc:prevArticle" content="Previous">
+      <meta name="loc:themeLight" content="Light">
+      <meta name="loc:themeDark" content="Dark">
+      <meta name="loc:themeAuto" content="Auto">
+      <meta name="loc:changeTheme" content="Change theme">
+      <meta name="loc:copy" content="Copy">
+      <meta name="loc:downloadPdf" content="Download PDF">
+  </head>
+
+  <script type="module" src="./../public/docfx.min.js"></script>
+
+  <script>
+    const theme = localStorage.getItem('theme') || 'auto'
+    document.documentElement.setAttribute('data-bs-theme', theme === 'auto' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : theme)
+  </script>
 
 
-            <a class="brand" href="../index.html">
-              <img src="../images/icon.png" alt="Data.Modeler" class="logomark">
-              <span class="brand-title">Data.Modeler</span>
-            </a>        </div>
+  <body class="tex2jax_ignore" data-layout="" data-yaml-mime="ManagedReference">
+    <header class="bg-body border-bottom">
+      <nav id="autocollapse" class="navbar navbar-expand-md" role="navigation">
+        <div class="container-xxl flex-nowrap">
+          <a class="navbar-brand" href="../index.html">
+            <img id="logo" class="svg" src="../images/icon.png" alt="Data.Modeler">
+            Data.Modeler
+          </a>
+          <button class="btn btn-lg d-md-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navpanel" aria-controls="navpanel" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="bi bi-three-dots"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navpanel">
+            <div id="navbar">
+              <form class="search" role="search" id="search">
+                <i class="bi bi-search"></i>
+                <input class="form-control" id="search-query" type="search" disabled="" placeholder="Search" autocomplete="off" aria-label="Search">
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
 
-        <div class="body-content">
-            <div id="blackout" class="blackout" onclick="toggleMenu()"></div>
+    <main class="container-xxl">
+      <div class="toc-offcanvas">
+        <div class="offcanvas-md offcanvas-start" tabindex="-1" id="tocOffcanvas" aria-labelledby="tocOffcanvasLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="tocOffcanvasLabel">Table of Contents</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#tocOffcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <nav class="toc" id="toc"></nav>
+          </div>
+        </div>
+      </div>
 
-            <nav id="sidebar" role="navigation">
-                <div class="sidebar">
+      <div class="content">
+        <div class="actionbar">
+          <button class="btn btn-lg border-0 d-md-none" style="margin-top: -.65em; margin-left: -.8em" type="button" data-bs-toggle="offcanvas" data-bs-target="#tocOffcanvas" aria-controls="tocOffcanvas" aria-expanded="false" aria-label="Show table of contents">
+            <i class="bi bi-list"></i>
+          </button>
 
-                    <div>
-                      <div class="mobile-hide">
+          <nav id="breadcrumb"></nav>
+        </div>
 
-                        <a class="brand" href="../index.html">
-                          <img src="../images/icon.png" alt="Data.Modeler" class="logomark">
-                          <span class="brand-title">Data.Modeler</span>
-                        </a>                      </div>
-
-                      <div class="sidesearch">
-                        <form id="search" role="search" class="search">
-                            <i class="bi bi-search search-icon"></i>
-                            <input type="text" id="search-query" placeholder="Search" autocomplete="off">
-                        </form>
-                      </div>
-
-                      <div id="navbar">
-                      </div>
-                    </div>                    <div class="sidebar-item-separator"></div>
-
-                        <div id="sidetoggle">
-                          <div id="sidetoc"></div>
-                        </div>
-                </div>
-                <div class="footer">
-  <strong><a href='https://github.com/JaCraig/Data.Modeler'>Open in Github</a></strong>
-  
-                </div>            </nav>
-
-            <main class="main-panel">
-
-                <div id="search-results" style="display: none;">
-                  <h1 class="search-list">Search Results for <span></span></h1>
-                  <div class="sr-items">
-                    <p><i class="bi bi-hourglass-split index-loading"></i></p>
-                  </div>
-                  <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
-                </div>
- 
-
-                <div role="main" class="hide-when-search">
-
-                        <div class="subnav navbar navbar-default">
-                          <div class="container hide-when-search" id="breadcrumb">
-                            <ul class="breadcrumb">
-                              <li></li>
-                            </ul>
-                          </div>
-                        </div>
-
-                         <div id="contribution">
-                               <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
-                         </div>
-
-                    <article class="content wrap" id="_content" data-uid="Data.Modeler.Providers.BaseClasses.TableBase">
+        <article data-uid="Data.Modeler.Providers.BaseClasses.TableBase">
 
 
 
-  <h1 id="Data_Modeler_Providers_BaseClasses_TableBase" data-uid="Data.Modeler.Providers.BaseClasses.TableBase" class="text-break">Class TableBase
-</h1>
-  <div class="markdown level0 summary"><p>Table base class</p>
+  <h1 id="Data_Modeler_Providers_BaseClasses_TableBase" data-uid="Data.Modeler.Providers.BaseClasses.TableBase" class="text-break">
+    Class TableBase
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L27"><i class="bi bi-code-slash"></i></a>
+  </h1>
+
+  <div class="facts text-secondary">
+    <dl><dt>Namespace</dt><dd><a class="xref" href="Data.html">Data</a>.<a class="xref" href="Data.Modeler.html">Modeler</a>.<a class="xref" href="Data.Modeler.Providers.html">Providers</a>.<a class="xref" href="Data.Modeler.Providers.BaseClasses.html">BaseClasses</a></dd></dl>
+  <dl><dt>Assembly</dt><dd>Data.Modeler.dll</dd></dl>
+  </div>
+
+  <div class="markdown summary"><p>Table base class</p>
 </div>
-  <div class="markdown level0 conceptual"></div>
-  <div class="inheritance">
-    <h5>Inheritance</h5>
-    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
-    <div class="level1"><span class="xref">TableBase</span></div>
-      <div class="level2"><a class="xref" href="Data.Modeler.Providers.StoredProcedure.html">StoredProcedure</a></div>
-      <div class="level2"><a class="xref" href="Data.Modeler.Providers.Table.html">Table</a></div>
-      <div class="level2"><a class="xref" href="Data.Modeler.Providers.View.html">View</a></div>
+  <div class="markdown conceptual"></div>
+
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public abstract class TableBase : ITable</code></pre>
   </div>
-  <div class="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ITable.html">ITable</a></div>
-  </div>
-  <div class="inheritedMembers">
-    <h5>Inherited Members</h5>
+
+
+
+
+  <dl class="typelist inheritance">
+    <dt>Inheritance</dt>
+    <dd>
+      <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+      <div><span class="xref">TableBase</span></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist implements">
+    <dt>Implements</dt>
+    <dd>
+      <div><a class="xref" href="Data.Modeler.Providers.Interfaces.ITable.html">ITable</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Derived</dt>
+    <dd>
+      <div><a class="xref" href="Data.Modeler.Providers.StoredProcedure.html">StoredProcedure</a></div>
+      <div><a class="xref" href="Data.Modeler.Providers.Table.html">Table</a></div>
+      <div><a class="xref" href="Data.Modeler.Providers.View.html">View</a></div>
+    </dd>
+  </dl>
+
+  <dl class="typelist derived">
+    <dt>Inherited Members</dt>
+    <dd>
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
     </div>
@@ -141,788 +158,670 @@
     <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
     </div>
-  </div>
-  <h6><strong>Namespace</strong>: <a class="xref" href="Data.html">Data</a>.<a class="xref" href="Data.Modeler.html">Modeler</a>.<a class="xref" href="Data.Modeler.Providers.html">Providers</a>.<a class="xref" href="Data.Modeler.Providers.BaseClasses.html">BaseClasses</a></h6>
-  <h6><strong>Assembly</strong>: Data.Modeler.dll</h6>
-  <h5 id="Data_Modeler_Providers_BaseClasses_TableBase_syntax">Syntax</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class TableBase : ITable</code></pre>
-  </div>
-  <h3 id="constructors">Constructors
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase__ctor_System_String_System_String_Data_Modeler_Providers_Interfaces_ISource_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.%23ctor(System.String%2CSystem.String%2CData.Modeler.Providers.Interfaces.ISource)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L35">View Source</a>
-  </span>
+  </dd></dl>
+
+
+
+
+
+
+  <h2 class="section" id="constructors">Constructors
+</h2>
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase__ctor_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.#ctor*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase__ctor_System_String_System_String_Data_Modeler_Providers_Interfaces_ISource_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.#ctor(System.String,System.String,Data.Modeler.Providers.Interfaces.ISource)">TableBase(string, string, ISource)</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase__ctor_System_String_System_String_Data_Modeler_Providers_Interfaces_ISource_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.#ctor(System.String,System.String,Data.Modeler.Providers.Interfaces.ISource)">
+  TableBase(string, string, ISource)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L35"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Constructor</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">protected TableBase(string name, string schema, ISource source)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">name</span></td>
-        <td><p>Name of the table</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">schema</span></td>
-        <td><p>The schema.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Data.Modeler.Providers.Interfaces.ISource.html">ISource</a></td>
-        <td><span class="parametername">source</span></td>
-        <td><p>Source that the table is from</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="properties">Properties
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_Audit.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.Audit%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L49">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Name of the table</p>
+</dd>
+    <dt><code>schema</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The schema.</p>
+</dd>
+    <dt><code>source</code> <a class="xref" href="Data.Modeler.Providers.Interfaces.ISource.html">ISource</a></dt>
+    <dd><p>Source that the table is from</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 class="section" id="properties">Properties
+</h2>
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_Audit_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Audit*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_Audit" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Audit">Audit</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_Audit" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Audit">
+  Audit
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L49"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Gets a value indicating whether this is audit.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool Audit { get; set; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p><code>true</code> if audit; otherwise, <code>false</code>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_Columns.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.Columns%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L54">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p><code>true</code> if audit; otherwise, <code>false</code>.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_Columns_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Columns*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_Columns" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Columns">Columns</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_Columns" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Columns">
+  Columns
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L54"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Columns</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public List&lt;IColumn&gt; Columns { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Data.Modeler.Providers.Interfaces.IColumn.html">IColumn</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_Constraints.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.Constraints%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L60">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Data.Modeler.Providers.Interfaces.IColumn.html">IColumn</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_Constraints_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Constraints*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_Constraints" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Constraints">Constraints</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_Constraints" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Constraints">
+  Constraints
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L60"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Gets the constraints.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public List&lt;ICheckConstraint&gt; Constraints { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Data.Modeler.Providers.Interfaces.ICheckConstraint.html">ICheckConstraint</a>&gt;</td>
-        <td><p>The constraints.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_Item_System_String_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.Item(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L88">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Data.Modeler.Providers.Interfaces.ICheckConstraint.html">ICheckConstraint</a>&gt;</dt>
+    <dd><p>The constraints.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_Item_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Item*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_Item_System_String_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Item(System.String)">this[string]</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_Item_System_String_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Item(System.String)">
+  this[string]
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L88"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>The column specified</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public IColumn this[string name] { get; }</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">name</span></td>
-        <td><p>Name of the column</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Data.Modeler.Providers.Interfaces.IColumn.html">IColumn</a></td>
-        <td><p>The column specified</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_Name.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.Name%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L65">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Name of the column</p>
+</dd>
+  </dl>
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Data.Modeler.Providers.Interfaces.IColumn.html">IColumn</a></dt>
+    <dd><p>The column specified</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_Name_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Name*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_Name" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Name">Name</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_Name" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Name">
+  Name
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L65"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Name of the table</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_Schema.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.Schema%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L71">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_Schema_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Schema*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_Schema" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Schema">Schema</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_Schema" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Schema">
+  Schema
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L71"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Gets or sets the schema.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public string Schema { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><p>The schema.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_Source.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.Source%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L76">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The schema.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_Source_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Source*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_Source" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Source">Source</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_Source" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Source">
+  Source
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L76"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Source/Parent</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ISource Source { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Data.Modeler.Providers.Interfaces.ISource.html">ISource</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_Triggers.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.Triggers%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L81">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Data.Modeler.Providers.Interfaces.ISource.html">ISource</a></dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_Triggers_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Triggers*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_Triggers" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Triggers">Triggers</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_Triggers" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Triggers">
+  Triggers
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L81"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>List of triggers associated with the table</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public List&lt;ITrigger&gt; Triggers { get; }</code></pre>
   </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Data.Modeler.Providers.Interfaces.ITrigger.html">ITrigger</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="methods">Methods
-</h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_AddCheckConstraint_System_String_System_String_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.AddCheckConstraint(System.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L96">View Source</a>
-  </span>
+
+
+
+
+
+  <h4 class="section">Property Value</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1">List</a>&lt;<a class="xref" href="Data.Modeler.Providers.Interfaces.ITrigger.html">ITrigger</a>&gt;</dt>
+    <dd></dd>
+  </dl>
+
+
+
+
+
+
+
+
+  <h2 class="section" id="methods">Methods
+</h2>
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_AddCheckConstraint_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddCheckConstraint*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_AddCheckConstraint_System_String_System_String_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddCheckConstraint(System.String,System.String)">AddCheckConstraint(string, string)</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_AddCheckConstraint_System_String_System_String_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddCheckConstraint(System.String,System.String)">
+  AddCheckConstraint(string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L96"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Adds a check constraint to the table.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract ICheckConstraint? AddCheckConstraint(string name, string definition)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">name</span></td>
-        <td><p>The name.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">definition</span></td>
-        <td><p>The definition.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Data.Modeler.Providers.Interfaces.ICheckConstraint.html">ICheckConstraint</a></td>
-        <td><p>The check constraint added to the table</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_AddColumn__1_System_String_System_Data_DbType_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_String___0_System_String_System_Boolean_System_Boolean_System_Boolean_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.AddColumn%60%601(System.String%2CSystem.Data.DbType%2CSystem.Int32%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Boolean%2CSystem.String%2CSystem.String%2C%60%600%2CSystem.String%2CSystem.Boolean%2CSystem.Boolean%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L118">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The name.</p>
+</dd>
+    <dt><code>definition</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The definition.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Data.Modeler.Providers.Interfaces.ICheckConstraint.html">ICheckConstraint</a></dt>
+    <dd><p>The check constraint added to the table</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_AddColumn_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddColumn*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_AddColumn__1_System_String_System_Data_DbType_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_String___0_System_String_System_Boolean_System_Boolean_System_Boolean_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddColumn``1(System.String,System.Data.DbType,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,``0,System.String,System.Boolean,System.Boolean,System.Boolean)">AddColumn&lt;T&gt;(string, DbType, int, bool, bool, bool, bool, bool, string, string, T, string, bool, bool, bool)</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_AddColumn__1_System_String_System_Data_DbType_System_Int32_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_Boolean_System_String_System_String___0_System_String_System_Boolean_System_Boolean_System_Boolean_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddColumn``1(System.String,System.Data.DbType,System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String,System.String,``0,System.String,System.Boolean,System.Boolean,System.Boolean)">
+  AddColumn&lt;T&gt;(string, DbType, int, bool, bool, bool, bool, bool, string, string, T, string, bool, bool, bool)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L118"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Adds a column</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract IColumn AddColumn&lt;T&gt;(string columnName, DbType columnType, int length = 0, bool nullable = true, bool identity = false, bool index = false, bool primaryKey = false, bool unique = false, string foreignKeyTable = &quot;&quot;, string foreignKeyColumn = &quot;&quot;, T defaultValue = default, string computedColumnSpecification = &quot;&quot;, bool onDeleteCascade = false, bool onUpdateCascade = false, bool onDeleteSetNull = false)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">columnName</span></td>
-        <td><p>Column Name</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.dbtype">DbType</a></td>
-        <td><span class="parametername">columnType</span></td>
-        <td><p>Data type</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
-        <td><span class="parametername">length</span></td>
-        <td><p>Data length</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">nullable</span></td>
-        <td><p>Nullable?</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">identity</span></td>
-        <td><p>Identity?</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">index</span></td>
-        <td><p>Index?</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">primaryKey</span></td>
-        <td><p>Primary key?</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">unique</span></td>
-        <td><p>Unique?</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">foreignKeyTable</span></td>
-        <td><p>Foreign key table</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">foreignKeyColumn</span></td>
-        <td><p>Foreign key column</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">T</span></td>
-        <td><span class="parametername">defaultValue</span></td>
-        <td><p>Default value</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">computedColumnSpecification</span></td>
-        <td><p>The computed column specification.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">onDeleteCascade</span></td>
-        <td><p>On Delete Cascade</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">onUpdateCascade</span></td>
-        <td><p>On Update Cascade</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><span class="parametername">onDeleteSetNull</span></td>
-        <td><p>On Delete Set Null</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Data.Modeler.Providers.Interfaces.IColumn.html">IColumn</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="typeParameters">Type Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="parametername">T</span></td>
-        <td><p>Column type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_AddForeignKey_System_String_System_String_System_String_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.AddForeignKey(System.String%2CSystem.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L130">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>columnName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Column Name</p>
+</dd>
+    <dt><code>columnType</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.data.dbtype">DbType</a></dt>
+    <dd><p>Data type</p>
+</dd>
+    <dt><code>length</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></dt>
+    <dd><p>Data length</p>
+</dd>
+    <dt><code>nullable</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Nullable?</p>
+</dd>
+    <dt><code>identity</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Identity?</p>
+</dd>
+    <dt><code>index</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Index?</p>
+</dd>
+    <dt><code>primaryKey</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Primary key?</p>
+</dd>
+    <dt><code>unique</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>Unique?</p>
+</dd>
+    <dt><code>foreignKeyTable</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Foreign key table</p>
+</dd>
+    <dt><code>foreignKeyColumn</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Foreign key column</p>
+</dd>
+    <dt><code>defaultValue</code> <span class="xref">T</span></dt>
+    <dd><p>Default value</p>
+</dd>
+    <dt><code>computedColumnSpecification</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>The computed column specification.</p>
+</dd>
+    <dt><code>onDeleteCascade</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>On Delete Cascade</p>
+</dd>
+    <dt><code>onUpdateCascade</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>On Update Cascade</p>
+</dd>
+    <dt><code>onDeleteSetNull</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>On Delete Set Null</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Data.Modeler.Providers.Interfaces.IColumn.html">IColumn</a></dt>
+    <dd></dd>
+  </dl>
+
+  <h4 class="section">Type Parameters</h4>
+  <dl class="parameters">
+    <dt><code>T</code></dt>
+    <dd><p>Column type</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_AddForeignKey_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddForeignKey*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_AddForeignKey_System_String_System_String_System_String_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddForeignKey(System.String,System.String,System.String)">AddForeignKey(string, string, string)</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_AddForeignKey_System_String_System_String_System_String_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddForeignKey(System.String,System.String,System.String)">
+  AddForeignKey(string, string, string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L130"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Adds a foreign key</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract void AddForeignKey(string columnName, string foreignKeyTable, string foreignKeyColumn)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">columnName</span></td>
-        <td><p>Column name</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">foreignKeyTable</span></td>
-        <td><p>Foreign key table</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">foreignKeyColumn</span></td>
-        <td><p>Foreign key column</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_AddTrigger_System_String_System_String_Data_Modeler_Providers_Enums_TriggerType_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.AddTrigger(System.String%2CSystem.String%2CData.Modeler.Providers.Enums.TriggerType)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L139">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>columnName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Column name</p>
+</dd>
+    <dt><code>foreignKeyTable</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Foreign key table</p>
+</dd>
+    <dt><code>foreignKeyColumn</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Foreign key column</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_AddTrigger_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddTrigger*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_AddTrigger_System_String_System_String_Data_Modeler_Providers_Enums_TriggerType_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddTrigger(System.String,System.String,Data.Modeler.Providers.Enums.TriggerType)">AddTrigger(string, string, TriggerType)</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_AddTrigger_System_String_System_String_Data_Modeler_Providers_Enums_TriggerType_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.AddTrigger(System.String,System.String,Data.Modeler.Providers.Enums.TriggerType)">
+  AddTrigger(string, string, TriggerType)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L139"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Adds a trigger to the table</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract ITrigger? AddTrigger(string name, string definition, TriggerType type)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">name</span></td>
-        <td><p>Name of the trigger</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">definition</span></td>
-        <td><p>Definition of the trigger</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Data.Modeler.Providers.Enums.TriggerType.html">TriggerType</a></td>
-        <td><span class="parametername">type</span></td>
-        <td><p>Trigger type</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Data.Modeler.Providers.Interfaces.ITrigger.html">ITrigger</a></td>
-        <td><p>The trigger specified</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_ContainsColumn_System_String_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.ContainsColumn(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L146">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>name</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Name of the trigger</p>
+</dd>
+    <dt><code>definition</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Definition of the trigger</p>
+</dd>
+    <dt><code>type</code> <a class="xref" href="Data.Modeler.Providers.Enums.TriggerType.html">TriggerType</a></dt>
+    <dd><p>Trigger type</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Data.Modeler.Providers.Interfaces.ITrigger.html">ITrigger</a></dt>
+    <dd><p>The trigger specified</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_ContainsColumn_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.ContainsColumn*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_ContainsColumn_System_String_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.ContainsColumn(System.String)">ContainsColumn(string)</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_ContainsColumn_System_String_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.ContainsColumn(System.String)">
+  ContainsColumn(string)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L146"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Determines if a column exists in the table</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public bool ContainsColumn(string columnName)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
-        <td><span class="parametername">columnName</span></td>
-        <td><p>Column name</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
-        <td><p>True if it exists, false otherwise</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_Copy_Data_Modeler_Providers_Interfaces_ISource_.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.Copy(Data.Modeler.Providers.Interfaces.ISource)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L153">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>columnName</code> <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></dt>
+    <dd><p>Column name</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></dt>
+    <dd><p>True if it exists, false otherwise</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_Copy_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Copy*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_Copy_Data_Modeler_Providers_Interfaces_ISource_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Copy(Data.Modeler.Providers.Interfaces.ISource)">Copy(ISource)</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_Copy_Data_Modeler_Providers_Interfaces_ISource_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.Copy(Data.Modeler.Providers.Interfaces.ISource)">
+  Copy(ISource)
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L153"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Copies this instance.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public abstract ITable Copy(ISource source)</code></pre>
   </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Data.Modeler.Providers.Interfaces.ISource.html">ISource</a></td>
-        <td><span class="parametername">source</span></td>
-        <td><p>The source.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Data.Modeler.Providers.Interfaces.ITable.html">ITable</a></td>
-        <td><p>The copy of this instance.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/JaCraig/Data.Modeler/new/master/apiSpec/new?filename=Data_Modeler_Providers_BaseClasses_TableBase_SetupForeignKeys.md&amp;value=---%0Auid%3A%20Data.Modeler.Providers.BaseClasses.TableBase.SetupForeignKeys%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L158">View Source</a>
-  </span>
+
+  <h4 class="section">Parameters</h4>
+  <dl class="parameters">
+    <dt><code>source</code> <a class="xref" href="Data.Modeler.Providers.Interfaces.ISource.html">ISource</a></dt>
+    <dd><p>The source.</p>
+</dd>
+  </dl>
+
+  <h4 class="section">Returns</h4>
+  <dl class="parameters">
+    <dt><a class="xref" href="Data.Modeler.Providers.Interfaces.ITable.html">ITable</a></dt>
+    <dd><p>The copy of this instance.</p>
+</dd>
+  </dl>
+
+
+
+
+
+
+
+
+
+
+
   <a id="Data_Modeler_Providers_BaseClasses_TableBase_SetupForeignKeys_" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.SetupForeignKeys*"></a>
-  <h4 id="Data_Modeler_Providers_BaseClasses_TableBase_SetupForeignKeys" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.SetupForeignKeys">SetupForeignKeys()</h4>
+
+  <h3 id="Data_Modeler_Providers_BaseClasses_TableBase_SetupForeignKeys" data-uid="Data.Modeler.Providers.BaseClasses.TableBase.SetupForeignKeys">
+  SetupForeignKeys()
+  <a class="header-action link-secondary" title="View source" href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L158"><i class="bi bi-code-slash"></i></a>
+  </h3>
+
   <div class="markdown level1 summary"><p>Sets up foreign keys</p>
 </div>
   <div class="markdown level1 conceptual"></div>
-  <h5 class="declaration">Declaration</h5>
+
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void SetupForeignKeys()</code></pre>
   </div>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="Data.Modeler.Providers.Interfaces.ITable.html">ITable</a>
-  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </article>
-                </div>
 
-                <div class="copyright-footer">
-                    <span>&#169; James Craig. All rights reserved.</span>
-                </div>
-            </main>
+        <div class="contribution d-print-none">
+          <a href="https://github.com/JaCraig/Data.Modeler/blob/master/src/Data.Modeler/Providers/BaseClasses/TableBase.cs/#L27" class="edit-link">Edit this page</a>
         </div>
 
 
-        <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
-        <script type="text/javascript" src="../styles/jquery.twbsPagination.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/mark.js@8.11.1/dist/jquery.mark.min.js"></script>
-        <script type="text/javascript" src="../styles/url.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/anchor-js@5.0.0/anchor.min.js"></script>
-        <script type="text/javascript" src="../styles/docfx.js"></script>
-        <script type="text/javascript" src="../styles/main.js"></script>
-        <script type="text/javascript" src="../styles/singulink.js"></script>    </body>
+      </div>
+
+      <div class="affix">
+        <nav id="affix"></nav>
+      </div>
+    </main>
+
+    <div class="container-xxl search-results" id="search-results"></div>
+
+    <footer class="border-top text-secondary">
+      <div class="container-xxl">
+        <div class="flex-fill">
+          <strong><a href='https://github.com/JaCraig/Data.Modeler'>Open in Github</a></strong>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
