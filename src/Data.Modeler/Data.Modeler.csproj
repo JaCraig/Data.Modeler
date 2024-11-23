@@ -10,7 +10,7 @@
 		<Description>Data.Modeler helps to model database schemas using C#.</Description>
 		<AssemblyTitle>Data.Modeler</AssemblyTitle>
 		<Authors>James Craig</Authors>
-		<TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+		<TargetFrameworks>net8.0</TargetFrameworks>
 		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<AssemblyName>Data.Modeler</AssemblyName>
 		<PackageId>Data.Modeler</PackageId>
