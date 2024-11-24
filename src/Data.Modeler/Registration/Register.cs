@@ -15,8 +15,10 @@ limitations under the License.
 */
 
 using Canister.Interfaces;
+using Data.Modeler.Providers.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Microsoft.Extensions.DependencyInjection
+namespace Data.Modeler.Registration
 {
     /// <summary>
     /// Registration extension methods
@@ -32,6 +34,22 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             return bootstrapper?.AddAssembly(typeof(RegistrationExtensions).Assembly)
                                 .RegisterSQLHelper();
+        }
+
+        /// <summary>
+        /// Registers the Data Modeler services with the specified service collection.
+        /// </summary>
+        /// <param name="services">The service collection to add the services to.</param>
+        /// <returns>The service collection with the registered services.</returns>
+        public static IServiceCollection? RegisterDataModeler(this IServiceCollection? services)
+        {
+            if (services.Exists<DataModeler>())
+                return services;
+            return services?.AddAllTransient<ICommandBuilder>()
+                         ?.AddAllTransient<ISourceBuilder>()
+                         ?.AddAllSingleton<ISchemaGenerator>()
+                         ?.AddSingleton<DataModeler>()
+                         ?.RegisterSQLHelper();
         }
     }
 }

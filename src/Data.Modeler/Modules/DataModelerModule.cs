@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 using Canister.Interfaces;
-using Data.Modeler.Providers.Interfaces;
+using Data.Modeler.Registration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Data.Modeler.Modules
@@ -35,12 +35,6 @@ namespace Data.Modeler.Modules
         /// Loads the module using the bootstrapper
         /// </summary>
         /// <param name="bootstrapper">The bootstrapper.</param>
-        public void Load(IServiceCollection bootstrapper)
-        {
-            bootstrapper?.AddAllTransient<ICommandBuilder>()
-                         ?.AddAllTransient<ISourceBuilder>()
-                         ?.AddAllSingleton<ISchemaGenerator>()
-                         ?.AddSingleton<DataModeler>();
-        }
+        public void Load(IServiceCollection bootstrapper) => bootstrapper?.RegisterDataModeler();
     }
 }
