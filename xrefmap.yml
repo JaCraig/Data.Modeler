@@ -4485,31 +4485,40 @@ references:
   isSpec: "True"
   fullName: Data.Modeler.Providers.View.GetHashCode
   nameWithType: View.GetHashCode
-- uid: Microsoft.Extensions.DependencyInjection
-  name: Microsoft.Extensions.DependencyInjection
-  href: api/Microsoft.Extensions.DependencyInjection.html
-  commentId: N:Microsoft.Extensions.DependencyInjection
-  fullName: Microsoft.Extensions.DependencyInjection
-  nameWithType: Microsoft.Extensions.DependencyInjection
-- uid: Microsoft.Extensions.DependencyInjection.RegistrationExtensions
+- uid: Data.Modeler.Registration
+  name: Data.Modeler.Registration
+  href: api/Data.Modeler.Registration.html
+  commentId: N:Data.Modeler.Registration
+  fullName: Data.Modeler.Registration
+  nameWithType: Data.Modeler.Registration
+- uid: Data.Modeler.Registration.RegistrationExtensions
   name: RegistrationExtensions
-  href: api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html
-  commentId: T:Microsoft.Extensions.DependencyInjection.RegistrationExtensions
-  fullName: Microsoft.Extensions.DependencyInjection.RegistrationExtensions
+  href: api/Data.Modeler.Registration.RegistrationExtensions.html
+  commentId: T:Data.Modeler.Registration.RegistrationExtensions
+  fullName: Data.Modeler.Registration.RegistrationExtensions
   nameWithType: RegistrationExtensions
-- uid: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterDataModeler(Canister.Interfaces.ICanisterConfiguration)
+- uid: Data.Modeler.Registration.RegistrationExtensions.RegisterDataModeler(Canister.Interfaces.ICanisterConfiguration)
   name: RegisterDataModeler(ICanisterConfiguration?)
-  href: api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html#Microsoft_Extensions_DependencyInjection_RegistrationExtensions_RegisterDataModeler_Canister_Interfaces_ICanisterConfiguration_
-  commentId: M:Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterDataModeler(Canister.Interfaces.ICanisterConfiguration)
+  href: api/Data.Modeler.Registration.RegistrationExtensions.html#Data_Modeler_Registration_RegistrationExtensions_RegisterDataModeler_Canister_Interfaces_ICanisterConfiguration_
+  commentId: M:Data.Modeler.Registration.RegistrationExtensions.RegisterDataModeler(Canister.Interfaces.ICanisterConfiguration)
   name.vb: RegisterDataModeler(ICanisterConfiguration)
-  fullName: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterDataModeler(Canister.Interfaces.ICanisterConfiguration?)
-  fullName.vb: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterDataModeler(Canister.Interfaces.ICanisterConfiguration)
+  fullName: Data.Modeler.Registration.RegistrationExtensions.RegisterDataModeler(Canister.Interfaces.ICanisterConfiguration?)
+  fullName.vb: Data.Modeler.Registration.RegistrationExtensions.RegisterDataModeler(Canister.Interfaces.ICanisterConfiguration)
   nameWithType: RegistrationExtensions.RegisterDataModeler(ICanisterConfiguration?)
   nameWithType.vb: RegistrationExtensions.RegisterDataModeler(ICanisterConfiguration)
-- uid: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterDataModeler*
+- uid: Data.Modeler.Registration.RegistrationExtensions.RegisterDataModeler(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name: RegisterDataModeler(IServiceCollection?)
+  href: api/Data.Modeler.Registration.RegistrationExtensions.html#Data_Modeler_Registration_RegistrationExtensions_RegisterDataModeler_Microsoft_Extensions_DependencyInjection_IServiceCollection_
+  commentId: M:Data.Modeler.Registration.RegistrationExtensions.RegisterDataModeler(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  name.vb: RegisterDataModeler(IServiceCollection)
+  fullName: Data.Modeler.Registration.RegistrationExtensions.RegisterDataModeler(Microsoft.Extensions.DependencyInjection.IServiceCollection?)
+  fullName.vb: Data.Modeler.Registration.RegistrationExtensions.RegisterDataModeler(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+  nameWithType: RegistrationExtensions.RegisterDataModeler(IServiceCollection?)
+  nameWithType.vb: RegistrationExtensions.RegisterDataModeler(IServiceCollection)
+- uid: Data.Modeler.Registration.RegistrationExtensions.RegisterDataModeler*
   name: RegisterDataModeler
-  href: api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html#Microsoft_Extensions_DependencyInjection_RegistrationExtensions_RegisterDataModeler_
-  commentId: Overload:Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterDataModeler
+  href: api/Data.Modeler.Registration.RegistrationExtensions.html#Data_Modeler_Registration_RegistrationExtensions_RegisterDataModeler_
+  commentId: Overload:Data.Modeler.Registration.RegistrationExtensions.RegisterDataModeler
   isSpec: "True"
-  fullName: Microsoft.Extensions.DependencyInjection.RegistrationExtensions.RegisterDataModeler
+  fullName: Data.Modeler.Registration.RegistrationExtensions.RegisterDataModeler
   nameWithType: RegistrationExtensions.RegisterDataModeler

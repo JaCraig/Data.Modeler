@@ -249,20 +249,20 @@
     "title": "Namespace Data.Modeler.Providers | Data.Modeler API Reference",
     "keywords": "Namespace Data.Modeler.Providers Classes CheckConstraint CheckConstraint class Column<T> Column class Function Function class Source Database class StoredProcedure StoredProcedure class Table Table class Trigger Trigger class View View class"
   },
+  "api/Data.Modeler.Registration.RegistrationExtensions.html": {
+    "href": "api/Data.Modeler.Registration.RegistrationExtensions.html",
+    "title": "Class RegistrationExtensions | Data.Modeler API Reference",
+    "keywords": "Class RegistrationExtensions Namespace Data.Modeler.Registration Assembly Data.Modeler.dll Registration extension methods public static class RegistrationExtensions Inheritance object RegistrationExtensions Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods RegisterDataModeler(ICanisterConfiguration?) Registers the library with the bootstrapper. public static ICanisterConfiguration? RegisterDataModeler(this ICanisterConfiguration? bootstrapper) Parameters bootstrapper ICanisterConfiguration The bootstrapper. Returns ICanisterConfiguration The bootstrapper RegisterDataModeler(IServiceCollection?) Registers the Data Modeler services with the specified service collection. public static IServiceCollection? RegisterDataModeler(this IServiceCollection? services) Parameters services IServiceCollection The service collection to add the services to. Returns IServiceCollection The service collection with the registered services."
+  },
+  "api/Data.Modeler.Registration.html": {
+    "href": "api/Data.Modeler.Registration.html",
+    "title": "Namespace Data.Modeler.Registration | Data.Modeler API Reference",
+    "keywords": "Namespace Data.Modeler.Registration Classes RegistrationExtensions Registration extension methods"
+  },
   "api/Data.Modeler.html": {
     "href": "api/Data.Modeler.html",
     "title": "Namespace Data.Modeler | Data.Modeler API Reference",
     "keywords": "Namespace Data.Modeler Classes DataModeler Data modeler class."
-  },
-  "api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html": {
-    "href": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html",
-    "title": "Class RegistrationExtensions | Data.Modeler API Reference",
-    "keywords": "Class RegistrationExtensions Namespace Microsoft.Extensions.DependencyInjection Assembly Data.Modeler.dll Registration extension methods public static class RegistrationExtensions Inheritance object RegistrationExtensions Inherited Members object.Equals(object) object.Equals(object, object) object.GetHashCode() object.GetType() object.MemberwiseClone() object.ReferenceEquals(object, object) object.ToString() Methods RegisterDataModeler(ICanisterConfiguration?) Registers the library with the bootstrapper. public static ICanisterConfiguration? RegisterDataModeler(this ICanisterConfiguration? bootstrapper) Parameters bootstrapper ICanisterConfiguration The bootstrapper. Returns ICanisterConfiguration The bootstrapper"
-  },
-  "api/Microsoft.Extensions.DependencyInjection.html": {
-    "href": "api/Microsoft.Extensions.DependencyInjection.html",
-    "title": "Namespace Microsoft.Extensions.DependencyInjection | Data.Modeler API Reference",
-    "keywords": "Namespace Microsoft.Extensions.DependencyInjection Classes RegistrationExtensions Registration extension methods"
   },
   "api/index.html": {
     "href": "api/index.html",

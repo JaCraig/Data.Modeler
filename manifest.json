@@ -512,30 +512,30 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Registration.RegistrationExtensions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Registration.RegistrationExtensions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Data.Modeler.Registration.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Data.Modeler.Registration.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/Data.Modeler.yml",
       "output": {
         ".html": {
           "relative_path": "api/Data.Modeler.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Microsoft.Extensions.DependencyInjection.RegistrationExtensions.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Microsoft.Extensions.DependencyInjection.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Microsoft.Extensions.DependencyInjection.html"
         }
       },
       "version": ""
