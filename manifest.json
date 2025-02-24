@@ -18,7 +18,11 @@
           "relative_path": "api/Data.Modeler.DataModeler.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.DataModeler",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.DataModeler.yml\" sourcestartlinenumber=\"1\">Data modeler class.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -28,7 +32,11 @@
           "relative_path": "api/Data.Modeler.Modules.DataModelerModule.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Modules.DataModelerModule",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Modules.DataModelerModule.yml\" sourcestartlinenumber=\"1\">Data modeler module</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -38,7 +46,11 @@
           "relative_path": "api/Data.Modeler.Modules.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Modules",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -48,7 +60,11 @@
           "relative_path": "api/Data.Modeler.Providers.BaseClasses.SourceBase.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.BaseClasses.SourceBase",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.BaseClasses.SourceBase.yml\" sourcestartlinenumber=\"1\">Source base class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -58,7 +74,11 @@
           "relative_path": "api/Data.Modeler.Providers.BaseClasses.TableBase.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.BaseClasses.TableBase",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.BaseClasses.TableBase.yml\" sourcestartlinenumber=\"1\">Table base class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -68,7 +88,11 @@
           "relative_path": "api/Data.Modeler.Providers.BaseClasses.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.BaseClasses",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -78,7 +102,11 @@
           "relative_path": "api/Data.Modeler.Providers.CheckConstraint.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.CheckConstraint",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.CheckConstraint.yml\" sourcestartlinenumber=\"1\">CheckConstraint class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -88,7 +116,11 @@
           "relative_path": "api/Data.Modeler.Providers.Column-1.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Column<T>",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Column-1.yml\" sourcestartlinenumber=\"1\">Column class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -98,7 +130,11 @@
           "relative_path": "api/Data.Modeler.Providers.Enums.TriggerType.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Enums.TriggerType",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Enums.TriggerType.yml\" sourcestartlinenumber=\"1\">The type of trigger</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -108,7 +144,11 @@
           "relative_path": "api/Data.Modeler.Providers.Enums.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Enums",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -118,7 +158,11 @@
           "relative_path": "api/Data.Modeler.Providers.Function.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Function",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Function.yml\" sourcestartlinenumber=\"1\">Function class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -128,7 +172,11 @@
           "relative_path": "api/Data.Modeler.Providers.Interfaces.ICheckConstraint.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Interfaces.ICheckConstraint",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Interfaces.ICheckConstraint.yml\" sourcestartlinenumber=\"1\">Check constraint interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -138,7 +186,11 @@
           "relative_path": "api/Data.Modeler.Providers.Interfaces.IColumn.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Interfaces.IColumn",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Interfaces.IColumn.yml\" sourcestartlinenumber=\"1\">Column interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -148,7 +200,11 @@
           "relative_path": "api/Data.Modeler.Providers.Interfaces.ICommandBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Interfaces.ICommandBuilder",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Interfaces.ICommandBuilder.yml\" sourcestartlinenumber=\"1\">Builder interface Helps with simplifying command building</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -158,7 +214,11 @@
           "relative_path": "api/Data.Modeler.Providers.Interfaces.IFunction.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Interfaces.IFunction",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Interfaces.IFunction.yml\" sourcestartlinenumber=\"1\">Function class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -168,7 +228,11 @@
           "relative_path": "api/Data.Modeler.Providers.Interfaces.ISchemaGenerator.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Interfaces.ISchemaGenerator",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Interfaces.ISchemaGenerator.yml\" sourcestartlinenumber=\"1\">Schema generator interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -178,7 +242,11 @@
           "relative_path": "api/Data.Modeler.Providers.Interfaces.ISource.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Interfaces.ISource",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Interfaces.ISource.yml\" sourcestartlinenumber=\"1\">Interface for source objects (like databases)</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -188,7 +256,11 @@
           "relative_path": "api/Data.Modeler.Providers.Interfaces.ISourceBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Interfaces.ISourceBuilder",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Interfaces.ISourceBuilder.yml\" sourcestartlinenumber=\"1\">Builder interface Helps with simplifying schema building</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -198,7 +270,11 @@
           "relative_path": "api/Data.Modeler.Providers.Interfaces.ITable.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Interfaces.ITable",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Interfaces.ITable.yml\" sourcestartlinenumber=\"1\">Interface for table like structures</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -208,7 +284,11 @@
           "relative_path": "api/Data.Modeler.Providers.Interfaces.ITrigger.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Interfaces.ITrigger",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Interfaces.ITrigger.yml\" sourcestartlinenumber=\"1\">Trigger interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -218,7 +298,11 @@
           "relative_path": "api/Data.Modeler.Providers.Interfaces.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Interfaces",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -228,7 +312,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CheckConstraintCommandBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.CommandBuilders.CheckConstraintCommandBuilder",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.CommandBuilders.CheckConstraintCommandBuilder.yml\" sourcestartlinenumber=\"1\">CheckConstraint command builder</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -238,7 +326,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateDatabaseCommandBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.CommandBuilders.CreateDatabaseCommandBuilder",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateDatabaseCommandBuilder.yml\" sourcestartlinenumber=\"1\">Create database command builder</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -248,7 +340,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateFunctionCommandBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.CommandBuilders.CreateFunctionCommandBuilder",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateFunctionCommandBuilder.yml\" sourcestartlinenumber=\"1\">Function command builder</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -258,7 +354,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateSchemaCommandBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.CommandBuilders.CreateSchemaCommandBuilder",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateSchemaCommandBuilder.yml\" sourcestartlinenumber=\"1\">Function command builder</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -268,7 +368,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateViewCommandBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.CommandBuilders.CreateViewCommandBuilder",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.CommandBuilders.CreateViewCommandBuilder.yml\" sourcestartlinenumber=\"1\">Create view command builder</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -278,7 +382,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.ForeignKeyCommandBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.CommandBuilders.ForeignKeyCommandBuilder",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.CommandBuilders.ForeignKeyCommandBuilder.yml\" sourcestartlinenumber=\"1\">Foreign key command builder</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -288,7 +396,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.StoredProcedureCommandBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.CommandBuilders.StoredProcedureCommandBuilder",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.CommandBuilders.StoredProcedureCommandBuilder.yml\" sourcestartlinenumber=\"1\">Stored procedure command builder</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -298,7 +410,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.TableCommandBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.CommandBuilders.TableCommandBuilder",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.CommandBuilders.TableCommandBuilder.yml\" sourcestartlinenumber=\"1\">Table command builder</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -308,7 +424,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.TriggerCommandBuilder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.CommandBuilders.TriggerCommandBuilder",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.CommandBuilders.TriggerCommandBuilder.yml\" sourcestartlinenumber=\"1\">Trigger command builder</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -318,7 +438,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.CommandBuilders.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.CommandBuilders",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -328,7 +452,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.SQLServerSchemaGenerator.yml\" sourcestartlinenumber=\"1\">SQL Server schema generator</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -338,7 +466,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.CheckConstraints.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SourceBuilders.CheckConstraints",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.SourceBuilders.CheckConstraints.yml\" sourcestartlinenumber=\"1\">Check constraints source builder</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -348,7 +480,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Functions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SourceBuilders.Functions",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.SourceBuilders.Functions.yml\" sourcestartlinenumber=\"1\">Function builder, gets info and does diffs for Functions</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -358,7 +494,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Schemas.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SourceBuilders.Schemas",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.SourceBuilders.Schemas.yml\" sourcestartlinenumber=\"1\">Schemas</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -368,7 +508,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.StoredProcedureColumns.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SourceBuilders.StoredProcedureColumns",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.SourceBuilders.StoredProcedureColumns.yml\" sourcestartlinenumber=\"1\">StoredProcedure column builder, gets info and does diffs for StoredProcedures</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -378,7 +522,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.StoredProcedures.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SourceBuilders.StoredProcedures",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.SourceBuilders.StoredProcedures.yml\" sourcestartlinenumber=\"1\">StoredProcedure builder, gets info and does diffs for StoredProcedures</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -388,7 +536,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableColumns.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SourceBuilders.TableColumns",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableColumns.yml\" sourcestartlinenumber=\"1\">Table column builder, gets info and does diffs for tables</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -398,7 +550,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableForeignKeys.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SourceBuilders.TableForeignKeys",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableForeignKeys.yml\" sourcestartlinenumber=\"1\">Table foreign keys, gets info and does diffs for tables</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -408,7 +564,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableTriggers.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SourceBuilders.TableTriggers",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.SourceBuilders.TableTriggers.yml\" sourcestartlinenumber=\"1\">Table trigger builder, gets info and does diffs for tables</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -418,7 +578,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SourceBuilders.Tables",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.SourceBuilders.Tables.yml\" sourcestartlinenumber=\"1\">Table builder, gets info and does diffs for tables</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -428,7 +592,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.Views.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SourceBuilders.Views",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.SQLServer.SourceBuilders.Views.yml\" sourcestartlinenumber=\"1\">View builder, gets info and does diffs for Views</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -438,7 +606,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.SourceBuilders.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer.SourceBuilders",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -448,7 +620,11 @@
           "relative_path": "api/Data.Modeler.Providers.SQLServer.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.SQLServer",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -458,7 +634,11 @@
           "relative_path": "api/Data.Modeler.Providers.Source.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Source",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Source.yml\" sourcestartlinenumber=\"1\">Database class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -468,7 +648,11 @@
           "relative_path": "api/Data.Modeler.Providers.StoredProcedure.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.StoredProcedure",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.StoredProcedure.yml\" sourcestartlinenumber=\"1\">StoredProcedure class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -478,7 +662,11 @@
           "relative_path": "api/Data.Modeler.Providers.Table.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Table",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Table.yml\" sourcestartlinenumber=\"1\">Table class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -488,7 +676,11 @@
           "relative_path": "api/Data.Modeler.Providers.Trigger.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.Trigger",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.Trigger.yml\" sourcestartlinenumber=\"1\">Trigger class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -498,7 +690,11 @@
           "relative_path": "api/Data.Modeler.Providers.View.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers.View",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Providers.View.yml\" sourcestartlinenumber=\"1\">View class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -508,7 +704,11 @@
           "relative_path": "api/Data.Modeler.Providers.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Providers",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -518,7 +718,11 @@
           "relative_path": "api/Data.Modeler.Registration.RegistrationExtensions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Registration.RegistrationExtensions",
+      "Summary": "<p sourcefile=\"api/Data.Modeler.Registration.RegistrationExtensions.yml\" sourcestartlinenumber=\"1\">Registration extension methods</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -528,7 +732,11 @@
           "relative_path": "api/Data.Modeler.Registration.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler.Registration",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -538,7 +746,11 @@
           "relative_path": "api/Data.Modeler.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "Data.Modeler",
+      "Summary": null
     },
     {
       "type": "Conceptual",
