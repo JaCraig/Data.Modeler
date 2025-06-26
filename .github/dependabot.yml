@@ -6,7 +6,7 @@
 version: 2
 updates:
   - package-ecosystem: "nuget" # See documentation for possible values
-    directory: "/src/Data.Modeler" # Location of package manifests
+    directory: "/src/Data.Modeler/" # Location of package manifests
     schedule:
       interval: "daily"
     commit-message:
