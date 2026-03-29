@@ -1,4 +1,5 @@
-﻿using FileCurator;
+﻿using Data.Modeler.Tests.Utils;
+using FileCurator;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
@@ -27,12 +28,12 @@ namespace Data.Modeler.Tests.BaseClasses
 
         public static IConfiguration Configuration { get; set; }
         protected static Aspectus.Aspectus Aspectus => GetServiceProvider().GetService<Aspectus.Aspectus>();
-        protected static string ConnectionString { get; } = "Data Source=localhost;Initial Catalog=TestDatabase;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
-        protected static string ConnectionString2 { get; } = "Data Source=localhost;Initial Catalog=TestDatabaseForeignKeys;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
-        protected static string ConnectionStringNew { get; } = "Data Source=localhost;Initial Catalog=TestDatabase2;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+        protected static string ConnectionString { get; } = TestConnectionStrings.Default;
+        protected static string ConnectionString2 { get; } = TestConnectionStrings.Default2;
+        protected static string ConnectionStringNew { get; } = TestConnectionStrings.Default2;
         protected static string DatabaseName { get; } = "TestDatabase";
         protected static SQLHelper Helper => GetServiceProvider().GetService<SQLHelper>();
-        protected static string MasterString { get; } = "Data Source=localhost;Initial Catalog=master;Integrated Security=SSPI;Pooling=false;TrustServerCertificate=True";
+        protected static string MasterString { get; } = TestConnectionStrings.Master;
         protected static ObjectPool<StringBuilder> ObjectPool => GetServiceProvider().GetService<ObjectPool<StringBuilder>>();
 
         /// <summary>
@@ -47,17 +48,7 @@ namespace Data.Modeler.Tests.BaseClasses
 
         public void Dispose()
         {
-            using var TempConnection = SqlClientFactory.Instance.CreateConnection();
-            TempConnection.ConnectionString = MasterString;
-            using var TempCommand = TempConnection.CreateCommand();
-            try
-            {
-                TempCommand.CommandText = "ALTER DATABASE TestDatabase SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabase SET ONLINE\r\nDROP DATABASE TestDatabase\r\nALTER DATABASE TestDatabaseForeignKeys SET OFFLINE WITH ROLLBACK IMMEDIATE\r\nALTER DATABASE TestDatabaseForeignKeys SET ONLINE\r\nDROP DATABASE TestDatabaseForeignKeys";
-                TempCommand.Open();
-                TempCommand.ExecuteNonQuery();
-            }
-            catch { }
-            finally { TempCommand.Close(); }
+            // No-op: test databases are reset before each test execution.
         }
 
         /// <summary>
@@ -96,40 +87,24 @@ namespace Data.Modeler.Tests.BaseClasses
             var TempHelper = Helper;
             try
             {
-                using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
-                {
-                    TempConnection.ConnectionString = MasterString;
-                    using var TempCommand = TempConnection.CreateCommand();
-                    try
-                    {
-                        TempCommand.CommandText = "Create Database TestDatabase";
-                        TempCommand.Open();
-                        TempCommand.ExecuteNonQuery();
-                    }
-                    finally { TempCommand.Close(); }
-                }
-                using (var TempConnection = SqlClientFactory.Instance.CreateConnection())
-                {
-                    TempConnection.ConnectionString = MasterString;
-                    using var TempCommand = TempConnection.CreateCommand();
-                    try
-                    {
-                        TempCommand.CommandText = "Create Database TestDatabaseForeignKeys";
-                        TempCommand.Open();
-                        TempCommand.ExecuteNonQuery();
-                    }
-                    finally { TempCommand.Close(); }
-                }
-                var Queries = new FileInfo("./Scripts/script.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var Query in Queries)
+                await TestDatabaseManager.ResetKnownDatabasesAsync().ConfigureAwait(false);
+
+                var scriptRoot = AppContext.BaseDirectory;
+                var queries = new FileInfo(System.IO.Path.Combine(scriptRoot, "Scripts", "script.sql"))
+                    .Read()
+                    .Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var Query in queries)
                 {
                     await TempHelper
                         .CreateBatch()
                         .AddQuery(CommandType.Text, Query)
                         .ExecuteScalarAsync<int>().ConfigureAwait(false);
                 }
-                Queries = new FileInfo("./Scripts/testdatabase.sql").Read().Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var Query in Queries)
+
+                queries = new FileInfo(System.IO.Path.Combine(scriptRoot, "Scripts", "testdatabase.sql"))
+                    .Read()
+                    .Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                foreach (var Query in queries)
                 {
                     await TempHelper
                         .CreateBatch(database: "Default2")
