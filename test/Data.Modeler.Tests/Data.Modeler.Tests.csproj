@@ -4,7 +4,7 @@
     <Description>Tests for Data.Modeler</Description>
     <AssemblyTitle>Data.Modeler.Tests</AssemblyTitle>
     <Authors>James Craig</Authors>
-	  <TargetFrameworks>net8.0</TargetFrameworks>
+    <TargetFrameworks>net10.0</TargetFrameworks>
     <DebugType>portable</DebugType>
     <AssemblyName>Data.Modeler.Tests</AssemblyName>
     <PackageId>Data.Modeler.Tests</PackageId>
