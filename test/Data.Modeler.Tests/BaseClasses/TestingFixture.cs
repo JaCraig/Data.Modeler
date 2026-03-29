@@ -1,5 +1,6 @@
 ﻿using Data.Modeler.Tests.Utils;
 using FileCurator;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.ObjectPool;
@@ -8,7 +9,8 @@ using SQLHelperDB.ExtensionMethods;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
@@ -84,35 +86,48 @@ namespace Data.Modeler.Tests.BaseClasses
 
         private async Task SetupDatabasesAsync()
         {
-            var TempHelper = Helper;
-            try
+            await TestDatabaseManager.ResetKnownDatabasesAsync().ConfigureAwait(false);
+
+            var scriptRoot = AppContext.BaseDirectory;
+            var defaultScriptPath = Path.Combine(scriptRoot, "Scripts", "script.sql");
+            var default2ScriptPath = Path.Combine(scriptRoot, "Scripts", "testdatabase.sql");
+
+            await ExecuteScriptAsync(ConnectionString, defaultScriptPath).ConfigureAwait(false);
+            await ExecuteScriptAsync(ConnectionString2, default2ScriptPath).ConfigureAwait(false);
+        }
+
+        private static async Task ExecuteScriptAsync(string connectionString, string scriptPath)
+        {
+            if (!File.Exists(scriptPath))
             {
-                await TestDatabaseManager.ResetKnownDatabasesAsync().ConfigureAwait(false);
-
-                var scriptRoot = AppContext.BaseDirectory;
-                var queries = new FileInfo(System.IO.Path.Combine(scriptRoot, "Scripts", "script.sql"))
-                    .Read()
-                    .Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var Query in queries)
-                {
-                    await TempHelper
-                        .CreateBatch()
-                        .AddQuery(CommandType.Text, Query)
-                        .ExecuteScalarAsync<int>().ConfigureAwait(false);
-                }
-
-                queries = new FileInfo(System.IO.Path.Combine(scriptRoot, "Scripts", "testdatabase.sql"))
-                    .Read()
-                    .Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-                foreach (var Query in queries)
-                {
-                    await TempHelper
-                        .CreateBatch(database: "Default2")
-                        .AddQuery(CommandType.Text, Query)
-                        .ExecuteScalarAsync<int>().ConfigureAwait(false);
-                }
+                throw new FileNotFoundException("SQL setup script was not found.", scriptPath);
             }
-            catch { }
+
+            var rawScript = File.ReadAllText(scriptPath);
+            var commands = SplitSqlCommands(rawScript);
+
+            await using var connection = new SqlConnection(connectionString);
+            await connection.OpenAsync().ConfigureAwait(false);
+            foreach (var commandText in commands)
+            {
+                await using var command = connection.CreateCommand();
+                command.CommandType = CommandType.Text;
+                command.CommandTimeout = 120;
+                command.CommandText = commandText;
+                _ = await command.ExecuteNonQueryAsync().ConfigureAwait(false);
+            }
+        }
+
+        private static IEnumerable<string> SplitSqlCommands(string script)
+        {
+            var normalized = script
+                .Replace("\r\n", "\n", StringComparison.Ordinal)
+                .Replace("\r", "\n", StringComparison.Ordinal);
+
+            return normalized
+                .Split(["\n\n", "\nGO\n", "\ngo\n"], StringSplitOptions.RemoveEmptyEntries)
+                .Select(static x => x.Trim())
+                .Where(static x => x.Length > 0);
         }
 
         private void SetupIoC()
