@@ -1,6 +1,6 @@
 # Data.Modeler
 
-[![Build status](https://ci.appveyor.com/api/projects/status/15bedpade50j03f2?svg=true)](https://ci.appveyor.com/project/JaCraig/data-modeler)
+[![.NET Publish](https://github.com/JaCraig/Data.Modeler/actions/workflows/dotnet-publish.yml/badge.svg)](https://github.com/JaCraig/Data.Modeler/actions/workflows/dotnet-publish.yml)
 
 Data.Modeler is a library used to interact with model database schemas in C#. Works with .Net Core.
 
