@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.131"></a>
+## [5.0.131](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.131) (2026-03-31)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([f071669](https://www.github.com/JaCraig/Data.Modeler/commit/f071669a9637737d6748517176f72cdfa92645f9))
+
+### Other
+
+* Merge pull request #380 from JaCraig/test ([bcae4ec](https://www.github.com/JaCraig/Data.Modeler/commit/bcae4ec3a19a899d2c915a1ef4f0c013048bf85f))
+* Merge pull request #381 from JaCraig/dependabot/nuget/test/Data.Modeler.Tests/dependencies-9eba65b8f2 ([08a2e8c](https://www.github.com/JaCraig/Data.Modeler/commit/08a2e8c9ab7cc1889e7be0f73397ccf1c35bebac))
+* Merge pull request #382 from JaCraig/dependabot/nuget/src/Data.Modeler/dependencies-01f228fd0b ([7e143b6](https://www.github.com/JaCraig/Data.Modeler/commit/7e143b67fab6c986abc39e7c2810dbe78e924949))
+* Bump the dependencies group with 1 update ([f1ff5a0](https://www.github.com/JaCraig/Data.Modeler/commit/f1ff5a02adef95122fddc70e39ecd40ee9a12edf))
+* Replace AppVeyor badge with GitHub Actions badge ([a9a3ba4](https://www.github.com/JaCraig/Data.Modeler/commit/a9a3ba4b864f8d63f37c7a8f75808477fd03092e))
+* testing pull request ([f709773](https://www.github.com/JaCraig/Data.Modeler/commit/f7097733f452970d769ded9b9309e07c4435c5cd))
+
 <a name="5.0.130"></a>
 ## [5.0.130](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.130) (2026-03-29)
 
