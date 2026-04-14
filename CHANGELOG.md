@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.133"></a>
+## [5.0.133](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.133) (2026-04-14)
+
+### Bug Fixes
+
+* Bump the dependencies group with 2 updates ([e5e4c10](https://www.github.com/JaCraig/Data.Modeler/commit/e5e4c10a36e754f7c4efb852e9e6a97ae2c44bac))
+
+### Other
+
+* Merge pull request #384 from JaCraig/dependabot/nuget/src/Data.Modeler/dependencies-5313d9029a ([7ac3dc6](https://www.github.com/JaCraig/Data.Modeler/commit/7ac3dc66cf7f6097a231785877e94bb0e14691b4))
+* Merge pull request #385 from JaCraig/dependabot/github_actions/dependencies-1f20c0ea9b ([9b0a3c2](https://www.github.com/JaCraig/Data.Modeler/commit/9b0a3c2b844b6d7880fff6b9be8bcf3d98f1c0c7))
+* Merge pull request #386 from JaCraig/dependabot/nuget/test/Data.Modeler.Tests/dependencies-92e0d09f4d ([3e8da0e](https://www.github.com/JaCraig/Data.Modeler/commit/3e8da0e6c8e166e0a092428b66d61a05302a1457))
+* Merge pull request #387 from JaCraig/dependabot/nuget/src/Data.Modeler/dependencies-aeefbeedc6 ([b3cfd64](https://www.github.com/JaCraig/Data.Modeler/commit/b3cfd64cfa523d383a6f81e1ccafc2f881008dee))
+* Bump ad-m/github-push-action in the dependencies group ([28d9548](https://www.github.com/JaCraig/Data.Modeler/commit/28d954805afe2b73c77322f0a1ad6d9bff1e9a04))
+* Bump the dependencies group with 1 update ([3fb57df](https://www.github.com/JaCraig/Data.Modeler/commit/3fb57df27745510de007171f7d16dc5f43b593f5))
+* Bump the dependencies group with 2 updates ([ec72eb2](https://www.github.com/JaCraig/Data.Modeler/commit/ec72eb2f62b837234d20f790c1bb64e73e1ecacb))
+
 <a name="5.0.132"></a>
 ## [5.0.132](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.132) (2026-04-01)
 
