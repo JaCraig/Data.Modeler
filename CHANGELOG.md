@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.134"></a>
+## [5.0.134](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.134) (2026-04-15)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([442c340](https://www.github.com/JaCraig/Data.Modeler/commit/442c34023dda0b7fa6dabca72dcec3783cd9438c))
+
+### Other
+
+* Merge pull request #388 from JaCraig/dependabot/nuget/src/Data.Modeler/dependencies-1e4900d7b9 ([6188fc5](https://www.github.com/JaCraig/Data.Modeler/commit/6188fc5ac610219e66408d481323b09e20c68f8e))
+
 <a name="5.0.133"></a>
 ## [5.0.133](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.133) (2026-04-14)
 
