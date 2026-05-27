@@ -215,7 +215,7 @@ jobs:
         if: steps.versionize.outcome == 'success'
         uses: ad-m/github-push-action@v1.3.0
         with:
-          github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ github.token }}
           branch: ${{ github.ref }}
           force: true
           tags: true
