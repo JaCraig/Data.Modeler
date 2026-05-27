@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.148"></a>
+## [5.0.148](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.148) (2026-05-27)
+
+### Bug Fixes
+
+* **workflows:** update token usage in workflows ([6bd8269](https://www.github.com/JaCraig/Data.Modeler/commit/6bd8269d1e62cf62609e142911980e5672c9fc50))
+
+### Other
+
+* Merge pull request #408 from JaCraig/dependabot/github_actions/dependencies-669470734f ([348fd75](https://www.github.com/JaCraig/Data.Modeler/commit/348fd75112129284a5066448eca873b77925cd43))
+* Bump ad-m/github-push-action in the dependencies group ([157bf45](https://www.github.com/JaCraig/Data.Modeler/commit/157bf456c2af9c80190689240e4e5d5407ebe21d))
+
 <a name="5.0.147"></a>
 ## [5.0.147](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.147) (2026-05-20)
 
