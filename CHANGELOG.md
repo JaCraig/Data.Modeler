@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.150"></a>
+## [5.0.150](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.150) (2026-06-30)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([a2226a2](https://www.github.com/JaCraig/Data.Modeler/commit/a2226a29bb34da72337e83ded21bc32e5b1bcdc8))
+
+### Other
+
+* Merge pull request #416 from JaCraig/dependabot/nuget/src/Data.Modeler/dependencies-b73398d99d ([658ca24](https://www.github.com/JaCraig/Data.Modeler/commit/658ca24bef2a84a4f7e254aa692a1973026e2109))
+* Merge pull request #417 from JaCraig/dependabot/github_actions/dependencies-8f5505d988 ([281ab8a](https://www.github.com/JaCraig/Data.Modeler/commit/281ab8a53c570f1bcdd44fd02da6d944d35e535b))
+* Merge pull request #418 from JaCraig/dependabot/nuget/test/Data.Modeler.Tests/dependencies-407341980e ([2faf9f4](https://www.github.com/JaCraig/Data.Modeler/commit/2faf9f4ab1407afd6c9faaccc4673b9d02b7e980))
+* Bump the dependencies group with 1 update ([0c38732](https://www.github.com/JaCraig/Data.Modeler/commit/0c3873289827460fabed350581a2f8b5c83cc6e1))
+* Bump the dependencies group with 2 updates ([b9f628e](https://www.github.com/JaCraig/Data.Modeler/commit/b9f628e46d419cd3f7965c1d1c5c4d383ecd41c8))
+
 <a name="5.0.149"></a>
 ## [5.0.149](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.149) (2026-06-22)
 
