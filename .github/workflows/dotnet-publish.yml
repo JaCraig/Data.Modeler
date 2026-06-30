@@ -80,7 +80,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup .NET SDK ${{ matrix.dotnet-version }}
-        uses: actions/setup-dotnet@v5.3.0
+        uses: actions/setup-dotnet@v5.4.0
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
 
@@ -152,7 +152,7 @@ jobs:
           docker logs "${{ job.services.sqlserver.id }}" || true
 
       - name: Cache NuGet packages
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj', '**/Directory.Packages.props', '**/packages.lock.json', 'global.json', '**/nuget.config', '**/NuGet.Config') }}
