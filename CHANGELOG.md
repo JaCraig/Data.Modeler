@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.152"></a>
+## [5.0.152](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.152) (2026-08-18)
+
+### Bug Fixes
+
+* Bump the dependencies group with 1 update ([9d613e8](https://www.github.com/JaCraig/Data.Modeler/commit/9d613e8497eba24e1d34fb73230057f64271f78a))
+* Bump the dependencies group with 1 update ([f837a34](https://www.github.com/JaCraig/Data.Modeler/commit/f837a34fd420d609ef7cffc7f0b1fa16852330c9))
+* Bump the dependencies group with 2 updates ([1cc9feb](https://www.github.com/JaCraig/Data.Modeler/commit/1cc9febf019cbc9eeb6d33238d47a8cbcb49c1ec))
+
+### Other
+
+* Merge pull request #422 from JaCraig/dependabot/nuget/src/Data.Modeler/dependencies-a2a126ecb3 ([5f94b23](https://www.github.com/JaCraig/Data.Modeler/commit/5f94b23874e61c24059447d1219f963e1130ed81))
+* Merge pull request #423 from JaCraig/dependabot/nuget/dot-config/dependencies-d580172a4f ([bb42105](https://www.github.com/JaCraig/Data.Modeler/commit/bb42105d85a88d123ceab2658a4c3ed1524d12bb))
+* Merge pull request #424 from JaCraig/dependabot/nuget/dot-config/dependencies-d580172a4f ([c0435c1](https://www.github.com/JaCraig/Data.Modeler/commit/c0435c182965336c77c0c2373af3b87f3ba6aaa4))
+* Merge pull request #425 from JaCraig/dependabot/nuget/src/Data.Modeler/dependencies-637020aa5a ([0fc9453](https://www.github.com/JaCraig/Data.Modeler/commit/0fc9453ca6fe25e0b9fc4bf0f5a1b14345f98bff))
+* Merge pull request #426 from JaCraig/dependabot/nuget/test/Data.Modeler.Tests/dependencies-38e859b779 ([64a1917](https://www.github.com/JaCraig/Data.Modeler/commit/64a1917a53d18d38deadbb9524c5b48d24dcd88e))
+* Bump the dependencies group with 1 update ([5edba3b](https://www.github.com/JaCraig/Data.Modeler/commit/5edba3b11861cebf17b1e71db74eb0ac58d1eafb))
+* Bump the dependencies group with 3 updates ([a4ca5eb](https://www.github.com/JaCraig/Data.Modeler/commit/a4ca5eb89b36964553ddb26c9b126041db442653))
+
 <a name="5.0.151"></a>
 ## [5.0.151](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.151) (2026-07-20)
 
