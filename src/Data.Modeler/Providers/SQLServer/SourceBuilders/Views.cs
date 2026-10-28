@@ -39,7 +39,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory[] Providers { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
+        public DbProviderFactory[] Providers { get; } = [SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance];
 
         /// <summary>
         /// Fills the database.

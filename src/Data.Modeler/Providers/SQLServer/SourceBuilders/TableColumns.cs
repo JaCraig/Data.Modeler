@@ -39,7 +39,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory[] Providers { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
+        public DbProviderFactory[] Providers { get; } = [SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance];
 
         /// <summary>
         /// Fills the database.
@@ -48,13 +48,14 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <param name="dataSource">The database.</param>
         public void FillSource(List<dynamic> values, ISource dataSource)
         {
-            if (dataSource is null)
-                throw new ArgumentNullException(nameof(dataSource));
-            if (values?.Any() != true)
+            ArgumentNullException.ThrowIfNull(dataSource);
+            if (values is null)
                 return;
-            for (int i = 0, valuesCount = values.Count; i < valuesCount; i++)
+            if (values.Count == 0)
+                return;
+            for (int I = 0, ValuesCount = values.Count; I < ValuesCount; I++)
             {
-                dynamic Item = values[i];
+                dynamic Item = values[I];
                 SetupColumns(dataSource.Tables.Find(x => x.Name == Item.Table), Item);
             }
         }
@@ -92,10 +93,8 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <param name="item">The item.</param>
         private static void SetupColumns(ITable table, dynamic item)
         {
-            if (item is null)
-                throw new ArgumentNullException(nameof(item));
-            if (table is null)
-                throw new ArgumentNullException(nameof(table));
+            ArgumentNullException.ThrowIfNull(item);
+            ArgumentNullException.ThrowIfNull(table);
             if (table.ContainsColumn(item.Column))
             {
                 table.AddForeignKey(item.Column, item.FOREIGN_KEY_TABLE, item.FOREIGN_KEY_COLUMN);

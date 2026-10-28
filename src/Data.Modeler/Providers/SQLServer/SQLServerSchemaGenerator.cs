@@ -45,11 +45,11 @@ namespace Data.Modeler.Providers.SQLServer
         /// <param name="oneOffQueries">The one off queries.</param>
         public SQLServerSchemaGenerator(IEnumerable<ISourceBuilder> queryBuilders, IEnumerable<ICommandBuilder> commandBuilders, IConfiguration configuration, SQLHelper batch, SQLHelper oneOffQueries)
         {
-            CommandBuilders = commandBuilders.Where(x => x.Providers.Any(y => Providers.Contains(y))).OrderBy(x => x.Order).ToArray();
-            QueryBuilders = queryBuilders.Where(x => x.Providers.Any(y => Providers.Contains(y))).OrderBy(x => x.Order).ToArray();
+            CommandBuilders = [.. commandBuilders.Where(x => x.Providers.Any(y => Providers.Contains(y))).OrderBy(x => x.Order)];
+            QueryBuilders = [.. queryBuilders.Where(x => x.Providers.Any(y => Providers.Contains(y))).OrderBy(x => x.Order)];
             Configuration = configuration;
-            OneOffQueries = oneOffQueries;
-            Batch = batch;
+            OneOffQueries = oneOffQueries.Copy();
+            Batch = batch.Copy();
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace Data.Modeler.Providers.SQLServer
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory[] Providers { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
+        public DbProviderFactory[] Providers { get; } = [SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance];
 
         /// <summary>
         /// Gets or sets the batch.
@@ -107,13 +107,13 @@ namespace Data.Modeler.Providers.SQLServer
         {
             var Commands = new List<string>();
             desiredStructure ??= new Source(string.Empty);
-            for (int i = 0, CommandBuildersLength = CommandBuilders.Length; i < CommandBuildersLength; i++)
+            for (int I = 0, CommandBuildersLength = CommandBuilders.Length; I < CommandBuildersLength; I++)
             {
-                var CommandBuilder = CommandBuilders[i];
+                var CommandBuilder = CommandBuilders[I];
                 Commands.Add(CommandBuilder.GetCommands(desiredStructure, source));
             }
 
-            return Commands.ToArray();
+            return [.. Commands];
         }
 
         /// <summary>
@@ -130,18 +130,19 @@ namespace Data.Modeler.Providers.SQLServer
             if (!await SourceExistsAsync(DatabaseName, DatabaseSource).ConfigureAwait(false))
                 return null;
             var Temp = new Source(DatabaseName);
-            Batch.CreateBatch(connectionInfo);
-            for (int i = 0, QueryBuildersLength = QueryBuilders.Length; i < QueryBuildersLength; i++)
+            var BatchCopy = Batch.Copy();
+            BatchCopy.CreateBatch(connectionInfo);
+            for (int I = 0, QueryBuildersLength = QueryBuilders.Length; I < QueryBuildersLength; I++)
             {
-                var Builder = QueryBuilders[i];
-                Batch.AddQuery(CommandType.Text, Builder.GetCommand());
+                var Builder = QueryBuilders[I];
+                BatchCopy.AddQuery(CommandType.Text, Builder.GetCommand());
             }
 
-            var Results = await Batch.ExecuteAsync().ConfigureAwait(false);
-            for (int x = 0, QueryBuildersLength = QueryBuilders.Length; x < QueryBuildersLength; ++x)
+            var Results = await BatchCopy.ExecuteAsync().ConfigureAwait(false);
+            for (int X = 0, QueryBuildersLength = QueryBuilders.Length; X < QueryBuildersLength; ++X)
             {
-                var Builder = QueryBuilders[x];
-                Builder.FillSource(Results[x], Temp);
+                var Builder = QueryBuilders[X];
+                Builder.FillSource(Results[X], Temp);
             }
             return Temp;
         }
@@ -170,35 +171,41 @@ namespace Data.Modeler.Providers.SQLServer
             if (connection is null || schemaChanges is null)
                 return;
             var DatabaseConnectionString = connection.ConnectionString.RemoveInitialCatalog();
-            Batch.CreateBatch(connection);
-            for (var x = 0; x < schemaChanges.Length; ++x)
+            var BatchCopy = Batch.Copy();
+            var OneOffQueriesCopy = OneOffQueries.Copy();
+            BatchCopy.CreateBatch(connection);
+            for (var X = 0; X < schemaChanges.Length; ++X)
             {
-                if (schemaChanges[x].IndexOf("CREATE DATABASE", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
+                if (schemaChanges[X].Contains("CREATE DATABASE", System.StringComparison.InvariantCultureIgnoreCase))
                 {
-                    await OneOffQueries.CreateBatch(connection.Factory, DatabaseConnectionString)
-                                 .AddQuery(CommandType.Text, schemaChanges[x])
+                    await OneOffQueriesCopy.CreateBatch(connection.Factory, DatabaseConnectionString)
+                                 .AddQuery(CommandType.Text, schemaChanges[X])
                                  .ExecuteAsync().ConfigureAwait(false);
+                    OneOffQueriesCopy = OneOffQueries.Copy();
                 }
-                else if (schemaChanges[x].IndexOf("CREATE TRIGGER", System.StringComparison.InvariantCultureIgnoreCase) >= 0 || schemaChanges[x].IndexOf("CREATE FUNCTION", System.StringComparison.InvariantCultureIgnoreCase) >= 0 || schemaChanges[x].IndexOf("CREATE SCHEMA", System.StringComparison.InvariantCultureIgnoreCase) >= 0)
+                else if (schemaChanges[X].Contains("CREATE TRIGGER", System.StringComparison.InvariantCultureIgnoreCase)
+                    || schemaChanges[X].Contains("CREATE FUNCTION", System.StringComparison.InvariantCultureIgnoreCase)
+                    || schemaChanges[X].Contains("CREATE PROCEDURE", System.StringComparison.InvariantCultureIgnoreCase)
+                    || schemaChanges[X].Contains("CREATE SCHEMA", System.StringComparison.InvariantCultureIgnoreCase))
                 {
-                    if (Batch.Count > 0)
+                    if (BatchCopy.Count > 0)
                     {
-                        await Batch.ExecuteAsync().ConfigureAwait(false);
-                        Batch.CreateBatch();
+                        await BatchCopy.ExecuteAsync().ConfigureAwait(false);
+                        BatchCopy = Batch.Copy();
                     }
-                    Batch.AddQuery(CommandType.Text, schemaChanges[x]);
-                    if (x < schemaChanges.Length - 1)
+                    BatchCopy.AddQuery(CommandType.Text, schemaChanges[X]);
+                    if (X < schemaChanges.Length - 1)
                     {
-                        await Batch.ExecuteAsync().ConfigureAwait(false);
-                        Batch.CreateBatch();
+                        await BatchCopy.ExecuteAsync().ConfigureAwait(false);
+                        BatchCopy = Batch.Copy();
                     }
                 }
                 else
                 {
-                    Batch.AddQuery(CommandType.Text, schemaChanges[x]);
+                    BatchCopy.AddQuery(CommandType.Text, schemaChanges[X]);
                 }
             }
-            await Batch.ExecuteAsync().ConfigureAwait(false);
+            await BatchCopy.ExecuteAsync().ConfigureAwait(false);
         }
 
         /// <summary>
@@ -252,7 +259,8 @@ namespace Data.Modeler.Providers.SQLServer
         {
             if (source is null || value is null || command is null)
                 return false;
-            return (await OneOffQueries.CreateBatch(source.Factory, source.ConnectionString)
+            var OneOffQueriesCopy = OneOffQueries.Copy();
+            return (await OneOffQueriesCopy.CreateBatch(source.Factory, source.ConnectionString)
                            .AddQuery(CommandType.Text, command, value)
                            .ExecuteAsync().ConfigureAwait(false))[0]
                            .Count > 0;

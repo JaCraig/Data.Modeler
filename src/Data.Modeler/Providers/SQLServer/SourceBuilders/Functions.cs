@@ -37,7 +37,7 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <summary>
         /// Provider name associated with the schema generator
         /// </summary>
-        public DbProviderFactory[] Providers { get; } = new DbProviderFactory[] { SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance };
+        public DbProviderFactory[] Providers { get; } = [SqlClientFactory.Instance, System.Data.SqlClient.SqlClientFactory.Instance];
 
         /// <summary>
         /// Fills the database.
@@ -46,13 +46,14 @@ namespace Data.Modeler.Providers.SQLServer.SourceBuilders
         /// <param name="dataSource">The database.</param>
         public void FillSource(List<dynamic> values, ISource dataSource)
         {
-            if (dataSource is null)
-                throw new ArgumentNullException(nameof(dataSource));
-            if (values?.Any() != true)
+            ArgumentNullException.ThrowIfNull(dataSource);
+            if (values is null)
                 return;
-            for (int i = 0, valuesCount = values.Count; i < valuesCount; i++)
+            if (values.Count == 0)
+                return;
+            for (int I = 0, ValuesCount = values.Count; I < ValuesCount; I++)
             {
-                dynamic Item = values[i];
+                dynamic Item = values[I];
                 dataSource.AddFunction(Item.NAME, Item.SCHEMA, Item.DEFINITION);
             }
         }
