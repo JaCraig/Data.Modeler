@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.154"></a>
+## [5.0.154](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.154) (2026-11-08)
+
+### Bug Fixes
+
+* **nuget:** add NuGet login step for package upload ([a4012a4](https://www.github.com/JaCraig/Data.Modeler/commit/a4012a4654138a756e354b81170ff64859c36ffd))
+
 <a name="5.0.153"></a>
 ## [5.0.153](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.153) (2026-10-28)
 
