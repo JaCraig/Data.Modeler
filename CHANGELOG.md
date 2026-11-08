@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="5.0.156"></a>
+## [5.0.156](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.156) (2026-11-08)
+
+### Bug Fixes
+
+* Merge branch 'master' of https://github.com/JaCraig/Data.Modeler ([732bb65](https://www.github.com/JaCraig/Data.Modeler/commit/732bb659dbea6c347854b61a04c41f92a1bd04da))
+* **workflow:** update permissions for contents ([a3f6947](https://www.github.com/JaCraig/Data.Modeler/commit/a3f6947978ce1050d323d3ffc88e28aca2d7d31f))
+
 <a name="5.0.155"></a>
 ## [5.0.155](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.155) (2026-11-08)
 
