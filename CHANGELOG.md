@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [versionize](https://github.com/versionize/versionize) for commit guidelines.
 
+<a name="6.0.0"></a>
+## [6.0.0](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v6.0.0) (2026-11-12)
+
+### Features
+
+* **framework:** target .NET 10 and 11 ([bd6a5a5](https://www.github.com/JaCraig/Data.Modeler/commit/bd6a5a5e005a9a14cdd476e5429f69271fb4d242))
+
+### Bug Fixes
+
+* **example:** target .NET 10 ([c84cd61](https://www.github.com/JaCraig/Data.Modeler/commit/c84cd61d2a8dcaeb13be4821f87d82b68b7ffa42))
+* **workflows:** update default .NET version to 11.0.x ([06592ce](https://www.github.com/JaCraig/Data.Modeler/commit/06592ce242532e5515e3a9f92d8c6387d5b796fa))
+
+### Breaking Changes
+
+* **framework:** target .NET 10 and 11 ([bd6a5a5](https://www.github.com/JaCraig/Data.Modeler/commit/bd6a5a5e005a9a14cdd476e5429f69271fb4d242))
+
+### Other
+
+* Merge pull request #436 from JaCraig/dependabot/github_actions/dependencies-39799580c0 ([616ffa3](https://www.github.com/JaCraig/Data.Modeler/commit/616ffa3926f400be2d49639d98ccef9197c4b718))
+* Merge pull request #438 from JaCraig/dependabot/nuget/src/Data.Modeler/dependencies-3fd67bb4a6 ([dd32e5d](https://www.github.com/JaCraig/Data.Modeler/commit/dd32e5de8627b45e85063b6e996864b151c2ef07))
+* Bump actions/setup-dotnet ([f3327cc](https://www.github.com/JaCraig/Data.Modeler/commit/f3327ccaec316d7f5a4dbb9bc5956eb96a05cb6f))
+* Bump the dependencies group with 2 updates ([28992ee](https://www.github.com/JaCraig/Data.Modeler/commit/28992ee54145ec3aaba25d9e006cda6caf387f01))
+
 <a name="5.0.157"></a>
 ## [5.0.157](https://www.github.com/JaCraig/Data.Modeler/releases/tag/v5.0.157) (2026-11-08)
 
